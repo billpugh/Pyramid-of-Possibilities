@@ -1,36 +1,9 @@
-/* MMA8452Q Example Code
- by: Jim Lindblom
- SparkFun Electronics
- date: November 17, 2011
- license: Beerware - Use this code however you'd like. If you 
- find it useful you can buy me a beer some time.
+/* PP0
+ First version of code for LED lighting on the pyramid of possibilities.
  
- This code should provide example usage for most features of
- the MMA8452Q 3-axis, I2C accelerometer. In the loop function
- the accelerometer interrupt outputs will be polled, and either
- the x/y/z accel data will be output, or single/double-taps,
- portrait/landscape changes will be announced to the serial port.
- Feel free to comment/uncomment out some of the Serial.print 
- lines so you can see the information you're most intereseted in.
+ Using MMA8452Q accelerometer and neopixel lighting.
  
- The skeleton is here, feel free to cut/paste what code you need.
- Play around with the settings in initMMA8452Q. Try running the
- code without printing the accel values, to really appreciate
- the single/double-tap and portrait landscape functions. The
- P/L stuff is really neat, something not many accelerometers have.
- 
- Hardware setup:
- MMA8452 Breakout ------------ Arduino
- 3.3V --------------------- 3.3V
- SDA ----------------------- A4
- SCL ----------------------- A5
- INT2 ---------------------- D3
- INT1 ---------------------- D2
- GND ---------------------- GND
- 
- SDA and SCL should have external pull-up resistors (to 3.3V).
- 10k resistors worked for me. They should be on the breakout
- board.
+ Based on MMA8452Q Example Code by: Jim Lindblom
  
  Note: The MMA8452 is an I2C sensor, however this code does
  not make use of the Arduino Wire library. Because the sensor
@@ -103,11 +76,11 @@ void tap(float v) {
 }
 
 void setRandomPixel(float v) {
-   int pixel = random(LEDs);
-    if (l[pixel] < v)
-      l[pixel] = v;
+  int pixel = random(LEDs);
+  if (l[pixel] < v)
+    l[pixel] = v;
 }
-  
+
 void showLEDs() {
   for(int i = 0; i < LEDs; i++) if (l[i] == 0.0)
     strip.setPixelColor(i, 0);
@@ -144,16 +117,16 @@ void updateLEDs() {
   // add 1 to a strip of 240 every 2 updates
   if (random(1000) < LEDs) 
     setRandomPixel(0.5);
-  
+
 
   float maxL = 0;
   for(int i = 1; i < LEDs; i++)
     if (maxL < l[i])
       maxL = l[i];
 
- // p("fade %4f %4f\n", temperature, maxL);
+  // p("fade %4f %4f\n", temperature, maxL);
 
-  
+
 
 }
 
@@ -210,13 +183,13 @@ void setup()
       delay(1000);
     }
   }
-   Serial.println("Color test");
+  Serial.println("Color test");
   nextUpdate = millis() + 100;
   for(float l = 1.0; l >= 0.0; l -= 0.05) {
-  for(int i = 0; i < LEDs; i++) 
-    strip.setPixelColor(i, HSVtoRGB(i*360.0/LEDs, 1.0, l));
-  strip.show();
-  delay(50);
+    for(int i = 0; i < LEDs; i++) 
+      strip.setPixelColor(i, HSVtoRGB(i*360.0/LEDs, 1.0, l));
+    strip.show();
+    delay(50);
   }
   Serial.println("Color test done");
 }
@@ -250,15 +223,15 @@ void loop()
     for (int i=0; i<3; i++) {
       accelG[i] = (float) accelCount[i]/((1<<12)/(2*SCALE));  // get actual g value, this depends on scale being set
       totalDiff += abs(accelG[i]);
-    
+
     }
-   
+
     if (totalDiff > 0.02)
-     tap(totalDiff/10);
-    
+      tap(totalDiff/10);
+
     if(0) {
-     //  tap(totalDiff);
-    // Print out values
+      //  tap(totalDiff);
+      // Print out values
 
       for (int i=0; i<3; i++)
       {
@@ -538,9 +511,9 @@ uint32_t HSVtoRGB(  float h, float s, float v )
   case 5:
   default:
     return color(v,p,q);
-
   }
 }
+
 
 
 
