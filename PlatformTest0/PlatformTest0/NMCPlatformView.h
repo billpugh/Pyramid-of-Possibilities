@@ -10,8 +10,12 @@
 
 @interface NMCPlatformView : UIView
 
-- (void)animationTimerDidFire:(NSTimer *)timer;
+-(void) update;
 
 - (void)tap;
+
+- (void)tap: (double) value;
+
+-(double) tempurature;
 
 @end

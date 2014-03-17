@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1638EC7518BB7F6C00D40C7B /* LightModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1638EC7318BB7F6C00D40C7B /* LightModel.cpp */; };
+		1638EC7818BB9E0000D40C7B /* AccelerometerFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1638EC7718BB9E0000D40C7B /* AccelerometerFilter.m */; };
 		16AE3EBB18BA9B5300A85F8C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16AE3EBA18BA9B5300A85F8C /* Foundation.framework */; };
 		16AE3EBD18BA9B5300A85F8C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16AE3EBC18BA9B5300A85F8C /* CoreGraphics.framework */; };
 		16AE3EBF18BA9B5300A85F8C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16AE3EBE18BA9B5300A85F8C /* UIKit.framework */; };
@@ -21,7 +23,7 @@
 		16AE3EDC18BA9B5400A85F8C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16AE3EBE18BA9B5300A85F8C /* UIKit.framework */; };
 		16AE3EE418BA9B5400A85F8C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 16AE3EE218BA9B5400A85F8C /* InfoPlist.strings */; };
 		16AE3EE618BA9B5400A85F8C /* PlatformTest0Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AE3EE518BA9B5400A85F8C /* PlatformTest0Tests.m */; };
-		16AE3EF118BA9C6D00A85F8C /* NMCPlatformView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AE3EF018BA9C6D00A85F8C /* NMCPlatformView.m */; };
+		16AE3EF118BA9C6D00A85F8C /* NMCPlatformView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 16AE3EF018BA9C6D00A85F8C /* NMCPlatformView.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1638EC7318BB7F6C00D40C7B /* LightModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LightModel.cpp; sourceTree = "<group>"; };
+		1638EC7418BB7F6C00D40C7B /* LightModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightModel.h; sourceTree = "<group>"; };
+		1638EC7618BB9E0000D40C7B /* AccelerometerFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccelerometerFilter.h; sourceTree = "<group>"; };
+		1638EC7718BB9E0000D40C7B /* AccelerometerFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerometerFilter.m; sourceTree = "<group>"; };
 		16AE3EB718BA9B5300A85F8C /* PlatformTest0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlatformTest0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16AE3EBA18BA9B5300A85F8C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		16AE3EBC18BA9B5300A85F8C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -55,7 +61,7 @@
 		16AE3EE318BA9B5400A85F8C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		16AE3EE518BA9B5400A85F8C /* PlatformTest0Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlatformTest0Tests.m; sourceTree = "<group>"; };
 		16AE3EEF18BA9C6D00A85F8C /* NMCPlatformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMCPlatformView.h; sourceTree = "<group>"; };
-		16AE3EF018BA9C6D00A85F8C /* NMCPlatformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMCPlatformView.m; sourceTree = "<group>"; };
+		16AE3EF018BA9C6D00A85F8C /* NMCPlatformView.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = NMCPlatformView.mm; sourceTree = "<group>"; };
 		16AE3EF418BAA06300A85F8C /* corners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = corners.h; sourceTree = "<group>"; };
 		16AE3EF518BAA06300A85F8C /* leds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = leds.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,6 +123,8 @@
 		16AE3EC018BA9B5300A85F8C /* PlatformTest0 */ = {
 			isa = PBXGroup;
 			children = (
+				1638EC7618BB9E0000D40C7B /* AccelerometerFilter.h */,
+				1638EC7718BB9E0000D40C7B /* AccelerometerFilter.m */,
 				16AE3EF418BAA06300A85F8C /* corners.h */,
 				16AE3EF518BAA06300A85F8C /* leds.h */,
 				16AE3EC918BA9B5400A85F8C /* NMCAppDelegate.h */,
@@ -127,7 +135,9 @@
 				16AE3ED218BA9B5400A85F8C /* Images.xcassets */,
 				16AE3EC118BA9B5300A85F8C /* Supporting Files */,
 				16AE3EEF18BA9C6D00A85F8C /* NMCPlatformView.h */,
-				16AE3EF018BA9C6D00A85F8C /* NMCPlatformView.m */,
+				16AE3EF018BA9C6D00A85F8C /* NMCPlatformView.mm */,
+				1638EC7318BB7F6C00D40C7B /* LightModel.cpp */,
+				1638EC7418BB7F6C00D40C7B /* LightModel.h */,
 			);
 			path = PlatformTest0;
 			sourceTree = "<group>";
@@ -260,8 +270,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				16AE3EC718BA9B5300A85F8C /* main.m in Sources */,
+				1638EC7818BB9E0000D40C7B /* AccelerometerFilter.m in Sources */,
 				16AE3ECB18BA9B5400A85F8C /* NMCAppDelegate.m in Sources */,
-				16AE3EF118BA9C6D00A85F8C /* NMCPlatformView.m in Sources */,
+				16AE3EF118BA9C6D00A85F8C /* NMCPlatformView.mm in Sources */,
+				1638EC7518BB7F6C00D40C7B /* LightModel.cpp in Sources */,
 				16AE3ED118BA9B5400A85F8C /* NMCViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -469,6 +481,7 @@
 				16AE3EEB18BA9B5400A85F8C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		16AE3EEC18BA9B5400A85F8C /* Build configuration list for PBXNativeTarget "PlatformTest0Tests" */ = {
 			isa = XCConfigurationList;
@@ -477,6 +490,7 @@
 				16AE3EEE18BA9B5400A85F8C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
