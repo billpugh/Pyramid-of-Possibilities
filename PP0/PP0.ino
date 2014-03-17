@@ -27,18 +27,25 @@
 
 // Pin definitions
 #if MARK2
-#define PIN 22
-int int1Pin = 17;  // These can be changed, 2 and 3 are the Arduinos ext int pins
-int int2Pin = 16;
+#define PIN 2
+int int1Pin = 11;  // These can be changed, 2 and 3 are the Arduinos ext int pins
+int int2Pin = 12;
 #else
 #define PIN 2
 int int1Pin = 20;  // These can be changed, 2 and 3 are the Arduinos ext int pins
 int int2Pin = 21;
 #endif
 
+#define FULL_STRIP 0
+#if FULL_STRIP
 #define LEDs 240
 #define FIRST_LED 10
 #define LAST_LED 228
+#else
+#define LEDs 24 
+#define FIRST_LED 0
+#define LAST_LED 23
+#endif
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(LEDs, PIN, NEO_GRB + NEO_KHZ800);
 
 #define brightness 255
@@ -68,6 +75,12 @@ unsigned long nextUpdate;
 
 unsigned long nextPossibleReversal;
 
+unsigned long nextStats;
+long jiggles;
+long taps;
+long updates;
+float totalJiggle;
+
 void p(char *fmt, ... ){
   char tmp[128]; // resulting string limited to 128 chars
   va_list args;
@@ -78,17 +91,20 @@ void p(char *fmt, ... ){
 }
 byte didTap = 0;
 void tap(float v) {
-  if (v > 1.0)
+  if (v >= 1.0) {
     v = 1.0;
+    didTap = 1;
+    taps++;
+  } else {
+    jiggles ++;
+    totalJiggle += v;
+  }
   int num = v*LEDs/10;
   if (num < 1)
     num = 1;
   for(int i = 0; i < num; i++) {
     setRandomPixel(v);
   }
-  if (v >= 1.0)
-    didTap = 1;
-
 }
 
 void setRandomPixel(float v) {
@@ -137,7 +153,6 @@ void showLEDs() {
   }
   strip.show();
 }
-
 
 float fade(float l) {
   l = l*0.9;
@@ -202,8 +217,16 @@ void updateLEDs() {
     averageTemperature = temperature;
   else
     averageTemperature = (19*averageTemperature + temperature)/20;
-  if (temperature > 0.5)
-    p("temp %4f %4f\n", temperature, averageTemperature );
+    updates++;
+  if (millis() > nextStats) {
+    p("stats %2du %2dt %3dj %4f aj %4f t %4f at\n", updates, taps, jiggles, 
+        totalJiggle/jiggles,  (int)(100*temperature), (int)(100*averageTemperature) );
+    taps = 0;
+    jiggles = 0;
+    updates = 0;
+    totalJiggle = 0.0;
+    nextStats = millis() + 1000;
+  }
 }
 
 
@@ -261,7 +284,7 @@ void setup()
   }
   Serial.println("Color test");
   nextUpdate = millis() + 100;
-  nextPossibleReversal = millis() + 1000;
+  nextStats = nextPossibleReversal = millis() + 1000;
   for(float l = 1.0; l >= 0.0; l -= 0.05) {
     for(int i = 0; i < LEDs; i++) 
       strip.setPixelColor(i, HSVtoRGB(i*360.0/LEDs, 1.0, l));
@@ -271,9 +294,10 @@ void setup()
   for(int i = 0; i < LEDs; i++) 
     strip.setPixelColor(i, 0);
   strip.show();
-
+  jiggles = taps = updates = 0;
   Serial.println("Color test done");
   digitalWrite(13, LOW); 
+ 
 }
 
 void loop()
@@ -598,6 +622,7 @@ uint32_t HSVtoRGB(  float h, float s, float v )
     return color(v,p,q);
   }
 }
+
 
 
 
