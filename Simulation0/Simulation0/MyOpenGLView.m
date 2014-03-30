@@ -317,7 +317,7 @@ static void definePlatforms ()
             glColor3f(r,g,b);
             glVertex3f( x,z,y);
             for(int j = 0; j < 219; j++)
-                glVertex3f( x + 1.15*ledPositions[j][1],z,y+ 1.15*ledPositions[j][0]);
+                glVertex3f( x + 1.05*ledPositions[j][1],z,y+ 1.05*ledPositions[j][0]);
         }
 //        glColor3f(1.0f, 1.0f, 1.0f);
 //        glVertex3f( x,0,y);
@@ -351,7 +351,7 @@ static void drawModel() {
         GLfloat x = popVerts[3*i];
         GLfloat y = popVerts[3*i+1];
         GLfloat z = popVerts[3*i+2];
-        glVertex3f( (x - 8970)/1.077, y/1.077+89.5, (-9502-z)/1.077 );
+        glVertex3f( (x - 8970)/1.0775+20, y/1.0775+89.5, (-9502-z)/1.0775-40 );
     }
     glEnd();
 }
