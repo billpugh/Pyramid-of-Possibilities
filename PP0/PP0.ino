@@ -248,7 +248,7 @@ void setup()
   strip.setPixelColor(0,RED);
   strip.show();
   delay(3000);
-  strip.setPixelColor(0,YELLOW);
+  strip.setPixelColor(0,BLUE);
   strip.show();
 
   Serial.println("Ready");
@@ -258,6 +258,7 @@ void setup()
   delay(1000);
   strip.setPixelColor(0,GREEN);
   strip.show();
+  delay(1000);
   Serial.println("GO");
   digitalWrite(13, HIGH); 
   // Set up the interrupt pins, they're set as active high, push-pull

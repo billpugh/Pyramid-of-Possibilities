@@ -76,6 +76,16 @@ void RNLights::setPixelColor(uint16_t pixel, uint8_t red, uint8_t green, uint8_t
     pixels[pixel+2] = blue;
 
 }
+
+void RNLights::setAllPixelColors(uint8_t red, uint8_t green, uint8_t blue) {
+    uint8_t *p = pixels;
+    uint8_t *pixelsEnd = p + numPixels*3;
+    while(p < pixelsEnd)
+        *p++ = red;
+    *p++ = green;
+    *p++ = blue;
+}
+
 void RNLights::getPixelColor(uint16_t pixel, uint8_t &red, uint8_t &green, uint8_t &blue) {
     pixel = 3*((pixel+offset) % numPixels);
     red = pixels[pixel];

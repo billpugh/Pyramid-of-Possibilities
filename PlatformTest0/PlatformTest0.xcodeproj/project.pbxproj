@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1638EC7518BB7F6C00D40C7B /* LightModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1638EC7318BB7F6C00D40C7B /* LightModel.cpp */; };
 		1638EC7818BB9E0000D40C7B /* AccelerometerFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1638EC7718BB9E0000D40C7B /* AccelerometerFilter.m */; };
+		165F6F9C18E0BC0700419425 /* RNLights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 165F6F9A18E0BC0700419425 /* RNLights.cpp */; };
 		16AE3EBB18BA9B5300A85F8C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16AE3EBA18BA9B5300A85F8C /* Foundation.framework */; };
 		16AE3EBD18BA9B5300A85F8C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16AE3EBC18BA9B5300A85F8C /* CoreGraphics.framework */; };
 		16AE3EBF18BA9B5300A85F8C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16AE3EBE18BA9B5300A85F8C /* UIKit.framework */; };
@@ -41,6 +42,8 @@
 		1638EC7418BB7F6C00D40C7B /* LightModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightModel.h; sourceTree = "<group>"; };
 		1638EC7618BB9E0000D40C7B /* AccelerometerFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccelerometerFilter.h; sourceTree = "<group>"; };
 		1638EC7718BB9E0000D40C7B /* AccelerometerFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerometerFilter.m; sourceTree = "<group>"; };
+		165F6F9A18E0BC0700419425 /* RNLights.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RNLights.cpp; sourceTree = "<group>"; };
+		165F6F9B18E0BC0700419425 /* RNLights.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNLights.h; sourceTree = "<group>"; };
 		16AE3EB718BA9B5300A85F8C /* PlatformTest0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlatformTest0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16AE3EBA18BA9B5300A85F8C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		16AE3EBC18BA9B5300A85F8C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -138,6 +141,8 @@
 				16AE3EF018BA9C6D00A85F8C /* NMCPlatformView.mm */,
 				1638EC7318BB7F6C00D40C7B /* LightModel.cpp */,
 				1638EC7418BB7F6C00D40C7B /* LightModel.h */,
+				165F6F9A18E0BC0700419425 /* RNLights.cpp */,
+				165F6F9B18E0BC0700419425 /* RNLights.h */,
 			);
 			path = PlatformTest0;
 			sourceTree = "<group>";
@@ -273,6 +278,7 @@
 				1638EC7818BB9E0000D40C7B /* AccelerometerFilter.m in Sources */,
 				16AE3ECB18BA9B5400A85F8C /* NMCAppDelegate.m in Sources */,
 				16AE3EF118BA9C6D00A85F8C /* NMCPlatformView.mm in Sources */,
+				165F6F9C18E0BC0700419425 /* RNLights.cpp in Sources */,
 				1638EC7518BB7F6C00D40C7B /* LightModel.cpp in Sources */,
 				16AE3ED118BA9B5400A85F8C /* NMCViewController.m in Sources */,
 			);

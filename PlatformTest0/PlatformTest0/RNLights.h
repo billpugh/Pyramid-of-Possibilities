@@ -29,6 +29,7 @@ public:
     void fade(uint8_t amount=1);
     void fadeMultiply(uint8_t amount=255);
     void setPixelColor(uint16_t pixel, uint8_t red, uint8_t green, uint8_t blue);
+    void setAllPixelColors(uint8_t red, uint8_t green, uint8_t blue);
     void getPixelColor(uint16_t pixel, uint8_t &red, uint8_t &green, uint8_t &blue);
     uint8_t getPixelRed(uint16_t pixel);
     uint8_t getPixelGreen(uint16_t pixel);
