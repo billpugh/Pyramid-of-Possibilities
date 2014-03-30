@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		165F6F9918E0730F00419425 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 165F6F9818E0730F00419425 /* README.md */; };
 		167C806218DB3D17006CCC4B /* trackball.c in Sources */ = {isa = PBXBuildFile; fileRef = 167C806018DB3D17006CCC4B /* trackball.c */; };
 		167D199D18C4BDB5002F6A51 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 167D199C18C4BDB5002F6A51 /* Cocoa.framework */; };
 		167D19A718C4BDB5002F6A51 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 167D19A518C4BDB5002F6A51 /* InfoPlist.strings */; };
@@ -39,6 +40,7 @@
 		165EB72118DB52FF00B42248 /* platforms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platforms.h; sourceTree = "<group>"; };
 		165EB73718DDC47800B42248 /* tier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tier.h; sourceTree = "<group>"; };
 		165EB73918DDD93A00B42248 /* model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = model.h; sourceTree = "<group>"; };
+		165F6F9818E0730F00419425 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
 		167C806018DB3D17006CCC4B /* trackball.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = trackball.c; sourceTree = "<group>"; };
 		167C806118DB3D17006CCC4B /* trackball.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trackball.h; sourceTree = "<group>"; };
 		167D199918C4BDB5002F6A51 /* Simulation0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Simulation0.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +160,7 @@
 		167D19A318C4BDB5002F6A51 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				165F6F9818E0730F00419425 /* README.md */,
 				167D19A418C4BDB5002F6A51 /* Simulation0-Info.plist */,
 				167D19A518C4BDB5002F6A51 /* InfoPlist.strings */,
 				167D19A818C4BDB5002F6A51 /* main.m */,
@@ -273,6 +276,7 @@
 			files = (
 				167D19A718C4BDB5002F6A51 /* InfoPlist.strings in Resources */,
 				167D19B518C4BDB5002F6A51 /* Images.xcassets in Resources */,
+				165F6F9918E0730F00419425 /* README.md in Resources */,
 				167D19AD18C4BDB5002F6A51 /* Credits.rtf in Resources */,
 				167D19B318C4BDB5002F6A51 /* MainMenu.xib in Resources */,
 			);
