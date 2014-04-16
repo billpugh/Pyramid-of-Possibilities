@@ -255,6 +255,7 @@ void setup()
   jiggles = taps = updates = 0;
   Serial.println("Color test done");
   digitalWrite(13, LOW); 
+  initializeAccelerometer();
  
 }
 
