@@ -54,8 +54,6 @@ const byte SCALE = 2;  // Sets full-scale range to +/-2, 4, or 8g. Used to calc 
 // Set the output data rate below. Value should be between 0 and 7
 const byte dataRate = 0;  // 0=800Hz, 1=400, 2=200, 3=100, 4=50, 5=12.5, 6=6.25, 7=1.56
 
-
-
 int accelCount[3];  // Stores the 12-bit signed value
 float accelG[3];  // Stores the real accel value in g's
 float avgG[3]; 
