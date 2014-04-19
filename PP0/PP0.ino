@@ -24,9 +24,9 @@
 #define FIRST_LED 10
 #define LAST_LED 228
 #else
-#define LEDs 24 
+#define LEDs 60 
 #define FIRST_LED 0
-#define LAST_LED 23
+#define LAST_LED 59
 #endif
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(LEDs, PIN, NEO_GRB + NEO_KHZ800);
 
@@ -141,12 +141,12 @@ float fade(float l) {
 
 int direction = 1;
 void updateLEDs() {
-  if (didTap || jiggles > 100 ) {
+  if (didTap ) {
     temperature = temperature+0.1;
     p("Did tap %f\n", temperature);
     didTap = 0;
   } else {
-    temperature = temperature + jiggles/1000.0;
+//    temperature = temperature + jiggles/1000.0;
   }
   if (direction > 0) {
     float p0 = l[FIRST_LED];
@@ -222,8 +222,13 @@ void setup()
   Serial.begin(115200);
   Serial.println("Hello");
   strip.begin();
-  strip.show();
 
+
+  for(int i = 0; i < LEDs; i++)
+    strip.setPixelColor(i, strip.Color(0, 10, 0));
+  strip.show();
+  Serial.println("Set to green");
+  delay(1000);
   pinMode(13, OUTPUT); 
   digitalWrite(13, HIGH); 
   strip.setPixelColor(0,RED);
@@ -232,7 +237,7 @@ void setup()
   strip.setPixelColor(0,BLUE);
   strip.show();
 
-  Serial.println("Ready");
+  Serial.println("Ready v0");
   digitalWrite(13, LOW); 
 
 
