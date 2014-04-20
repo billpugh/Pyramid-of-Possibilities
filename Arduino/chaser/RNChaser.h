@@ -15,9 +15,9 @@
 class RNChaser {
     
 public:
-    RNChaser();
-    void update(RNLights & lights, unsigned long millis); 
-    void setRPM(RNLights & lights, uint16_t rpm); 
+    RNChaser(RNLight & lights);
+    void update(unsigned long millis); 
+    void setRPM(uint16_t rpm); 
    
     bool forward;
     bool active;
@@ -25,6 +25,8 @@ public:
     uint16_t delay;
     int16_t position;
     uint8_t r,g,b;
+    private:
+    RNLight & lights;
 };
 
 #endif /* defined(__RNChaser__) */

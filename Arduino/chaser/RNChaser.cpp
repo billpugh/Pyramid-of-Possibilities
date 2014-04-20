@@ -11,7 +11,7 @@
 
 // 
 
-    RNChaser::RNChaser() {
+    RNChaser::RNChaser(RNLight & lights) : lights(lights) {
       lastUpdate = 0;
       forward = true;
       active = false;
@@ -20,10 +20,10 @@
       r = b = g = 50;
     }
     
-void RNChaser::setRPM(RNLights & lights, uint16_t rpm) {
+void RNChaser::setRPM(uint16_t rpm) {
   delay = 60000 / rpm / lights.getNumPixels();
 }
-void RNChaser::update(RNLights & lights, unsigned long millis) {
+void RNChaser::update(unsigned long millis) {
   if (!active) return;
   if (lastUpdate + delay > millis)
     return;

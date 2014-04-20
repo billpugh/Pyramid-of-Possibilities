@@ -8,10 +8,14 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(240, 2, NEO_GRB + NEO_KHZ800);
 RNLightsNeoPixel lights =  RNLightsNeoPixel(strip);
 
 const uint8_t numChasers = 6;
-RNChaser chaser[numChasers];
+RNChaser chaser[numChasers] = { 
+  RNChaser(lights), 
+  RNChaser(lights), 
+  RNChaser(lights), 
+  RNChaser(lights), 
+  RNChaser(lights), 
+  RNChaser(lights)};
 
-
-  
 
 
 void p(char *fmt, ... ){
@@ -54,30 +58,31 @@ void setup() {
   lights.show();
   chaser[0].active = true;
   chaser[0].lastUpdate = millis();
-  chaser[0].setRPM(lights, 50);
+  chaser[0].setRPM(50);
   chaser[0].r = 120;
-  
+
   chaser[1].active = true;
   chaser[1].lastUpdate = millis();
   chaser[1].position = 20;
-  chaser[1].setRPM(lights, 51);
+  chaser[1].setRPM( 51);
   chaser[1].g = 120;
   chaser[2].active = true;
   chaser[2].lastUpdate = millis();
   chaser[2].forward = false;
-  chaser[2].setRPM(lights, 100);
+  chaser[2].setRPM(100);
   chaser[2].b = 70;
-  
+
 }
 
 void loop() {
   lights.fadeMultiply(240);
   unsigned long ms = millis();
   for(int i = 0; i < numChasers; i++) 
-    chaser[i].update(lights, ms);
+    chaser[i].update( ms);
   lights.show();
   delay(5);
 }
+
 
 
 
