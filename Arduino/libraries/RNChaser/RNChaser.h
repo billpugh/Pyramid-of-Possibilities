@@ -2,7 +2,7 @@
 //  RNChaser.h
 //
 //  Created by Bill on 3/24/14.
-//  Copyright (c) 2014 Ninja Monkey Coders. All rights reserved.
+//  Copyright (c) 2014 Radical Norm. All rights reserved.
 //
 
 #ifndef __RNChaser__
@@ -15,18 +15,19 @@
 class RNChaser {
     
 public:
-    RNChaser(RNLight & lights);
+    RNChaser(RNLights & lights);
     void update(unsigned long millis); 
     void setRPM(uint16_t rpm); 
-   
+    uint16_t getRPM();
+    
     bool forward;
     bool active;
-    unsigned long lastUpdate;
+    unsigned long nextUpdate;
     uint16_t delay;
     int16_t position;
     uint8_t r,g,b;
     private:
-    RNLight & lights;
+    RNLights & lights;
 };
 
 #endif /* defined(__RNChaser__) */

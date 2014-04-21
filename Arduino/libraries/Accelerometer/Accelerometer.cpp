@@ -17,13 +17,13 @@ const uint8_t dataRate = 0;  // 0=800Hz, 1=400, 2=200, 3=100, 4=50, 5=12.5, 6=6.
 void initMMA8452(uint8_t fsr, uint8_t dataRate);
 
 void initializeAccelerometer() {
-    Wire.begin(); //Join the bus as a master
-      // Set up the interrupt pins, they're set as active high, push-pull
+  Wire.begin(); //Join the bus as a master
+  // Set up the interrupt pins, they're set as active high, push-pull
   pinMode(int1Pin, INPUT);
   digitalWrite(int1Pin, LOW);
   pinMode(int2Pin, INPUT);
   digitalWrite(int2Pin, LOW);
-   // Read the WHO_AM_I register, this is a good test of communication
+  // Read the WHO_AM_I register, this is a good test of communication
   uint8_t c = readRegister(0x0D);  // Read WHO_AM_I register
   if (c == 0x2A) // WHO_AM_I should always be 0x2A
   {  
@@ -40,8 +40,8 @@ void initializeAccelerometer() {
     }
   }
 }
-  
-void readAccelData(int * destination)
+
+void readAccelData(int16_t * destination)
 {
   uint8_t rawData[6];  // x/y/z accel register data stored here
 
@@ -50,14 +50,16 @@ void readAccelData(int * destination)
   // Loop to calculate 12-bit ADC and g value for each axis
   for (int i=0; i<6; i+=2)
   {
-    destination[i/2] = ((rawData[i] << 8) | rawData[i+1]) >> 4;  // Turn the MSB and LSB into a 12-bit value
-    if (rawData[i] > 0x7F)
-    {  
-      // If the number is negative, we have to make it so manually (no 12-bit data type)
-      destination[i/2] -= 0x1000;
-    }
+    destination[i/2] = (rawData[i] << 8) | rawData[i+1];  // Turn the MSB and LSB into a 12-bit value
   }
 
+}
+
+void readAccelData(float * destination) {
+  int16_t accelCount[3];
+  readAccelData(accelCount);
+  for(int i = 0; i < 3; i++)
+    destination[i] = (float) accelCount[i]/(1<< (15 - SCALE_SHIFT));
 }
 
 // Initialize the MMA8452 registers 
@@ -171,4 +173,5 @@ void writeRegister(uint8_t addressToWrite, uint8_t dataToWrite)
   Wire.write(dataToWrite);
   Wire.endTransmission(); //Stop transmitting
 }
+
 
