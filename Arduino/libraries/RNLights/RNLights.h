@@ -1,13 +1,12 @@
 //
 //  RNLights.h
-//  PlatformTest0
 //
 //  Created by Bill on 3/24/14.
-//  Copyright (c) 2014 Ninja Monkey Coders. All rights reserved.
+//  Copyright (c) 2014 Radical Norm. All rights reserved.
 //
 
-#ifndef __PlatformTest0__RNLights__
-#define __PlatformTest0__RNLights__
+#ifndef __RNLights__
+#define __RNLights__
 
 #include <stdint.h>
 
@@ -33,7 +32,7 @@ public:
     void addPixelColor(uint16_t pixel, uint8_t red, uint8_t green, uint8_t blue);
     void setAllPixelColors(uint8_t red, uint8_t green, uint8_t blue);
     void getPixelColor(uint16_t pixel, uint8_t &red, uint8_t &green, uint8_t &blue);
-     void copyPixelColor(uint16_t fromPixel, uint16_t toPixel);
+    void copyPixelColor(uint16_t fromPixel, uint16_t toPixel);
    
     uint8_t getPixelRed(uint16_t pixel);
     uint8_t getPixelGreen(uint16_t pixel);
@@ -49,4 +48,4 @@ protected:
     uint8_t * pixels;
 };
 
-#endif /* defined(__PlatformTest0__RNLights__) */
+#endif /* defined(__RNLights__) */

@@ -1,13 +1,12 @@
 //
 //  RNLights.h
-//  PlatformTest0
 //
 //  Created by Bill on 3/24/14.
-//  Copyright (c) 2014 Ninja Monkey Coders. All rights reserved.
+//  Copyright (c) 2014 Radical Norm. All rights reserved.
 //
 
-#ifndef __PlatformTest0__RNLightsNeoPixel__
-#define __PlatformTest0__RNLightsNeoPixel__
+#ifndef __RNLightsNeoPixel__
+#define __RNLightsNeoPixel__
 
 #include <Arduino.h>
 #include "Adafruit_NeoPixel.h"
@@ -24,4 +23,4 @@ private:
    Adafruit_NeoPixel & strip;
 };
 
-#endif /* defined(__PlatformTest0__RNLightsNeoPixel__) */
+#endif /* defined(__RNLightsNeoPixel__) */

@@ -1,9 +1,8 @@
 //
 //  RNLights.cpp
-//  PlatformTest0
 //
 //  Created by Bill on 3/24/14.
-//  Copyright (c) 2014 Ninja Monkey Coders. All rights reserved.
+//  Copyright (c) 2014 Radical Norm. All rights reserved.
 //
 
 #include "RNLights.h"
