@@ -3,7 +3,7 @@
 #include "RNLightsNeoPixel.h"
 #include "RNChaser.h"
 
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(240, 2, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(60, 2, NEO_GRB + NEO_KHZ800);
 
 RNLightsNeoPixel lights =  RNLightsNeoPixel(strip);
 
@@ -17,15 +17,6 @@ RNChaser chaser[numChasers] = {
   RNChaser(lights)};
 
 
-
-void p(char *fmt, ... ){
-  char tmp[256]; // resulting string limited to 128 chars
-  va_list args;
-  va_start (args, fmt );
-  vsnprintf(tmp, 256, fmt, args);
-  va_end (args);
-  Serial.print(tmp);
-}
 
 CHSV hsv;
 CRGB rgb;
@@ -56,32 +47,40 @@ void setup() {
 
   Serial.println("Starting");
   lights.show();
-  chaser[0].active = true;
-  chaser[0].lastUpdate = millis();
-  chaser[0].setRPM(50);
-  chaser[0].r = 120;
+  for(int i = 0; i < numChasers; i++) {
+    chaser[i].active = true;
+    chaser[i].setRPM(50 + random(50));
+    if (random(2) == 0)
+      chaser[i].forward = false;
+    chaser[i].r = chaser[i].g = chaser[i].b = 0;
+    switch (random(3)) {
+    case 0:
+      chaser[i].r = 70 + random(50);
+      break;
+    case 1:
+      chaser[i].g = 70 + random(50);
+      break;
+    case 2:
+      chaser[i].b = 70 + random(50);
+      break;
+    }
+  }
 
-  chaser[1].active = true;
-  chaser[1].lastUpdate = millis();
-  chaser[1].position = 20;
-  chaser[1].setRPM( 51);
-  chaser[1].g = 120;
-  chaser[2].active = true;
-  chaser[2].lastUpdate = millis();
-  chaser[2].forward = false;
-  chaser[2].setRPM(100);
-  chaser[2].b = 70;
+
 
 }
 
 void loop() {
   lights.fadeMultiply(240);
   unsigned long ms = millis();
-  for(int i = 0; i < numChasers; i++) 
+  for(int i = 0; i < numChasers; i++) {
     chaser[i].update( ms);
+
+  }
   lights.show();
   delay(5);
 }
+
 
 
 

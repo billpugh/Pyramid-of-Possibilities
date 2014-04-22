@@ -32,7 +32,6 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(LEDs, PIN, NEO_GRB + NEO_KHZ800);
 
 #define brightness 255
 
-int accelCount[3];  // Stores the 12-bit signed value
 float accelG[3];  // Stores the real accel value in g's
 float avgG[3]; 
 
@@ -65,11 +64,11 @@ void p(char *fmt, ... ){
   va_end (args);
   Serial.print(tmp);
 }
-byte didTap = 0;
+bool didTap = false;
 void tap(float v) {
   if (v >= 1.0) {
     v = 1.0;
-    didTap = 1;
+    didTap = true;
     taps++;
   } 
   else {
@@ -144,7 +143,7 @@ void updateLEDs() {
   if (didTap ) {
     temperature = temperature+0.1;
     p("Did tap %f\n", temperature);
-    didTap = 0;
+    didTap = false;
   } else {
 //    temperature = temperature + jiggles/1000.0;
   }
@@ -181,7 +180,9 @@ void updateLEDs() {
       nextPossibleReversal = millis() + 5000;
   }
 
-  temperature = temperature*0.97;
+  temperature = temperature*0.99-0.01;
+  if (temperature < 0)
+   temperature = 0;
 
   // at 10 updates / second, want to add 1 led to a strip of 8 every 3 seconds
   // add 1 to a strip of 240 every 2 updates
@@ -271,31 +272,25 @@ void setup()
 
 void loop()
 {  
+  if (false) {
+     readAccelData(accelG);  // Read the x/y/z adc values
+     for(int i = 0; i < 3; i++)
+       p("%f ", accelG[i]);
+     p("\n");
+     delay(200);
+     return;
+  }
   static byte source;
 
   int change = 0;
   // If int1 goes high, all data registers have new data
   if (digitalRead(int1Pin)==1)  // Interrupt pin, should probably attach to interrupt function
   {
-    readAccelData(accelCount);  // Read the x/y/z adc values
-
-    /* 
-     //Below we'll print out the ADC values for acceleration
-     for (int i=0; i<3; i++)
-     {
-     Serial.print(accelCount[i]);
-     Serial.print("\t\t");
-     }
-     Serial.println();
-     */
-
-    // Now we'll calculate the accleration value into actual g's
-
+    readAccelData(accelG);  // Read the x/y/z adc values
+   
     float totalDiff = 0.0;
     for (int i=0; i<3; i++) {
-      accelG[i] = (float) accelCount[i]/((1<<12)/(2*SCALE));  // get actual g value, this depends on scale being set
       totalDiff += abs(accelG[i]);
-
     }
 
     if (totalDiff > 0.01) {

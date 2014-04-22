@@ -16,9 +16,10 @@ class RNChaser {
     
 public:
     RNChaser(RNLights & lights);
-    void update(unsigned long millis); 
+    bool update(unsigned long millis); 
     void setRPM(uint16_t rpm); 
     uint16_t getRPM();
+    void fade(uint8_t amount=1);
     
     bool forward;
     bool active;
