@@ -8,9 +8,7 @@
 #include "RNLights.h"
 #include <stdlib.h>
 
-// 
-RNLights::RNLights(uint16_t numPixels) : 
-numPixels(numPixels) {
+RNLights::RNLights(uint16_t numPixels) : numPixels(numPixels) {
   pixels = (uint8_t*)malloc(numPixels * 3);
   reset();
 }

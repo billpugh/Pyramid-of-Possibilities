@@ -12,15 +12,19 @@
 #include "Adafruit_NeoPixel.h"
 #include "RNLights.h"
 
-class RNLightsNeoPixel : public RNLights {
-    
+class RNLightsNeoPixel : 
+public RNLights {
+
 public:
-    RNLightsNeoPixel(Adafruit_NeoPixel & strip);
-    
-    unsigned long show();
-    
+  RNLightsNeoPixel(Adafruit_NeoPixel & strip);
+  RNLightsNeoPixel(Adafruit_NeoPixel & strip, uint16_t firstPixel);
+
+  unsigned long show();
+
 private:
-   Adafruit_NeoPixel & strip;
+  Adafruit_NeoPixel & strip;
+  const uint16_t firstPixel;
 };
 
 #endif /* defined(__RNLightsNeoPixel__) */
+
