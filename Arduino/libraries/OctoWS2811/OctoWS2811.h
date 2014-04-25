@@ -22,6 +22,9 @@
 */
 
 
+#ifndef __RNOctoWS2811__
+#define __RNOctoWS2811__
+
 #include <Arduino.h>
 
 #define WS2811_RGB	0	// The WS2811 datasheet documents this way
@@ -62,3 +65,5 @@ private:
 	static uint8_t params;
 };
 
+
+#endif /* defined(__RNOctoWS2811__) */
