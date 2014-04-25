@@ -18,7 +18,6 @@
 #define LAST_LED 59
 #endif
 
-
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(60, 2, NEO_GRB + NEO_KHZ800);
 
 RNLightsNeoPixel lights =  RNLightsNeoPixel(strip);
@@ -58,7 +57,7 @@ void p(char *fmt, ... ){
 void setRGB(float h, float v) {
   if (h > 1.0f)
     h = 1.0f;
-  hsv.h = 220 * h;
+  hsv.h = 230 * h;
   if (v > 1.0f)
     v = 1.0f;
   hsv.v = 110 + 140*v;
