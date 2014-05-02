@@ -20,16 +20,9 @@
 #define MMA8452_ADDRESS 0x1C
 #endif
 
-#define MARK2 1
 
-// Pin definitions
-#if MARK2
-int int1Pin = 17;  // These can be changed, 2 and 3 are the Arduinos ext int pins
-int int2Pin = 16;
-#else
-int int1Pin = 20;  // These can be changed, 2 and 3 are the Arduinos ext int pins
-int int2Pin = 21;
-#endif
+int int1Pin = 11;  // These can be changed, 2 and 3 are the Arduinos ext int pins
+int int2Pin = 12;
 
 // Set the scale below either 2, 4 or 8
 const byte SCALE = 2;  // Sets full-scale range to +/-2, 4, or 8g. Used to calc real g values.

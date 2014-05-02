@@ -1,15 +1,17 @@
 #include <Adafruit_NeoPixel.h>
+#include <OctoWS2811.h>
 #include "Accelerometer.h"
 #include "RNLightsNeoPixel.h"
 #include "RNChaser.h"
 #include <hsv2rgb.h>
 
-#define MARK2 1
+
 #define PIN 2
 
 #define FULL_STRIP 0
+
 #if FULL_STRIP
-#define LEDs 240
+#define LEDs 219
 #define FIRST_LED 10
 #define LAST_LED 228
 #else
@@ -18,22 +20,21 @@
 #define LAST_LED 59
 #endif
 
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(60, 2, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(LAST_LED+1, 2, NEO_GRB + NEO_KHZ800);
 
-RNLightsNeoPixel lights =  RNLightsNeoPixel(strip);
+RNLightsNeoPixel lights = RNLightsNeoPixel(strip, FIRST_LED);
 
-const uint8_t numChasers = 6;
+const uint8_t numChasers = 24;
 RNChaser chaser[numChasers] = { 
-  RNChaser(lights), 
-  RNChaser(lights), 
-  RNChaser(lights), 
-  RNChaser(lights), 
-  RNChaser(lights), 
-  RNChaser(lights)};
+  RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights),
+  RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights),
+  RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights),
+  RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights)
+};
 
 
-CHSV hsv;
-CRGB rgb;
+static CHSV hsv;
+static CRGB rgb;
 
 float temperature = 0.0;
 unsigned long nextUpdate;
@@ -62,40 +63,45 @@ void setRGB(float h, float v) {
     v = 1.0f;
   hsv.v = 110 + 140*v;
   hsv.s = 200;
-//  p("%3d %3d %3d ", hsv.h,hsv.s, hsv.v);
+  //  p("%3d %3d %3d ", hsv.h,hsv.s, hsv.v);
   hsv2rgb_rainbow(hsv,rgb);
-//  p("%3d %3d %3d\n", rgb.r, rgb.g, rgb.b);
+  //  p("%3d %3d %3d\n", rgb.r, rgb.g, rgb.b);
 }
 void setRandomPixel(float v) {
-//  p("%f ", temperature);
+  //  p("%f ", temperature);
   setRGB(temperature, v);
   int pixel = random(lights.getNumPixels());
   lights.setPixelColorMin(pixel, rgb.r, rgb.g, rgb.b);
 }
 
 void addChaser() {
-   if (nextChaser > millis())  return;
-    nextChaser = millis() + 300;
-    setRGB(random(100)/100.0f, 1.0);
-    int c = random(numChasers);
-    if (!chaser[c].active) {
-      chaser[c].active = true;
-      chaser[c].r = rgb.r;
-      chaser[c].g= rgb.g;
-      
-      chaser[c].b = rgb.b;
-      chaser[c].nextUpdate = millis();
-      int rpm = 30 + random(90);
-      chaser[c].setRPM(rpm);
+  if (nextChaser > millis())  return;
+  nextChaser = millis() + 300;
+  setRGB(random(100)/100.0f, 1.0);
+  int c = random(numChasers);
+  if (!chaser[c].active) {
+    chaser[c].activate();
+    chaser[c].hsv.h = random(256);
+    chaser[c].nextUpdate = millis();
+
+    int rpm;
+    if (random(3) == 0)
+      rpm = 100 + random(100);
+    else
+      rpm = 20 + random(80);
      
-      p("%3d %4d  ", rpm, chaser[c].delay);
-      p("%3d %3d %3d ", hsv.h,hsv.s, hsv.v);
-      p("%3d %3d %3d\n", rgb.r, rgb.g, rgb.b);
-      chaser[c].position = random(lights.getNumPixels());
-      chaser[c].forward = random(3) != 0;
-    } else
-      chaser[c].fade(1);
-  }
+    chaser[c].setRPM(rpm);
+
+    p("%3d %4d  ", rpm, chaser[c].delay);
+    p("%3d %3d %3d ", hsv.h,hsv.s, hsv.v);
+    p("%3d %3d %3d\n", rgb.r, rgb.g, rgb.b);
+    chaser[c].position = random(lights.getNumPixels());
+    chaser[c].forward = random(3) != 0;
+  } 
+  else
+    chaser[c].fade(10);
+  
+}
 
 void tap(float v) {
   if (v >= 1.0) {
@@ -134,17 +140,14 @@ void updateTemperature() {
 
 void tapHandler()
 {
-   byte source = readRegister(0x22);  // Reads the PULSE_SRC register
+  byte source = readRegister(0x22);  // Reads the PULSE_SRC register
   p("Saw tap\n");
   tap(1.0);
- 
-      
-      
 }
 
 void setup()
 {
-
+  delay(1000);
   Serial.begin(115200);
   Serial.println("Hello");
   pinMode(13, OUTPUT); 
@@ -152,10 +155,9 @@ void setup()
   delay(2000);
   lights.show();
   initializeAccelerometer();
+  Serial.println("Ready");
   digitalWrite(13, LOW); 
-
 }
-
 
 void loop() {
   if (digitalRead(int1Pin)==1)  // Interrupt pin, should probably attach to interrupt function
@@ -184,17 +186,18 @@ void loop() {
   updateTemperature();
   unsigned long ms = millis();
   for(int i = 0; i < numChasers; i++) {
-    if (chaser[i].update(ms) && random(4) == 0)
+    if (chaser[i].update(ms) && random(1000) < chaser[i].getRPM())
       chaser[i].fade(1);
 
   }
-  if (random(6) == 0)
+  if (random(30) == 0)
     setRandomPixel(0.1);
   lights.show();
-  lights.fadeMultiply(230);
-  delay(10);
+  lights.fadeMultiply(245);
+  delay(1);
 
 }
+
 
 
 

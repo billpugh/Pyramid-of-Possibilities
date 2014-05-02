@@ -11,24 +11,35 @@
 #include <stdint.h>
 
 #include "RNLights.h"
+#include <hsv2rgb.h>
 
 class RNChaser {
-    
+
 public:
-    RNChaser(RNLights & lights);
-    bool update(unsigned long millis); 
-    void setRPM(uint16_t rpm); 
-    uint16_t getRPM();
-    void fade(uint8_t amount=1);
-    
-    bool forward;
-    bool active;
-    unsigned long nextUpdate;
-    uint16_t delay;
-    int16_t position;
-    uint8_t r,g,b;
-    private:
-    RNLights & lights;
+  RNChaser(RNLights & lights);
+  bool update(unsigned long millis); 
+  void setRPM(uint16_t rpm); 
+  uint16_t getRPM();
+  void setHalflife(uint16_t ms); 
+  uint16_t getHalflife();
+  void fade(float amount=0.99);
+  void activate();
+
+  bool forward;
+  bool active;
+  unsigned long nextUpdate;
+  unsigned long nextFadeUpdate;
+  uint16_t fadeDelay;
+  uint16_t delay;
+  int16_t position;
+  float fadeBottom = 0.3;
+  float fadeValue = 1 + fadeBottom;
+  CHSV hsv;
+  uint8_t brightness;
+private:
+  RNLights & lights;
+
 };
 
 #endif /* defined(__RNChaser__) */
+

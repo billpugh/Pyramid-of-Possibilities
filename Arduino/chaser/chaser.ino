@@ -1,4 +1,5 @@
 #include <Adafruit_NeoPixel.h>
+#include <OctoWS2811.h>
 #include <hsv2rgb.h>
 #include "RNLightsNeoPixel.h"
 #include "RNChaser.h"
@@ -15,11 +16,6 @@ RNChaser chaser[numChasers] = {
   RNChaser(lights), 
   RNChaser(lights), 
   RNChaser(lights)};
-
-
-
-CHSV hsv;
-CRGB rgb;
 
 
 float easeInOutQuad(float t) {
@@ -52,18 +48,7 @@ void setup() {
     chaser[i].setRPM(50 + random(50));
     if (random(2) == 0)
       chaser[i].forward = false;
-    chaser[i].r = chaser[i].g = chaser[i].b = 0;
-    switch (random(3)) {
-    case 0:
-      chaser[i].r = 70 + random(50);
-      break;
-    case 1:
-      chaser[i].g = 70 + random(50);
-      break;
-    case 2:
-      chaser[i].b = 70 + random(50);
-      break;
-    }
+    chaser[i].hsv.h = random(255);
   }
 
 
@@ -74,7 +59,10 @@ void loop() {
   lights.fadeMultiply(240);
   unsigned long ms = millis();
   for(int i = 0; i < numChasers; i++) {
-    chaser[i].update( ms);
+    if (!chaser[i].update( ms)) {
+      chaser[i].activate();
+      chaser[i].setRPM(20 + random(70));
+    }
 
   }
   lights.show();

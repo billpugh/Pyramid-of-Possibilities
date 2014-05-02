@@ -40,7 +40,7 @@
 
 #include <OctoWS2811.h>
 
-const int ledsPerStrip = 240;
+const int ledsPerStrip = 60;
 
 DMAMEM int displayMemory[ledsPerStrip*6];
 int drawingMemory[ledsPerStrip*6];
@@ -53,6 +53,7 @@ int rainbowColors[180];
 
 
 void setup() {
+  Serial.begin(115200);
   pinMode(1, OUTPUT);
   digitalWrite(1, HIGH);
   for (int i=0; i<180; i++) {
@@ -68,6 +69,7 @@ void setup() {
 
 
 void loop() {
+  Serial.println("loop");
   rainbow(10, 2500);
 }
 
