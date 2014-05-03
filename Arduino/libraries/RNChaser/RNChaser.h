@@ -23,7 +23,7 @@ public:
   void setHalflife(uint16_t ms); 
   uint16_t getHalflife();
   void fade(float amount=0.99);
-  void activate();
+  void activate(unsigned long millis);
 
   bool forward;
   bool active;

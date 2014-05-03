@@ -30,9 +30,12 @@ void RNChaser::fade(float amount) {
     active = false;
 }
 
-void RNChaser::activate() {
+void RNChaser::activate(unsigned long millis) {
   active = true;
   fadeValue = 1.0+fadeBottom;
+  nextFadeUpdate = millis+fadeDelay;
+  nextUpdate = millis+delay;
+  
 }
 
 void RNChaser::setRPM(uint16_t rpm) {

@@ -36,7 +36,7 @@ RNChaser chaser[numChasers] = {
 static CHSV hsv;
 static CRGB rgb;
 
-float temperature = 0.0;
+
 unsigned long nextUpdate;
 unsigned long nextChaser = 0;
 long jiggles;
@@ -55,34 +55,27 @@ void p(char *fmt, ... ){
   Serial.print(tmp);
 }
 
-void setRGB(float h, float v) {
-  if (h > 1.0f)
-    h = 1.0f;
-  hsv.h = 230 * h;
-  if (v > 1.0f)
-    v = 1.0f;
-  hsv.v = 110 + 140*v;
-  hsv.s = 200;
-  //  p("%3d %3d %3d ", hsv.h,hsv.s, hsv.v);
-  hsv2rgb_rainbow(hsv,rgb);
-  //  p("%3d %3d %3d\n", rgb.r, rgb.g, rgb.b);
-}
 void setRandomPixel(float v) {
-  //  p("%f ", temperature);
-  setRGB(temperature, v);
+  hsv.v = 150*v+100;
+  hsv.s = 255;
+  hsv.h = (millis() / 100) % 256;
+  hsv2rgb_rainbow(hsv,rgb);
   int pixel = random(lights.getNumPixels());
   lights.setPixelColorMin(pixel, rgb.r, rgb.g, rgb.b);
 }
 
 void addChaser() {
+   p("addChaser\n");
   if (nextChaser > millis())  return;
+ 
   nextChaser = millis() + 300;
-  setRGB(random(100)/100.0f, 1.0);
   int c = random(numChasers);
   if (!chaser[c].active) {
-    chaser[c].activate();
+    p("Activating chaser %d\n", c);
     chaser[c].hsv.h = random(256);
-    chaser[c].nextUpdate = millis();
+    chaser[c].hsv.s  = 255;
+    chaser[c].hsv.v  = 255;
+
 
     int rpm;
     if (random(3) == 0)
@@ -92,14 +85,16 @@ void addChaser() {
      
     chaser[c].setRPM(rpm);
 
+    chaser[c].activate(millis());
+    
     p("%3d %4d  ", rpm, chaser[c].delay);
-    p("%3d %3d %3d ", hsv.h,hsv.s, hsv.v);
-    p("%3d %3d %3d\n", rgb.r, rgb.g, rgb.b);
+    p("%3d %3d %3d  %f\n", chaser[c].hsv.h,chaser[c].hsv.s, chaser[c].hsv.v, chaser[c].fadeValue);
     chaser[c].position = random(lights.getNumPixels());
     chaser[c].forward = random(3) != 0;
   } 
-  else
-    chaser[c].fade(10);
+  else {
+    p("chaser %d already active\n", c);
+  }
   
 }
 
@@ -123,17 +118,12 @@ void tap(float v) {
 
 
 void updateTemperature() {
-  temperature = temperature*0.99;
-  if (temperature < 0)
-    temperature = 0;
+
   if (didTap) {
-    temperature = temperature+0.1;
-    p("Did tap %f\n", temperature);
     addChaser();
     didTap = false;
   } 
   else {
-    //    temperature = temperature + jiggles/1000.0;
   }
 }
 
@@ -157,6 +147,8 @@ void setup()
   initializeAccelerometer();
   Serial.println("Ready");
   digitalWrite(13, LOW); 
+  for(int i = 0; i < numChasers; i++) 
+    chaser[i].active = false;
 }
 
 void loop() {
@@ -185,16 +177,20 @@ void loop() {
   }
   updateTemperature();
   unsigned long ms = millis();
-  for(int i = 0; i < numChasers; i++) {
-    if (chaser[i].update(ms) && random(1000) < chaser[i].getRPM())
-      chaser[i].fade(1);
+  bool any = false;
+  for(int i = 0; i < numChasers; i++) 
+    if (chaser[i].update(ms)) {
+      p("%3d", i);
+      any = true;
+    }
+  if (any) 
+    Serial.println();
 
-  }
-  if (random(30) == 0)
+  if (random(20) == 0)
     setRandomPixel(0.1);
   lights.show();
-  lights.fadeMultiply(245);
-  delay(1);
+  lights.fadeMultiply(250);
+  delay(5);
 
 }
 
