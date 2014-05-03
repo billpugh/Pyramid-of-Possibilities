@@ -59,9 +59,9 @@ void loop() {
   lights.fadeMultiply(240);
   unsigned long ms = millis();
   for(int i = 0; i < numChasers; i++) {
-    if (!chaser[i].update( ms)) {
-      chaser[i].activate();
+    if (!chaser[i].update(ms)) {
       chaser[i].setRPM(20 + random(70));
+      chaser[i].activate(ms);
     }
 
   }
