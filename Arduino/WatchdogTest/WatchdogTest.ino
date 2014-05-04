@@ -8,8 +8,8 @@ void createWatchdog(uint16_t ms) {
   WDOG_UNLOCK = WDOG_UNLOCK_SEQ2;
   delayMicroseconds(1); // Need to wait a bit..
   WDOG_STCTRLH = 0x0001; // Enable WDG
-  WDOG_TOVALL = (uint8_t) ms; // The next 2 lines sets the time-out value. This is the value that the watchdog timer compare itself to.
-  WDOG_TOVALH = (uint8_t) (ms>>8);
+  WDOG_TOVALL =  ms; // The next 2 lines sets the time-out value. This is the value that the watchdog timer compare itself to.
+  WDOG_TOVALH = 0;
   WDOG_PRESC = 0; // This sets prescale clock so that the watchdog timer ticks at 1kHZ instead of the default 1kHZ/4 = 200 HZ
 
 }
