@@ -4,6 +4,7 @@
 
 void createWatchdog(uint16_t ms) {
   // the following code should be placed at the end of setup() since the watchdog starts right after this
+  noInterrupts();
   WDOG_UNLOCK = WDOG_UNLOCK_SEQ1;
   WDOG_UNLOCK = WDOG_UNLOCK_SEQ2;
   delayMicroseconds(1); // Need to wait a bit..
@@ -11,7 +12,7 @@ void createWatchdog(uint16_t ms) {
   WDOG_TOVALL =  ms; // The next 2 lines sets the time-out value. This is the value that the watchdog timer compare itself to.
   WDOG_TOVALH = 0;
   WDOG_PRESC = 0; // This sets prescale clock so that the watchdog timer ticks at 1kHZ instead of the default 1kHZ/4 = 200 HZ
-
+  interrupts();
 }
 
 void refreshWatchdog() {
@@ -28,14 +29,19 @@ void refreshWatchdog() {
 
 int counter = 0;
 
+
+
 void setup() {
   pinMode(13, OUTPUT); 
   digitalWrite(13, HIGH); 
-  delay(1000);
+
   Serial.begin(115200);
   Serial.println("Hello");
-  delay(1000);
-  createWatchdog(200);
+  Serial.println(millis());
+  while (!Serial) {
+    delay(100);
+  }
+  createWatchdog(1200);
   Serial.println("Created watchdog");
   digitalWrite(13, LOW); 
 }
@@ -46,8 +52,9 @@ void loop() {
     Serial.println("Refreshing watchdog");
     refreshWatchdog();
   }
-  delay(50);
+  delay(100);
 }
+
 
 
 
