@@ -16,7 +16,7 @@ static void read(uint8_t word, uint8_t *mac, uint8_t offset) {
   *(mac+offset+2) = FTFL_FCCOB7;       // Skip FTFL_FCCOB4 as it's always 0.
 }
 
-static void read_mac() {
+void read_mac() {
   read(0xe,mac,0);
   read(0xf,mac,3);
 }
