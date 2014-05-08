@@ -4,6 +4,7 @@
 RNLightsOctoWS2811::RNLightsOctoWS2811(OctoWS2811 & strip,  void *frameBuffer,  uint16_t firstPixel) :
 RNLights(strip.numPixels()/8),
 strip(strip), frameBuffer((uint8_t *)frameBuffer), firstPixel(firstPixel) {
+strip.begin();
 }
 
 unsigned long RNLightsOctoWS2811::show() {

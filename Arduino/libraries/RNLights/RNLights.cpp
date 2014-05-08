@@ -7,6 +7,7 @@
 
 #include "RNLights.h"
 #include <stdlib.h>
+#include <string.h>
 
 RNLights::RNLights(uint16_t numPixels) : numPixels(numPixels) {
   pixels = (uint8_t*)malloc(numPixels * 3);
@@ -50,6 +51,11 @@ void RNLights::fadeMultiply(uint8_t amount, uint8_t minimum) {
     else 
       pixels[i] = v;
   }
+}
+
+
+void RNLights::copyPixels(RNLights & from) {
+  memcpy(pixels, from.pixels, numPixels*3);
 }
 
 void RNLights::rotate(bool up) {

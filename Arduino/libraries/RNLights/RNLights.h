@@ -22,6 +22,7 @@ public:
   uint16_t getNumPixels();
   uint16_t normalize(int16_t pixel);
   void reset();
+  void copyPixels(RNLights & from);
   void rotate(bool up);
   void shift(bool up);
   void fade(uint8_t amount=1, uint8_t minimum=0);
