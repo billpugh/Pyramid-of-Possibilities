@@ -9,8 +9,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-RNLights::RNLights(uint16_t numPixels) : numPixels(numPixels) {
-  pixels = (uint8_t*)malloc(numPixels * 3);
+RNLights::RNLights(uint16_t numPixels) : 
+numPixels(numPixels) {
+  size_t sz = numPixels * 3; 
+  pixels = (uint8_t*)malloc(sz);
+  pixelsEnd = pixels + sz;
   reset();
 }
 
@@ -53,9 +56,24 @@ void RNLights::fadeMultiply(uint8_t amount, uint8_t minimum) {
   }
 }
 
-
 void RNLights::copyPixels(RNLights & from) {
-  memcpy(pixels, from.pixels, numPixels*3);
+  uint8_t r,g,b;
+  
+   for(int i = 0; i < numPixels; i++) {
+     from.getPixelColor(i, r, g, b);
+     setPixelColor(i, r, g, b);
+   }
+//  uint8_t * fromP = &from.pixels[from.offset];
+//  uint8_t * toP = &pixels[offset];
+//  for(uint16_t i = 0; i < numPixels; i++) {
+//    *toP++ = *fromP++;
+//    *toP++ = *fromP++;
+//    *toP++ = *fromP++;
+//    if (toP >= pixelsEnd)
+//      toP = pixels;
+//    if (fromP >= from.pixelsEnd)
+//      fromP = from.pixels;
+//  }
 }
 
 void RNLights::rotate(bool up) {
@@ -174,5 +192,6 @@ uint16_t RNLights::normalize(int16_t pixel) {
 uint16_t RNLights::getNumPixels() {
   return numPixels;
 }
+
 
 

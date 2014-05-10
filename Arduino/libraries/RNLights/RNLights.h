@@ -46,6 +46,7 @@ protected:
 
   // Note: pixel i is stored at pixel[(i+offset) % numPixels];
   uint8_t * pixels;
+  uint8_t * pixelsEnd;
 };
 
 #endif /* defined(__RNLights__) */
