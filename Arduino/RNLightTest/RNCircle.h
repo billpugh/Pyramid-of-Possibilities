@@ -18,8 +18,9 @@ class RNCircle {
 public:
   RNCircle(RNLights & lights, float radius);
   ~RNCircle();
-  bool update(unsigned long millis); 
+  uint16_t update(unsigned long millis); 
   void start(int pixel, unsigned long millis); 
+  uint16_t drawCircle(float innerRadius, float outerRadius);
 
   float * pixelX;
   float * pixelY;
@@ -30,6 +31,7 @@ public:
   bool active;
   unsigned long startTime;
   CHSV hsv;
+  CRGB rgb;
 private:
   RNLights & lights;
 

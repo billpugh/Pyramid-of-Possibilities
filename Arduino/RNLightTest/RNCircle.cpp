@@ -10,13 +10,13 @@
 #include <math.h>
 
 
-static CRGB rgb;
+
 
 RNCircle::RNCircle(RNLights & lights, float radius) : 
-lights(lights), radius(radius), pixelX(new float[lights.getNumPixels()]), \
+lights(lights), radius(radius), velocity(radius*2), pixelX(new float[lights.getNumPixels()]), \
 pixelY(new float[lights.getNumPixels()]) {
 
-  width = radius/20;
+  width = radius/10;
   active = false;
   hsv.h = 0;
   hsv.s = 255;
@@ -34,24 +34,37 @@ RNCircle::~RNCircle() {
 }
 
 
-bool RNCircle::update(unsigned long millis) {
+uint16_t RNCircle::update(unsigned long millis) {
+ 
   float outerRadius = velocity * (millis - startTime)/1000.0;
   float innerRadius = outerRadius - width;
   if (innerRadius < 0) innerRadius = 0;
-  bool anyLit = false;
-  outerRadius = outerRadius * outerRadius;
+  if (innerRadius > 2*radius) {
+    active = false;
+    return 0;
+  }
+
+  return drawCircle(innerRadius, outerRadius);
+}
+
+
+
+uint16_t RNCircle::drawCircle(float innerRadius, float outerRadius) {
+   hsv2rgb_rainbow(hsv,rgb);
+   outerRadius = outerRadius * outerRadius;
   innerRadius = innerRadius * innerRadius;
-  hsv2rgb_rainbow(hsv,rgb);
+  uint16_t lit = 0;
   for(int i = 0; i < lights.getNumPixels(); i++) {
     float xDiff = pixelX[i] - x;
-    float yDiff = pixelY[i] = y;
+    float yDiff = pixelY[i] - y;
     float rangeSquare = xDiff * xDiff + yDiff * yDiff;
     if (rangeSquare <= outerRadius && innerRadius <= rangeSquare) {
       lights.setPixelColor(i, rgb.r, rgb.g, rgb.b);
-      anyLit = true;
+//      lights.setPixelColor(i, 0, 255, 0);
+      lit++;
     }
   }
-  return anyLit;
+  return lit;
 }
 void RNCircle::start(int pixel, unsigned long millis) {
   startTime = millis;
