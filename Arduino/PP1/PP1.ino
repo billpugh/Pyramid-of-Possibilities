@@ -56,7 +56,7 @@ void p(char *fmt, ... ){
 }
 
 void setRandomPixel(float v) {
-  hsv.v = 150*v+100;
+  hsv.v = 200*v+50;
   hsv.s = 255;
   hsv.h = (millis() / 100) % 256;
   hsv2rgb_rainbow(hsv,rgb);
@@ -78,8 +78,8 @@ void addChaser() {
 
 
     int rpm;
-    if (random(3) == 0)
-      rpm = 100 + random(100);
+    if (random(6) == 0)
+      rpm = 100 + random(60);
     else
       rpm = 20 + random(80);
      
@@ -163,9 +163,13 @@ void loop() {
     }
 
     if (totalDiff > 0.01) {
-      tap(totalDiff/5+0.1);
-      //      p("G %4f %4f %4f %4f\n", totalDiff, accelG[0], accelG[1], accelG[1]);
+      float num = totalDiff*5+0.1;
+      if (num >= 1)
+         num = 0.99; 
+      tap(num);
+//      //      p("G %4f %4f %4f %4f\n", totalDiff, accelG[0], accelG[1], accelG[1]);
     }
+//     p("G %4f %4f %4f %4f\n", totalDiff, accelG[0], accelG[1], accelG[1]);
   }
 
   if (digitalRead(int2Pin)==1)
@@ -186,8 +190,10 @@ void loop() {
   if (any) 
     Serial.println();
 
-  if (random(20) == 0)
+  if (random(3) == 0)
     setRandomPixel(0.1);
+  else if (random(5) == 0)
+    setRandomPixel(0.3);
   lights.show();
   lights.fadeMultiply(250);
   delay(5);
