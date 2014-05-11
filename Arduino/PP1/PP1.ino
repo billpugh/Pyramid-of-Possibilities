@@ -8,7 +8,7 @@
 
 #define PIN 2
 
-#define FULL_STRIP 0
+#define FULL_STRIP 1
 
 #if FULL_STRIP
 #define LEDs 219
@@ -23,6 +23,8 @@
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(LAST_LED+1, 2, NEO_GRB + NEO_KHZ800);
 
 RNLightsNeoPixel lights = RNLightsNeoPixel(strip, FIRST_LED);
+
+RNLights dots = RNLights(LEDs);
 
 const uint8_t numChasers = 24;
 RNChaser chaser[numChasers] = { 
@@ -45,6 +47,7 @@ long updates;
 float totalJiggle;
 
 bool didTap = false;
+float tapStrength;
 
 void p(char *fmt, ... ){
   char tmp[128]; // resulting string limited to 128 chars
@@ -56,29 +59,33 @@ void p(char *fmt, ... ){
 }
 
 void setRandomPixel(float v) {
-  hsv.v = 200*v+50;
+  hsv.v = 100*v+50;
   hsv.s = 255;
   hsv.h = (millis() / 100) % 256;
   hsv2rgb_rainbow(hsv,rgb);
   int pixel = random(lights.getNumPixels());
-  lights.setPixelColorMin(pixel, rgb.r, rgb.g, rgb.b);
+  dots.setPixelColorMax(pixel, rgb.r, rgb.g, rgb.b);
 }
 
 void addChaser() {
    p("addChaser\n");
   if (nextChaser > millis())  return;
  
+  uint16_t v = 50+tapStrength*200+random(50);
+  if (v > 255)
+    v = 255;
+  p("Chaser v %d\n", v);
   nextChaser = millis() + 300;
   int c = random(numChasers);
   if (!chaser[c].active) {
     p("Activating chaser %d\n", c);
     chaser[c].hsv.h = random(256);
     chaser[c].hsv.s  = 255;
-    chaser[c].hsv.v  = 255;
+    chaser[c].brightness = v;
 
 
     int rpm;
-    if (random(6) == 0)
+    if (tapStrength > 0.5 && random(6) == 0)
       rpm = 100 + random(60);
     else
       rpm = 20 + random(80);
@@ -100,7 +107,7 @@ void addChaser() {
 
 void tap(float v) {
   if (v >= 1.0) {
-    v = 1.0;
+    v = 0.5;
     didTap = true;
     taps++;
   } 
@@ -128,10 +135,11 @@ void updateTemperature() {
 }
 
 
-void tapHandler()
+void tapHandler(float f)
 {
   byte source = readRegister(0x22);  // Reads the PULSE_SRC register
-  p("Saw tap\n");
+  p("Saw tap %f\n", f);
+  tapStrength = f;
   tap(1.0);
 }
 
@@ -151,13 +159,15 @@ void setup()
     chaser[i].active = false;
 }
 
+int count = 0;
 void loop() {
+  float totalDiff = 0.0;
   if (digitalRead(int1Pin)==1)  // Interrupt pin, should probably attach to interrupt function
   {
     float accelG[3]; 
     readAccelData(accelG);  // Read the x/y/z adc values
 
-    float totalDiff = 0.0;
+
     for (int i=0; i<3; i++) {
       totalDiff += abs(accelG[i]);
     }
@@ -177,25 +187,29 @@ void loop() {
     byte source;
     source = readRegister(0x0C);  // Read the interrupt source reg.
     if ((source & 0x08))  // If tap register is set go check that
-      tapHandler();
+      tapHandler(totalDiff);
   }
   updateTemperature();
   unsigned long ms = millis();
-  bool any = false;
+  
+  lights.copyPixelsMax(dots);
   for(int i = 0; i < numChasers; i++) 
-    if (chaser[i].update(ms)) {
-      p("%3d", i);
-      any = true;
-    }
-  if (any) 
-    Serial.println();
+    chaser[i].update(ms);
 
-  if (random(3) == 0)
+
+  if (random(5) == 0)
     setRandomPixel(0.1);
-  else if (random(5) == 0)
+  else if (random(10) == 0)
     setRandomPixel(0.3);
+  else if (random(400) == 0) {
+    tapStrength = 0.0;
+    addChaser();
+  }
   lights.show();
   lights.fadeMultiply(250);
+  if (count % 2 == 0) 
+    dots.fadeMultiply(252,0);
+  count++;
   delay(5);
 
 }
