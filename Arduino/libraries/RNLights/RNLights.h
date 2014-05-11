@@ -23,12 +23,13 @@ public:
   uint16_t normalize(int16_t pixel);
   void reset();
   void copyPixels(RNLights & from);
+  void copyPixelsMax(RNLights & from);
   void rotate(bool up);
   void shift(bool up);
   void fade(uint8_t amount=1, uint8_t minimum=0);
   void fadeMultiply(uint8_t amount=255, uint8_t minimum=0);
   void setPixelColor(uint16_t pixel, uint8_t red, uint8_t green, uint8_t blue);
-  void setPixelColorMin(uint16_t pixel, uint8_t red, uint8_t green, uint8_t blue);
+  void setPixelColorMax(uint16_t pixel, uint8_t red, uint8_t green, uint8_t blue);
   void addPixelColor(uint16_t pixel, uint8_t red, uint8_t green, uint8_t blue);
   void setAllPixelColors(uint8_t red, uint8_t green, uint8_t blue);
   void getPixelColor(uint16_t pixel, uint8_t &red, uint8_t &green, uint8_t &blue);

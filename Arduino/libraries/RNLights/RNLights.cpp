@@ -56,6 +56,15 @@ void RNLights::fadeMultiply(uint8_t amount, uint8_t minimum) {
   }
 }
 
+void RNLights::copyPixelsMax(RNLights & from) {
+  uint8_t r,g,b;
+  
+   for(int i = 0; i < numPixels; i++) {
+     from.getPixelColor(i, r, g, b);
+     setPixelColorMax(i, r, g, b);
+   }
+}
+	
 void RNLights::copyPixels(RNLights & from) {
   uint8_t r,g,b;
   
@@ -75,6 +84,8 @@ void RNLights::copyPixels(RNLights & from) {
 //      fromP = from.pixels;
 //  }
 }
+
+
 
 void RNLights::rotate(bool up) {
   // if up, what was v[i] should now be at v[i+1]
@@ -104,15 +115,15 @@ void RNLights::setPixelColor(uint16_t pixel, uint8_t red, uint8_t green, uint8_t
   pixels[pixel+1] = green;
   pixels[pixel+2] = blue;
 }
-inline void setMin(uint8_t & current, uint8_t value) {
+inline void setMax(uint8_t & current, uint8_t value) {
   if (current < value)
     current = value;
 }
-void RNLights::setPixelColorMin(uint16_t pixel, uint8_t red, uint8_t green, uint8_t blue) {
+void RNLights::setPixelColorMax(uint16_t pixel, uint8_t red, uint8_t green, uint8_t blue) {
   pixel = 3*((pixel+offset) % numPixels);
-  setMin(pixels[pixel], red);
-  setMin(pixels[pixel+1], green);
-  setMin(pixels[pixel+2], blue);
+  setMax(pixels[pixel], red);
+  setMax(pixels[pixel+1], green);
+  setMax(pixels[pixel+2], blue);
 }
 inline void addByte(uint8_t & current, uint8_t value) {
   uint16_t sum = current + value;
