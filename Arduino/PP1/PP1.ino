@@ -11,9 +11,9 @@
 #define FULL_STRIP 1
 
 #if FULL_STRIP
-#define LEDs 219
+#define LEDs 221
 #define FIRST_LED 10
-#define LAST_LED 228
+#define LAST_LED 230
 #else
 #define LEDs 60 
 #define FIRST_LED 0
@@ -26,16 +26,16 @@ RNLightsNeoPixel lights = RNLightsNeoPixel(strip, FIRST_LED);
 
 RNLights dots = RNLights(LEDs);
 
-const uint8_t numChasers = 24;
-RNChaser chaser[numChasers] = { 
+const uint8_t numChasers = 12;
+RNChaser chaser[24] = { 
   RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights),
   RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights),
   RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights),
   RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights)
-};
+  };
 
 
-static CHSV hsv;
+  static CHSV hsv;
 static CRGB rgb;
 
 
@@ -58,19 +58,22 @@ void p(char *fmt, ... ){
   Serial.print(tmp);
 }
 
+uint8_t currentHue() {
+  return (millis() / 100) % 256;
+}
 void setRandomPixel(float v) {
   hsv.v = 100*v+50;
   hsv.s = 255;
-  hsv.h = (millis() / 100) % 256;
+  hsv.h = currentHue();
   hsv2rgb_rainbow(hsv,rgb);
   int pixel = random(lights.getNumPixels());
   dots.setPixelColorMax(pixel, rgb.r, rgb.g, rgb.b);
 }
 
 void addChaser() {
-   p("addChaser\n");
+  p("addChaser\n");
   if (nextChaser > millis())  return;
- 
+
   uint16_t v = 50+tapStrength*200+random(50);
   if (v > 255)
     v = 255;
@@ -79,7 +82,10 @@ void addChaser() {
   int c = random(numChasers);
   if (!chaser[c].active) {
     p("Activating chaser %d\n", c);
-    chaser[c].hsv.h = random(256);
+    if (tapStrength < 0.2 && random(4) != 1)
+      chaser[c].hsv.h = currentHue();
+    else 
+      chaser[c].hsv.h = random(256);
     chaser[c].hsv.s  = 255;
     chaser[c].brightness = v;
 
@@ -89,11 +95,11 @@ void addChaser() {
       rpm = 100 + random(60);
     else
       rpm = 20 + random(80);
-     
+
     chaser[c].setRPM(rpm);
 
     chaser[c].activate(millis());
-    
+
     p("%3d %4d  ", rpm, chaser[c].delay);
     p("%3d %3d %3d  %f\n", chaser[c].hsv.h,chaser[c].hsv.s, chaser[c].hsv.v, chaser[c].fadeValue);
     chaser[c].position = random(lights.getNumPixels());
@@ -102,7 +108,7 @@ void addChaser() {
   else {
     p("chaser %d already active\n", c);
   }
-  
+
 }
 
 void tap(float v) {
@@ -175,11 +181,11 @@ void loop() {
     if (totalDiff > 0.01) {
       float num = totalDiff*5+0.1;
       if (num >= 1)
-         num = 0.99; 
+        num = 0.99; 
       tap(num);
-//      //      p("G %4f %4f %4f %4f\n", totalDiff, accelG[0], accelG[1], accelG[1]);
+      //      //      p("G %4f %4f %4f %4f\n", totalDiff, accelG[0], accelG[1], accelG[1]);
     }
-//     p("G %4f %4f %4f %4f\n", totalDiff, accelG[0], accelG[1], accelG[1]);
+    //     p("G %4f %4f %4f %4f\n", totalDiff, accelG[0], accelG[1], accelG[1]);
   }
 
   if (digitalRead(int2Pin)==1)
@@ -191,7 +197,7 @@ void loop() {
   }
   updateTemperature();
   unsigned long ms = millis();
-  
+
   lights.copyPixelsMax(dots);
   for(int i = 0; i < numChasers; i++) 
     chaser[i].update(ms);
@@ -213,6 +219,7 @@ void loop() {
   delay(5);
 
 }
+
 
 
 
