@@ -163,6 +163,9 @@ void setup()
   digitalWrite(13, LOW); 
   for(int i = 0; i < numChasers; i++) 
     chaser[i].active = false;
+  unsigned long ms = millis();
+  lights.setFade(ms, 200, false);
+  dots.setFade(ms, 200, false);
 }
 
 int count = 0;
@@ -212,9 +215,8 @@ void loop() {
     addChaser();
   }
   lights.show();
-  lights.fadeMultiply(250);
-  if (count % 2 == 0) 
-    dots.fadeMultiply(252,0);
+  lights.fade(ms);
+  dots.fade(ms);
   count++;
   delay(5);
 
