@@ -14,9 +14,7 @@ void p(char *fmt, ... ){
   Serial.print(tmp);
 }
 
-
-const int ledsPerStrip = 60;
-
+const int ledsPerStrip = 240;
 
 DMAMEM uint8_t displayMemory[ledsPerStrip*24];
 uint8_t drawingMemory[ledsPerStrip*24];
@@ -27,6 +25,8 @@ RNLights dots(ledsPerStrip);
 RNLightsOctoWS2811 lights(leds, drawingMemory, 0);
 RNCircle circle(lights, 100.0);
 
+
+unsigned long next;
 void setup() {
   delay(1000);
   Serial.begin(115200);
@@ -39,35 +39,22 @@ void setup() {
   digitalWrite(1, HIGH);
   Serial.println("Starting lights code");
   digitalWrite(1, LOW);
-
-  for(int i = 0; i < 60; i++) 
-    dots.setPixelColor(i, i, 0, 0);
-  lights.copyPixels(dots);
-  int result = lights.show();
-  Serial.println(result);
-  Serial.println("Lights on");
-  circle.start(0, millis());
-
-  for(int i = 0; i < 60; i++) 
-    p("%d %f %f\n", i, circle.pixelX[i], circle.pixelY[i]);
-  p("starting");
-  digitalWrite(1, LOW);
+  next = 0;
 }
-int next = 0;
-int brightness = 256;
+
+int hue = 0;
 void loop() {
-//  dots.setBrightness(brightness);
-  dots.rotate(true);
-  lights.copyPixels(dots);
-    unsigned long ms = millis();
-
-
-  uint16_t lit = circle.update(ms);
-  if (!circle.active) {
-    circle.start(random(60), ms);
-    if (next >= 60)
-      next = 0;
-    circle.hsv.h = 30+random(200);
+  unsigned long ms = millis();
+  if (next >= ms) {
+    p("fade %d %d\n", next-ms, lights.fade(ms));
+  } else {
+    lights.setAllPixelHSVs(hue, 255, 255);
+    hue += 16;
+    if (hue > 255)
+      hue = 0;
+    lights.setFade(ms, 100, false);
+    next = ms+6000;
+    p("\nreset\n");
   }
   lights.show();
 
