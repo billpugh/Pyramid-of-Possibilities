@@ -19,6 +19,7 @@ public:
   void setBrightness(uint16_t amount=256);
   uint16_t getBrightness();
 
+  void setFade(long unsigned ms, uint8_t fadePerSec, bool linearFade=true);
   uint16_t getNumPixels();
   uint16_t normalize(int16_t pixel);
   void reset();
@@ -26,12 +27,15 @@ public:
   void copyPixelsMax(RNLights & from);
   void rotate(bool up);
   void shift(bool up);
-  void fade(uint8_t amount=1, uint8_t minimum=0);
-  void fadeMultiply(uint8_t amount=255, uint8_t minimum=0);
+  int fade(unsigned long ms);
   void setPixelColor(uint16_t pixel, uint8_t red, uint8_t green, uint8_t blue);
+  void setPixelHSV(uint16_t pixel, uint8_t hue, uint8_t saturation, uint8_t value);
+  
   void setPixelColorMax(uint16_t pixel, uint8_t red, uint8_t green, uint8_t blue);
   void addPixelColor(uint16_t pixel, uint8_t red, uint8_t green, uint8_t blue);
   void setAllPixelColors(uint8_t red, uint8_t green, uint8_t blue);
+  void setAllPixelHSVs(uint8_t hue, uint8_t saturation, uint8_t value);
+  
   void getPixelColor(uint16_t pixel, uint8_t &red, uint8_t &green, uint8_t &blue);
   void copyPixelColor(uint16_t fromPixel, uint16_t toPixel);
 
@@ -40,10 +44,18 @@ public:
   uint8_t getPixelBlue(uint16_t pixel);
 
 protected:
+  void fade(uint8_t amount, uint8_t minimum);
+  void fadeMultiply(uint8_t amount, uint8_t minimum);
   const uint16_t numPixels;
   uint16_t offset;
   bool fullBrightness;
   uint8_t brightness;
+  unsigned long lastFade;
+  uint8_t fadePerSec;
+  double logFade;
+  bool linearFade;
+  
+  
 
   // Note: pixel i is stored at pixel[(i+offset) % numPixels];
   uint8_t * pixels;

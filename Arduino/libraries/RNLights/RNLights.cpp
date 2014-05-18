@@ -8,6 +8,8 @@
 #include "RNLights.h"
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
+#include <hsv2rgb.h>
 
 RNLights::RNLights(uint16_t numPixels) : 
 numPixels(numPixels) {
@@ -27,6 +29,47 @@ void RNLights::reset() {
   for(int i = 0; i < numPixels*3; i++)
     pixels[i] = 0;
   offset = 0;
+}
+
+void RNLights::setFade(long unsigned ms, uint8_t fadePerSec, bool linearFade) {
+  this->lastFade = ms;
+  this->fadePerSec = fadePerSec;
+  this->linearFade = linearFade;
+  if (!linearFade) {
+    if (fadePerSec > 256)
+      fadePerSec = 256;
+    if (fadePerSec <= 128)
+      logFade = log(((float)256 - fadePerSec)/256);
+    else
+      logFade = log(0.5)/log(0.75) * log(((float)256 - fadePerSec/2)/256);
+  }
+
+}
+
+
+int RNLights::fade(unsigned long ms) {
+  unsigned long since = ms - lastFade;
+  if (since > 1000)
+    since = 1000;
+  if (linearFade) {
+    uint8_t amount = ((uint32_t)fadePerSec) * since / 1000;
+    if (amount < 1)
+      return 0;
+    lastFade = ms;
+    fade(amount, 0);
+    return amount;
+  } 
+  else {
+    double v = logFade * since / 1000;
+    if (v > -0.02) {
+      // not enough time passed to do a significant fade
+      return 256;
+    }
+    int fadeAmount = exp(v) * 256;
+    fadeMultiply(fadeAmount, 0);
+    lastFade = ms;
+    return fadeAmount;
+  }
 }
 
 void RNLights::fade(uint8_t amount, uint8_t minimum) {
@@ -58,31 +101,31 @@ void RNLights::fadeMultiply(uint8_t amount, uint8_t minimum) {
 
 void RNLights::copyPixelsMax(RNLights & from) {
   uint8_t r,g,b;
-  
-   for(int i = 0; i < numPixels; i++) {
-     from.getPixelColor(i, r, g, b);
-     setPixelColorMax(i, r, g, b);
-   }
+
+  for(int i = 0; i < numPixels; i++) {
+    from.getPixelColor(i, r, g, b);
+    setPixelColorMax(i, r, g, b);
+  }
 }
-	
+
 void RNLights::copyPixels(RNLights & from) {
   uint8_t r,g,b;
-  
-   for(int i = 0; i < numPixels; i++) {
-     from.getPixelColor(i, r, g, b);
-     setPixelColor(i, r, g, b);
-   }
-//  uint8_t * fromP = &from.pixels[from.offset];
-//  uint8_t * toP = &pixels[offset];
-//  for(uint16_t i = 0; i < numPixels; i++) {
-//    *toP++ = *fromP++;
-//    *toP++ = *fromP++;
-//    *toP++ = *fromP++;
-//    if (toP >= pixelsEnd)
-//      toP = pixels;
-//    if (fromP >= from.pixelsEnd)
-//      fromP = from.pixels;
-//  }
+
+  for(int i = 0; i < numPixels; i++) {
+    from.getPixelColor(i, r, g, b);
+    setPixelColor(i, r, g, b);
+  }
+  //  uint8_t * fromP = &from.pixels[from.offset];
+  //  uint8_t * toP = &pixels[offset];
+  //  for(uint16_t i = 0; i < numPixels; i++) {
+  //    *toP++ = *fromP++;
+  //    *toP++ = *fromP++;
+  //    *toP++ = *fromP++;
+  //    if (toP >= pixelsEnd)
+  //      toP = pixels;
+  //    if (fromP >= from.pixelsEnd)
+  //      fromP = from.pixels;
+  //  }
 }
 
 
@@ -115,6 +158,19 @@ void RNLights::setPixelColor(uint16_t pixel, uint8_t red, uint8_t green, uint8_t
   pixels[pixel+1] = green;
   pixels[pixel+2] = blue;
 }
+
+void RNLights::setPixelHSV(uint16_t pixel, uint8_t hue, uint8_t saturation, uint8_t value) {
+  CHSV hsv;
+  CRGB rgb;
+  hsv.h = hue;
+  hsv.s = saturation;
+  hsv.v = value;
+  hsv2rgb_rainbow(hsv,rgb);
+  setPixelColor(pixel, rgb.r, rgb.g, rgb.b);
+}
+
+
+
 inline void setMax(uint8_t & current, uint8_t value) {
   if (current < value)
     current = value;
@@ -137,6 +193,16 @@ void RNLights::addPixelColor(uint16_t pixel, uint8_t red, uint8_t green, uint8_t
   addByte(pixels[pixel], red);
   addByte(pixels[pixel+1], green);
   addByte(pixels[pixel+2], blue);
+}
+
+void RNLights::setAllPixelHSVs( uint8_t hue, uint8_t saturation, uint8_t value) {
+  CHSV hsv;
+  CRGB rgb;
+  hsv.h = hue;
+  hsv.s = saturation;
+  hsv.v = value;
+  hsv2rgb_rainbow(hsv,rgb);
+  setAllPixelColors(rgb.r, rgb.g, rgb.b);
 }
 
 void RNLights::setAllPixelColors(uint8_t red, uint8_t green, uint8_t blue) {
@@ -203,6 +269,10 @@ uint16_t RNLights::normalize(int16_t pixel) {
 uint16_t RNLights::getNumPixels() {
   return numPixels;
 }
+
+
+
+
 
 
 
