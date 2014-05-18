@@ -71,10 +71,15 @@ void setup()
   Serial.println("Set interrupt pins");
   // Read the WHO_AM_I register, this is a good test of communication
   c = readRegister(0x0D);  // Read WHO_AM_I register
-  if (c == 0x2A) // WHO_AM_I should always be 0x2A
+  Serial.print("WHO_AM_I: ");
+  Serial.println(c, HEX);
+  if (c == 0x2A || c == 0x1A) // WHO_AM_I should be 0x1A 0x2A
   {  
     initMMA8452(SCALE, dataRate);  // init the accelerometer if communication is OK
-    Serial.println("MMA8452Q is online...");
+   if (c == 0x2A)
+     Serial.println("MMA8452Q is online...");
+   else
+     Serial.println("MMA8451Q is online...");
   }
   else
   {
