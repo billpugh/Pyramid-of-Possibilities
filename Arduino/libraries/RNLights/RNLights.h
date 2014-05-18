@@ -19,7 +19,8 @@ public:
   void setBrightness(uint16_t amount=256);
   uint16_t getBrightness();
 
-  void setFade(long unsigned ms, uint8_t fadePerSec, bool linearFade=true);
+  void setFade(long unsigned ms, uint16_t halfLifeMS);
+  void setLinearFade(long unsigned ms, uint8_t fadePerSec);
   uint16_t getNumPixels();
   uint16_t normalize(int16_t pixel);
   void reset();
@@ -43,7 +44,6 @@ public:
   uint8_t getPixelGreen(uint16_t pixel);
   uint8_t getPixelBlue(uint16_t pixel);
 
-protected:
   void fade(uint8_t amount, uint8_t minimum);
   void fadeMultiply(uint8_t amount, uint8_t minimum);
   const uint16_t numPixels;
@@ -55,6 +55,7 @@ protected:
   double logFade;
   bool linearFade;
   
+protected:
   
 
   // Note: pixel i is stored at pixel[(i+offset) % numPixels];

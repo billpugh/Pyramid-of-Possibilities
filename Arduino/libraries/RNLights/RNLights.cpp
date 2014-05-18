@@ -31,19 +31,16 @@ void RNLights::reset() {
   offset = 0;
 }
 
-void RNLights::setFade(long unsigned ms, uint8_t fadePerSec, bool linearFade) {
+void RNLights::setLinearFade(long unsigned ms, uint8_t fadePerSec) {
   this->lastFade = ms;
   this->fadePerSec = fadePerSec;
-  this->linearFade = linearFade;
-  if (!linearFade) {
-    if (fadePerSec > 256)
-      fadePerSec = 256;
-    if (fadePerSec <= 128)
-      logFade = log(((float)256 - fadePerSec)/256);
-    else
-      logFade = log(0.5)/log(0.75) * log(((float)256 - fadePerSec/2)/256);
-  }
-
+  this->linearFade = true;
+}
+void RNLights::setFade(long unsigned ms, uint16_t halfLifeMS) {
+  this->lastFade = ms;
+  this->linearFade = false;
+  logFade = -0.6931471806; // log(1/2);
+  logFade = (logFade * halfLifeMS)/ 1000;
 }
 
 
@@ -58,10 +55,9 @@ int RNLights::fade(unsigned long ms) {
     lastFade = ms;
     fade(amount, 0);
     return amount;
-  } 
-  else {
+  } else {
     double v = logFade * since / 1000;
-    if (v > -0.02) {
+    if (v > -0.04) {
       // not enough time passed to do a significant fade
       return 256;
     }
@@ -77,10 +73,9 @@ void RNLights::fade(uint8_t amount, uint8_t minimum) {
   for(int i = 0; i < numPixels*3; i++) {
     uint8_t v = pixels[i];
     if (v <= minimum) continue;
-    uint8_t newValue = v-amount;
-    if (newValue <= minimum)
+    if (v <= minimum + amount)
       pixels[i] = minimum;
-    else
+    else 
       pixels[i] = v-amount;
   }
 }
