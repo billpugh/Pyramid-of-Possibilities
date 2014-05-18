@@ -34,7 +34,6 @@ RNChaser chaser[24] = {
   RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights)
   };
 
-
   static CHSV hsv;
 static CRGB rgb;
 
@@ -164,40 +163,27 @@ void setup()
   for(int i = 0; i < numChasers; i++) 
     chaser[i].active = false;
   unsigned long ms = millis();
-  lights.setFade(ms, 200, false);
-  dots.setFade(ms, 200, false);
+  lights.setLinearFade(ms, 100);
+  dots.setFade(ms, 1000);
+}
+
+void accelerometerCallback( float totalG, 
+float directionalG[3],
+uint8_t source) {
+  if (totalG > 0.01) {
+    float num = totalG*5+0.1;
+    if (num >= 1)
+      num = 0.99; 
+    tap(num);
+    //      //      p("G %4f %4f %4f %4f\n", totalDiff, accelG[0], accelG[1], accelG[1]);
+  }
+  if (source != 0)
+    tapHandler(totalG);
 }
 
 int count = 0;
 void loop() {
-  float totalDiff = 0.0;
-  if (digitalRead(int1Pin)==1)  // Interrupt pin, should probably attach to interrupt function
-  {
-    float accelG[3]; 
-    readAccelData(accelG);  // Read the x/y/z adc values
-
-
-    for (int i=0; i<3; i++) {
-      totalDiff += abs(accelG[i]);
-    }
-
-    if (totalDiff > 0.01) {
-      float num = totalDiff*5+0.1;
-      if (num >= 1)
-        num = 0.99; 
-      tap(num);
-      //      //      p("G %4f %4f %4f %4f\n", totalDiff, accelG[0], accelG[1], accelG[1]);
-    }
-    //     p("G %4f %4f %4f %4f\n", totalDiff, accelG[0], accelG[1], accelG[1]);
-  }
-
-  if (digitalRead(int2Pin)==1)
-  { 
-    byte source;
-    source = readRegister(0x0C);  // Read the interrupt source reg.
-    if ((source & 0x08))  // If tap register is set go check that
-      tapHandler(totalDiff);
-  }
+  updateAccelerometer();
   updateTemperature();
   unsigned long ms = millis();
 
@@ -221,6 +207,7 @@ void loop() {
   delay(5);
 
 }
+
 
 
 
