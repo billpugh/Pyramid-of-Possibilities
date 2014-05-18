@@ -17,7 +17,9 @@ const uint8_t dataRate = 0;  // 0=800Hz, 1=400, 2=200, 3=100, 4=50, 5=12.5, 6=6.
 void initMMA8452(uint8_t fsr, uint8_t dataRate);
 
 void initializeAccelerometer() {
+  Serial.println("Initializing accelerometer");
   Wire.begin(); //Join the bus as a master
+  Serial.println("Joined bus");
   // Set up the interrupt pins, they're set as active high, push-pull
   pinMode(int1Pin, INPUT);
   digitalWrite(int1Pin, LOW);
@@ -25,6 +27,8 @@ void initializeAccelerometer() {
   digitalWrite(int2Pin, LOW);
   // Read the WHO_AM_I register, this is a good test of communication
   uint8_t c = readRegister(0x0D);  // Read WHO_AM_I register
+  Serial.println("got whoami");
+  Serial.println(c, HEX);
   if (c == 0x1A || c == 0x2A) // WHO_AM_I should be 0x1A or 0x2A
   {  
     initMMA8452(SCALE, dataRate);  // init the accelerometer if communication is OK
