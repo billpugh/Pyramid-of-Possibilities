@@ -12,6 +12,10 @@ const int int1Pin = 11;  // These can be changed, 2 and 3 are the Arduinos ext i
 const int int2Pin = 12;
 
 void initializeAccelerometer();
+void accelerometerCallback( float totalG, 
+float directionalG[3],
+uint8_t tapSource);
+void updateAccelerometer();
 
 void readAccelData(int16_t * destination);
 void readAccelData(float * destination);
@@ -22,3 +26,4 @@ uint8_t readRegister(uint8_t addressToRead);
 void writeRegister(uint8_t addressToWrite, uint8_t dataToWrite);
 
 #endif /* defined(__Accelerometer__) */
+

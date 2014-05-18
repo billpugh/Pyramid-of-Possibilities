@@ -48,6 +48,32 @@ void initializeAccelerometer() {
   }
 }
 
+void updateAccelerometer() {
+  float totalDiff = 0.0;
+  float accelG[3];
+  for(int i = 0; i < 3; i++)
+    accelG[i] = 0.0;
+  if (digitalRead(int1Pin)==1)  // Interrupt pin, should probably attach to interrupt function
+  {
+    readAccelData(accelG);  // Read the x/y/z adc values
+
+
+    for (int i=0; i<3; i++) 
+      totalDiff += abs(accelG[i]);
+
+  }
+  uint8_t tapValue = 0;
+  if (digitalRead(int2Pin)==1)
+  { 
+    byte source;
+    source = readRegister(0x0C);  // Read the interrupt source reg.
+    if ((source & 0x08))  // If tap register is set go check that
+      tapValue = readRegister(0x22); 
+  }
+  accelerometerCallback(totalDiff, accelG, tapValue);
+}
+
+
 void readAccelData(int16_t * destination)
 {
   uint8_t rawData[6];  // x/y/z accel register data stored here
@@ -180,5 +206,6 @@ void writeRegister(uint8_t addressToWrite, uint8_t dataToWrite)
   Wire.write(dataToWrite);
   Wire.endTransmission(); //Stop transmitting
 }
+
 
 
