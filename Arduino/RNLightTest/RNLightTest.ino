@@ -46,15 +46,16 @@ int hue = 0;
 void loop() {
   unsigned long ms = millis();
   if (next >= ms) {
-    p("fade %d %d\n", next-ms, lights.fade(ms));
+    int b = lights.getPixelRed(0) + lights.getPixelGreen(0)  + lights.getPixelBlue(0);
+    p("fade %d %d %d\n", next-ms, b, lights.fade(ms));
   } else {
     lights.setAllPixelHSVs(hue, 255, 255);
     hue += 16;
     if (hue > 255)
       hue = 0;
-    lights.setFade(ms, 100, false);
+    lights.setLinearFade(ms, 128);
     next = ms+6000;
-    p("\nreset\n");
+    // p("\nreset %f\n", lights.logFade);
   }
   lights.show();
 
