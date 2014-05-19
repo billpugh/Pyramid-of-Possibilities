@@ -39,8 +39,8 @@ void RNLights::setLinearFade(long unsigned ms, uint8_t fadePerSec) {
 void RNLights::setFade(long unsigned ms, uint16_t halfLifeMS) {
   this->lastFade = ms;
   this->linearFade = false;
-  logFade = -0.6931471806; // log(1/2);
-  logFade = (logFade * halfLifeMS)/ 1000;
+  logFade = -693.1471806; // 1000*log(1/2);
+  logFade = logFade / halfLifeMS;
 }
 
 
