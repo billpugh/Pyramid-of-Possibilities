@@ -11,22 +11,19 @@
 
 #define NUM_LIGHTS 16
 
+
 uint32_t pos = 500;
 uint32_t maxval = 1000;
 uint32_t minval = 0;
 uint32_t speed = 25;
 uint32_t loop_delay_in_ms = 20;
 uint32_t range = maxval - minval;
-
 double width = 150;
-double damp = .7;
+int8_t direction_sign = 1;	// -1 or 1
 
+#define DELAY_BETWEEN_STOBES 1000	// delay in ms between strobes
+uint32_t COLOR_OFF = 0;		// the color of 'off'
 
-int8_t direction_sign = 1;
-// #define SHOW_DEBUG_PIXELS
-
-#define QDELAY 1000
-#define MAGIC_NUMBER 5
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LIGHTS, 2, NEO_GRB + NEO_KHZ800);
 
@@ -41,68 +38,54 @@ void setup() {
 
 void loop() {
 
-	pos += (speed * direction_sign);
-
-	// reset position each time it exceed maxval. 
-	if ( pos > maxval ) {
-		pos = minval + pos % range;
-	}
-
-#if 1
-	if (( pos > 900 ) &&  ( direction_sign > 0 )) {
-		direction_sign = -1;
-	} else if (( pos < 100 ) &&  ( direction_sign < 0 )) {
-		direction_sign = 1;
-		delay(QDELAY);
-	}
-#else
-#endif
-
-
-
-	Serial.println(pos);
-
-	cylon_eyes(pos);
-
+	_update_position();
+	cylon_eyes();
 	strip.show();
 
-	// Serial.println(pos); 
 	delay(loop_delay_in_ms); 
 }
 
-uint32_t COLOR_OFF = 0;
-
-void cylon_eyes(uint32_t pos) {
+/**
+Sets the LEDs for the Cylon-eyes effect based on the current position.
+*/
+void cylon_eyes() {
 
 	for ( uint32_t i = 0; i < NUM_LIGHTS; i++ ) {
 
+		// calculate the color based on the distance of the LED from the position of the strobe ('pos').
 		double center_position = _position_of_led_center(i);
 		double distance = _calc_distance(center_position, pos);
 		uint32_t color = _color_for_distance(distance);
 
-
-		if ( _led_is_enabled(i) ) {
-			
+		// selectively ignore the color for some LEDs and just leave them turned off. Create the clipping effect
+		if ( _led_is_enabled(i) ) {			
 			strip.setPixelColor(i, color);
-			// Serial.println(F("START"));
-			// Serial.println(pos);
-			Serial.println(distance);
-			// Serial.println();
-			// Serial.println(color);
+
 		} else {
-			strip.setPixelColor(i, COLOR_OFF);
+			strip.setPixelColor(i, COLOR_OFF);	// LED off.
 		}
 	}
 }
 
 // Private
+
+#define MAGIC_NUMBER 5	// the number of LEDs that will be turned on of either side of the middle LED
+
+/**
+returns whether or not a led should be turned off. This lets us create a clipping effect where the red strobe is not shown in some LEDs.
+if 1 is returned always here, then all LEDs will be on.
+*/
 uint8_t _led_is_enabled (uint32_t led_id ) {
-	if ( led_id < 8 + MAGIC_NUMBER && led_id > 8 - MAGIC_NUMBER ) {
+
+	if ( led_id < NUM_LIGHTS/2 + MAGIC_NUMBER && led_id > NUM_LIGHTS/2 - MAGIC_NUMBER ) {
 		return 1;
 	}
 	return 0;
 }
 
+/**
+The color to show for a given distance.
+*/
 uint32_t _color_for_distance (double d) {
 
 	uint32_t color = 0;
@@ -119,6 +102,9 @@ uint32_t _color_for_distance (double d) {
 	return color;
 }
 
+/**
+converts the led_id into a position.
+*/
 double _position_of_led_center (uint32_t led_id) {
 
 	// determine percent of range that the led is located
@@ -136,6 +122,9 @@ double _position_of_led_center (uint32_t led_id) {
 	return i;
 }
 
+/**
+calculates distance between two positions. This method calculates the circular distance.
+*/
 double _calc_distance(double x, double y) {
 
 	double i = fabs(x-y);
@@ -145,4 +134,25 @@ double _calc_distance(double x, double y) {
 		i = range/2.0 - pastmax;
 	}
 	return i;
+}
+
+/**
+modified the value of pos and handles direction and speed changes.
+*/
+void _update_position() {
+
+	pos += (speed * direction_sign);
+
+	// reset position each time it exceed maxval. 
+	if ( pos > maxval ) {
+		pos = minval + pos % range;
+	}
+
+	if (( pos > 900 ) &&  ( direction_sign > 0 )) {
+		direction_sign = -1;
+	} else if (( pos < 100 ) &&  ( direction_sign < 0 )) {
+		direction_sign = 1;
+		delay(DELAY_BETWEEN_STOBES);
+	}
+	// Serial.println(pos);
 }
