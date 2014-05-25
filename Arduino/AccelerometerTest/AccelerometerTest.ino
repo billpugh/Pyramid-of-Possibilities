@@ -1,9 +1,15 @@
 #include "Accelerometer.h"
 
 
+bool sawTap = false;
+bool sawAccel = false;
+
 void setup() {
 
-  delay(1000);
+  pinMode(13, OUTPUT); 
+  digitalWrite(13, HIGH);
+  delay(500);
+  digitalWrite(13, LOW);
   Serial.begin(115200);
   Serial.println("Hello");
   initializeAccelerometer();
@@ -11,13 +17,16 @@ void setup() {
 } 
 
 void accelerometerCallback( float totalG, 
-float directionalG[3],
-uint8_t source) {
-  if (totalG > 0.01)
+  float directionalG[3],
+  uint8_t source) {
+  if (totalG > 0.01) {
     Serial.println(totalG);
+    sawAccel = true;
+  }
 
   if ((source & 0x10)==0x10)  // If AxX bit is set
   {
+    sawTap = true;
     if ((source & 0x08)==0x08)  // If DPE (double puls) bit is set
       Serial.print("    Double Tap (2) on X");  // tabbing here for visibility
     else
@@ -32,6 +41,7 @@ uint8_t source) {
 
   if ((source & 0x20)==0x20)  // If AxY bit is set
   {
+    sawTap = true;
     if ((source & 0x08)==0x08)  // If DPE (double puls) bit is set
       Serial.print("    Double Tap (2) on Y");
     else
@@ -44,6 +54,7 @@ uint8_t source) {
   }
   if ((source & 0x40)==0x40)  // If AxZ bit is set
   {
+    sawTap = true;
     if ((source & 0x08)==0x08)  // If DPE (double puls) bit is set
       Serial.print("    Double Tap (2) on Z");
     else
@@ -58,7 +69,23 @@ uint8_t source) {
 
 void loop() {
   updateAccelerometer();
-  delay(10);
+  if (true) {
+  digitalWrite(13, HIGH);
+  delay(100);
+     digitalWrite(13, LOW);
+  delay(100);
+ 
+  if (sawTap) 
+      digitalWrite(13, HIGH);
+  delay(100);
+  digitalWrite(13, LOW);
+  delay(100);
+  if (sawAccel) 
+      digitalWrite(13, HIGH);
+  delay(100);
+  digitalWrite(13, LOW);
+  delay(250);
+  }
 
 }
 
