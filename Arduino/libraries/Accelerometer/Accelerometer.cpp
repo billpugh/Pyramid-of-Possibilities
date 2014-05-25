@@ -25,8 +25,17 @@ void initializeAccelerometer() {
   digitalWrite(int1Pin, LOW);
   pinMode(int2Pin, INPUT);
   digitalWrite(int2Pin, LOW);
+  Serial.println("Ready to read whoAmI");
   // Read the WHO_AM_I register, this is a good test of communication
-  uint8_t c = readRegister(0x0D);  // Read WHO_AM_I register
+  int c = readRegister(0x0D, 10);  // Read WHO_AM_I register
+  if (c == -1) {
+    Serial.println("timeout when reading who_am_i");
+    while (true) {
+      delay(4000);
+      Serial.println("timeout when reading who_am_i");
+    }
+  }
+
   Serial.println("got whoami");
   Serial.println(c, HEX);
   if (c == 0x1A || c == 0x2A) // WHO_AM_I should be 0x1A or 0x2A
@@ -195,6 +204,24 @@ uint8_t readRegister(uint8_t addressToRead)
   Wire.requestFrom(MMA8452_ADDRESS, 1); //Ask for 1 byte, once done, bus is released by default
 
   while(!Wire.available()) ; //Wait for the data to come back
+  return Wire.read(); //Return this one byte
+}
+
+// Read a single byte from addressToRead and return it as a byte, with a timeout
+// return -1 on timeout
+int readRegister(uint8_t addressToRead, unsigned long timeout)
+{
+  Wire.beginTransmission(MMA8452_ADDRESS);
+  Wire.write(addressToRead);
+  Wire.endTransmission(I2C_NOSTOP); //endTransmission but keep the connection active
+  Serial.print("Send address to read: ");
+  Serial.println(addressToRead, HEX);
+
+  Wire.requestFrom(MMA8452_ADDRESS, 1); //Ask for 1 byte, once done, bus is released by default
+  unsigned long expires = millis() + timeout;
+  while(!Wire.available() && millis() < expires) ; //Wait for the data to come back
+  if (!Wire.available())
+    return -1;
   return Wire.read(); //Return this one byte
 }
 

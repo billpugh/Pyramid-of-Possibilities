@@ -23,6 +23,7 @@ void MMA8452Standby();
 void MMA8452Active();
 void readRegisters(uint8_t addressToRead, int bytesToRead, uint8_t * dest);
 uint8_t readRegister(uint8_t addressToRead);
+int readRegister(uint8_t addressToRead, unsigned long timeout);
 void writeRegister(uint8_t addressToWrite, uint8_t dataToWrite);
 
 #endif /* defined(__Accelerometer__) */
