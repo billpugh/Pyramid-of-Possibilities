@@ -9,17 +9,22 @@
 //   NEO_KHZ800  800 KHz bitstream (e.g. High Density LED strip)
 
 
-#define NUM_LIGHTS 16
+#define NUM_LIGHTS 24
 
 
 uint32_t pos = 500;
-uint32_t maxval = 1000;
-uint32_t minval = 0;
-uint32_t speed = 25;
+uint32_t maxval = 1000;	// max position
+uint32_t minval = 0;	// min position
+uint32_t speed = 10;
 uint32_t loop_delay_in_ms = 20;
 uint32_t range = maxval - minval;
-double width = 150;
-int8_t direction_sign = 1;	// -1 or 1
+double width = 150;	// width (in same units as pos, maxval, minval) of a strobe band
+int8_t direction_sign = 1;	// -1 or 1, set programatically.
+
+// specify which LEDs are enabled for this effect. We turn some off for a clipping effect.
+int32_t min_led_enabled = 4;
+int32_t max_led_enabled = NUM_LIGHTS - 4;
+
 
 #define DELAY_BETWEEN_STOBES 1000	// delay in ms between strobes
 uint32_t COLOR_OFF = 0;		// the color of 'off'
@@ -38,8 +43,8 @@ void setup() {
 
 void loop() {
 
-	_update_position();
-	cylon_eyes();
+	_update_position();		// modify value of 'pos'
+	cylon_eyes();			// set lights based on value of 'pos'
 	strip.show();
 
 	delay(loop_delay_in_ms); 
@@ -68,7 +73,6 @@ void cylon_eyes() {
 }
 
 // Private
-
 #define MAGIC_NUMBER 5	// the number of LEDs that will be turned on of either side of the middle LED
 
 /**
@@ -77,7 +81,7 @@ if 1 is returned always here, then all LEDs will be on.
 */
 uint8_t _led_is_enabled (uint32_t led_id ) {
 
-	if ( led_id < NUM_LIGHTS/2 + MAGIC_NUMBER && led_id > NUM_LIGHTS/2 - MAGIC_NUMBER ) {
+	if ((led_id <= max_led_enabled) && (led_id >= min_led_enabled)) {
 		return 1;
 	}
 	return 0;
