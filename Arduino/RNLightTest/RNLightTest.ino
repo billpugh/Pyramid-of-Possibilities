@@ -53,7 +53,7 @@ void loop() {
     hue += 16;
     if (hue > 255)
       hue = 0;
-    lights.setLinearFade(ms, 128);
+    lights.setFade(ms, 1000);
     next = ms+6000;
     // p("\nreset %f\n", lights.logFade);
   }
