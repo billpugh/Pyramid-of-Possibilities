@@ -91,18 +91,19 @@ void addChaser() {
 
     int rpm;
     if (tapStrength > 0.5 && random(6) == 0)
-      rpm = 100 + random(60);
+      rpm = 30 + random(40);
     else
-      rpm = 20 + random(80);
+      rpm = 10 + random(30);
 
     chaser[c].setRPM(rpm);
 
-    chaser[c].activate(millis());
+
 
     p("%3d %4d  ", rpm, chaser[c].delay);
     p("%3d %3d %3d  %f\n", chaser[c].hsv.h,chaser[c].hsv.s, chaser[c].hsv.v, chaser[c].fadeValue);
     chaser[c].position = random(lights.getNumPixels());
-    chaser[c].forward = random(3) != 0;
+    chaser[c].forward = random(2) != 0;
+    chaser[c].activate(millis());
   } 
   else {
     p("chaser %d already active\n", c);
@@ -164,7 +165,7 @@ void setup()
     chaser[i].active = false;
   unsigned long ms = millis();
   lights.setFade(ms, 500);
-  dots.setFade(ms, 1000);
+  dots.setFade(ms, 750);
 }
 
 void accelerometerCallback( float totalG, 
