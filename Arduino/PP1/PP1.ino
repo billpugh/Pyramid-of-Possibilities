@@ -163,7 +163,7 @@ void setup()
   for(int i = 0; i < numChasers; i++) 
     chaser[i].active = false;
   unsigned long ms = millis();
-  lights.setLinearFade(ms, 100);
+  lights.setFade(ms, 500);
   dots.setFade(ms, 1000);
 }
 
