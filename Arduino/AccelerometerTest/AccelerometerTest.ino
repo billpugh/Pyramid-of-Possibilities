@@ -17,8 +17,8 @@ void setup() {
 } 
 
 void accelerometerCallback( float totalG, 
-  float directionalG[3],
-  uint8_t source) {
+float directionalG[3],
+uint8_t source) {
   if (totalG > 0.01) {
     Serial.println(totalG);
     sawAccel = true;
@@ -70,24 +70,32 @@ void accelerometerCallback( float totalG,
 void loop() {
   updateAccelerometer();
   if (true) {
-  digitalWrite(13, HIGH);
-  delay(100);
-     digitalWrite(13, LOW);
-  delay(100);
- 
-  if (sawTap) 
+    digitalWrite(13, HIGH);
+    delay(150);
+    digitalWrite(13, LOW);
+    delay(150);
+
+    if (sawTap) 
       digitalWrite(13, HIGH);
-  delay(100);
-  digitalWrite(13, LOW);
-  delay(100);
-  if (sawAccel) 
+    delay(200);
+    digitalWrite(13, LOW);
+    delay(150);
+    if (sawAccel) 
       digitalWrite(13, HIGH);
-  delay(100);
-  digitalWrite(13, LOW);
-  delay(250);
+    delay(200);
+    digitalWrite(13, LOW);
+    delay(300);
+    if (!sawTap || !sawAccel) {
+      for(int i = 0; i < 10; i++) {
+        updateAccelerometer();
+        delay(30);
+      }
+    }
   }
 
 }
+
+
 
 
 
