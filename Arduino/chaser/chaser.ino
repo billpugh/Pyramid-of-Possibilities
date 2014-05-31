@@ -17,23 +17,14 @@ RNChaser chaser[numChasers] = {
   RNChaser(lights), 
   RNChaser(lights)};
 
-
-float easeInOutQuad(float t) {
-  t = t*2;
-  if (t < 1)
-    return t*t/2;
-  t -= 2;
-  return 1-t*t/2;
+void p(char *fmt, ... ){
+  char tmp[128]; // resulting string limited to 128 chars
+  va_list args;
+  va_start (args, fmt );
+  vsnprintf(tmp, 128, fmt, args);
+  va_end (args);
+  Serial.print(tmp);
 }
-
-float easeInOutCubic(float t) {
-  t = t*2;
-  if (t < 1)
-    return t*t*t/2;
-  t -= 2;
-  return 1+t*t*t/2;
-}
-
 
 void setup() {
   delay(1000);
@@ -43,6 +34,7 @@ void setup() {
 
   Serial.println("Starting");
   lights.show();
+  lights.setFade(millis(), 250);
   for(int i = 0; i < numChasers; i++) {
     chaser[i].active = true;
     chaser[i].setRPM(50 + random(50));
@@ -50,14 +42,15 @@ void setup() {
       chaser[i].forward = false;
     chaser[i].hsv.h = random(255);
   }
-
-
-
+//  p("Fade %f\n", lights.logFade);
 }
 
 void loop() {
-  lights.fadeMultiply(240);
+
   unsigned long ms = millis();
+  int amount = lights.fade(ms);
+  
+  p("%d %d\n", ms, amount);
   for(int i = 0; i < numChasers; i++) {
     if (!chaser[i].update(ms)) {
       chaser[i].setRPM(20 + random(70));
@@ -66,7 +59,7 @@ void loop() {
 
   }
   lights.show();
-  delay(5);
+  delay(50);
 }
 
 
