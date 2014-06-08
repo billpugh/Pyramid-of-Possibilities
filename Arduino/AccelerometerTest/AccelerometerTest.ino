@@ -1,18 +1,27 @@
 #include "Accelerometer.h"
-
+#include <Adafruit_NeoPixel.h>
 
 bool sawTap = false;
 bool sawAccel = false;
 
-void setup() {
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(20, 2, NEO_GRB + NEO_KHZ800);
 
+void setup() {
+  strip.begin();
+  strip.show(); // Initialize all pixels to 'off'
+  for(int i = 0; i < 20; i++)
+    strip.setPixelColor(i, strip.Color(100, 0, 0)); 
+  strip.show();
   pinMode(13, OUTPUT); 
   digitalWrite(13, HIGH);
-  delay(500);
+  delay(200);
   digitalWrite(13, LOW);
   Serial.begin(115200);
   Serial.println("Hello");
   initializeAccelerometer();
+  for(int i = 0; i < 20; i++)
+    strip.setPixelColor(i, strip.Color(100, 100, 0)); 
+  strip.show();
   Serial.println("Ready");
 } 
 
@@ -86,10 +95,15 @@ void loop() {
     digitalWrite(13, LOW);
     delay(300);
     if (!sawTap || !sawAccel) {
+
       for(int i = 0; i < 10; i++) {
         updateAccelerometer();
         delay(30);
       }
+    } else {
+       for(int i = 0; i < 20; i++)
+         strip.setPixelColor(i, strip.Color(0, 100, 0));
+       strip.show();
     }
   }
 
