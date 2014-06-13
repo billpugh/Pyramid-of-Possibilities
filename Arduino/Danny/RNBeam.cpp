@@ -54,7 +54,7 @@ RNBeam::RNBeam() {
 	speed = 22;
 	direction_sign = 1;
 	width = 100;
-	width_speed = 13;
+	width_speed = 0;
 	width_direction = 1;
 	r = 100;
 	g = 0;
@@ -155,9 +155,59 @@ uint32_t RNBeam::color_for_distance (double d) {
 /**
 combines two colors
 */
-uint32_t RNBeam::combine_colors(uint32_t a, uint32_t b) {
-	return a/2 + b/2;
+inline void setMax(uint8_t & current, uint8_t value) {
+  if (current < value)
+    current = value;
 }
+uint32_t RNBeam::combine_colors(uint32_t a, uint32_t b) {
+
+	uint32_t foo = 0;
+	uint32_t bar = 0;
+	uint32_t newcolor = 0;
+
+	for ( int i = 0; i < 3; i++) {
+		foo = (a >> (i*8)) & 0xFF;
+		bar = (b >> (i*8)) & 0xFF;
+
+		uint32_t foobar = foo > bar ? foo : bar;
+		foobar = foobar << (i*8);
+
+		newcolor |= foobar;
+
+	}
+	return newcolor;
+	// return a>b?a:b;
+}
+
+
+
+// uint8_t RNBeam::getPixelRed(uint16_t pixel) {
+//   pixel = 3*((pixel+offset) % numPixels);
+//   return pixels[pixel];
+// }
+// uint8_t RNBeam::getPixelGreen(uint16_t pixel)  {
+//   pixel = 3*((pixel+offset) % numPixels);
+//   return pixels[pixel+1];
+// }
+
+// uint8_t RNBeam::getPixelBlue(uint16_t pixel)  {
+//   pixel = 3*((pixel+offset) % numPixels);
+//   return pixels[pixel+2];
+// }
+
+// void RNBeam::setPixelColorMax(uint16_t pixel, uint8_t red, uint8_t green, uint8_t blue) {
+//   pixel = 3*((pixel+offset) % numPixels);
+//   setMax(pixels[pixel], red);
+//   setMax(pixels[pixel+1], green);
+//   setMax(pixels[pixel+2], blue);
+// }
+
+// void RNLights::setPixelColorMax(uint16_t pixel, uint8_t red, uint8_t green, uint8_t blue) {
+//   pixel = 3*((pixel+offset) % numPixels);
+//   setMax(pixels[pixel], red);
+//   setMax(pixels[pixel+1], green);
+//   setMax(pixels[pixel+2], blue);
+// }
 
 /**
 converts the led_id into a position. The position is the left edge of the LED (ie. no 1/2 width calculations)

@@ -33,8 +33,15 @@ public:
   uint32_t combine_colors(uint32_t a, uint32_t b);
   uint32_t r, g, b;
 
+  uint16_t position;
+
+
+  uint8_t getPixelRed(uint16_t pixel);
+  uint8_t getPixelGreen(uint16_t pixel);
+  uint8_t getPixelBlue(uint16_t pixel);
+
+
 private:
-    uint16_t position;
 };
 
 #endif /* defined(__RNBEAM__) */

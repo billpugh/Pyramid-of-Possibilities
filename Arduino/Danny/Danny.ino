@@ -36,10 +36,11 @@ uint32_t COLOR_OFF = 0;		// the color of 'off'
 
 /**********         ************/
 
-const uint8_t numBeams = 2;
+const uint8_t numBeams = 3;
 RNBeam beams[numBeams] = { 
-  RNBeam(), 
-  RNBeam()
+	RNBeam(),
+	RNBeam(), 
+	RNBeam()
 };
 
 
@@ -57,17 +58,30 @@ void setup() {
 
   for ( int i = 0; i < numBeams; i++ ) {
   	beams[i].numLights = NUM_LIGHTS;
-  	beams[i].speed = 37;
-  	if (i == 1 ) {
-  		beams[i].speed = 70;
+  	beams[i].position = 250 * i;
+  	beams[i].speed = 20;
+
+  	if (i == 2 ) {
   		beams[i].r = 0;
-  		beams[i].g = 255;
+  		beams[i].g = 0;
+  		beams[i].b = 100;
+	  	beams[i].speed = 30;
+	  	beams[i].direction_sign = 1;
+
+  	}else if (i == 1 ) {
+  		beams[i].r = 0;
+  		beams[i].g = 100;
   		beams[i].b = 0;
+	  	beams[i].speed = 3;
+	  	beams[i].direction_sign = 1;
+
+
   	} else {
-  		beams[i].r = 255;
+  		beams[i].r = 100;
   		beams[i].g = 0;
   		beams[i].b = 0;
   	}
+  	beams[i].width = 333;
   	// beam.strip = &strip;
   	// beam.numLights = NUM_LIGHTS;
   }
@@ -77,18 +91,22 @@ void loop() {
 
 // Serial.println("Iteration"); 
 
-  for ( int i = 0; i < numBeams; i++ ) {
+  for ( int i = 0; i < numBeams; i++ )
 	beams[i].loop();
-  	for ( int j = 0; j < NUM_LIGHTS; j++ ) {
-	  	//RNBeam beam  = beams[i];
+
+  for ( int j = 0; j < NUM_LIGHTS; j++ ) {
+	uint32_t currentColor = 0;
+    for ( int i = 0; i < numBeams; i++ ) {
 		uint32_t color = beams[i].drawPixel(j);
-		uint32_t currentColor = strip.getPixelColor(j);
-		uint32_t newColor = beams[i].combine_colors(color, currentColor);
-		strip.setPixelColor(j, newColor);  		
+		if (color > 0)
+		{
+	   		currentColor = beams[i].combine_colors(color, currentColor);
+	   	}
   	}
+	strip.setPixelColor(j, currentColor);
   }	
 
 
 	strip.show();
-	delay(loop_delay_in_ms); 
+	//delay(loop_delay_in_ms); 
 }
