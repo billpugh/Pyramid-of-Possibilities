@@ -54,6 +54,11 @@ RNBeam::RNBeam() {
 	speed = 22;
 	direction_sign = 1;
 	width = 100;
+	width_speed = 13;
+	width_direction = 1;
+	r = 100;
+	g = 0;
+	b = 200;
 }
 
 RNBeam::~RNBeam() {
@@ -67,6 +72,14 @@ void RNBeam::loop() {
 	position = position + (direction_sign * speed);
 	if ( position > maxval ) {
 		position = (minval + position) % range;		// modulus to calculate leftover
+	}
+
+	width += width_speed * width_direction;
+
+	if ( width > 500 ) {
+		width_direction = -1;
+	} else if ( width <= 60 ) {
+		width_direction = 1;
 	}
  //  Serial.println(speed);
  //    Serial.println(direction_sign);
@@ -126,7 +139,7 @@ uint32_t RNBeam::color_for_distance (double d) {
 		double percent = 1.0 - (d / (float)width);
 
 		percent = percent * percent;
-		color = dannyColor(percent*10, 0, 0);
+		color = dannyColor(percent*r, percent * g, percent * b);
 
 	// 	Serial.print("percent=");
 	// 	Serial.print(percent);
@@ -137,6 +150,13 @@ uint32_t RNBeam::color_for_distance (double d) {
 	// return dannyColor(0,50,10);
 
 	return color;
+}
+
+/**
+combines two colors
+*/
+uint32_t RNBeam::combine_colors(uint32_t a, uint32_t b) {
+	return a/2 + b/2;
 }
 
 /**

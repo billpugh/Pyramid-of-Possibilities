@@ -36,9 +36,9 @@ uint32_t COLOR_OFF = 0;		// the color of 'off'
 
 /**********         ************/
 
-const uint8_t numBeams = 1;
+const uint8_t numBeams = 2;
 RNBeam beams[numBeams] = { 
-  // RNBeam(), 
+  RNBeam(), 
   RNBeam()
 };
 
@@ -57,7 +57,17 @@ void setup() {
 
   for ( int i = 0; i < numBeams; i++ ) {
   	beams[i].numLights = NUM_LIGHTS;
-  	beams[i].speed = 1;
+  	beams[i].speed = 37;
+  	if (i == 1 ) {
+  		beams[i].speed = 70;
+  		beams[i].r = 0;
+  		beams[i].g = 255;
+  		beams[i].b = 0;
+  	} else {
+  		beams[i].r = 255;
+  		beams[i].g = 0;
+  		beams[i].b = 0;
+  	}
   	// beam.strip = &strip;
   	// beam.numLights = NUM_LIGHTS;
   }
@@ -72,7 +82,9 @@ void loop() {
   	for ( int j = 0; j < NUM_LIGHTS; j++ ) {
 	  	//RNBeam beam  = beams[i];
 		uint32_t color = beams[i].drawPixel(j);
-		strip.setPixelColor(j, color);  		
+		uint32_t currentColor = strip.getPixelColor(j);
+		uint32_t newColor = beams[i].combine_colors(color, currentColor);
+		strip.setPixelColor(j, newColor);  		
   	}
   }	
 
