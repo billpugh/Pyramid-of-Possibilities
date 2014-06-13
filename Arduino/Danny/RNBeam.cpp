@@ -64,9 +64,9 @@ void RNBeam::loop() {
 	// this->position ++;
 
 	// // reset position each time it exceed maxval. 
-	position = position + speed;
+	position = position + (direction_sign * speed);
 	if ( position > maxval ) {
-		position = (minval + position) % range;
+		position = (minval + position) % range;		// modulus to calculate leftover
 	}
  //  Serial.println(speed);
  //    Serial.println(direction_sign);
@@ -83,6 +83,7 @@ calculates distance between two positions. This method calculates the circular d
 double RNBeam::calc_distance(double x, double y) {
 
 
+	// calculate the absolute value of x-y 
 	double f;
 	if ( x > y ) {
 		f = x-y;
@@ -125,7 +126,7 @@ uint32_t RNBeam::color_for_distance (double d) {
 		double percent = 1.0 - (d / (float)width);
 
 		percent = percent * percent;
-		color = dannyColor(0, percent*100, 0);
+		color = dannyColor(percent*50, 0, 0);
 
 	// 	Serial.print("percent=");
 	// 	Serial.print(percent);

@@ -9,7 +9,8 @@
 #define __RNLightsNeoPixel__
 
 #include <Arduino.h>
-#include "Adafruit_NeoPixel.h"
+// #include "Adafruit_NeoPixel.h"
+// #include <Adafruit_NeoPixel.h>
 #include "RNLights.h"
 
 class RNLightsNeoPixel : 

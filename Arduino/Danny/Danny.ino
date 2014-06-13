@@ -18,8 +18,8 @@
 uint32_t pos = 500;
 uint32_t maxval = 1000;	// max position
 uint32_t minval = 0;	// min position
-uint32_t speed = 10;
-uint32_t loop_delay_in_ms = 10;
+uint32_t speed = 53;
+uint32_t loop_delay_in_ms = 0;
 uint32_t range = maxval - minval;
 double width = 150;	// width (in same units as pos, maxval, minval) of a strobe band
 int8_t direction_sign = 1;	// -1 or 1, set programatically.
