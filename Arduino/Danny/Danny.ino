@@ -15,14 +15,8 @@
 #define PIN 12
 
 
-uint32_t pos = 500;
-uint32_t maxval = 1000;	// max position
-uint32_t minval = 0;	// min position
-uint32_t speed = 53;
 uint32_t loop_delay_in_ms = 0;
-uint32_t range = maxval - minval;
 double width = 150;	// width (in same units as pos, maxval, minval) of a strobe band
-int8_t direction_sign = 1;	// -1 or 1, set programatically.
 
 // specify which LEDs are enabled for this effect. We turn some off for a clipping effect.
 // int32_t min_led_enabled = 0;
@@ -58,21 +52,21 @@ void setup() {
 
   for ( int i = 0; i < numBeams; i++ ) {
   	beams[i].numLights = NUM_LIGHTS;
-  	beams[i].position = 250 * i;
-  	beams[i].speed = 20;
+  	beams[i].position = 30 * i;
+  	beams[i].speed = 1;
 
   	if (i == 2 ) {
   		beams[i].r = 0;
   		beams[i].g = 0;
   		beams[i].b = 100;
-	  	beams[i].speed = 30;
+	  	beams[i].speed = 3;
 	  	beams[i].direction_sign = 1;
 
   	}else if (i == 1 ) {
   		beams[i].r = 0;
   		beams[i].g = 100;
   		beams[i].b = 0;
-	  	beams[i].speed = 3;
+	  	beams[i].speed = 2;
 	  	beams[i].direction_sign = 1;
 
 
@@ -81,7 +75,7 @@ void setup() {
   		beams[i].g = 0;
   		beams[i].b = 0;
   	}
-  	beams[i].width = 333;
+  	beams[i].width = 20;
   	// beam.strip = &strip;
   	// beam.numLights = NUM_LIGHTS;
   }

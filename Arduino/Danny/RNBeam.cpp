@@ -48,8 +48,8 @@ uint32_t _color_for_distance (double d) {
 
 RNBeam::RNBeam() {
 	position = 200;
-	maxval = 1000;
-	range = 1000;
+	maxval = 240;
+	range = 240;
 	minval = 0;
 	speed = 22;
 	direction_sign = 1;
