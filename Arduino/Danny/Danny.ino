@@ -56,10 +56,10 @@ void setup() {
 
 
   for ( int i = 0; i < numBeams; i++ ) {
-  	RNBeam beam  = beams[i];
-  	// beam.position = 500;
+  	beams[i].numLights = NUM_LIGHTS;
+  	beams[i].speed = 1;
   	// beam.strip = &strip;
-  	beam.numLights = NUM_LIGHTS;
+  	// beam.numLights = NUM_LIGHTS;
   }
 }
 

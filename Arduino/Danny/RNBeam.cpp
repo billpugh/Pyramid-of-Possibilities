@@ -126,7 +126,7 @@ uint32_t RNBeam::color_for_distance (double d) {
 		double percent = 1.0 - (d / (float)width);
 
 		percent = percent * percent;
-		color = dannyColor(percent*50, 0, 0);
+		color = dannyColor(percent*10, 0, 0);
 
 	// 	Serial.print("percent=");
 	// 	Serial.print(percent);
@@ -149,7 +149,7 @@ double RNBeam::position_of_led_center (uint32_t led_id) {
 
 
 	// determine percent of range that the led is located
-	double i = (double)led_id / 240.0;
+	double i = (double)led_id / numLights;
 
 	// find the position in the range
 	i = i * (double)range;
