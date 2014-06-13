@@ -1,0 +1,11 @@
+# Xcode Noise
+*build
+*xcuserdata
+*xcuserstate
+*.pbxuser
+*.mode1v3
+*.mode2v3
+
+
+# OS X Noise
+*.DS_Store
