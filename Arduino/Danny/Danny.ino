@@ -54,28 +54,30 @@ void setup() {
   	beams[i].numLights = NUM_LIGHTS;
   	beams[i].position = 30 * i;
   	beams[i].speed = 1;
+  	beams[i].width = 20;
 
   	if (i == 2 ) {
   		beams[i].r = 0;
-  		beams[i].g = 0;
-  		beams[i].b = 100;
-	  	beams[i].speed = 3;
-	  	beams[i].direction_sign = 1;
-
-  	}else if (i == 1 ) {
-  		beams[i].r = 0;
   		beams[i].g = 100;
   		beams[i].b = 0;
+	  	beams[i].speed = 3;
+	  	beams[i].direction_sign = 1;
+	  	// beams[i].width = 60;
+
+  	} else if (i == 1 ) {
+  		beams[i].r = 0;
+  		beams[i].g = 0;
+  		beams[i].b = 100;
 	  	beams[i].speed = 2;
 	  	beams[i].direction_sign = 1;
-
 
   	} else {
   		beams[i].r = 100;
   		beams[i].g = 0;
   		beams[i].b = 0;
+	  	beams[i].speed = 1;
+
   	}
-  	beams[i].width = 20;
   	// beam.strip = &strip;
   	// beam.numLights = NUM_LIGHTS;
   }
@@ -89,6 +91,7 @@ void loop() {
 	beams[i].loop();
 
   for ( int j = 0; j < NUM_LIGHTS; j++ ) {
+	// uint32_t currentColor = strip.Color(0, 0, 0);
 	uint32_t currentColor = 0;
     for ( int i = 0; i < numBeams; i++ ) {
 		uint32_t color = beams[i].drawPixel(j);
@@ -102,5 +105,5 @@ void loop() {
 
 
 	strip.show();
-	//delay(loop_delay_in_ms); 
+	delay(loop_delay_in_ms); 
 }

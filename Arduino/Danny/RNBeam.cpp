@@ -59,9 +59,29 @@ RNBeam::RNBeam() {
 	r = 100;
 	g = 0;
 	b = 200;
+	min_range_of_lights_to_draw = 0;
+	max_range_of_lights_to_draw = 0; 
 }
 
 RNBeam::~RNBeam() {
+}
+
+/**
+returns the LED index coresponding to the given position. 
+TODO: I half-assed this logic. Might have some logic bugs. Rounding direction might not be needed.
+use rounding direction (as 1 or -1) to compernsate for rounding issues such as when percent = 0.99 and we want the return value to include the max LED index.
+*/
+uint32_t RNBeam::convertCoordinateToLED(int coordinate, int8_t roundingDirection) {
+	
+	coordinate = coordinate - minval;
+	float percent = (float)coordinate/(float)range;
+	int i = (int)(percent * numLights) + roundingDirection;
+	if ( i < 0 ) {
+		return 0;
+	} if ( i >= numLights ) {
+		return numLights-1;
+	}
+	return i;
 }
 
 void RNBeam::loop() {
@@ -74,13 +94,25 @@ void RNBeam::loop() {
 		position = (minval + position) % range;		// modulus to calculate leftover
 	}
 
-	width += width_speed * width_direction;
+// DISABLING WIDTH STUFF FOR PERFORMANCE TESTING
+	// width += width_speed * width_direction;
+	// if ( width > 500 ) {
+	// 	width_direction = -1;
+	// } else if ( width <= 60 ) {
+	// 	width_direction = 1;
+	// }
 
-	if ( width > 500 ) {
-		width_direction = -1;
-	} else if ( width <= 60 ) {
-		width_direction = 1;
+	int min = position - width;
+	int max = position + width;
+	if ( min < 0 ) {
+		min += range;
 	}
+	if ( max > maxval ) {
+		max -= range;
+	}
+
+	min_range_of_lights_to_draw = this->convertCoordinateToLED(min,-1);
+	max_range_of_lights_to_draw = this->convertCoordinateToLED(max,1);
  //  Serial.println(speed);
  //    Serial.println(direction_sign);
  //      Serial.println(maxval);
@@ -88,29 +120,19 @@ void RNBeam::loop() {
 	// Serial.println(":P");
 }
 
-
-
 /**
 calculates distance between two positions. This method calculates the circular distance
 */
 double RNBeam::calc_distance(double x, double y) {
 
-
 	// calculate the absolute value of x-y 
-	double f;
+	double f = 0;
 	if ( x > y ) {
 		f = x-y;
 	} else {
 		f = y-x;
 	}
 
-	// return x - y;
-// #ifdef 0
-// Serial.print(x);
-// Serial.print("          ");
-// Serial.println(y);
-// #endif
-	// double i = fabs((float)x-(float)y);
 	double pastmax = f - (range/2.0);
 
 	if ( pastmax > 0.0 ) {
@@ -161,6 +183,10 @@ inline void setMax(uint8_t & current, uint8_t value) {
 }
 uint32_t RNBeam::combine_colors(uint32_t a, uint32_t b) {
 
+#if 0
+	return a > b ? a : b;
+#endif
+
 	uint32_t foo = 0;
 	uint32_t bar = 0;
 	uint32_t newcolor = 0;
@@ -179,44 +205,11 @@ uint32_t RNBeam::combine_colors(uint32_t a, uint32_t b) {
 	// return a>b?a:b;
 }
 
-
-
-// uint8_t RNBeam::getPixelRed(uint16_t pixel) {
-//   pixel = 3*((pixel+offset) % numPixels);
-//   return pixels[pixel];
-// }
-// uint8_t RNBeam::getPixelGreen(uint16_t pixel)  {
-//   pixel = 3*((pixel+offset) % numPixels);
-//   return pixels[pixel+1];
-// }
-
-// uint8_t RNBeam::getPixelBlue(uint16_t pixel)  {
-//   pixel = 3*((pixel+offset) % numPixels);
-//   return pixels[pixel+2];
-// }
-
-// void RNBeam::setPixelColorMax(uint16_t pixel, uint8_t red, uint8_t green, uint8_t blue) {
-//   pixel = 3*((pixel+offset) % numPixels);
-//   setMax(pixels[pixel], red);
-//   setMax(pixels[pixel+1], green);
-//   setMax(pixels[pixel+2], blue);
-// }
-
-// void RNLights::setPixelColorMax(uint16_t pixel, uint8_t red, uint8_t green, uint8_t blue) {
-//   pixel = 3*((pixel+offset) % numPixels);
-//   setMax(pixels[pixel], red);
-//   setMax(pixels[pixel+1], green);
-//   setMax(pixels[pixel+2], blue);
-// }
-
 /**
 converts the led_id into a position. The position is the left edge of the LED (ie. no 1/2 width calculations)
 */
 // bool RNChaser::update(unsigned long millis) {
 double RNBeam::position_of_led_center (uint32_t led_id) {
-
-
-
 
 	// determine percent of range that the led is located
 	double i = (double)led_id / numLights;
@@ -243,6 +236,18 @@ double RNBeam::position_of_led_center (uint32_t led_id) {
 
 uint32_t RNBeam::drawPixel(uint16_t i) {
 
+	// check if pixel index is out of range (ie. we know it will return 0 for the color). If so, return 0 (no color).
+	if ( max_range_of_lights_to_draw > min_range_of_lights_to_draw ) {
+		if ( i < min_range_of_lights_to_draw || i > max_range_of_lights_to_draw ) {
+			return 0;	// no color since it's out of range.
+		}
+	} else {
+		if ( i > min_range_of_lights_to_draw && i < max_range_of_lights_to_draw ) {
+			return 0;
+		}
+	}
+
+
 	double center_position = this->position_of_led_center(i);
 	double distance = this->calc_distance(center_position, (double)position);
 	uint32_t color = this->color_for_distance(distance);
@@ -266,9 +271,6 @@ uint32_t RNBeam::drawPixel(uint16_t i) {
 }
 
 void RNBeam::draw() {
-
-	  // Serial.println("position updated");
-		  // Serial.println("draw called");
 }
 
 
