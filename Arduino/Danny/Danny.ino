@@ -30,12 +30,15 @@ uint32_t COLOR_OFF = 0;		// the color of 'off'
 
 /**********         ************/
 
-const uint8_t numBeams = 3;
+const uint8_t numBeams = 4;
 RNBeam beams[numBeams] = { 
 	RNBeam(),
 	RNBeam(), 
+	RNBeam(),
 	RNBeam()
 };
+
+int poss[4] = {0,63, 127, 200};
 
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LIGHTS, PIN, NEO_GRB + NEO_KHZ800);
@@ -52,7 +55,7 @@ void setup() {
 
   for ( int i = 0; i < numBeams; i++ ) {
   	beams[i].numLights = NUM_LIGHTS;
-  	beams[i].position = 30 * i;
+  	beams[i].position = poss[i];
   	beams[i].speed = 1;
   	beams[i].width = 20;
 
@@ -63,6 +66,13 @@ void setup() {
 	  	beams[i].speed = 3;
 	  	beams[i].direction_sign = 1;
 	  	// beams[i].width = 60;
+
+  	} else if (i == 3 ) {
+  		beams[i].r = 50;
+  		beams[i].g = 50;
+  		beams[i].b = 50;
+	  	beams[i].speed = 4;
+	  	beams[i].direction_sign = 1;
 
   	} else if (i == 1 ) {
   		beams[i].r = 0;
