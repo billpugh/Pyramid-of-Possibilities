@@ -114,5 +114,52 @@ void loop() {
 
 	strip.show();
 	// delay(loop_delay_in_ms); 
+
+
+	// Serial
+	if ( Serial.available() ) {
+		char charlie = Serial.read();
+		if ( charlie >= 0 ) {
+			Serial.println(charlie);
+
+			switch (charlie) {
+
+				case 's':
+				{
+					s();
+				}
+				break;
+
+				case 'a':
+				{
+					a();
+				}
+				break;
+
+				case 'j':
+				{
+					j();
+				}
+				break;
+
+				default:
+				break;
+			}
+		}
+	}
 }
 
+void s() {
+	for ( int i = 0; i < numBeams; i++ ) {
+		beams[i].width += 10;
+	}
+}
+void a() {
+	for ( int i = 0; i < numBeams; i++ ) {
+		beams[i].width -= 10;
+	}
+}
+
+int jumping = 0;
+void j() {
+}
