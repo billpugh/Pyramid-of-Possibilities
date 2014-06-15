@@ -5,6 +5,9 @@
 #include <Adafruit_NeoPixel.h>		// tpdp remove depend
 
 #define DEBUG_LED_ID 10
+
+
+#pragma mark - Helper C Functions
  
 void printDouble( double val, unsigned int precision){
 // prints val with number of decimal places determine by precision
@@ -21,35 +24,19 @@ void printDouble( double val, unsigned int precision){
     Serial.println(frac,DEC) ;
 }
 
+// TODO: inline
 uint32_t dannyColor(uint32_t r, uint32_t g, uint32_t b) {
 	return ((uint32_t)r << 16) | ((uint32_t)g <<  8) | b;
 }
 
-/**
-The color to show for a given distance.
-*/
-/*
-uint32_t _color_for_distance (double d) {
 
-	uint32_t color = 0;
-
-	if ( d > width ) {
-		color = strip.Color(0, 0, 0);
-	} else {
-		double percent = 1 - (d / width);
-
-		percent = percent * percent;
-		color = strip.Color(percent * 255, 0, 0);
-	}
-
-	return color;
-}
-*/
+#pragma mark - RNBeam
 
 RNBeam::RNBeam() {
-	position = 200;
+	position = 0;
 	maxval = 240;
 	range = 240;
+	halfrange = 120;
 	minval = 0;
 	speed = 22;
 	direction_sign = 1;
@@ -61,6 +48,7 @@ RNBeam::RNBeam() {
 	b = 200;
 	min_range_of_lights_to_draw = 0;
 	max_range_of_lights_to_draw = 0; 
+	offset = 0;
 }
 
 RNBeam::~RNBeam() {
@@ -73,15 +61,19 @@ use rounding direction (as 1 or -1) to compernsate for rounding issues such as w
 */
 uint32_t RNBeam::convertCoordinateToLED(int coordinate, int8_t roundingDirection) {
 	
-	coordinate = coordinate - minval;
-	float percent = (float)coordinate/(float)range;
-	int i = (int)(percent * numLights) + roundingDirection;
-	if ( i < 0 ) {
-		return 0;
-	} if ( i >= numLights ) {
-		return numLights-1;
-	}
-	return i;
+
+	// NOTE: when numLights == range, then no conversion is needed
+
+	return coordinate;
+	// coordinate = coordinate - minval;
+	// float percent = (float)coordinate/(float)range;
+	// int i = (int)(percent * numLights) + roundingDirection;
+	// if ( i < 0 ) {
+	// 	return 0;
+	// } if ( i >= numLights ) {
+	// 	return numLights-1;
+	// }
+	// return i;
 }
 
 void RNBeam::loop() {
@@ -90,12 +82,13 @@ void RNBeam::loop() {
 
 	// // reset position each time it exceed maxval. 
 	// position = position + (direction_sign * speed);
-	position = (millis() / speed) % numLights;
-	return;
-	
-	if ( position > maxval ) {
-		position = (minval + position) % range;		// modulus to calculate leftover
-	}
+	position = ((millis() / speed)+offset) % numLights;
+
+	// TODO assuming that numLights == maxVal, and that minVal = 0
+
+	// if ( position > maxval ) {
+	// 	position = (minval + position) % range;		// modulus to calculate leftover
+	// }
 
 // DISABLING WIDTH STUFF FOR PERFORMANCE TESTING
 	// width += width_speed * width_direction;
@@ -126,30 +119,24 @@ void RNBeam::loop() {
 /**
 calculates distance between two positions. This method calculates the circular distance
 */
-double RNBeam::calc_distance(double x, double y) {
+int RNBeam::calc_distance(int x, int y) {
 
 	// calculate the absolute value of x-y 
-	double f = 0;
+	int f = 0;
 	if ( x > y ) {
 		f = x-y;
 	} else {
 		f = y-x;
 	}
 
-	double pastmax = f - (range/2.0);
+	// if beyond range, subtract to make within range
+	int pastmax = f - halfrange;
 
-	if ( pastmax > 0.0 ) {
-		f = range/2.0 - pastmax;
+	if ( pastmax > 0 ) {
+		f = halfrange - pastmax;
 	}
-	// return 50;
 	return f;
 }
-
-/**
-		// calculate the color based on the distance of the LED from the position of the strobe ('pos').
-*/
-
-// private
 
 /**
 The color to show for a given distance.
@@ -160,19 +147,12 @@ uint32_t RNBeam::color_for_distance (double d) {
 
 	if ( d > width ) {
 		color = dannyColor(0, 0, 0);
-	} else {
-		double percent = 1.0 - (d / (float)width);
 
+	} else {
+		float percent = 1.0 - (d / (float)width);
 		percent = percent * percent;
 		color = dannyColor(percent*r, percent * g, percent * b);
-
-	// 	Serial.print("percent=");
-	// 	Serial.print(percent);
-	// 	Serial.print("  \tcolor=");
-	// 	Serial.println(color);
 	}
-
-	// return dannyColor(0,50,10);
 
 	return color;
 }
@@ -208,6 +188,48 @@ uint32_t RNBeam::combine_colors(uint32_t a, uint32_t b) {
 	// return a>b?a:b;
 }
 
+uint32_t RNBeam::drawPixel(uint16_t i) {
+
+#if 1
+	// check if pixel index is out of range (ie. we know it will return 0 for the color). If so, return 0 (no color).
+	if ( max_range_of_lights_to_draw > min_range_of_lights_to_draw ) {
+		if ( i < min_range_of_lights_to_draw || i > max_range_of_lights_to_draw ) {
+			return 0;	// no color since it's out of range.
+		}
+	} else {
+		if ( i > min_range_of_lights_to_draw && i < max_range_of_lights_to_draw ) {
+			return 0;
+		}
+	}
+#endif
+
+	// double center_position = this->position_of_led_center(i);		// not need if numLights == range
+	int distance = this->calc_distance((int)i, (int)position);
+	uint32_t color = this->color_for_distance((double)distance);
+
+	// if ( i == DEBUG_LED_ID ) {
+	// 	Serial.print("position=");
+	// 	Serial.print(position);
+	// 	Serial.print("  ");
+	// 	Serial.print("center=");
+	// 	printDouble(center_position, 2);
+	// 	Serial.print("  ");
+	// 	Serial.print("distance=");
+	// 	printDouble(distance, 2);
+	// 	// Serial.print("  \tcolor=");
+	// 	// Serial.print(color);
+	// 	Serial.println(".");
+	// }
+
+	// return dannyColor(0,20,20);
+	return color;
+}
+
+#pragma mark - Unused
+
+void RNBeam::draw() {
+}
+
 /**
 converts the led_id into a position. The position is the left edge of the LED (ie. no 1/2 width calculations)
 */
@@ -235,46 +257,3 @@ double RNBeam::position_of_led_center (uint32_t led_id) {
 	
 	return i;
 }
-
-
-uint32_t RNBeam::drawPixel(uint16_t i) {
-
-#if 0
-	// check if pixel index is out of range (ie. we know it will return 0 for the color). If so, return 0 (no color).
-	if ( max_range_of_lights_to_draw > min_range_of_lights_to_draw ) {
-		if ( i < min_range_of_lights_to_draw || i > max_range_of_lights_to_draw ) {
-			return 0;	// no color since it's out of range.
-		}
-	} else {
-		if ( i > min_range_of_lights_to_draw && i < max_range_of_lights_to_draw ) {
-			return 0;
-		}
-	}
-#endif
-
-	double center_position = this->position_of_led_center(i);
-	double distance = this->calc_distance(center_position, (double)position);
-	uint32_t color = this->color_for_distance(distance);
-
-	// if ( i == DEBUG_LED_ID ) {
-	// 	Serial.print("position=");
-	// 	Serial.print(position);
-	// 	Serial.print("  ");
-	// 	Serial.print("center=");
-	// 	printDouble(center_position, 2);
-	// 	Serial.print("  ");
-	// 	Serial.print("distance=");
-	// 	printDouble(distance, 2);
-	// 	// Serial.print("  \tcolor=");
-	// 	// Serial.print(color);
-	// 	Serial.println(".");
-	// }
-
-	// return dannyColor(0,20,20);
-	return color;
-}
-
-void RNBeam::draw() {
-}
-
-
