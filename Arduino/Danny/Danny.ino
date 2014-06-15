@@ -30,11 +30,11 @@ uint32_t COLOR_OFF = 0;		// the color of 'off'
 
 /**********         ************/
 
-const uint8_t numBeams = 4;
+const uint8_t numBeams = 1;
 RNBeam beams[numBeams] = { 
-	RNBeam(),
-	RNBeam(), 
-	RNBeam(),
+	// RNBeam(),
+	// RNBeam(), 
+	// RNBeam(),
 	RNBeam()
 };
 
@@ -85,7 +85,7 @@ void setup() {
   		beams[i].r = 100;
   		beams[i].g = 0;
   		beams[i].b = 0;
-	  	beams[i].speed = 1;
+	  	beams[i].speed = 20;
 
   	}
   	// beam.strip = &strip;

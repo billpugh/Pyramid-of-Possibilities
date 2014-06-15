@@ -89,7 +89,10 @@ void RNBeam::loop() {
 	// this->position ++;
 
 	// // reset position each time it exceed maxval. 
-	position = position + (direction_sign * speed);
+	// position = position + (direction_sign * speed);
+	position = (millis() / speed) % numLights;
+	return;
+	
 	if ( position > maxval ) {
 		position = (minval + position) % range;		// modulus to calculate leftover
 	}
@@ -236,6 +239,7 @@ double RNBeam::position_of_led_center (uint32_t led_id) {
 
 uint32_t RNBeam::drawPixel(uint16_t i) {
 
+#if 0
 	// check if pixel index is out of range (ie. we know it will return 0 for the color). If so, return 0 (no color).
 	if ( max_range_of_lights_to_draw > min_range_of_lights_to_draw ) {
 		if ( i < min_range_of_lights_to_draw || i > max_range_of_lights_to_draw ) {
@@ -246,7 +250,7 @@ uint32_t RNBeam::drawPixel(uint16_t i) {
 			return 0;
 		}
 	}
-
+#endif
 
 	double center_position = this->position_of_led_center(i);
 	double distance = this->calc_distance(center_position, (double)position);
