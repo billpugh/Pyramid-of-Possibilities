@@ -84,6 +84,8 @@ void RNBeam::loop() {
 	// position = position + (direction_sign * speed);
 	position = ((millis() / speed)+offset) % numLights;
 
+	// speed = (millis() / 1000) % 128;
+
 	// TODO assuming that numLights == maxVal, and that minVal = 0
 
 	// if ( position > maxval ) {
