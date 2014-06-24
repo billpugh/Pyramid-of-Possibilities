@@ -1,8 +1,8 @@
 #ifndef AnimationBase_h
 #define AnimationBase_h
 
-#include "LedLampe.h"
-//#include "AnimationController.h"
+#include <Arduino.h>
+
 
 // Base class to be subclassed by all animations so the AnimationController can display it
 class AnimationBase 
@@ -15,8 +15,7 @@ class AnimationBase
 	{
 	}
 	*/
-    AnimationBase(LedLampe& l)
-		: _ledLampe(l)
+    AnimationBase()
 	{
 	}
 	
@@ -31,7 +30,6 @@ class AnimationBase
 	virtual void cleanup();
 	
   protected:
-	LedLampe& _ledLampe;
 //	AnimationController& _animationController;
 };
 #endif

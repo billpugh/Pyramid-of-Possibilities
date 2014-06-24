@@ -34,11 +34,6 @@ void AnimationController::CleanupAnimation()
     _currentAnimation->cleanup();
 }
 
-LedLampe& AnimationController::getLedLampe()
-{
-  return _ledLampe;
-}
-
 void AnimationController::setCurrentMillis(unsigned long millis)
 {
   _millisCurrent = millis;

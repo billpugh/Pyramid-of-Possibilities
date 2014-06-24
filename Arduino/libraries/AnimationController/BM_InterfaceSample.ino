@@ -18,11 +18,11 @@ this package consists of following files:
 								until the next frame is shown
 
 */
-
+/*
 #include <Adafruit_NeoPixel.h>
 #include "LedLampe.h"
 #include "AnimationBase.h"
-#include "AnimationRainbow.h"
+// #include "AnimationRainbow.h"
 #include "AnimationController.h"
 
 // create a led stripe:
@@ -54,4 +54,5 @@ void loop()
   animationController.setCurrentMillis(currentMillis);  	// tells the controller what time it is
   animationController.PlayAnimation();						// will only do something if ANIMATIONCONTROLLER_MILLISPERFRAME millis passed since last frame
 }
+*/
 
