@@ -16,29 +16,31 @@ class Pyramid {
 public:
     Pyramid();
     virtual ~Pyramid();
-    
+
     void render(glm::mat4 MVP);
-    
+
+    void setLedColor(int platform, int led, float r, float g, float b);
+
 private:
     GLuint programId;
     GLuint matrixId;
     GLuint vertexPosition_modelspaceID;
     GLuint vertexColorID;
-    
+
     int g_vertex_buffer_data_length;
     GLfloat* g_vertex_buffer_data;
     GLuint vertexbuffer;
-    
+
     GLfloat* g_color_buffer_data;
     GLuint colorbuffer;
-    
+
     int g_leds_buffer_data_length;
     GLfloat* g_leds_buffer_data;
     GLuint ledsbuffer;
-    
+
     GLfloat* g_leds_color_buffer_data;
     GLuint ledscolorbuffer;
-    
+
     void loadBuffers();
 };
 

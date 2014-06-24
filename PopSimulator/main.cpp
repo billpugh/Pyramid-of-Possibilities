@@ -15,6 +15,7 @@
 #include "Pyramid.hpp"
 #include "FPSControlsHandler.hpp"
 
+Pyramid* pyramid = NULL;
 FPSControlsHandler* controlsHandler = NULL;
 
 static void key_callback(GLFWwindow* window, int key, int scancode, int action,
@@ -26,6 +27,15 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action,
     if (controlsHandler != NULL) {
         if (action == GLFW_PRESS) {
             controlsHandler->keyPressed(key);
+
+            if (key == GLFW_KEY_0) {
+                for (int i = 0; i < 84; i++) {
+                    for (int j = 0; j < 219; j++) {
+                        pyramid->setLedColor(i, j, 0, 0, 0);
+                    }
+                }
+            }
+
         } else if (action == GLFW_RELEASE) {
             controlsHandler->keyReleased(key);
         }
@@ -79,7 +89,7 @@ int main(void) {
         return -1;
     }
 
-    Pyramid* pyramid = new Pyramid();
+    pyramid = new Pyramid();
     controlsHandler = new FPSControlsHandler();
 
     /* Loop until the user closes the window */
