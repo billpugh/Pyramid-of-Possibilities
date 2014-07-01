@@ -28,15 +28,6 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action,
     if (controlsHandler != NULL) {
         if (action == GLFW_PRESS) {
             controlsHandler->keyPressed(key);
-
-            if (key == GLFW_KEY_0) {
-                for (int i = 0; i < 84; i++) {
-                    for (int j = 0; j < 219; j++) {
-                        pyramid->setLedColor(i, j, 0, 0, 0);
-                    }
-                }
-            }
-
         } else if (action == GLFW_RELEASE) {
             controlsHandler->keyReleased(key);
         }
