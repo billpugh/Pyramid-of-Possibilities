@@ -6,7 +6,12 @@
                    projectFiles="true">
       <itemPath>FPSControlsHandler.hpp</itemPath>
       <itemPath>Pyramid.hpp</itemPath>
+      <itemPath>PyramidArchitecture.hpp</itemPath>
       <itemPath>ShaderLoader.hpp</itemPath>
+      <itemPath>leds.h</itemPath>
+      <itemPath>model.h</itemPath>
+      <itemPath>platforms.h</itemPath>
+      <itemPath>tier.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -19,8 +24,42 @@
                    projectFiles="true">
       <itemPath>FPSControlsHandler.cpp</itemPath>
       <itemPath>Pyramid.cpp</itemPath>
+      <itemPath>PyramidArchitecture.cpp</itemPath>
       <itemPath>ShaderLoader.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -57,13 +96,25 @@
       </item>
       <item path="Pyramid.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="PyramidArchitecture.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PyramidArchitecture.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="ShaderLoader.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ShaderLoader.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="TransformVertexShader.shader" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="leds.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="model.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="platforms.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tier.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -96,13 +147,25 @@
       </item>
       <item path="Pyramid.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="PyramidArchitecture.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PyramidArchitecture.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="ShaderLoader.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ShaderLoader.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="TransformVertexShader.shader" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="leds.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="model.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="platforms.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tier.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

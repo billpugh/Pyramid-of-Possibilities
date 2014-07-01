@@ -14,6 +14,7 @@
 
 #include "Pyramid.hpp"
 #include "FPSControlsHandler.hpp"
+#include "PyramidArchitecture.hpp"
 
 Pyramid* pyramid = NULL;
 FPSControlsHandler* controlsHandler = NULL;
@@ -54,6 +55,38 @@ static void cursorPos_callback(GLFWwindow* window, double xpos, double ypos) {
     if (controlsHandler != NULL) {
         controlsHandler->mouseMoved(xpos - width / 2., ypos - height / 2.);
         glfwSetCursorPos(window, width / 2., height / 2.);
+    }
+}
+
+static void animate() {
+    static double lastTime = glfwGetTime();
+    double currentTime = glfwGetTime();
+    float deltaTime = float(currentTime - lastTime);
+    if (deltaTime < 0.1) {
+        return;
+    }
+    lastTime = currentTime;
+
+    static float direction = -0.1f;
+    static float factor = 1.0f;
+
+    factor += direction;
+    if (factor < 0) {
+        direction = -direction;
+        factor = direction;
+    } else if (factor > 1) {
+        direction = -direction;
+        factor = 1 + direction;
+    }
+
+    for (int i = 0; i < 84; i++) {
+        short t = PyramidArchitecture::getTierOfPlatform(i);
+        short r = (short) (t & 1);
+        short g = (short) ((t & 2) >> 1);
+        short b = (short) ((t & 4) >> 2);
+        for (int j = 0; j < 219; j++) {
+            pyramid->setLedColor(i, j, r * factor, g * factor, b * factor);
+        }
     }
 }
 
@@ -102,6 +135,8 @@ int main(void) {
 
         /* Poll for and process events */
         glfwPollEvents();
+
+        animate();
     }
 
     delete pyramid;

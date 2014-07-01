@@ -13,11 +13,7 @@
 using namespace glm;
 
 #include "ShaderLoader.hpp"
-#include "model.h"
-#include "leds.h"
-#include "platforms.h"
-#include "tier.h"
-
+#include "PyramidArchitecture.hpp"
 #include "Pyramid.hpp"
 
 Pyramid::Pyramid() {
@@ -53,9 +49,11 @@ Pyramid::Pyramid() {
 }
 
 void Pyramid::loadBuffers() {
-    g_vertex_buffer_data_length = popNumVerts * 3;
+    g_vertex_buffer_data_length = PyramidArchitecture::getNumVertices() * 3;
     g_vertex_buffer_data = new GLfloat[g_vertex_buffer_data_length];
     float factor = 0.001f;
+    float * popVerts;
+    PyramidArchitecture::getVertices(popVerts);
     for (int i = 0; i < g_vertex_buffer_data_length; i += 3) {
         float x = ((popVerts[i] - 8970) / 1.0775f + 20) * factor;
         float y = (popVerts[i + 1] / 1.0775f + 89.5f - 5000) * factor;
@@ -80,16 +78,18 @@ void Pyramid::loadBuffers() {
     g_leds_color_buffer_data = new GLfloat[ledsBufferSize];
     int k = 0;
     for (int i = 0; i < 84; i++) {
-        short* platformPosition = platformPositions[i];
+        short* platformPosition;
+        PyramidArchitecture::getLocationOfPlatform(i, platformPosition);
         short x = platformPosition[0];
         short y = platformPosition[1];
         short z = (short) (platformPosition[2] + 50);
-        short t = tier[i];
+        short t = PyramidArchitecture::getTierOfPlatform(i);
         short r = (short) (t & 1);
         short g = (short) ((t & 2) >> 1);
         short b = (short) ((t & 4) >> 2);
         for (int j = 0; j < nbLedsPerPlatform; j++) {
-            short* ledPosition = ledPositions[j];
+            short* ledPosition;
+            PyramidArchitecture::getLedPosition(j, ledPosition);
             g_leds_buffer_data[k] = (x + 1.05f * ledPosition[1]) * factor;
             g_leds_buffer_data[k + 1] = (z - 5000) * factor;
             g_leds_buffer_data[k + 2] = (y + 1.05f * ledPosition[0]) * factor;

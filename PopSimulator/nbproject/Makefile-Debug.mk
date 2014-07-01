@@ -37,6 +37,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/FPSControlsHandler.o \
 	${OBJECTDIR}/Pyramid.o \
+	${OBJECTDIR}/PyramidArchitecture.o \
 	${OBJECTDIR}/ShaderLoader.o \
 	${OBJECTDIR}/main.o
 
@@ -74,6 +75,11 @@ ${OBJECTDIR}/Pyramid.o: Pyramid.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Pyramid.o Pyramid.cpp
+
+${OBJECTDIR}/PyramidArchitecture.o: PyramidArchitecture.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/PyramidArchitecture.o PyramidArchitecture.cpp
 
 ${OBJECTDIR}/ShaderLoader.o: ShaderLoader.cpp 
 	${MKDIR} -p ${OBJECTDIR}
