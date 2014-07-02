@@ -21,7 +21,9 @@ public:
     void keyReleased(int key);
     void mouseMoved(double x, double y);
     
-    glm::mat4 getMVP();
+    glm::mat4 getModel();
+    glm::mat4 getView();
+    glm::mat4 getProjection();
     
     virtual ~FPSControlsHandler();
 private:

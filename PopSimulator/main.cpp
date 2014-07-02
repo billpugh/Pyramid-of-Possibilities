@@ -119,7 +119,9 @@ int main(void) {
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window)) {
         /* Render here */
-        pyramid->render(controlsHandler->getMVP());
+        pyramid->render(controlsHandler->getModel(),
+                controlsHandler->getView(),
+                controlsHandler->getProjection());
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);

@@ -17,6 +17,13 @@ using namespace glm;
 #include "Pyramid.hpp"
 
 Pyramid::Pyramid() {
+    // Set constants
+    lightPos = glm::vec3(0, 15, 0);
+    lightColor = glm::vec3(1, 1, 1);
+    lightPower = 100.0f;
+    ambientColor = glm::vec3(0.5, 0.5, 0.5);
+    specularColor = glm::vec3(0.3, 0.3, 0.3);
+
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
     glPointSize(2);
@@ -24,9 +31,19 @@ Pyramid::Pyramid() {
     programId = LoadShaders("TransformVertexShader.shader",
             "ColorFragmentShader.shader");
     matrixId = glGetUniformLocation(programId, "MVP");
-    vertexPosition_modelspaceID = glGetAttribLocation(programId,
-            "vertexPosition_modelspace");
+    viewMatrixId = glGetUniformLocation(programId, "V");
+    modelMatrixId = glGetUniformLocation(programId, "M");
+    LightID = glGetUniformLocation(programId, "LightPosition_worldspace");
+    LightColorID = glGetUniformLocation(programId, "LightColor");
+    LightPowerID = glGetUniformLocation(programId, "LightPower");
+    AmbientColorID = glGetUniformLocation(programId, "AmbientColor");
+    SpecularColorID = glGetUniformLocation(programId, "SpecularColor");
+
+    vertexPosition_modelspaceID = glGetAttribLocation(
+            programId, "vertexPosition_modelspace");
     vertexColorID = glGetAttribLocation(programId, "vertexColor");
+    vertexNormal_modelspaceID = glGetAttribLocation(
+            programId, "vertexNormal_modelspace");
 
     this->loadBuffers();
 
@@ -39,6 +56,11 @@ Pyramid::Pyramid() {
     glBindBuffer(GL_ARRAY_BUFFER, colorbuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof (GL_FLOAT) * g_vertex_buffer_data_length,
             g_color_buffer_data, GL_STATIC_DRAW);
+
+    glGenBuffers(1, &normalbuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, normalbuffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof (GL_FLOAT) * g_vertex_buffer_data_length,
+            g_normal_buffer_data, GL_STATIC_DRAW);
 
     glGenBuffers(1, &ledsbuffer);
     glBindBuffer(GL_ARRAY_BUFFER, ledsbuffer);
@@ -68,6 +90,15 @@ void Pyramid::loadBuffers() {
         g_color_buffer_data[i] = 0.5f;
         g_color_buffer_data[i + 1] = 0.2f;
         g_color_buffer_data[i + 2] = 0.1f;
+    }
+
+    g_normal_buffer_data = new GLfloat[g_vertex_buffer_data_length];
+    float * popNormals;
+    PyramidArchitecture::getVertices(popNormals);
+    for (int i = 0; i < g_vertex_buffer_data_length; i += 3) {
+        g_normal_buffer_data[i] = popNormals[i];
+        g_normal_buffer_data[i + 1] = popNormals[i + 1];
+        g_normal_buffer_data[i + 2] = popNormals[i + 2];
     }
 
     int nbPlatforms = 84;
@@ -101,12 +132,22 @@ void Pyramid::loadBuffers() {
     }
 }
 
-void Pyramid::render(glm::mat4 MVP) {
+void Pyramid::render(glm::mat4 model, glm::mat4 view, glm::mat4 projection) {
+    glm::mat4 MVP = projection * view * model;
+
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glUseProgram(programId);
 
     glUniformMatrix4fv(matrixId, 1, GL_FALSE, &MVP[0][0]);
+    glUniformMatrix4fv(modelMatrixId, 1, GL_FALSE, &model[0][0]);
+    glUniformMatrix4fv(viewMatrixId, 1, GL_FALSE, &view[0][0]);
+
+    glUniform3f(LightID, lightPos.x, lightPos.y, lightPos.z);
+    glUniform3f(LightColorID, lightColor.x, lightColor.y, lightColor.z);
+    glUniform1f(LightPowerID, lightPower);
+    glUniform3f(AmbientColorID, ambientColor.x, ambientColor.y, ambientColor.z);
+    glUniform3f(SpecularColorID, specularColor.x, specularColor.y, specularColor.z);
 
     // Draw platforms
     glEnableVertexAttribArray(vertexPosition_modelspaceID);
@@ -118,7 +159,13 @@ void Pyramid::render(glm::mat4 MVP) {
     glBindBuffer(GL_ARRAY_BUFFER, colorbuffer);
     glVertexAttribPointer(vertexColorID, 3, GL_FLOAT, GL_FALSE, 0, (void*) 0);
 
+    glEnableVertexAttribArray(vertexNormal_modelspaceID);
+    glBindBuffer(GL_ARRAY_BUFFER, normalbuffer);
+    glVertexAttribPointer(
+            vertexNormal_modelspaceID, 3, GL_FLOAT, GL_FALSE, 0, (void*) 0);
+
     glDrawArrays(GL_TRIANGLES, 0, g_vertex_buffer_data_length);
+    glDisableVertexAttribArray(vertexNormal_modelspaceID);
 
     // Draw leds
     glBindBuffer(GL_ARRAY_BUFFER, ledsbuffer);
@@ -153,10 +200,12 @@ void Pyramid::setLedColor(int platform, int led, float r, float g, float b) {
 Pyramid::~Pyramid() {
     delete g_vertex_buffer_data;
     delete g_color_buffer_data;
+    delete g_normal_buffer_data;
     delete g_leds_buffer_data;
     delete g_leds_color_buffer_data;
     glDeleteBuffers(1, &vertexbuffer);
     glDeleteBuffers(1, &colorbuffer);
+    glDeleteBuffers(1, &normalbuffer);
     glDeleteBuffers(1, &ledsbuffer);
     glDeleteBuffers(1, &ledscolorbuffer);
     glDeleteProgram(programId);

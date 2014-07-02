@@ -39,7 +39,11 @@ FPSControlsHandler::FPSControlsHandler() {
 FPSControlsHandler::~FPSControlsHandler() {
 }
 
-glm::mat4 FPSControlsHandler::getMVP() {
+glm::mat4 FPSControlsHandler::getModel() {
+    return model;
+}
+
+glm::mat4 FPSControlsHandler::getView() {
     static double lastTime = glfwGetTime();
     double currentTime = glfwGetTime();
     float deltaTime = float(currentTime - lastTime);
@@ -67,9 +71,11 @@ glm::mat4 FPSControlsHandler::getMVP() {
                 break;
         }
     }
-    view = glm::lookAt(position, position + direction, up);
+    return glm::lookAt(position, position + direction, up);
+}
 
-    return projection * view * model;
+glm::mat4 FPSControlsHandler::getProjection() {
+    return projection;
 }
 
 void FPSControlsHandler::keyPressed(int key) {

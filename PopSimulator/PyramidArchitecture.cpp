@@ -24,6 +24,10 @@ void PyramidArchitecture::getVertices(float* &vertices) {
     vertices = popVerts;
 }
 
+void PyramidArchitecture::getNormals(float* &normals) {
+    normals = popNormals;
+}
+
 unsigned int PyramidArchitecture::getNumVertices() {
     return popNumVerts;
 }

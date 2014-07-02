@@ -11,13 +11,15 @@
 class PyramidArchitecture {
 public:
     static void getLocationOfPlatform(int platform, short* &location);
-    
+
     static short getTierOfPlatform(int platform);
-    
+
     static void getVertices(float* &popVerts);
-    
+
+    static void getNormals(float* &popNormals);
+
     static unsigned int getNumVertices();
-    
+
     static void getLedPosition(int led, short *&position);
 private:
 

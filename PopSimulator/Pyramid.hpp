@@ -17,15 +17,29 @@ public:
     Pyramid();
     virtual ~Pyramid();
 
-    void render(glm::mat4 MVP);
+    void render(glm::mat4 model, glm::mat4 view, glm::mat4 projection);
 
     void setLedColor(int platform, int led, float r, float g, float b);
 
 private:
+    glm::vec3 lightPos;
+    glm::vec3 lightColor;
+    GLfloat lightPower;
+    glm::vec3 ambientColor;
+    glm::vec3 specularColor;
+
     GLuint programId;
     GLuint matrixId;
+    GLuint modelMatrixId;
+    GLuint viewMatrixId;
     GLuint vertexPosition_modelspaceID;
     GLuint vertexColorID;
+    GLuint LightID;
+    GLuint LightColorID;
+    GLuint LightPowerID;
+    GLuint AmbientColorID;
+    GLuint SpecularColorID;
+    GLuint vertexNormal_modelspaceID;
 
     int g_vertex_buffer_data_length;
     GLfloat* g_vertex_buffer_data;
@@ -33,6 +47,9 @@ private:
 
     GLfloat* g_color_buffer_data;
     GLuint colorbuffer;
+
+    GLfloat* g_normal_buffer_data;
+    GLuint normalbuffer;
 
     int g_leds_buffer_data_length;
     GLfloat* g_leds_buffer_data;
