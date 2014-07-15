@@ -1,4 +1,4 @@
-#include <Adafruit_NeoPixel.h>
+#include "Adafruit_NeoPixel.h"
 #include <OctoWS2811.h>
 #include <FastLED.h>
 #include "Accelerometer.h"
