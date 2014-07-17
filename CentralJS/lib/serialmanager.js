@@ -40,6 +40,7 @@ function SerialManager() {
 		device.write("I command platform#"+platform+" to: "+command);
 	};
 
+	// This is one way in JS to create the interface to a 'class' (we don't call them classes). These are really just key-values in a dictionary where each key is the method name and the value is the function.
 	return {
 		run: function() {
 			devices = createDevices(metaDevices);
