@@ -12,7 +12,6 @@ void setup() {
   Serial.println();
   pinMode(13, OUTPUT); 
 
-
   Serial.print("Finished.");
 }
 
