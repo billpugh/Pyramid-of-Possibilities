@@ -30,7 +30,7 @@ function SerialDevice(info) {
 			});
 
 			serialPort.on('data', function(data) {
-				Logger.info('data!'+ data);
+				Logger.info('Group '+info.group+ " received: " + data);
 			});
 		});
 	};

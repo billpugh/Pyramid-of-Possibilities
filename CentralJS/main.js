@@ -18,9 +18,14 @@ SerialManager.listPorts();		// Show list of ports for debug sake.
 // Tell the manager how many USB devices it is managing, the number of platforms per group, and the group id.
 SerialManager.setDevices([
 	{
-		"group":1,
+		"group":0,
 		"platforms":1,
 		"port": "/dev/tty.usbserial-A603IU64"
+	},
+	{
+		"group":1,
+		"platforms":1,
+		"port": "/dev/tty.usbmodem33311"
 	}
 ]);
 
