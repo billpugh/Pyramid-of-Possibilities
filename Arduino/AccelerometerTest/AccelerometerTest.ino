@@ -1,12 +1,15 @@
 #include "Accelerometer.h"
+#include "mac.h"
 #include <Adafruit_NeoPixel.h>
 
 bool sawTap = false;
 bool sawAccel = false;
 
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(20, 2, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(240, 2, NEO_GRB + NEO_KHZ800);
 
 void setup() {
+  Serial.begin(9600);
+  Serial.println("Hello");
   strip.begin();
   strip.show(); // Initialize all pixels to 'off'
   for(int i = 0; i < 20; i++)
@@ -16,13 +19,17 @@ void setup() {
   digitalWrite(13, HIGH);
   delay(200);
   digitalWrite(13, LOW);
-  Serial.begin(115200);
-  Serial.println("Hello");
+
   initializeAccelerometer();
   for(int i = 0; i < 20; i++)
     strip.setPixelColor(i, strip.Color(100, 100, 0)); 
   strip.show();
+  delay(1000);
   Serial.println("Ready");
+  read_mac();
+  Serial.print("MAC: ");
+  print_mac();
+  Serial.println();
 } 
 
 void accelerometerCallback( float totalG, 
@@ -100,14 +107,17 @@ void loop() {
         updateAccelerometer();
         delay(30);
       }
-    } else {
-       for(int i = 0; i < 20; i++)
-         strip.setPixelColor(i, strip.Color(0, 100, 0));
-       strip.show();
+    } 
+    else {
+      for(int i = 0; i < 20; i++)
+        strip.setPixelColor(i, strip.Color(0, 100, 0));
+      strip.show();
     }
   }
 
 }
+
+
 
 
 

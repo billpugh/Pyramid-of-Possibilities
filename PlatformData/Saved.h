@@ -10,5 +10,14 @@
 #define __PlatformData__Saved__
 
 #include <iostream>
+#include <stdint.h>
+
+class Saved {
+    static uint16_t version;
+    Platform platform;
+    
+    
+};
+
 
 #endif /* defined(__PlatformData__Saved__) */

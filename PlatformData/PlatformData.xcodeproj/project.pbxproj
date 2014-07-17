@@ -6,8 +6,19 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		161D1A67197463710061070C /* Platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 161D1A65197463710061070C /* Platform.cpp */; };
+		161D1A68197463710061070C /* Platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 161D1A66197463710061070C /* Platform.h */; };
+		161D1A6B197465E40061070C /* Saved.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 161D1A69197465E40061070C /* Saved.cpp */; };
+		161D1A6C197465E40061070C /* Saved.h in Headers */ = {isa = PBXBuildFile; fileRef = 161D1A6A197465E40061070C /* Saved.h */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		161D1A5E197463600061070C /* libPlatformData.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPlatformData.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		161D1A65197463710061070C /* Platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Platform.cpp; sourceTree = "<group>"; };
+		161D1A66197463710061070C /* Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Platform.h; sourceTree = "<group>"; };
+		161D1A69197465E40061070C /* Saved.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Saved.cpp; sourceTree = "<group>"; };
+		161D1A6A197465E40061070C /* Saved.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Saved.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -24,6 +35,10 @@
 		161D1A55197463600061070C = {
 			isa = PBXGroup;
 			children = (
+				161D1A65197463710061070C /* Platform.cpp */,
+				161D1A66197463710061070C /* Platform.h */,
+				161D1A69197465E40061070C /* Saved.cpp */,
+				161D1A6A197465E40061070C /* Saved.h */,
 				161D1A5F197463600061070C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +58,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				161D1A6C197465E40061070C /* Saved.h in Headers */,
+				161D1A68197463710061070C /* Platform.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +114,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				161D1A67197463710061070C /* Platform.cpp in Sources */,
+				161D1A6B197465E40061070C /* Saved.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
