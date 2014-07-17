@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include <stdint.h>
+#include "Platform.h"
 
 class Saved {
     static uint16_t version;
