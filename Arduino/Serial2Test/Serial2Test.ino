@@ -4,9 +4,12 @@
 #define rxPin 9
 #define txPin 10
 #define	ctsPin 22
+#define led 13
 
 void setup()
 {
+       pinMode(led, OUTPUT);  
+  
 	pinMode(rxPin, INPUT_PULLUP);
 	pinMode(txPin, OUTPUT); 
 	Serial2.begin(57600); 
@@ -22,7 +25,10 @@ void setup()
 void loop() {
   int now = millis() / 1000;
   Serial2.println(now);
-  delay(1000);
+  digitalWrite(led, HIGH);
+  delay(500);
+  digitalWrite(led, LOW);
+  delay(500);
   
 }
 
