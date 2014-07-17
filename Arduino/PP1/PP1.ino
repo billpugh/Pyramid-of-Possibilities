@@ -1,8 +1,10 @@
-#include <Adafruit_NeoPixel.h>
+#include "Adafruit_NeoPixel.h"
 #include <OctoWS2811.h>
+#include <FastLED.h>
 #include "Accelerometer.h"
 #include "RNLightsNeoPixel.h"
 #include "RNChaser.h"
+
 #include <hsv2rgb.h>
 
 
@@ -26,7 +28,7 @@ RNLightsNeoPixel lights = RNLightsNeoPixel(strip, FIRST_LED);
 
 RNLights dots = RNLights(LEDs);
 
-const uint8_t numChasers = 12;
+const uint8_t numChasers = 6;
 RNChaser chaser[24] = { 
   RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights),
   RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights),
@@ -61,12 +63,24 @@ uint8_t currentHue() {
   return (millis() / 100) % 256;
 }
 void setRandomPixel(float v) {
-  hsv.v = 100*v+50;
+  int pixel = random(lights.getNumPixels());
+  
+  int brightness = dots.getPixelRed(pixel) 
+        + dots.getPixelGreen(pixel) 
+        + dots.getPixelBlue(pixel);
+  p("brightness %d\n", brightness);
+  if (brightness > 50) 
+      hsv.v = 50*v;
+  else
+      hsv.v = 75*v+25;
   hsv.s = 255;
   hsv.h = currentHue();
   hsv2rgb_rainbow(hsv,rgb);
-  int pixel = random(lights.getNumPixels());
-  dots.setPixelColorMax(pixel, rgb.r, rgb.g, rgb.b);
+
+  dots.setPixelColor(pixel, rgb.r, rgb.g, rgb.b);
+  lights.setPixelColor(pixel, rgb.r, rgb.g, rgb.b);
+  p("brightness %d: %d %d %d\n", brightness, rgb.r, rgb.g, rgb.b);
+  
 }
 
 void addChaser() {
@@ -96,8 +110,6 @@ void addChaser() {
       rpm = 10 + random(30);
 
     chaser[c].setRPM(rpm);
-
-
 
     p("%3d %4d  ", rpm, chaser[c].delay);
     p("%3d %3d %3d  %f\n", chaser[c].hsv.h,chaser[c].hsv.s, chaser[c].hsv.v, chaser[c].fadeValue);

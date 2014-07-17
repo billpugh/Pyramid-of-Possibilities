@@ -22,21 +22,24 @@ public:
   uint16_t getRPM();
   void setHalflife(uint16_t ms); 
   uint16_t getHalflife();
-  void fade(float amount=0.99);
   void activate(unsigned long millis);
 
   bool forward;
   bool active;
-  unsigned long nextUpdate;
-  unsigned long nextFadeUpdate;
-  uint16_t fadeDelay;
-  uint16_t delay;
   int16_t position;
   float fadeBottom = 0.3;
   float fadeValue = 1 + fadeBottom;
   CHSV hsv;
   uint8_t brightness;
+
+  uint16_t delay;
+
 private:
+
+  unsigned long nextUpdate;
+  unsigned long nextFadeUpdate;
+  uint16_t fadeDelay;
+  void fade(float amount=0.99);
   RNLights & lights;
 
 };
