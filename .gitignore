@@ -9,3 +9,8 @@
 
 # OS X Noise
 *.DS_Store
+
+
+# Node Noise
+npm-debug.log
+node_modules
