@@ -4,6 +4,7 @@
 #include "RNLights.h"
 #include "RNLightsOctoWS2811.h"
 #include "hsv2rgb.h"
+#include "Controller.h"
 
 #define FULL_STRIP 1
 
@@ -28,7 +29,7 @@ OctoWS2811 leds(ledsPerStrip, displayMemory, drawingMemory);
 RNLightsOctoWS2811 lights(leds, drawingMemory, FIRST_LED);
 
 void setup() {
-  delay(1000);
+  delay(5000);
   Serial.begin(115200);
   Serial.println("Started");
   Serial.println(leds.numPixels());
@@ -39,16 +40,10 @@ void setup() {
 void loop() {
 
   lights.reset();
-  uint8_t baseHue = ( millis() / 10) % 256;
-  int  i = lights.normalize(millis()/20);
-  lights.setPixelHSV(i, baseHue, 255, 255);
-
-  //  lights.setPixelColor(lights.normalize(millis()/20), 0, 255, 0);  
-  //  for(int i = 0; i < lights.getNumPixels(); i++) 
-  //   lights.setPixelHSV(i, baseHue + i*256 / lights.getNumPixels(), 255, 255);
+  controllerPaint(lights);
   lights.show();
   delay(10);
-  Serial.println(millis());
+  // Serial.println(millis()/10);
 }
 
 

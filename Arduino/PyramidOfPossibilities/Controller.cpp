@@ -26,7 +26,9 @@ void nextAnimation() {
         currentAnimationEnum = (AnimationEnum) 0;
     unsigned long start = millis();
     currentAnimation = getAnimation(currentAnimationEnum, info, start);
-    animationExpires = start + 5000;
+    animationExpires = start + 10000;
+    Serial.println("Switching to animation");
+    Serial.println(currentAnimationEnum);
 }
 
 

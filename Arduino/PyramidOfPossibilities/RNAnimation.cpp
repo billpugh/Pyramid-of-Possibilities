@@ -24,3 +24,5 @@ RNAnimation::getAnimationMillis() {
 void RNAnimation::setParameters(int size, char * data) {
     
 }
+
+void RNAnimation::paint(RNLights &lights) {}
