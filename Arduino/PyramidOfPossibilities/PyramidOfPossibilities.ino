@@ -6,7 +6,7 @@
 #include "hsv2rgb.h"
 #include "Controller.h"
 
-#define FULL_STRIP 0
+#define FULL_STRIP 1
 
 #if FULL_STRIP
 #define LEDs 221
@@ -44,6 +44,7 @@ void setup() {
 void loop() {
   updateAccelerometer();
   lights.reset();
+  lights.setBrightness(50);
   controllerPaint(lights);
   lights.show();
   delay(10);
