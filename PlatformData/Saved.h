@@ -13,12 +13,14 @@
 #include <stdint.h>
 #include "Platform.h"
 
-class Saved {
-    static uint16_t version;
-    Platform platform;
+typedef struct saved_s {
+    const uint8_t tier;
+    const uint8_t number;
+    const uint8_t identifier;
+    const int16_t x,y,z;
     
     
-};
+} __attribute ((packed)) saved_t;
 
 
 #endif /* defined(__PlatformData__Saved__) */

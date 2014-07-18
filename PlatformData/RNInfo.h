@@ -11,7 +11,10 @@
 
 #include <stdint.h>
 
+const static uint8_t numLEDs = 220;
+
 class RNInfo {
+public:
     RNInfo(
            uint8_t tier,
            uint8_t number,
@@ -19,12 +22,14 @@ class RNInfo {
            int16_t x,
            int16_t y,
            int16_t z);
+
     
     unsigned long getGlobalMillis();
     float getGlobalActivity();
     float getLocalActitiviity();
+    void getLocalXYZActitiviity(float data[3]);
     uint8_t getTaps();
-    float getAccelerometerData(float data[3]);
+
     
     // Information about the platform
     const uint8_t tier;
@@ -34,6 +39,9 @@ class RNInfo {
     
     // getGlobalAngle for LED in degrees (0 = south)
     uint16_t getGlobalAngle(uint8_t led);
+    
+private:
+    uint8_t globalAngle[numLEDs];
     
 };
 
