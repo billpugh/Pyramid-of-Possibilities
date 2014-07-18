@@ -29,6 +29,7 @@ public:
     float getLocalActitiviity();
     void getLocalXYZActitiviity(float data[3]);
     uint8_t getTaps();
+    unsigned long timeSinceLastTap();
 
     
     // Information about the platform
@@ -42,6 +43,7 @@ public:
     
 private:
     uint8_t globalAngle[numLEDs];
+
     
 };
 

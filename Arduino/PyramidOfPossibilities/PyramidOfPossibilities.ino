@@ -6,7 +6,7 @@
 #include "hsv2rgb.h"
 #include "Controller.h"
 
-#define FULL_STRIP 1
+#define FULL_STRIP 0
 
 #if FULL_STRIP
 #define LEDs 221
@@ -29,16 +29,20 @@ OctoWS2811 leds(ledsPerStrip, displayMemory, drawingMemory);
 RNLightsOctoWS2811 lights(leds, drawingMemory, FIRST_LED);
 
 void setup() {
+  leds.begin();
+  leds.show();
   delay(5000);
+
   Serial.begin(115200);
   Serial.println("Started");
   Serial.println(leds.numPixels());
   Serial.println(lights.getNumPixels());
+  initializeAccelerometer();
 
 }
 
 void loop() {
-
+  updateAccelerometer();
   lights.reset();
   controllerPaint(lights);
   lights.show();

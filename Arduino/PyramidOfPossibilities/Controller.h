@@ -10,7 +10,9 @@
 #define __PlatformData__Controller__
 
 #include "RNLights.h"
+#include "Accelerometer.h"
 
 void controllerPaint(RNLights & lights);
+
 
 #endif /* defined(__PlatformData__Controller__) */

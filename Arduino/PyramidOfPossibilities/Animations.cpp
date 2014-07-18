@@ -11,6 +11,7 @@
 // Animations by WWP
 #include "WWPAnimation1.h"
 #include "WWPAnimation2.h"
+#include "WWPAnimation3.h"
 
 
 
@@ -20,7 +21,9 @@ RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animati
         // Animations by WWP
         case e_WWPAnimation1 : return new WWPAnimation1(info, animationStartMillis);
         case e_WWPAnimation2 : return new WWPAnimation2(info, animationStartMillis);
-            
+        case e_WWPAnimation3 : return new WWPAnimation3(info, animationStartMillis);
+        
+          
         default:
             return 0;
     }

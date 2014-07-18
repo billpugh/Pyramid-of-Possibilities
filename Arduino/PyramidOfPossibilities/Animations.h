@@ -13,8 +13,12 @@
 
 
 enum  AnimationEnum {
-    e_WWPAnimation1,
+  
+    // Animations defined by Bill Pugh (WWP)
+        e_WWPAnimation3,
+        e_WWPAnimation1,
     e_WWPAnimation2,
+
     
     // Not an actual enum, just the value used to give us the count of the number of enums
     e_AnimationCount};
