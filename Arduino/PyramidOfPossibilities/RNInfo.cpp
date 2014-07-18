@@ -12,12 +12,14 @@
 
 
 RNInfo::RNInfo(
+uint8_t numLEDs,
 uint8_t tier,
 uint8_t number,
 uint8_t identifier,
 int16_t x,
 int16_t y,
 int16_t z) : 
+numLEDs(numLEDs),
 tier(tier), number(number), identifier(identifier),
 x(x), y(y), z(z) {
 };
@@ -69,5 +71,6 @@ uint16_t RNInfo::getGlobalAngle(uint8_t led) {
 unsigned long RNInfo::timeSinceLastTap() {
   return millis() - lastTap;
 }
+
 
 

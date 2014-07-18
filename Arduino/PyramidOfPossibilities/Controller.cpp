@@ -12,7 +12,7 @@
 #include "Animations.h"
 
 
-RNInfo info(0,0,0,0,0,0);
+extern RNInfo info;
 
 RNAnimation * currentAnimation = 0;
 unsigned long animationExpires = 0;

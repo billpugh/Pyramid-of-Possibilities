@@ -3,10 +3,11 @@
 #include "Accelerometer.h"
 #include "RNLights.h"
 #include "RNLightsOctoWS2811.h"
+#include "RNInfo.h"
 #include "hsv2rgb.h"
 #include "Controller.h"
 
-#define FULL_STRIP 1
+#define FULL_STRIP 0
 
 #if FULL_STRIP
 #define LEDs 221
@@ -21,6 +22,7 @@
 
 const int ledsPerStrip = LAST_LED;
 
+RNInfo info(ledsPerStrip, 0,0,0,0,0,0);
 DMAMEM uint8_t displayMemory[ledsPerStrip*24];
 uint8_t drawingMemory[ledsPerStrip*24];
 

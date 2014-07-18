@@ -9,15 +9,15 @@
 #include "WWPAnimation3.h"
 
 void WWPAnimation3::paint(RNLights & lights) {
-  
 
-   unsigned long since = info.timeSinceLastTap();
+  unsigned long since = info.timeSinceLastTap();
 
-   int brightness = 50;
-   if (since < 1000)
-     brightness = 250 - since/5;
-   uint8_t hue = (getAnimationMillis() / 10) % 256;
-    
-    lights.setAllPixelHSVs(0, 255, brightness);
-   }
+  int brightness = 50;
+  if (since < 1000)
+    brightness = 250 - since/5;
+  uint8_t hue = (getAnimationMillis() / 5) % 256;
+
+  lights.setAllPixelHSVs(hue, 255, brightness);
+}
+
 
