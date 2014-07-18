@@ -25,24 +25,30 @@ uint8_t drawingMemory[ledsPerStrip*24];
 
 OctoWS2811 leds(ledsPerStrip, displayMemory, drawingMemory);
 
-RNLightsOctoWS2811 lights(leds, drawingMemory, 0);
+RNLightsOctoWS2811 lights(leds, drawingMemory, FIRST_LED);
 
 void setup() {
- delay(1000);
-   Serial.begin(115200);
+  delay(1000);
+  Serial.begin(115200);
   Serial.println("Started");
   Serial.println(leds.numPixels());
   Serial.println(lights.getNumPixels());
-  
- }
+
+}
 
 void loop() {
-  
+
   lights.reset();
-  int pixel = lights.normalize((millis() / 20));
-  lights.setPixelColor(pixel, 255, 0, 0);
+  uint8_t baseHue = ( millis() / 10) % 256;
+  int  i = lights.normalize(millis()/20);
+  lights.setPixelHSV(i, baseHue, 255, 255);
+
+  //  lights.setPixelColor(lights.normalize(millis()/20), 0, 255, 0);  
+  //  for(int i = 0; i < lights.getNumPixels(); i++) 
+  //   lights.setPixelHSV(i, baseHue + i*256 / lights.getNumPixels(), 255, 255);
   lights.show();
   delay(10);
- Serial.println(millis());
-  }
+  Serial.println(millis());
+}
+
 
