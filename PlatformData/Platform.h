@@ -9,7 +9,6 @@
 #ifndef __PlatformData__Platform__
 #define __PlatformData__Platform__
 
-#include <iostream>
 #include <stdint.h>
 
 class Platform {

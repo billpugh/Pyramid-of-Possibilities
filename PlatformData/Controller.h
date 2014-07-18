@@ -9,6 +9,8 @@
 #ifndef __PlatformData__Controller__
 #define __PlatformData__Controller__
 
-#include <iostream>
+#include "RNLights.h"
+
+void controllerPaint(RNLights & lights);
 
 #endif /* defined(__PlatformData__Controller__) */

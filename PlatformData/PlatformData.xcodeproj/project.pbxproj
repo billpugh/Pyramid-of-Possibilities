@@ -24,6 +24,8 @@
 		16F77A2A19795779001798FF /* WWPAnimation1.h in Headers */ = {isa = PBXBuildFile; fileRef = 16F77A2819795779001798FF /* WWPAnimation1.h */; };
 		16F77A2D19796508001798FF /* WWPAnimation2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16F77A2B19796508001798FF /* WWPAnimation2.cpp */; };
 		16F77A2E19796508001798FF /* WWPAnimation2.h in Headers */ = {isa = PBXBuildFile; fileRef = 16F77A2C19796508001798FF /* WWPAnimation2.h */; };
+		16F77A3219797A32001798FF /* WWPAnimation3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16F77A3019797A32001798FF /* WWPAnimation3.cpp */; };
+		16F77A3319797A32001798FF /* WWPAnimation3.h in Headers */ = {isa = PBXBuildFile; fileRef = 16F77A3119797A32001798FF /* WWPAnimation3.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 		16F77A2819795779001798FF /* WWPAnimation1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWPAnimation1.h; sourceTree = "<group>"; };
 		16F77A2B19796508001798FF /* WWPAnimation2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WWPAnimation2.cpp; sourceTree = "<group>"; };
 		16F77A2C19796508001798FF /* WWPAnimation2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWPAnimation2.h; sourceTree = "<group>"; };
+		16F77A3019797A32001798FF /* WWPAnimation3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WWPAnimation3.cpp; sourceTree = "<group>"; };
+		16F77A3119797A32001798FF /* WWPAnimation3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWPAnimation3.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,8 @@
 				16F77A2C19796508001798FF /* WWPAnimation2.h */,
 				16F77A2719795779001798FF /* WWPAnimation1.cpp */,
 				16F77A2819795779001798FF /* WWPAnimation1.h */,
+				16F77A3019797A32001798FF /* WWPAnimation3.cpp */,
+				16F77A3119797A32001798FF /* WWPAnimation3.h */,
 			);
 			name = "WWP Animations";
 			sourceTree = "<group>";
@@ -115,6 +121,7 @@
 				161D1A68197463710061070C /* Platform.h in Headers */,
 				16F77A2A19795779001798FF /* WWPAnimation1.h in Headers */,
 				16F77A2619794D54001798FF /* Animations.h in Headers */,
+				16F77A3319797A32001798FF /* WWPAnimation3.h in Headers */,
 				16F77A2219794CC6001798FF /* Controller.h in Headers */,
 				16F77A181977F512001798FF /* RNLights.h in Headers */,
 				16F77A2E19796508001798FF /* WWPAnimation2.h in Headers */,
@@ -178,6 +185,7 @@
 				16F77A2519794D54001798FF /* Animations.cpp in Sources */,
 				16F77A2119794CC6001798FF /* Controller.cpp in Sources */,
 				16F77A2919795779001798FF /* WWPAnimation1.cpp in Sources */,
+				16F77A3219797A32001798FF /* WWPAnimation3.cpp in Sources */,
 				16F77A131977F4C0001798FF /* RNAnimation.cpp in Sources */,
 				161D1A67197463710061070C /* Platform.cpp in Sources */,
 			);

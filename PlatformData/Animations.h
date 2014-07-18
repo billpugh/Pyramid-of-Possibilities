@@ -20,6 +20,6 @@ enum  AnimationEnum {
     e_AnimationCount};
 
 
-RNAnimation * getAnimation(AnimationEnum a);
+RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animationStartMillis );
 
 #endif /* defined(__PlatformData__Animations__) */

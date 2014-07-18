@@ -14,26 +14,27 @@
 
 RNInfo info(0,0,0,0,0,0);
 
-RNAnimation * currentAnimation = NULL;
+RNAnimation * currentAnimation = 0;
 unsigned long animationExpires = 0;
 AnimationEnum currentAnimationEnum = (AnimationEnum) 0;
 
 void nextAnimation() {
-    if (currentAnimation != NULL)
+    if (currentAnimation)
         delete currentAnimation;
     currentAnimationEnum = (AnimationEnum) (1+((int)currentAnimationEnum));
     if (currentAnimationEnum == e_AnimationCount)
         currentAnimationEnum = (AnimationEnum) 0;
-    currentAnimation = getAnimation(currentAnimationEnum);
-    animationExpires = millis() + 5000;
+    unsigned long start = millis();
+    currentAnimation = getAnimation(currentAnimationEnum, info, start);
+    animationExpires = start + 5000;
 }
 
 
-void controllerLoop(RNLights & lights) {
-    if (millis() > animationExpires || currentAnimation == NULL) {
+void controllerPaint(RNLights & lights) {
+    if (millis() > animationExpires || !currentAnimation) {
         nextAnimation();
     }
-    if (currentAnimation != NULL)
+    if (currentAnimation)
         currentAnimation->paint(lights);
     
 }

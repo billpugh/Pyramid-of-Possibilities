@@ -9,7 +9,6 @@
 #ifndef __PlatformData__Saved__
 #define __PlatformData__Saved__
 
-#include <iostream>
 #include <stdint.h>
 #include "Platform.h"
 

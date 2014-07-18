@@ -9,7 +9,7 @@
 #ifndef __PlatformData__WWPAnimation1__
 #define __PlatformData__WWPAnimation1__
 
-#include <RNAnimation.h>
+#include "RNAnimation.h"
 
 class WWPAnimation1 : public RNAnimation {
 public:
