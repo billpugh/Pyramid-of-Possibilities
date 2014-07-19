@@ -1,4 +1,4 @@
-//
+:q!:question//
 //  RNLights.h
 //
 //  Created by Bill on 3/24/14.
@@ -16,6 +16,7 @@ public:
   // Specify the number of pixels assocaited with this set of RNLights
   RNLights(uint16_t numPixels);
   ~RNLights();
+
   // Set overall brightness (non-destructive), 256 = max
   void setBrightness(uint16_t amount=256);
   // Get overall brightness
@@ -25,7 +26,7 @@ public:
   uint16_t getNumPixels();
   // wrap pixel address (e.g., -1 -> getNumPixels()-1
   uint16_t normalize(int16_t pixel);
-  // reset the colors and brightness of the lights
+  // reset colors to black set brightness to full
   void reset();
   // copy pixel colors
   void copyPixels(RNLights & from);
