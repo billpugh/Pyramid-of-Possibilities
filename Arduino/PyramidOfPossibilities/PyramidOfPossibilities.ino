@@ -7,7 +7,7 @@
 #include "hsv2rgb.h"
 #include "Controller.h"
 
-#define FULL_STRIP 0
+#define FULL_STRIP 1
 
 #if FULL_STRIP
 #define LEDs 221
@@ -43,11 +43,17 @@ void setup() {
 
 }
 
+unsigned long avgTime = 0;
+
 void loop() {
+  unsigned long startTime = micros();
   updateAccelerometer();
   lights.reset();
   lights.setBrightness(50);
   controllerPaint(lights);
+   unsigned long endTime = micros();
+   avgTime = (15*avgTime + endTime - startTime)/16;
+  Serial.println(avgTime);
   lights.show();
   delay(10);
   // Serial.println(millis()/10);
