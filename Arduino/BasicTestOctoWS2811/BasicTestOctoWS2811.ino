@@ -56,7 +56,7 @@ void setup() {
   delay(1000);
   Serial.println("Hello");
   int microsec = 2000000 / leds.numPixels();  // change them all in 2 seconds
-  ``Serial.println(microsec);
+  Serial.println(microsec);
   leds.begin();
   leds.show();
 
