@@ -1,4 +1,3 @@
-:q!:question//
 //  RNLights.h
 //
 //  Created by Bill on 3/24/14.
