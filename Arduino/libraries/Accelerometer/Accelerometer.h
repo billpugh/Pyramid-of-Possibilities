@@ -1,5 +1,5 @@
 #ifndef __Accelerometer__
-#define ____Accelerometer__
+#define __Accelerometer__
 
 #include <stdint.h>
 #include <stdlib.h>

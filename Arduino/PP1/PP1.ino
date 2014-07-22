@@ -1,8 +1,10 @@
-#include <Adafruit_NeoPixel.h>
+#include "Adafruit_NeoPixel.h"
 #include <OctoWS2811.h>
+#include <FastLED.h>
 #include "Accelerometer.h"
 #include "RNLightsNeoPixel.h"
 #include "RNChaser.h"
+
 #include <hsv2rgb.h>
 
 
