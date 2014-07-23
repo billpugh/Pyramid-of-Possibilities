@@ -33,8 +33,8 @@ unsigned long lastTap = 0;
 void accelerometerCallback( float totalG, 
 float directionalG[3],
 uint8_t source) {
-  if (source)
-    Serial.println(totalG);
+//  if (source)
+//    Serial.println(totalG);
   if (source)
     lastTap = millis();
   myTotalG = totalG;
