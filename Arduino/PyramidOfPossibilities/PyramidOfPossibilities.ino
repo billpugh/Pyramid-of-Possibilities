@@ -20,7 +20,7 @@
 #endif
 
 
-const int ledsPerStrip = LAST_LED;
+const int ledsPerStrip = LAST_LED+1;
 
 RNInfo info(ledsPerStrip, 0,0,0,0,0,0);
 DMAMEM uint8_t displayMemory[ledsPerStrip*24];
@@ -53,7 +53,7 @@ void loop() {
   controllerPaint(lights);
    unsigned long endTime = micros();
    avgTime = (15*avgTime + endTime - startTime)/16;
-  Serial.println(avgTime);
+//  Serial.println(avgTime);
   lights.show();
   delay(10);
   // Serial.println(millis()/10);
