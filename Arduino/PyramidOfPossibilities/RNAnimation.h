@@ -26,6 +26,9 @@ public:
     // Called if there are any parameters from central
     virtual void setParameters(int size, char * data);
     
+    // name of the animation
+    virtual char * name();
+    
     // Request that the animation set the lights appropriately.
     // For a base animation, the lights will be entirely black before the call
     virtual void paint(RNLights & lights);
