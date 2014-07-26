@@ -32,6 +32,8 @@ void nextAnimation() {
     currentAnimation = getAnimation(currentAnimationEnum, info, start);
     animationExpires = start + 10000;
     Serial.println("Animation created");
+    if (currentAnimation)
+      Serial.println(currentAnimation->name());
 }
 
 
