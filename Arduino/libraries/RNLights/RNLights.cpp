@@ -68,7 +68,7 @@ int RNLights::fade(unsigned long ms) {
   }
 }
 
-uint8_t getAvgPixelBrightness() {
+uint8_t RNLights::getAvgPixelBrightness() {
   uint32_t total = 0;
   for(int i = 0; i < numPixels*3; i++) {
     uint8_t v = pixels[i];
