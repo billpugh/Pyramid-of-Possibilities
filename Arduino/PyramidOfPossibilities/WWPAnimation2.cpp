@@ -18,3 +18,6 @@ void WWPAnimation2::paint(RNLights & lights) {
     }
 }
 
+  char * WWPAnimation2:: name() {
+    return "WWPAnimation2";
+  }

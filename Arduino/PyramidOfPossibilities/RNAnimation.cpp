@@ -25,4 +25,10 @@ void RNAnimation::setParameters(int size, char * data) {
     
 }
 
+  char * RNAnimation:: name() {
+    return "Unknown";
+  }
+   
+   
+
 void RNAnimation::paint(RNLights &lights) {}

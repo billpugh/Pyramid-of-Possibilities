@@ -41,7 +41,10 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/1731549632/WWPAnimation1.o \
 	${OBJECTDIR}/_ext/1731549632/WWPAnimation2.o \
 	${OBJECTDIR}/_ext/1731549632/WWPAnimation3.o \
+	${OBJECTDIR}/_ext/1731549632/WWPAnimation4.o \
+	${OBJECTDIR}/_ext/1731549632/WWPAnimation5.o \
 	${OBJECTDIR}/_ext/1253334877/hsv2rgb.o \
+	${OBJECTDIR}/_ext/1827099284/RNChaser.o \
 	${OBJECTDIR}/_ext/1738591540/RNLights.o \
 	${OBJECTDIR}/Arduino.o \
 	${OBJECTDIR}/FPSControlsHandler.o \
@@ -107,10 +110,25 @@ ${OBJECTDIR}/_ext/1731549632/WWPAnimation3.o: ../Arduino/PyramidOfPossibilities/
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/WWPAnimation3.o ../Arduino/PyramidOfPossibilities/WWPAnimation3.cpp
 
+${OBJECTDIR}/_ext/1731549632/WWPAnimation4.o: ../Arduino/PyramidOfPossibilities/WWPAnimation4.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/WWPAnimation4.o ../Arduino/PyramidOfPossibilities/WWPAnimation4.cpp
+
+${OBJECTDIR}/_ext/1731549632/WWPAnimation5.o: ../Arduino/PyramidOfPossibilities/WWPAnimation5.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/WWPAnimation5.o ../Arduino/PyramidOfPossibilities/WWPAnimation5.cpp
+
 ${OBJECTDIR}/_ext/1253334877/hsv2rgb.o: ../Arduino/libraries/FastLED/hsv2rgb.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1253334877
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1253334877/hsv2rgb.o ../Arduino/libraries/FastLED/hsv2rgb.cpp
+
+${OBJECTDIR}/_ext/1827099284/RNChaser.o: ../Arduino/libraries/RNChaser/RNChaser.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1827099284
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1827099284/RNChaser.o ../Arduino/libraries/RNChaser/RNChaser.cpp
 
 ${OBJECTDIR}/_ext/1738591540/RNLights.o: ../PlatformData/RNLights.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1738591540

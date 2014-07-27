@@ -5,11 +5,13 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>../Arduino/PyramidOfPossibilities/Animations.h</itemPath>
+      <itemPath>../PlatformData/Arduino.h</itemPath>
       <itemPath>FPSControlsHandler.hpp</itemPath>
       <itemPath>PlatformControler.hpp</itemPath>
       <itemPath>Pyramid.hpp</itemPath>
       <itemPath>PyramidArchitecture.hpp</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/RNAnimation.h</itemPath>
+      <itemPath>../Arduino/libraries/RNChaser/RNChaser.h</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/RNInfo.h</itemPath>
       <itemPath>../PlatformData/RNLights.h</itemPath>
       <itemPath>RNLightsSimulator.hpp</itemPath>
@@ -17,6 +19,8 @@
       <itemPath>../Arduino/PyramidOfPossibilities/WWPAnimation1.h</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/WWPAnimation2.h</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/WWPAnimation3.h</itemPath>
+      <itemPath>../Arduino/PyramidOfPossibilities/WWPAnimation4.h</itemPath>
+      <itemPath>../Arduino/PyramidOfPossibilities/WWPAnimation5.h</itemPath>
       <itemPath>../Arduino/libraries/FastLED/hsv2rgb.h</itemPath>
       <itemPath>leds.h</itemPath>
       <itemPath>model.h</itemPath>
@@ -39,6 +43,7 @@
       <itemPath>Pyramid.cpp</itemPath>
       <itemPath>PyramidArchitecture.cpp</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/RNAnimation.cpp</itemPath>
+      <itemPath>../Arduino/libraries/RNChaser/RNChaser.cpp</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/RNInfo.cpp</itemPath>
       <itemPath>../PlatformData/RNLights.cpp</itemPath>
       <itemPath>RNLightsSimulator.cpp</itemPath>
@@ -46,6 +51,8 @@
       <itemPath>../Arduino/PyramidOfPossibilities/WWPAnimation1.cpp</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/WWPAnimation2.cpp</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/WWPAnimation3.cpp</itemPath>
+      <itemPath>../Arduino/PyramidOfPossibilities/WWPAnimation4.cpp</itemPath>
+      <itemPath>../Arduino/PyramidOfPossibilities/WWPAnimation5.cpp</itemPath>
       <itemPath>../Arduino/libraries/FastLED/hsv2rgb.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
@@ -148,10 +155,13 @@
       </toolsSet>
       <compileType>
         <ccTool>
+          <standard>8</standard>
           <incDir>
             <pElem>../Arduino/PyramidOfPossibilities</pElem>
             <pElem>../PlatformData</pElem>
+            <pElem>../Arduino/libraries/RNChaser</pElem>
           </incDir>
+          <commandLine>-Wno-write-strings</commandLine>
         </ccTool>
         <linkerTool>
           <commandLine>-lGL -lglfw -lGLEW</commandLine>
@@ -217,6 +227,26 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../Arduino/PyramidOfPossibilities/WWPAnimation4.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/WWPAnimation4.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/WWPAnimation5.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/WWPAnimation5.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../Arduino/libraries/FastLED/hsv2rgb.cpp"
             ex="false"
             tool="1"
@@ -226,6 +256,18 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="../Arduino/libraries/RNChaser/RNChaser.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/libraries/RNChaser/RNChaser.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../PlatformData/Arduino.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="../PlatformData/RNLights.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -352,6 +394,26 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../Arduino/PyramidOfPossibilities/WWPAnimation4.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/WWPAnimation4.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/WWPAnimation5.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/WWPAnimation5.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../Arduino/libraries/FastLED/hsv2rgb.cpp"
             ex="false"
             tool="1"
@@ -361,6 +423,18 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="../Arduino/libraries/RNChaser/RNChaser.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/libraries/RNChaser/RNChaser.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../PlatformData/Arduino.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="../PlatformData/RNLights.cpp" ex="false" tool="1" flavor2="0">
       </item>

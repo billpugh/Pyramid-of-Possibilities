@@ -20,4 +20,7 @@ void WWPAnimation3::paint(RNLights & lights) {
   lights.setAllPixelHSVs(hue, 255, brightness);
 }
 
-
+  char * WWPAnimation3:: name() {
+    return "WWPAnimation3";
+  }
+  

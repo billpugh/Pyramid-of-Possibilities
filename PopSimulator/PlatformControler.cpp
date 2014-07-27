@@ -10,6 +10,8 @@
 #include "WWPAnimation1.h"
 #include "WWPAnimation2.h"
 #include "WWPAnimation3.h"
+#include "WWPAnimation4.h"
+#include "WWPAnimation5.h"
 #include "Arduino.h"
 
 PlatformControler::PlatformControler(Pyramid* _pyramid, int _platform) {
@@ -18,7 +20,7 @@ PlatformControler::PlatformControler(Pyramid* _pyramid, int _platform) {
     lights = new RNLightsSimulator(pyramid, platform);
     info = new RNInfo(220, 0, 0, 0, 0, 0, 0);
     
-    animation = new WWPAnimation2(*info, millis());
+    animation = new WWPAnimation5(*info, millis());
 }
 
 void PlatformControler::refreshPlatform() {

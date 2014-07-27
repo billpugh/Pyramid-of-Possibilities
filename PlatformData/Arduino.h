@@ -11,5 +11,6 @@
 
  unsigned long millis();
 
+ int random(int max);
 
 #endif

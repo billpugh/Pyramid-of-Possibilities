@@ -13,3 +13,6 @@ void WWPAnimation1::paint(RNLights & lights) {
     lights.setAllPixelHSVs(hue, 255, 255);
    }
 
+  char * WWPAnimation1:: name() {
+    return "WWPAnimation1";
+  }
