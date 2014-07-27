@@ -10,7 +10,7 @@
 #include "RNInfo.h"
 #include "Arduino.h"
 #include "Animations.h"
-
+#include <malloc.h>
 
 extern RNInfo info;
 
@@ -18,22 +18,30 @@ RNAnimation * currentAnimation = 0;
 unsigned long animationExpires = 0;
 AnimationEnum currentAnimationEnum = (AnimationEnum) 0;
 
+static int heapSize(){
+    return mallinfo().uordblks;
+}
+
 void nextAnimation() {
     if (currentAnimation) {
         Serial.println("Deleting old animation");
+        int before = heapSize();
         delete currentAnimation;
+        int after = heapSize();
+        info.printf("%d bytes freed\n", before-after);
     }
     currentAnimationEnum = (AnimationEnum) (1+((int)currentAnimationEnum));
     if (currentAnimationEnum == e_AnimationCount)
         currentAnimationEnum = (AnimationEnum) 0;
-    Serial.println("Switching to animation");
-    Serial.println(currentAnimationEnum);
+    info.printf("Switching to animation %d\n", currentAnimationEnum);
     unsigned long start = millis();
+    int before = heapSize();
     currentAnimation = getAnimation(currentAnimationEnum, info, start);
+    int after = heapSize();
+    info.printf("%d bytes allocated\n",after-before);
     animationExpires = start + 10000;
-    Serial.println("Animation created");
     if (currentAnimation)
-      Serial.println(currentAnimation->name());
+      info.printf("Created %s\n", currentAnimation->name());
 }
 
 
