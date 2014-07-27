@@ -9,6 +9,8 @@
 
 #include "RNInfo.h"
 #include "Arduino.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 
 RNInfo::RNInfo(
@@ -33,8 +35,8 @@ unsigned long lastTap = 0;
 void accelerometerCallback( float totalG, 
 float directionalG[3],
 uint8_t source) {
-  if (source)
-    Serial.println(totalG);
+//  if (source)
+//    printf("TotalG = %f\n", totalG);
   if (source)
     lastTap = millis();
   myTotalG = totalG;
@@ -63,7 +65,6 @@ void RNInfo::getLocalXYZActitiviity(float data[3]) {
     data[i] = myDirectionalG[i];
 }
 
-
 uint16_t RNInfo::getGlobalAngle(uint8_t led) {
   return led * 360 / numLEDs;
 }
@@ -72,5 +73,12 @@ unsigned long RNInfo::timeSinceLastTap() {
   return millis() - lastTap;
 }
 
-
+void RNInfo::printf(char *fmt, ... ){
+  char tmp[256]; // resulting string limited to 256 chars
+  va_list args;
+  va_start (args, fmt );
+  vsnprintf(tmp, 256, fmt, args);
+  va_end (args);
+  Serial.print(tmp);
+}
 

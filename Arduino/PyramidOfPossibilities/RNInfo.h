@@ -67,6 +67,9 @@ public:
   // getGlobalAngle for LED in degrees (0 = south)
   uint16_t getGlobalAngle(uint8_t led);
 
+  // print debugging information
+  void printf(char *fmt, ... );
+
 private:
   uint8_t globalAngle[240];
 
