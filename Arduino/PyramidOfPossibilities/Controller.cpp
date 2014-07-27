@@ -16,7 +16,7 @@ extern RNInfo info;
 
 RNAnimation * currentAnimation = 0;
 unsigned long animationExpires = 0;
-AnimationEnum currentAnimationEnum = (AnimationEnum) 0;
+AnimationEnum currentAnimationEnum = e_AnimationCount;
 
 static int heapSize(){
     return mallinfo().uordblks;
@@ -39,7 +39,7 @@ void nextAnimation() {
     currentAnimation = getAnimation(currentAnimationEnum, info, start);
     int after = heapSize();
     info.printf("%d bytes allocated\n",after-before);
-    animationExpires = start + 10000;
+    animationExpires = start + 30000;
     if (currentAnimation)
       info.printf("Created %s\n", currentAnimation->name());
 }
@@ -51,6 +51,7 @@ void controllerPaint(RNLights & lights) {
     }
     if (currentAnimation)
         currentAnimation->paint(lights);
+    
     
 }
 
