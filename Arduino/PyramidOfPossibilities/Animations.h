@@ -19,6 +19,7 @@ enum  AnimationEnum {
   e_WWPAnimation2,
   e_WWPAnimation3,
   e_WWPAnimation4,
+  e_WWPAnimation5,
 
 
   // Not an actual enum, just the value used to give us the count of the number of enums

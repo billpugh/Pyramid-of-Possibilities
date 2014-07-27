@@ -13,7 +13,7 @@
 #include "WWPAnimation2.h"
 #include "WWPAnimation3.h"
 #include "WWPAnimation4.h"
-
+#include "WWPAnimation5.h"
 
 
 RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animationStartMillis ) {
@@ -29,6 +29,8 @@ RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animati
 
   case e_WWPAnimation4 : 
     return new WWPAnimation4(info, animationStartMillis);
+  case e_WWPAnimation5 : 
+    return new WWPAnimation5(info, animationStartMillis);
 
   default:
     return 0;
