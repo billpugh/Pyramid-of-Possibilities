@@ -49,7 +49,8 @@ float totalJiggle;
 
 bool didTap = false;
 float tapStrength;
-
+unsigned long startTime;
+unsigned int accelerometerCallbacks = 0;
 void p(char *fmt, ... ){
   char tmp[128]; // resulting string limited to 128 chars
   va_list args;
@@ -64,23 +65,23 @@ uint8_t currentHue() {
 }
 void setRandomPixel(float v) {
   int pixel = random(lights.getNumPixels());
-  
+
   int brightness = dots.getPixelRed(pixel) 
-        + dots.getPixelGreen(pixel) 
-        + dots.getPixelBlue(pixel);
-  p("brightness %d\n", brightness);
+    + dots.getPixelGreen(pixel) 
+      + dots.getPixelBlue(pixel);
+  // p("brightness %d\n", brightness);
   if (brightness > 50) 
-      hsv.v = 50*v;
+    hsv.v = 50*v;
   else
-      hsv.v = 75*v+25;
+    hsv.v = 75*v+25;
   hsv.s = 255;
   hsv.h = currentHue();
   hsv2rgb_rainbow(hsv,rgb);
 
   dots.setPixelColor(pixel, rgb.r, rgb.g, rgb.b);
   lights.setPixelColor(pixel, rgb.r, rgb.g, rgb.b);
-  p("brightness %d: %d %d %d\n", brightness, rgb.r, rgb.g, rgb.b);
-  
+  // p("brightness %d: %d %d %d\n", brightness, rgb.r, rgb.g, rgb.b);
+
 }
 
 void addChaser() {
@@ -176,19 +177,21 @@ void setup()
   for(int i = 0; i < numChasers; i++) 
     chaser[i].active = false;
   unsigned long ms = millis();
+  startTime = ms;
   lights.setFade(ms, 500);
   dots.setFade(ms, 750);
 }
 
+
 void accelerometerCallback( float totalG, 
 float directionalG[3],
 uint8_t source) {
+  accelerometerCallbacks++;
   if (totalG > 0.01) {
     float num = totalG*5+0.1;
     if (num >= 1)
       num = 0.99; 
     tap(num);
-    //      //      p("G %4f %4f %4f %4f\n", totalDiff, accelG[0], accelG[1], accelG[1]);
   }
   if (source != 0)
     tapHandler(totalG);
@@ -217,9 +220,14 @@ void loop() {
   lights.fade(ms);
   dots.fade(ms);
   count++;
+  if (count % 100 == 0 && accelerometerCallbacks > 0) {
+    unsigned long since =  millis() - startTime ;
+    p("ms %6d, ms/callback = %d\n", since, since/accelerometerCallbacks);
+  }
   delay(5);
 
 }
+
 
 
 
