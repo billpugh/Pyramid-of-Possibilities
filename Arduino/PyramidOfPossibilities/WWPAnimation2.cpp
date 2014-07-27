@@ -14,7 +14,7 @@ void WWPAnimation2::paint(RNLights & lights) {
     uint8_t baseHue = (getAnimationMillis() / 10) % 256;
     
     for(int i = 0; i < lights.getNumPixels(); i++) {
-         lights.setPixelHSV(i, baseHue+i*256/lights.getNumPixels(), 255, 255);
+         lights.setPixelHSV(i, baseHue+i*512/lights.getNumPixels(), 255, 255);
     }
 }
 
