@@ -12,17 +12,18 @@
 static CHSV hsv;
 static CRGB rgb;
 
-  WWPAnimation5::WWPAnimation5(RNInfo & info, unsigned long animationStartMillis)
+WWPAnimation5::WWPAnimation5(RNInfo & info, unsigned long animationStartMillis)
 : 
-    RNAnimation(info, animationStartMillis), lights(info.numLEDs), dots(info.numLEDs) {
+RNAnimation(info, animationStartMillis), lights(info.numLEDs), dots(info.numLEDs) {
 
-      for(int i = 0; i < numChasers; i++) {
-        chaser[i].active = false;
-      }
+  for(int i = 0; i < numChasers; i++) {
+    chaser[i].active = false;
+  }
 
-      lights.setFade(animationStartMillis, 500);
-      dots.setFade(animationStartMillis, 750);
-    };
+  lastUpdate = animationStartMillis;
+  lights.setFade(animationStartMillis, 500);
+  dots.setFade(animationStartMillis, 750);
+};
 
 
 char * WWPAnimation5:: name() {
@@ -61,7 +62,7 @@ void WWPAnimation5::addChaser() {
 
 
   if (nextChaser > getAnimationMillis())  return;
-    info.printf("addChaser\n");
+  info.printf("addChaser\n");
   uint16_t v = 50+tapStrength*200+random(50);
   if (v > 255)
     v = 255;
@@ -99,7 +100,7 @@ void WWPAnimation5::addChaser() {
     if (DEBUG)
       info.printf("chaser %d already active\n", c);
   }
-    info.printf("chaser added\n");
+  info.printf("chaser added\n");
 }
 
 void WWPAnimation5::tap(float v) {
@@ -121,55 +122,54 @@ void WWPAnimation5::tap(float v) {
 }
 
 
-void WWPAnimation5::updateTemperature() {
+void WWPAnimation5::paint(RNLights & paintMe) {
+  unsigned long ms = getAnimationMillis();
+  float totalG = info.getLocalActitiviity();
+  if (lastUpdate > ms-20)
+    lastUpdate = ms-20;
+
+  while (lastUpdate + 7 < ms) {
+    lastUpdate += 7;
+
+
+    if (totalG > 0.01) {
+      float num = totalG*5+0.1;
+      if (num >= 1)
+        num = 0.99; 
+      tap(num);
+    }
+    if (random(5) == 0)
+      setRandomPixel(0.1);
+    else if (random(10) == 0)
+      setRandomPixel(0.3);
+    else if (random(400) == 0) {
+      tapStrength = 0.0;
+      addChaser();
+    }
+  }
+
+  if (info.getTaps()) {
+    if (DEBUG) info.printf("Saw tap %f\n", totalG);
+    tapStrength = totalG;
+    didTap = true;
+    tap(1.0);
+  }
 
   if (didTap) {
     addChaser();
     didTap = false;
   } 
-  else {
-  }
-}
-
-
-void WWPAnimation5::tapHandler(float f)
-{
-  if (DEBUG) info.printf("Saw tap %f\n", f);
-  tapStrength = f;
-  tap(1.0);
-}
-
-
-void WWPAnimation5::paint(RNLights & paintMe) {
-  float totalG = info.getLocalActitiviity();
-  if (totalG > 0.01) {
-    float num = totalG*5+0.1;
-    if (num >= 1)
-      num = 0.99; 
-    tap(num);
-  }
-  if (info.getTaps())
-    tapHandler(totalG);
-  updateTemperature();
-  unsigned long ms = getAnimationMillis();
 
   lights.copyPixelsMax(dots);
   for(int i = 0; i < numChasers; i++) 
     chaser[i].update(ms);
 
-
-  if (random(5) == 0)
-    setRandomPixel(0.1);
-  else if (random(10) == 0)
-    setRandomPixel(0.3);
-  else if (random(400) == 0) {
-    tapStrength = 0.0;
-    addChaser();
-  }
   paintMe.copyPixels(lights);
   lights.fade(ms);
   dots.fade(ms);
 }
+
+
 
 
 
