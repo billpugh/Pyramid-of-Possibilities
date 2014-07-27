@@ -21,6 +21,7 @@ public:
   // Get overall brightness
   uint16_t getBrightness();
 
+
   // Get number of pixels
   uint16_t getNumPixels();
   // wrap pixel address (e.g., -1 -> getNumPixels()-1
@@ -56,6 +57,8 @@ public:
   void setAllPixelColors(uint8_t red, uint8_t green, uint8_t blue);
   void setAllPixelHSVs(uint8_t hue, uint8_t saturation, uint8_t value);
 
+  // Gets the average pixel brightness (ignoring overall brightness)
+  uint8_t getAvgPixelBrightness();
     
   // Set the fade parameters; ms is current time
   void setFade(long unsigned ms, uint16_t halfLifeMS);

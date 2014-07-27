@@ -68,6 +68,18 @@ int RNLights::fade(unsigned long ms) {
   }
 }
 
+uint8_t getAvgPixelBrightness() {
+  uint32_t total = 0;
+  for(int i = 0; i < numPixels*3; i++) {
+    uint8_t v = pixels[i];
+    total += v;
+    }
+  total = total / numPixels*3;
+  if (total > 255)
+    return 255;
+  return total;
+}
+
 void RNLights::fade(uint8_t amount, uint8_t minimum) {
 
   for(int i = 0; i < numPixels*3; i++) {
