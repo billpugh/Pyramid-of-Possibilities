@@ -12,9 +12,9 @@ void WWPAnimation3::paint(RNLights & lights) {
 
   unsigned long since = info.timeSinceLastTap();
 
-  int brightness = 50;
+  int brightness = 100;
   if (since < 1000)
-    brightness = 250 - since/5;
+    brightness = 250 - since/7;
   uint8_t hue = (getAnimationMillis() / 5) % 256;
 
   lights.setAllPixelHSVs(hue, 255, brightness);
