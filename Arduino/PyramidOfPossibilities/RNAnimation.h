@@ -17,6 +17,9 @@ class RNAnimation {
 public:
     // Constructor
     RNAnimation(RNInfo & info, unsigned long animationStartMillis);
+    
+    virtual ~RNAnimation() {};
+    
     // Local reference to the info object
     RNInfo & info;
     
