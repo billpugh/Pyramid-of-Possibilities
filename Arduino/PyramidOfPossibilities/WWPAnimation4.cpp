@@ -25,7 +25,7 @@ uint8_t b ) {
 
 void WWPAnimation4::paint(RNLights & lights) {
 
-  int length = 20;
+  int length = info.numLEDs/3;
 
   int rPos = getAnimationMillis()/10;
   int gPos = getAnimationMillis()/17;
