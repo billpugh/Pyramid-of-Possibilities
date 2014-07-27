@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include <hsv2rgb.h>
+#include "hsv2rgb.h"
 
 RNLights::RNLights(uint16_t numPixels) : 
 numPixels(numPixels) {
@@ -66,6 +66,18 @@ int RNLights::fade(unsigned long ms) {
     lastFade = ms;
     return fadeAmount;
   }
+}
+
+uint8_t RNLights::getAvgPixelBrightness() {
+  uint32_t total = 0;
+  for(int i = 0; i < numPixels*3; i++) {
+    uint8_t v = pixels[i];
+    total += v;
+    }
+  total = total / numPixels*3;
+  if (total > 255)
+    return 255;
+  return total;
 }
 
 void RNLights::fade(uint8_t amount, uint8_t minimum) {

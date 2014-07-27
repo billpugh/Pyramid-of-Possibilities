@@ -13,13 +13,22 @@
 #include "WWPAnimation4.h"
 #include "WWPAnimation5.h"
 #include "Arduino.h"
+#include "PyramidArchitecture.hpp"
 
 PlatformControler::PlatformControler(Pyramid* _pyramid, int _platform) {
     pyramid = _pyramid;
     platform = _platform;
     lights = new RNLightsSimulator(pyramid, platform);
-    info = new RNInfo(220, 0, 0, 0, 0, 0, 0);
-    
+    short *coords;
+    PyramidArchitecture::getLocationOfPlatform(platform, coords);
+    info = new RNInfo(220,
+            PyramidArchitecture::getTierOfPlatform(platform),
+            PyramidArchitecture::getPlatformNumberOnTier(platform),
+            platform,
+            coords[0],
+            coords[1],
+            coords[2]);
+
     animation = new WWPAnimation5(*info, millis());
 }
 

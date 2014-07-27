@@ -14,6 +14,8 @@ public:
 
     static short getTierOfPlatform(int platform);
 
+    static int getPlatformNumberOnTier(int platform);
+    
     static void getVertices(float* &popVerts);
 
     static void getNormals(float* &popNormals);

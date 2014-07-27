@@ -29,7 +29,8 @@ public:
   RNChaser(lights), RNChaser(lights), RNChaser(lights), RNChaser(lights),  RNChaser(lights)
   };
 
-  unsigned long nextUpdate;
+  unsigned long lastUpdate;
+
   unsigned long nextChaser = 0;
   long jiggles;
   long taps;
@@ -41,8 +42,6 @@ public:
   void setRandomPixel(float v);
   void addChaser();
   void tap(float v);
-  void updateTemperature();
-  void tapHandler(float f);
 };
 
 

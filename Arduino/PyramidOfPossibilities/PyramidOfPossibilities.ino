@@ -17,7 +17,7 @@
 #if FULL_STRIP
 #define LEDs 221
 #define FIRST_LED 15
-#define LAST_LED 230
+#define LAST_LED 235
 #else
 #define LEDs 60 
 #define FIRST_LED 0

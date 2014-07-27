@@ -15,13 +15,13 @@ unsigned long RNLightsNeoPixel::show() {
 
   unsigned long ms_start = micros();
   uint16_t j = firstPixel;
-  if (fullBrightness)
+  if (fullBrightness) {
     for(uint16_t i = 0; i < getNumPixels(); i++) {
       uint8_t r,g,b;
       getPixelColor(i, r, g, b);
       strip.setPixelColor(j++, r, g, b);
     } 
-  else {
+  } else {
     uint16_t br = brightness;
     for(uint16_t i = 0; i < getNumPixels(); i++) {
       uint8_t r,g,b;
