@@ -9,7 +9,7 @@
 //   NEO_KHZ800  800 KHz bitstream (e.g. High Density LED strip)
 
 
-#define NUM_LIGHTS 24
+#define NUM_LIGHTS 48
 #define PIN 2
 
 
@@ -23,8 +23,8 @@ double width = 150;	// width (in same units as pos, maxval, minval) of a strobe 
 int8_t direction_sign = 1;	// -1 or 1, set programatically.
 
 // specify which LEDs are enabled for this effect. We turn some off for a clipping effect.
-int32_t min_led_enabled = 4;
-int32_t max_led_enabled = NUM_LIGHTS - 4;
+int32_t min_led_enabled = 0;
+int32_t max_led_enabled = NUM_LIGHTS;
 
 
 #define DELAY_BETWEEN_STOBES 1000	// delay in ms between strobes
