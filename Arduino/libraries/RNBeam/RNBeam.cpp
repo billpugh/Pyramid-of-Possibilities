@@ -1,11 +1,7 @@
-
 #import "RNBeam.h"
-
-
-#include <Adafruit_NeoPixel.h>		// tpdp remove depend
+#include <Adafruit_NeoPixel.h>		// TODO remove depend
 
 #define DEBUG_LED_ID 10
-
 
 #pragma mark - Helper C Functions
  

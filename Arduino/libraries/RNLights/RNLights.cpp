@@ -68,6 +68,18 @@ int RNLights::fade(unsigned long ms) {
   }
 }
 
+uint8_t RNLights::getAvgPixelBrightness() {
+  uint32_t total = 0;
+  for(int i = 0; i < numPixels*3; i++) {
+    uint8_t v = pixels[i];
+    total += v;
+    }
+  total = total / numPixels*3;
+  if (total > 255)
+    return 255;
+  return total;
+}
+
 void RNLights::fade(uint8_t amount, uint8_t minimum) {
 
   for(int i = 0; i < numPixels*3; i++) {
@@ -154,6 +166,13 @@ void RNLights::setPixelColor(uint16_t pixel, uint8_t red, uint8_t green, uint8_t
   pixels[pixel+2] = blue;
 }
 
+void RNLights::blendPixelColor(uint16_t pixel, uint8_t red, uint8_t green, uint8_t blue) {
+  pixel = 3*((pixel+offset) % numPixels);
+  pixels[pixel] = (pixels[pixel] + (uint16_t) red)/2;
+  pixels[pixel+1] = (pixels[pixel+1] + (uint16_t) green)/2;
+  pixels[pixel+2] = (pixels[pixel+2] + (uint16_t) blue)/2;
+}
+
 void RNLights::setPixelHSV(uint16_t pixel, uint8_t hue, uint8_t saturation, uint8_t value) {
   CHSV hsv;
   CRGB rgb;
@@ -162,6 +181,15 @@ void RNLights::setPixelHSV(uint16_t pixel, uint8_t hue, uint8_t saturation, uint
   hsv.v = value;
   hsv2rgb_rainbow(hsv,rgb);
   setPixelColor(pixel, rgb.r, rgb.g, rgb.b);
+}
+void RNLights::blendPixelHSV(uint16_t pixel, uint8_t hue, uint8_t saturation, uint8_t value) {
+  CHSV hsv;
+  CRGB rgb;
+  hsv.h = hue;
+  hsv.s = saturation;
+  hsv.v = value;
+  hsv2rgb_rainbow(hsv,rgb);
+  blendPixelColor(pixel, rgb.r, rgb.g, rgb.b);
 }
 
 

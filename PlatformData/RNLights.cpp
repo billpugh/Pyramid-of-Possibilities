@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-//#include <hsv2rgb.h>
+#include "hsv2rgb.h"
 
 RNLights::RNLights(uint16_t numPixels) : 
 numPixels(numPixels) {

@@ -13,23 +13,33 @@
 #include "RNLights.h"
 #include "RNInfo.h"
 
-class Animation {
-    // Constructor that initializes the info field
-    Animation(RNInfo & info);
+class RNAnimation {
+public:
+    // Constructor
+    RNAnimation(RNInfo & info, unsigned long animationStartMillis);
+    
+    virtual ~RNAnimation() {};
+    
     // Local reference to the info object
     RNInfo & info;
-    // Called before calling setup, to give the global time when this animated started
     
     // Gives the time in milliseconds since this animation starter
     unsigned long getAnimationMillis();
     
     // Called if there are any parameters from central
-    void setParameters(int size, char * data);
+    virtual void setParameters(int size, char * data);
+    
+    // name of the animation
+    virtual char * name();
+    
     // Request that the animation set the lights appropriately.
     // For a base animation, the lights will be entirely black before the call
-    void paint(RNLights & lights);
+    virtual void paint(RNLights & lights);
     
+private:
     
+    // Start time of the animation in local time
+    const unsigned long animationStartMillis;
 };
 
 #endif /* defined(__PlatformData__RNAnimation__) */

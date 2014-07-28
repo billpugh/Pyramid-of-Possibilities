@@ -1,4 +1,3 @@
-//
 //  RNLights.h
 //
 //  Created by Bill on 3/24/14.
@@ -16,16 +15,18 @@ public:
   // Specify the number of pixels assocaited with this set of RNLights
   RNLights(uint16_t numPixels);
   ~RNLights();
+
   // Set overall brightness (non-destructive), 256 = max
   void setBrightness(uint16_t amount=256);
   // Get overall brightness
   uint16_t getBrightness();
 
+
   // Get number of pixels
   uint16_t getNumPixels();
   // wrap pixel address (e.g., -1 -> getNumPixels()-1
   uint16_t normalize(int16_t pixel);
-  // reset the colors and brightness of the lights
+  // reset colors to black set brightness to full
   void reset();
   // copy pixel colors
   void copyPixels(RNLights & from);
@@ -38,7 +39,9 @@ public:
     
   // Various methods for getting/setting pixel color
   void setPixelColor(uint16_t pixel, uint8_t red, uint8_t green, uint8_t blue);
+  void blendPixelColor(uint16_t pixel, uint8_t red, uint8_t green, uint8_t blue);
   void setPixelHSV(uint16_t pixel, uint8_t hue, uint8_t saturation, uint8_t value);
+  void blendPixelHSV(uint16_t pixel, uint8_t hue, uint8_t saturation, uint8_t value);
   
   void setPixelColorMax(uint16_t pixel, uint8_t red, uint8_t green, uint8_t blue);
   void addPixelColor(uint16_t pixel, uint8_t red, uint8_t green, uint8_t blue);
@@ -54,6 +57,8 @@ public:
   void setAllPixelColors(uint8_t red, uint8_t green, uint8_t blue);
   void setAllPixelHSVs(uint8_t hue, uint8_t saturation, uint8_t value);
 
+  // Gets the average pixel brightness (ignoring overall brightness)
+  uint8_t getAvgPixelBrightness();
     
   // Set the fade parameters; ms is current time
   void setFade(long unsigned ms, uint16_t halfLifeMS);
