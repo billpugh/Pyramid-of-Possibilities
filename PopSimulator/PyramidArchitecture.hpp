@@ -10,6 +10,9 @@
 
 class PyramidArchitecture {
 public:
+    static const int nbPlatforms = 84;
+    static const int nbLedsPerPlatform = 219;
+    
     static void getLocationOfPlatform(int platform, short* &location);
 
     static short getTierOfPlatform(int platform);

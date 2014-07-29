@@ -7,11 +7,15 @@
 
 #include "PlatformControler.hpp"
 #include "RNLightsSimulator.hpp"
+
 #include "WWPAnimation1.h"
 #include "WWPAnimation2.h"
 #include "WWPAnimation3.h"
 #include "WWPAnimation4.h"
 #include "WWPAnimation5.h"
+
+#include "AVEAnimation1.h"
+
 #include "Arduino.h"
 #include "PyramidArchitecture.hpp"
 
@@ -21,7 +25,7 @@ PlatformControler::PlatformControler(Pyramid* _pyramid, int _platform) {
     lights = new RNLightsSimulator(pyramid, platform);
     short *coords;
     PyramidArchitecture::getLocationOfPlatform(platform, coords);
-    info = new RNInfo(220,
+    info = new RNInfo(PyramidArchitecture::nbLedsPerPlatform,
             PyramidArchitecture::getTierOfPlatform(platform),
             PyramidArchitecture::getPlatformNumberOnTier(platform),
             platform,
@@ -29,7 +33,7 @@ PlatformControler::PlatformControler(Pyramid* _pyramid, int _platform) {
             coords[1],
             coords[2]);
 
-    animation = new WWPAnimation5(*info, millis());
+    animation = new AVEAnimation1(*info, millis());
 }
 
 void PlatformControler::refreshPlatform() {

@@ -101,14 +101,14 @@ void Pyramid::loadBuffers() {
         g_normal_buffer_data[i + 2] = popNormals[i + 2];
     }
 
-    int nbPlatforms = 84;
-    int nbLedsPerPlatform = 219;
+    int nbPlatforms = PyramidArchitecture::nbPlatforms;
+    int nbLedsPerPlatform = PyramidArchitecture::nbLedsPerPlatform;
     int ledsBufferSize = nbPlatforms * nbLedsPerPlatform * 3;
     g_leds_buffer_data_length = ledsBufferSize;
     g_leds_buffer_data = new GLfloat[ledsBufferSize];
     g_leds_color_buffer_data = new GLfloat[ledsBufferSize];
     int k = 0;
-    for (int i = 0; i < 84; i++) {
+    for (int i = 0; i < nbPlatforms; i++) {
         short* platformPosition;
         PyramidArchitecture::getLocationOfPlatform(i, platformPosition);
         short x = platformPosition[0];
@@ -184,9 +184,8 @@ void Pyramid::render(glm::mat4 model, glm::mat4 view, glm::mat4 projection) {
 }
 
 void Pyramid::setLedColor(int platform, int led, float r, float g, float b) {
-    int nbPlatforms = 84;
-    int nbLedsPerPlatform = 219;
-    int ledsBufferSize = nbPlatforms * nbLedsPerPlatform * 3;
+    int nbLedsPerPlatform = PyramidArchitecture::nbLedsPerPlatform;
+    int ledsBufferSize = PyramidArchitecture::nbPlatforms * nbLedsPerPlatform * 3;
 
     int index = (platform * nbLedsPerPlatform + led) * 3;
     if (index >= ledsBufferSize) {

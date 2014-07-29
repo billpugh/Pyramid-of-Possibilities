@@ -13,3 +13,4 @@ PopSimulator/dist
 
 # OS X Noise
 *.DS_Store
+**/.directory

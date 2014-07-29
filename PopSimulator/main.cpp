@@ -87,8 +87,8 @@ int main(void) {
     controlsHandler = new FPSControlsHandler();
 
     std::vector<PlatformControler*> pControlers;
-    pControlers.reserve(84);
-    for (int i = 0; i < 84; i++) {
+    pControlers.reserve(PyramidArchitecture::nbPlatforms);
+    for (int i = 0; i < PyramidArchitecture::nbPlatforms; i++) {
         PlatformControler* pc = new PlatformControler(pyramid, i);
         pControlers.push_back(pc);
     }

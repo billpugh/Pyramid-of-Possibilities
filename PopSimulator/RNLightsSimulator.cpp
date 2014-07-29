@@ -7,9 +7,10 @@
 
 #include "RNLightsSimulator.hpp"
 #include "Pyramid.hpp"
+#include "PyramidArchitecture.hpp"
 
 RNLightsSimulator::RNLightsSimulator(Pyramid* _pyramid, int _platform)
-: RNLights(220) {
+: RNLights(PyramidArchitecture::nbLedsPerPlatform) {
     pyramid = _pyramid;
     platform = _platform;
 }
