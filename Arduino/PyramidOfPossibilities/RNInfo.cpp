@@ -35,8 +35,8 @@ unsigned long lastTap = 0;
 void accelerometerCallback( float totalG, 
 float directionalG[3],
 uint8_t source) {
-//  if (source)
-//    printf("TotalG = %f\n", totalG);
+  //  if (source)
+  //    printf("TotalG = %f\n", totalG);
   if (source)
     lastTap = millis();
   myTotalG = totalG;
@@ -65,8 +65,12 @@ void RNInfo::getLocalXYZActitiviity(float data[3]) {
     data[i] = myDirectionalG[i];
 }
 
-uint16_t RNInfo::getGlobalAngle(uint8_t led) {
-  return led * 360 / numLEDs;
+float RNInfo::getGlobalAngle(uint8_t led) {
+  return led * 360.0 / numLEDs;
+}
+
+float getGlobalRadius(uint8_t led) {
+  return 1.0;
 }
 
 unsigned long RNInfo::timeSinceLastTap() {
@@ -81,4 +85,5 @@ void RNInfo::printf(char *fmt, ... ){
   va_end (args);
   Serial.print(tmp);
 }
+
 

@@ -65,13 +65,16 @@ public:
   float getGlobalActivity();
 
   // getGlobalAngle for LED in degrees (0 = south)
-  uint16_t getGlobalAngle(uint8_t led);
+  float getGlobalAngle(uint8_t led);
+  
+  // getGlobalRadius for LED in mm (how far in the x/y plan is this LED from the center of the Pyramid
+  float getGlobalRadius(uint8_t led);
 
   // print debugging information
   void printf(char *fmt, ... );
 
 private:
-  uint8_t globalAngle[240];
+  float globalAngle[240];
 
 
 };
