@@ -22,7 +22,7 @@ static int heapSize(){
     return mallinfo().uordblks;
 }
 
-void nextAnimation() {
+void switchToAnimation(AnimationEnum nextAnimation) {
     if (currentAnimation) {
         Serial.println("Deleting old animation");
         int before = heapSize();
@@ -30,8 +30,8 @@ void nextAnimation() {
         int after = heapSize();
         info.printf("%d bytes freed\n", before-after);
     }
-    currentAnimationEnum = (AnimationEnum) (1+((int)currentAnimationEnum));
-    if (currentAnimationEnum == e_AnimationCount)
+    currentAnimationEnum = nextAnimation;
+    if (currentAnimationEnum >= e_AnimationCount)
         currentAnimationEnum = (AnimationEnum) 0;
     info.printf("Switching to animation %d\n", currentAnimationEnum);
     unsigned long start = millis();
@@ -44,11 +44,23 @@ void nextAnimation() {
       info.printf("Created %s\n", currentAnimation->name());
 }
 
+void nextAnimation() {
+  switchToAnimation((AnimationEnum) (1+((int)currentAnimationEnum)));
+}
 
 void controllerPaint(RNLights & lights) {
     if (millis() > animationExpires || !currentAnimation) {
         nextAnimation();
     }
+    if (Serial2.available() > 0) {
+      int c = Serial2.read();
+      info.printf("Got %d from seriel2\n", c);
+      if (c >= 0 && c <= 9) 
+        switchToAnimation((AnimationEnum) c);
+    }
+        
+      
+    
     if (currentAnimation)
         currentAnimation->paint(lights);
     
