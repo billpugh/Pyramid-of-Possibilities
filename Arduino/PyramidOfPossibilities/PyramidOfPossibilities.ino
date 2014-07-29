@@ -9,7 +9,7 @@
 #include "RNInfo.h"
 #include "hsv2rgb.h"
 #include "Controller.h"
-#include "printf.h"
+#include "RNSerial.h"
 #include <malloc.h>
 
 #define FULL_STRIP 1
@@ -36,7 +36,7 @@ OctoWS2811 leds(ledsPerStrip, displayMemory, drawingMemory);
 RNLightsOctoWS2811 lights(leds, drawingMemory, FIRST_LED);
 
 static int heapSize(){
-    return mallinfo().uordblks;
+  return mallinfo().uordblks;
 }
 
 void setup() {
@@ -49,7 +49,7 @@ void setup() {
   Serial.println(leds.numPixels());
   Serial.println(lights.getNumPixels());
   initializeAccelerometer();
-
+  setupSerial2();
 }
 
 unsigned long avgTime = 0;
@@ -58,17 +58,31 @@ void loop() {
   unsigned long startTime = micros();
   updateAccelerometer();
   lights.reset();
-  lights.setBrightness(50);
+
   controllerPaint(lights);
-   unsigned long endTime = micros();
-   avgTime = (15*avgTime + endTime - startTime)/16;
-   if (count++ >= 100) {
-   info.printf("Avg time = %5d, heapSize = %d\n",avgTime,heapSize());
-   count = 0;
-   }
+  unsigned long endTime = micros();
+  avgTime = (15*avgTime + endTime - startTime)/16;
+  if (count++ >= 100) {
+    info.printf("Avg time = %5d, heapSize = %d\n",avgTime,heapSize());
+    count = 0;
+  }
+  int avgBrightness = lights.getAvgPixelBrightness() * lights.getBrightness()/256;
+  if (avgBrightness > 64) {
+    int goal;
+    if (avgBrightness >= 192)
+      goal = 128;
+    else
+      goal = 32+avgBrightness/2;
+
+    int newBrightness = goal * 256 / lights.getBrightness();
+    lights.setBrightness(newBrightness);
+  }
+
+
   lights.show();
   delay(10);
   // Serial.println(millis()/10);
 }
+
 
 
