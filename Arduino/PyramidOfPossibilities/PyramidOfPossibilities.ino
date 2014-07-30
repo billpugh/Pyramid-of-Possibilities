@@ -12,7 +12,7 @@
 #include "RNSerial.h"
 #include <malloc.h>
 
-#define FULL_STRIP 1
+#define FULL_STRIP 0
 
 #if FULL_STRIP
 #define LEDs 221
@@ -66,17 +66,21 @@ void loop() {
     info.printf("Avg time = %5d, heapSize = %d\n",avgTime,heapSize());
     count = 0;
   }
-  int avgBrightness = lights.getAvgPixelBrightness() * lights.getBrightness()/256;
-  if (avgBrightness > 64) {
-    int goal;
-    if (avgBrightness >= 192)
-      goal = 128;
-    else
-      goal = 32+avgBrightness/2;
+  uint8_t avgPixelBrightness = lights.getAvgPixelBrightness();
+  int avgBrightness = avgPixelBrightness * lights.getBrightness()/256;
+  if (avgBrightness > 96) {
+   
+    int goal= 48+avgBrightness/2;
+    if (goal > 160)
+      goal = 160;
 
-    int newBrightness = goal * 256 / lights.getBrightness();
+    int newBrightness = goal * 255 / avgPixelBrightness;
+    info.printf("Avg brightness is %d/%d, goal is %d, Reducing brightness from %d -> %d\n",
+      avgPixelBrightness, avgBrightness, goal, lights.getBrightness(), newBrightness);
     lights.setBrightness(newBrightness);
   }
+ //  else info.printf("Avg brightness is %d/%d\n", avgPixelBrightness, avgBrightness);
+    
 
 
   lights.show();
