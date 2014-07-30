@@ -12,7 +12,7 @@
 #include "RNSerial.h"
 #include <malloc.h>
 
-#define FULL_STRIP 0
+#define FULL_STRIP 1
 
 #if FULL_STRIP
 #define LEDs 221
@@ -39,11 +39,20 @@ static int heapSize(){
   return mallinfo().uordblks;
 }
 
+const int ONBOARD_LED_PIN = 13;
 void setup() {
   leds.begin();
   leds.show();
-  delay(5000);
 
+
+  pinMode(ONBOARD_LED_PIN, OUTPUT); 
+  for(int i = 0; i < 5; i++) {
+    digitalWrite(ONBOARD_LED_PIN, HIGH);
+    delay(700);
+    digitalWrite(ONBOARD_LED_PIN, LOW);
+    delay(300);
+  }
+  
   Serial.begin(115200);
   Serial.println("Started");
   Serial.println(leds.numPixels());
