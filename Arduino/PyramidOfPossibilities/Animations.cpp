@@ -8,6 +8,7 @@
 
 #include "Animations.h"
 
+
 // Animations by WWP
 #include "WWPAnimation1.h"
 #include "WWPAnimation2.h"
@@ -16,14 +17,18 @@
 #include "WWPAnimation5.h"
 
 #include "GlowFade.h"
+#include "ActivityLevelAnimation.h"
 
 
 RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animationStartMillis ) {
   switch (a) {
 
+  case e_ActivityLevelAnimation:
+    return new ActivityLevelAnimation(info, animationStartMillis);
+
   case e_GlowFade:
     return new GlowFade(info, animationStartMillis);
-    
+
     // Animations by WWP
   case e_WWPAnimation1 : 
     return new WWPAnimation1(info, animationStartMillis);
@@ -41,4 +46,5 @@ RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animati
     return 0;
   }
 }
+
 

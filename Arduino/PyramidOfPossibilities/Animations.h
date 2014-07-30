@@ -14,6 +14,7 @@
 
 enum  AnimationEnum {
 
+  e_ActivityLevelAnimation,
   e_GlowFade,
   
   // Animations defined by Bill Pugh (WWP)
