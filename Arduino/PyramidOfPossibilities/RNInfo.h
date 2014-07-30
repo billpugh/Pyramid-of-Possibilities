@@ -40,12 +40,14 @@ public:
   const int16_t x,y,z;
   // Get the global clock value (synchronized across all platforms)
   unsigned long getGlobalMillis();
+  
+  uint16_t getRandomPixel();
 
   // Get the most recent reading from the accelerometer, combine all three axes. 
   // Non-negative, passed through a high pass filter, will be 0.0 when everything is absolutely still.
-  float getLocalActitiviity();
+  float getLocalActivity();
   // Get the individual x,y,z accelerometer readings passed through a high pass filter. Values may be negative. 
-  void getLocalXYZActitiviity(float data[3]);
+  void getLocalXYZActivity(float data[3]);
   // Get whether or not taps have been detected since the last paint refresh. If zero, no taps have been indicated. 
   // This is a bit field, with different bits indicating whether the tap was in the X, Y or Z direction, 
   // and whether it was positive or negative. In most cases, it is sufficient to check whether or not this value is nonzero.

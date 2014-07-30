@@ -54,13 +54,13 @@ unsigned long RNInfo::getGlobalMillis() {
 float RNInfo::getGlobalActivity() {
   return myTotalG;
 }
-float RNInfo::getLocalActitiviity() {
+float RNInfo::getLocalActivity() {
   return myTotalG;
 }
 uint8_t RNInfo::getTaps() {
   return myTapSource;
 }
-void RNInfo::getLocalXYZActitiviity(float data[3]) {
+void RNInfo::getLocalXYZActivity(float data[3]) {
   for(int i = 0; i < 3; i++)
     data[i] = myDirectionalG[i];
 }
@@ -86,4 +86,7 @@ void RNInfo::printf(char *fmt, ... ){
   Serial.print(tmp);
 }
 
+uint16_t RNInfo::getRandomPixel() {
+    return random(numLEDs);
+  }
 
