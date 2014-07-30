@@ -11,11 +11,13 @@
 #include "RNAnimation.h"
 
 class GlowFade : public RNAnimation {
+
 public:
-    GlowFade(RNInfo & info, unsigned long animationStartMillis)
-    : RNAnimation(info, animationStartMillis) {};
+    GlowFade(RNInfo & info, unsigned long animationStartMillis);
     virtual void paint(RNLights & lights);
     virtual char * name();
+private:
+    RNLights sparkles;
 
 };
 
