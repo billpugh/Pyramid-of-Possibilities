@@ -14,6 +14,8 @@
 
 enum  AnimationEnum {
 
+  e_GlowFade,
+  
   // Animations defined by Bill Pugh (WWP)
   e_WWPAnimation1,
   e_WWPAnimation2,
