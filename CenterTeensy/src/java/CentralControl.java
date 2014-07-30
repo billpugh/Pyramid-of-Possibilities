@@ -1,6 +1,8 @@
-import java.io.File;
+import gnu.io.SerialPort;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PushbackInputStream;
 
 public class CentralControl {
@@ -41,12 +43,12 @@ public class CentralControl {
 
     }
 
+    static SerialPort teeny;
     public static void main(String args[]) throws Exception {
         System.out.println("\nWelcome to Central\n");
         String ttyConfig = ReadConsole.setTerminalToCBreak();
-        File f = new File("/dev/tty.usbserial-A603IUEO");
-        FileOutputStream fw = new FileOutputStream(f);
-
+        SerialPort teensy = SerialPortFactory.findSerialPortByName("/dev/tty.usbserial-A603IZ6Q", 9600);
+        OutputStream fw = teensy.getOutputStream();
         final int numberAnimations = 5;
         PushbackInputStream in = new PushbackInputStream(System.in);
         int currentAnimation = 0;
@@ -114,7 +116,7 @@ public class CentralControl {
      * @param currentAnimation
      * @throws IOException
      */
-    public static void switchToAnimation(FileOutputStream fw,
+    public static void switchToAnimation(OutputStream fw,
             int currentAnimation) throws IOException {
         fw.write(currentAnimation);
         fw.flush();
