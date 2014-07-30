@@ -72,7 +72,7 @@ void loop() {
   unsigned long endTime = micros();
   avgTime = (15*avgTime + endTime - startTime)/16;
   if (count++ >= 100) {
-    info.printf("Avg time = %5d, heapSize = %d\n",avgTime,heapSize());
+    info.printf("Avg time = %5d, heapSize = %d\n", avgTime,heapSize());
     count = 0;
   }
   uint8_t avgPixelBrightness = lights.getAvgPixelBrightness();

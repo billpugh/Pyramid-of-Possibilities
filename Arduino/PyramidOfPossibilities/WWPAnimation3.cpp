@@ -10,14 +10,10 @@
 
 void WWPAnimation3::paint(RNLights & lights) {
 
-  unsigned long since = info.timeSinceLastTap();
+   uint8_t hue = (getAnimationMillis() / 20) % 256;
 
-  int brightness = 100;
-  if (since < 1000)
-    brightness = 250 - since/7;
-  uint8_t hue = (getAnimationMillis() / 5) % 256;
-
-  lights.setAllPixelHSVs(hue, 255, brightness);
+  lights.setAllPixelHSVs(hue, 255, 255);
+  info.showActivity(lights, true, 16);
 }
 
   char * WWPAnimation3:: name() {

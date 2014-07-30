@@ -23,7 +23,8 @@ int16_t y,
 int16_t z) : 
 numLEDs(numLEDs),
 tier(tier), number(number), identifier(identifier),
-x(x), y(y), z(z) {
+x(x), y(y), z(z), sparkles(numLEDs) {
+  sparkles.setFade(millis(), 750);
 };
 
 
@@ -87,6 +88,46 @@ void RNInfo::printf(char *fmt, ... ){
 }
 
 uint16_t RNInfo::getRandomPixel() {
-    return random(numLEDs);
+  return random(numLEDs);
+}
+
+void RNInfo::update() {
+  sparkles.fade(millis());
+  if (getTaps()) {
+    for(int i = 0; i < numLEDs/20; i++) {
+      sparkles.setPixelColor(getRandomPixel(), 255, 255, 255);
+    }
   }
+}
+
+
+void RNInfo::showActivity(RNLights & lights, bool showSparkles, uint16_t minBrightness) {
+  if (showSparkles) {
+    if (false) {
+      lights.reset();
+      lights.copyPixels(sparkles);
+      return;
+    }
+    lights.applyBrightness();
+    lights.copyPixelsMax(sparkles);
+  }
+  int maxAdjustment = (256 - minBrightness);
+  float activity = getLocalActivity() * 6;
+  if (activity > 1.0)
+    activity = 1.0;
+  minBrightness += maxAdjustment * activity / 4;
+  if (minBrightness < 256) {
+    int b = 256;
+    int age = timeSinceLastTap() - 100;
+    if (age > 0)
+      b = 256 - age/4;
+    if (b < minBrightness)
+      b = minBrightness;
+    int newBrightness = b * lights.getBrightness() / 256;
+    printf("Changing brightness %d -> %d\n", lights.getBrightness(), newBrightness);
+
+    lights.setBrightness(newBrightness);
+  }
+}
+
 

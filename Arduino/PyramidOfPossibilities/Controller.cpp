@@ -49,6 +49,7 @@ void nextAnimation() {
 }
 
 void controllerPaint(RNLights & lights) {
+    info.update();
     if (millis() > animationExpires || !currentAnimation) {
         nextAnimation();
     }

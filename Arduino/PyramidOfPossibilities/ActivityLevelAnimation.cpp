@@ -10,28 +10,37 @@
 
 
 
-  ActivityLevelAnimation::ActivityLevelAnimation(RNInfo & info, unsigned long animationStartMillis)
-    : RNAnimation(info, animationStartMillis), level(0) {};
+ActivityLevelAnimation::ActivityLevelAnimation(RNInfo & info, unsigned long animationStartMillis)
+: 
+RNAnimation(info, animationStartMillis), level(0) {
+};
 
 
 void ActivityLevelAnimation::paint(RNLights & lights) {
-    uint16_t num = info.numLEDs * info.getLocalActivity();
-    if (num > info.numLEDs)
-      num = info.numLEDs;
-    if (level < num)
-      level = num;
-    else 
-      level = (15*level + num)/16;
-    if (info.getTaps()) 
-      info.printf("Taps %x\n", info.getTaps());
-    int shift = info.timeSinceLastTap()/4;
-    if (shift > 255) shift = 255;
-    for(int i = 0; i < level; i++)
-      lights.setPixelColor(i, 255-shift, 0, shift);
-    lights.setBrightness(128);
-   
-   }
+  float activity = info.getLocalActivity()/2;
+  if (activity >= 0.20)
+    activity = 0.20;
+  uint16_t num = info.numLEDs *activity+1;
+  if (level < num)
+    level = num;
+  else 
+    level = (15*level + num)/16;
 
-  char * ActivityLevelAnimation:: name() {
-    return "ActivityLevelAnimation";
-  }
+
+  int hue = info.timeSinceLastTap()/8;
+  if (hue > 180) hue = 180;
+
+  uint16_t position = getAnimationMillis() * info.numLEDs/10000;
+  for(int i = 0; i < level; i++) 
+    for(int offset = 0; offset < info.numLEDs; offset += (info.numLEDs+3)/4) {
+      lights.setPixelHSV(lights.normalize(position+offset+i), hue, 255, 255 - i*200/level);
+      lights.setPixelHSV(lights.normalize(position+offset-i), hue, 255, 255 - i*200/level);
+    }
+  lights.setBrightness(128);
+
+}
+
+char * ActivityLevelAnimation:: name() {
+  return "ActivityLevelAnimation";
+}
+

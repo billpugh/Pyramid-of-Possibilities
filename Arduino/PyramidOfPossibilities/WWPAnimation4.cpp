@@ -38,8 +38,10 @@ void WWPAnimation4::paint(RNLights & lights) {
   paint(lights, rPos, length, 120, 0, 0);
   paint(lights, gPos, length, 0, 120, 0);
   paint(lights, bPos, length, 0, 0, 120);
+  info.showActivity(lights, false, 32);
 
 }
+
 
 
 

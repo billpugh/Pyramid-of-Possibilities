@@ -10,8 +10,7 @@
 #define __PlatformData__RNInfo__
 
 #include <stdint.h>
-
-const static uint8_t numLEDs = 220;
+#include "RNLights.h"
 
 class RNInfo {
 public:
@@ -71,12 +70,19 @@ public:
   
   // getGlobalRadius for LED in mm (how far in the x/y plan is this LED from the center of the Pyramid
   float getGlobalRadius(uint8_t led);
+  
+  // Call to update any internal structures before painting any animations
+  // Only the controller should call this method
+  void update();
+  
+  void showActivity(RNLights & lights, bool showSparkles, uint16_t minBrightness);
 
   // print debugging information
   void printf(char *fmt, ... );
 
 private:
   float globalAngle[240];
+  RNLights sparkles;
 
 
 };

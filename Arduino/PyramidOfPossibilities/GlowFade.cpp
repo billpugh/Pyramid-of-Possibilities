@@ -50,14 +50,15 @@ void GlowFade::paint(RNLights & lights) {
     uint8_t brightness;
     getLinear(moment, brightness);
     lights.setBrightness(brightness);
-    lights.applyBrightness();
-    sparkles.fade(ms);
-    if (info.getTaps()) {
-      for(int i = 0; i < 10; i++) {
-        sparkles.setPixelColor(info.getRandomPixel(), 255, 255, 255);
-      }}
-    info.printf("local activity level %f\n", info.getLocalActivity());
-    lights.copyPixelsMax(sparkles);
+//    lights.applyBrightness();
+//    sparkles.fade(ms);
+//    if (info.getTaps()) {
+//      for(int i = 0; i < 10; i++) {
+//        sparkles.setPixelColor(info.getRandomPixel(), 255, 255, 255);
+//      }}
+//    info.printf("local activity level %f\n", info.getLocalActivity());
+//    lights.copyPixelsMax(sparkles);
+    info.showActivity(lights, true, 256);
     
     info.printf("%3d %f %3d %3d %3d %3d\n", gradiantPosition, moment, h, s, v, brightness);
 
