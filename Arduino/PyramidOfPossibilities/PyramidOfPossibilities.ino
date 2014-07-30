@@ -49,7 +49,7 @@ void setup() {
   Serial.println(leds.numPixels());
   Serial.println(lights.getNumPixels());
   initializeAccelerometer();
-  setupSerial2();
+  setupSerial2(9600);
 }
 
 unsigned long avgTime = 0;

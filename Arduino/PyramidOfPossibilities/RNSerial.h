@@ -11,7 +11,7 @@
 
 
 
-void setupSerial2();
+void setupSerial2(int baudRate);
 
 #endif /* defined(__RNSerial__) */
 
