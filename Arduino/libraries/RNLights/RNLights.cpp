@@ -84,7 +84,7 @@ uint8_t RNLights::getAvgPixelBrightness() {
     uint8_t v = pixels[i];
     total += v;
     }
-  total = total / numPixels*3;
+  total = total / (numPixels*3);
   if (total > 255)
     return 255;
   return total;
