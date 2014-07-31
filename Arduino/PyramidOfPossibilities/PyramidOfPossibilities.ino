@@ -64,17 +64,12 @@ void setup() {
 unsigned long avgTime = 0;
 int count = 0;
 void loop() {
-  unsigned long startTime = micros();
+  unsigned long startMicros = micros();
   updateAccelerometer();
   lights.reset();
 
   controllerPaint(lights);
-  unsigned long endTime = micros();
-  avgTime = (15*avgTime + endTime - startTime)/16;
-  if (count++ >= 100) {
-    info.printf("Avg time = %5d, heapSize = %d\n", avgTime,heapSize());
-    count = 0;
-  }
+
   uint8_t avgPixelBrightness = lights.getAvgPixelBrightness();
   int avgBrightness = avgPixelBrightness * lights.getBrightness()/256;
   if (avgBrightness > 96) {
@@ -93,7 +88,17 @@ void loop() {
 
 
   lights.show();
-  delay(10);
+  unsigned long endMicros = micros();
+  avgTime = (15*avgTime + endMicros - startMicros)/16;
+  
+  int timeToDelay = (10 - (endMicros - startMicros)/1000);
+  if (timeToDelay > 0)
+    delay(timeToDelay);
+  if (count++ >= 100) {
+    info.printf("Avg time = %5d, delay = %dms, heapSize = %d\n",
+    avgTime, timeToDelay, heapSize());
+    count = 0;
+  }
   // Serial.println(millis()/10);
 }
 
