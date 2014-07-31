@@ -52,7 +52,7 @@ void setup() {
     digitalWrite(ONBOARD_LED_PIN, LOW);
     delay(300);
   }
-  
+
   Serial.begin(115200);
   Serial.println("Started");
   Serial.println(leds.numPixels());
@@ -73,27 +73,29 @@ void loop() {
   uint8_t avgPixelBrightness = lights.getAvgPixelBrightness();
   int avgBrightness = avgPixelBrightness * lights.getBrightness()/256;
   if (avgBrightness > 96) {
-   
+
     int goal= 48+avgBrightness/2;
     if (goal > 160)
       goal = 160;
 
     int newBrightness = goal * 255 / avgPixelBrightness;
     info.printf("Avg brightness is %d/%d, goal is %d, Reducing brightness from %d -> %d\n",
-      avgPixelBrightness, avgBrightness, goal, lights.getBrightness(), newBrightness);
+    avgPixelBrightness, avgBrightness, goal, lights.getBrightness(), newBrightness);
     lights.setBrightness(newBrightness);
   }
- //  else info.printf("Avg brightness is %d/%d\n", avgPixelBrightness, avgBrightness);
-    
+  //  else info.printf("Avg brightness is %d/%d\n", avgPixelBrightness, avgBrightness);
+
 
 
   lights.show();
   unsigned long endMicros = micros();
   avgTime = (15*avgTime + endMicros - startMicros)/16;
-  
+
   int timeToDelay = (10 - (endMicros - startMicros)/1000);
   if (timeToDelay > 0)
     delay(timeToDelay);
+  int blink = (millis() /100)%2;
+  digitalWrite(ONBOARD_LED_PIN, blink);
   if (count++ >= 100) {
     info.printf("Avg time = %5d, delay = %dms, heapSize = %d\n",
     avgTime, timeToDelay, heapSize());
@@ -101,6 +103,7 @@ void loop() {
   }
   // Serial.println(millis()/10);
 }
+
 
 
 
