@@ -15,6 +15,7 @@
 #include "WWPAnimation3.h"
 #include "WWPAnimation4.h"
 #include "WWPAnimation5.h"
+#include "DRAnimation0.h"
 
 #include "GlowFade.h"
 #include "ActivityLevelAnimation.h"
@@ -41,7 +42,8 @@ RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animati
     return new WWPAnimation4(info, animationStartMillis);
   case e_WWPAnimation5 : 
     return new WWPAnimation5(info, animationStartMillis);
-
+  case e_DRAnimation0 : 
+    return new DRAnimation0(info, animationStartMillis);
   default:
     return 0;
   }

@@ -24,6 +24,10 @@ enum  AnimationEnum {
   e_WWPAnimation4,
   e_WWPAnimation5,
 
+  // Danny's animations.
+  e_DRAnimation0,
+  
+
 
   // Not an actual enum, just the value used to give us the count of the number of enums
   e_AnimationCount};
