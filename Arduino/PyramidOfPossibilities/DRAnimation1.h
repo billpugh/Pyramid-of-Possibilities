@@ -17,6 +17,8 @@ public:
     virtual void paint(RNLights & lights);
     virtual char * name();
 
+    uint32_t base_color;
+
 };
 
 #endif /* defined(__PlatformData__DRAnimation1__) */

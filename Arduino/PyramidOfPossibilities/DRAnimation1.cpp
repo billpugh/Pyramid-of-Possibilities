@@ -25,7 +25,7 @@ void initalizeBeams(RNInfo * info) {
 
 	for ( uint8_t n = 0; n < numBeams; n++ ) {
   		beams[n].speed = n+1;
-  		beams[n].width = 55+33 * n;
+  		beams[n].width = 53+107 * n;
   		beams[n].offset = 333 * n;
 
   		beams[n].r = (n==0)*200;
@@ -40,6 +40,7 @@ void DRAnimation1::paint(RNLights & lights) {
 
 	// TODO: move to initalizer
 	if ( once == 0 ) {
+		base_color = 0x000006;
 		initalizeBeams(&info);
 	}
 	if ( ++once < 20 ) {
@@ -55,7 +56,7 @@ void DRAnimation1::paint(RNLights & lights) {
 		beams[i].loop(millis);
 	}
 	for ( int j = 0; j < info.numLEDs; j++ ) {
-		uint32_t currentColor = 0;
+		uint32_t currentColor = base_color;
     	for ( int i = 0; i < numBeams; i++ ) {
 			uint32_t color = beams[i].drawPixel(j);
 			if (color > 0)
