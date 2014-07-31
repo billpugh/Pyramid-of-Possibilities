@@ -78,6 +78,10 @@ unsigned long RNInfo::timeSinceLastTap() {
   return millis() - lastTap;
 }
 
+void RNInfo::println(char * s) {
+  Serial.println(s);
+}
+
 void RNInfo::printf(char *fmt, ... ){
   char tmp[256]; // resulting string limited to 256 chars
   va_list args;
@@ -129,5 +133,6 @@ void RNInfo::showActivity(RNLights & lights, bool showSparkles, uint16_t minBrig
     lights.setBrightness(newBrightness);
   }
 }
+
 
 

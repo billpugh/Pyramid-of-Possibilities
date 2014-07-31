@@ -78,6 +78,7 @@ public:
   void showActivity(RNLights & lights, bool showSparkles, uint16_t minBrightness);
 
   // print debugging information
+  void println(char *s);
   void printf(char *fmt, ... );
 
 private:

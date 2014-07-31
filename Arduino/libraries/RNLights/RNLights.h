@@ -38,7 +38,7 @@ public:
   void shift(bool up);
     
   // Various methods for getting/setting pixel color
-  void setPixelColor(uint16_t pixel, uint32_t color);
+  void setPixelColor(uint16_t pixel, uint32_t colorRGB);
   void setPixelColor(uint16_t pixel, uint8_t red, uint8_t green, uint8_t blue);
   void blendPixelColor(uint16_t pixel, uint8_t red, uint8_t green, uint8_t blue);
   void setPixelHSV(uint16_t pixel, uint8_t hue, uint8_t saturation, uint8_t value);
@@ -53,6 +53,7 @@ public:
   uint8_t getPixelRed(uint16_t pixel);
   uint8_t getPixelGreen(uint16_t pixel);
   uint8_t getPixelBlue(uint16_t pixel);
+  uint32_t getPixelColor(uint16_t pixel);
 
   // Set all pixels to the same color
   void setAllPixelColors(uint8_t red, uint8_t green, uint8_t blue);

@@ -14,6 +14,7 @@
 
 enum  AnimationEnum {
 
+  e_WWPAnimationTest,
   e_ActivityLevelAnimation,
   e_GlowFade,
   

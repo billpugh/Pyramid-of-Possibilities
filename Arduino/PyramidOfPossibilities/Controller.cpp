@@ -24,7 +24,7 @@ static int heapSize(){
 
 void switchToAnimation(AnimationEnum nextAnimation) {
     if (currentAnimation) {
-        Serial.println("Deleting old animation");
+        info.printf("Deleting old animation\n");
         int before = heapSize();
         delete currentAnimation;
         int after = heapSize();
@@ -55,8 +55,8 @@ void controllerPaint(RNLights & lights) {
     }
     if (Serial2.available() > 0) {
       int c = Serial2.read();
-      info.printf("Got %d from seriel2\n", c);
-      if (c >= 0 && c <= 9) 
+      info.printf("Got %d from serial2\n", c);
+      if (c >= 0 && c < e_AnimationCount) 
         switchToAnimation((AnimationEnum) c);
     }
         

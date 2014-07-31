@@ -7,12 +7,13 @@
 //
 
 #include "ActivityLevelAnimation.h"
+#include <Arduino.h>
 
 
 
 ActivityLevelAnimation::ActivityLevelAnimation(RNInfo & info, unsigned long animationStartMillis)
 : 
-RNAnimation(info, animationStartMillis), level(0) {
+RNAnimation(info, animationStartMillis), level(0), direction(random(2)*2-1) {
 };
 
 
@@ -30,7 +31,7 @@ void ActivityLevelAnimation::paint(RNLights & lights) {
   int hue = info.timeSinceLastTap()/8;
   if (hue > 180) hue = 180;
 
-  uint16_t position = getAnimationMillis() * info.numLEDs/10000;
+  int16_t position =  getAnimationMillis() * info.numLEDs/10000;
   for(int i = 0; i < level; i++) 
     for(int offset = 0; offset < info.numLEDs; offset += (info.numLEDs+3)/4) {
       lights.setPixelHSV(lights.normalize(position+offset+i), hue, 255, 255 - i*200/level);
