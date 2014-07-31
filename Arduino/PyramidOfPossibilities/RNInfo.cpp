@@ -79,12 +79,12 @@ unsigned long RNInfo::timeSinceLastTap() {
 }
 
 void RNInfo::printf(char *fmt, ... ){
-  char tmp[256]; // resulting string limited to 256 chars
-  va_list args;
-  va_start (args, fmt );
-  vsnprintf(tmp, 256, fmt, args);
-  va_end (args);
-  Serial.print(tmp);
+//  char tmp[256]; // resulting string limited to 256 chars
+//  va_list args;
+//  va_start (args, fmt );
+//  vsnprintf(tmp, 256, fmt, args);
+//  va_end (args);
+//  Serial.print(tmp);
 }
 
 uint16_t RNInfo::getRandomPixel() {

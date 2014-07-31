@@ -1,3 +1,7 @@
+PopSimulator/nbproject/private/
+PopSimulator/build
+PopSimulator/dist
+
 # Xcode Noise
 *build
 *xcuserdata
@@ -9,3 +13,4 @@
 
 # OS X Noise
 *.DS_Store
+**/.directory
