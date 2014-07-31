@@ -7,18 +7,20 @@
 #define led 13
 void setup()
 {
+  delay(2000);
   pinMode(led, OUTPUT);  
   Serial.begin(9600);
-  Serial.println("Hello");
+  Serial.println("Hello, this is Serial2ReceiveTest");
   pinMode(rxPin, INPUT_PULLUP);
   pinMode(txPin, OUTPUT); 
-  Serial2.begin(57600); 
+  Serial2.begin(9600); 
 
   // RS485 RTS handshake signal setup
   pinMode(ctsPin, OUTPUT);
   CORE_PIN22_CONFIG = PORT_PCR_MUX(3);	// Set UART1_RTS function (ALT3, see page 209)
-  //	UART1_MODEM = 0x02;			// Set TXRTSE enable RTS on transmit with active LOW
   UART1_MODEM = 0x06;			// Set TXRTSE enable RTS on transmit with active HIGH
+  Serial.println(
+
 }
 
 
@@ -29,7 +31,7 @@ void loop() {
     Serial.print("Available: " );
     Serial.println(available);
     while (Serial2.available() > 0) {
-      Serial.print((char)Serial2.read());
+      Serial.print(Serial2.read());
     }
     Serial.println();
   }

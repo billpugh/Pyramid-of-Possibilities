@@ -6,9 +6,11 @@ Messages are sent
 All messages have the prefix:
 
 * kind
+* length
 * crc
 
 Kinds include:
+
 * platform report
 * central broadcast
 

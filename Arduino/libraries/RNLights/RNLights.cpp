@@ -30,6 +30,16 @@ void RNLights::reset() {
     pixels[i] = 0;
   offset = 0;
 }
+void RNLights::applyBrightness() {
+  if (fullBrightness) return;
+  fullBrightness = true;
+  uint8_t br = brightness;
+  for(int i = 0; i < numPixels*3; i++) {
+     uint16_t value = pixels[i];
+     pixels[i] =  ( br * value ) >> 8;
+     }
+  brightness = 0;
+}
 
 void RNLights::setLinearFade(long unsigned ms, uint8_t fadePerSec) {
   this->lastFade = ms;
@@ -74,7 +84,7 @@ uint8_t RNLights::getAvgPixelBrightness() {
     uint8_t v = pixels[i];
     total += v;
     }
-  total = total / numPixels*3;
+  total = total / (numPixels*3);
   if (total > 255)
     return 255;
   return total;

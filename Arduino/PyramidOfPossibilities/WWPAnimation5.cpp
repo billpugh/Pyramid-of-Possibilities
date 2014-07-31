@@ -124,7 +124,7 @@ void WWPAnimation5::tap(float v) {
 
 void WWPAnimation5::paint(RNLights & paintMe) {
   unsigned long ms = getAnimationMillis();
-  float totalG = info.getLocalActitiviity();
+  float totalG = info.getLocalActivity();
   if (lastUpdate > ms-20)
     lastUpdate = ms-20;
 

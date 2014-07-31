@@ -9,7 +9,7 @@
 #include "RNInfo.h"
 #include "hsv2rgb.h"
 #include "Controller.h"
-#include "printf.h"
+#include "RNSerial.h"
 #include <malloc.h>
 
 #define FULL_STRIP 1
@@ -36,20 +36,29 @@ OctoWS2811 leds(ledsPerStrip, displayMemory, drawingMemory);
 RNLightsOctoWS2811 lights(leds, drawingMemory, FIRST_LED);
 
 static int heapSize(){
-    return mallinfo().uordblks;
+  return mallinfo().uordblks;
 }
 
+const int ONBOARD_LED_PIN = 13;
 void setup() {
   leds.begin();
   leds.show();
-  delay(5000);
 
+
+  pinMode(ONBOARD_LED_PIN, OUTPUT); 
+  for(int i = 0; i < 5; i++) {
+    digitalWrite(ONBOARD_LED_PIN, HIGH);
+    delay(700);
+    digitalWrite(ONBOARD_LED_PIN, LOW);
+    delay(300);
+  }
+  
   Serial.begin(115200);
   Serial.println("Started");
   Serial.println(leds.numPixels());
   Serial.println(lights.getNumPixels());
   initializeAccelerometer();
-
+  setupSerial2(9600);
 }
 
 unsigned long avgTime = 0;
@@ -58,17 +67,35 @@ void loop() {
   unsigned long startTime = micros();
   updateAccelerometer();
   lights.reset();
-  lights.setBrightness(50);
+
   controllerPaint(lights);
-   unsigned long endTime = micros();
-   avgTime = (15*avgTime + endTime - startTime)/16;
-   if (count++ >= 100) {
-   info.printf("Avg time = %5d, heapSize = %d\n",avgTime,heapSize());
-   count = 0;
-   }
+  unsigned long endTime = micros();
+  avgTime = (15*avgTime + endTime - startTime)/16;
+  if (count++ >= 100) {
+    info.printf("Avg time = %5d, heapSize = %d\n", avgTime,heapSize());
+    count = 0;
+  }
+  uint8_t avgPixelBrightness = lights.getAvgPixelBrightness();
+  int avgBrightness = avgPixelBrightness * lights.getBrightness()/256;
+  if (avgBrightness > 96) {
+   
+    int goal= 48+avgBrightness/2;
+    if (goal > 160)
+      goal = 160;
+
+    int newBrightness = goal * 255 / avgPixelBrightness;
+    info.printf("Avg brightness is %d/%d, goal is %d, Reducing brightness from %d -> %d\n",
+      avgPixelBrightness, avgBrightness, goal, lights.getBrightness(), newBrightness);
+    lights.setBrightness(newBrightness);
+  }
+ //  else info.printf("Avg brightness is %d/%d\n", avgPixelBrightness, avgBrightness);
+    
+
+
   lights.show();
   delay(10);
   // Serial.println(millis()/10);
 }
+
 
 

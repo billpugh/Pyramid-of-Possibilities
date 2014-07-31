@@ -57,6 +57,10 @@ public:
   void setAllPixelColors(uint8_t red, uint8_t green, uint8_t blue);
   void setAllPixelHSVs(uint8_t hue, uint8_t saturation, uint8_t value);
 
+  // Apply brightness values to individual pixels and set strip brightness to full brightness
+  // useful when merging two strips that may have different brightness levels set.
+  void applyBrightness();
+
   // Gets the average pixel brightness (ignoring overall brightness)
   uint8_t getAvgPixelBrightness();
     

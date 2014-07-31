@@ -10,8 +10,7 @@
 #define __PlatformData__RNInfo__
 
 #include <stdint.h>
-
-const static uint8_t numLEDs = 220;
+#include "RNLights.h"
 
 class RNInfo {
 public:
@@ -40,12 +39,14 @@ public:
   const int16_t x,y,z;
   // Get the global clock value (synchronized across all platforms)
   unsigned long getGlobalMillis();
+  
+  uint16_t getRandomPixel();
 
   // Get the most recent reading from the accelerometer, combine all three axes. 
   // Non-negative, passed through a high pass filter, will be 0.0 when everything is absolutely still.
-  float getLocalActitiviity();
+  float getLocalActivity();
   // Get the individual x,y,z accelerometer readings passed through a high pass filter. Values may be negative. 
-  void getLocalXYZActitiviity(float data[3]);
+  void getLocalXYZActivity(float data[3]);
   // Get whether or not taps have been detected since the last paint refresh. If zero, no taps have been indicated. 
   // This is a bit field, with different bits indicating whether the tap was in the X, Y or Z direction, 
   // and whether it was positive or negative. In most cases, it is sufficient to check whether or not this value is nonzero.
@@ -65,13 +66,23 @@ public:
   float getGlobalActivity();
 
   // getGlobalAngle for LED in degrees (0 = south)
-  uint16_t getGlobalAngle(uint8_t led);
+  float getGlobalAngle(uint8_t led);
+  
+  // getGlobalRadius for LED in mm (how far in the x/y plan is this LED from the center of the Pyramid
+  float getGlobalRadius(uint8_t led);
+  
+  // Call to update any internal structures before painting any animations
+  // Only the controller should call this method
+  void update();
+  
+  void showActivity(RNLights & lights, bool showSparkles, uint16_t minBrightness);
 
   // print debugging information
   void printf(char *fmt, ... );
 
 private:
-  uint8_t globalAngle[240];
+  float globalAngle[240];
+  RNLights sparkles;
 
 
 };
