@@ -2,6 +2,7 @@
 #define __RNBEAM__
 
 #include <stdint.h>
+#include "RNInfo.h"
 
 class RNBeam {
 
@@ -27,11 +28,10 @@ public:
   uint8_t r, g, b;   // RGB of the light beam. We use a percentage multiples by each of these values.
 
   // Light Strip
-  void *strip;  // Adafruit_NeoPixel    // NOT USED (YET). Should be using RNLights instead of Adafruit_NeoPixel
-  uint16_t numLights;
+  RNInfo * info;
 
   // Public Methods
-  void loop();
+  void loop(unsigned long millis);
   void draw();
   uint32_t drawPixel(uint16_t i);
   double position_of_led_center (uint32_t led_id);

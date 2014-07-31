@@ -26,7 +26,8 @@ enum  AnimationEnum {
   e_WWPAnimation5,
 
   // Danny's animations.
-  e_DRAnimation0,
+  e_DRAnimation0,   // RGB simple
+  e_DRAnimation1,   // RNBeam
   
 
 
