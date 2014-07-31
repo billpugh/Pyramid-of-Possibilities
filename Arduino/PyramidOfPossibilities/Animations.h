@@ -14,12 +14,16 @@
 
 enum  AnimationEnum {
 
+  // Animations defined by Danny (DR)
+  e_DRAnimation0,
+
   // Animations defined by Bill Pugh (WWP)
   e_WWPAnimation1,
   e_WWPAnimation2,
   e_WWPAnimation3,
   e_WWPAnimation4,
   e_WWPAnimation5,
+  
 
 
   // Not an actual enum, just the value used to give us the count of the number of enums
