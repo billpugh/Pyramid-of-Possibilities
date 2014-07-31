@@ -8,7 +8,7 @@
 #ifndef __RNGradient__
 #define __RNGradient__
 
-#include <iostream>
+#include <stdint.h>
 
 enum  RNGradientKind {
     RNGradientWrap,  RNGradientBounce,  RNGradientCapped
