@@ -168,6 +168,19 @@ void RNLights::shift(bool up) {
 }
 
 
+void RNLights::setPixelColor(uint16_t pixel, uint32_t colorRGB) {
+  pixel = 3*((pixel+offset) % numPixels);
+  pixels[pixel] = (colorRGB >> 16) && 0x0000FF;
+  pixels[pixel+1] = (colorRGB >> 8) && 0x0000FF;
+  pixels[pixel+2] = colorRGB && 0x0000FF;
+}
+
+uint32_t RNLights::getPixelColor(uint16_t pixel) {
+  pixel = 3*((pixel+offset) % numPixels);
+  return (pixels[pixel] << 16)
+	| (pixels[pixel+1] << 8)
+	| (pixels[pixel+2]);
+}
 
 void RNLights::setPixelColor(uint16_t pixel, uint8_t red, uint8_t green, uint8_t blue) {
   pixel = 3*((pixel+offset) % numPixels);
