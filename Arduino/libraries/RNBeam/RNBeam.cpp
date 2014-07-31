@@ -38,9 +38,9 @@ RNBeam::RNBeam() {
 	width = 100;
 	width_speed = 0;
 	width_direction = 1;
-	r = 0;
+	r = 100;
 	g = 0;
-	b = 255;
+	b = 250;
 	min_range_of_lights_to_draw = 0;
 	max_range_of_lights_to_draw = 0; 
 	offset = 0;
@@ -75,28 +75,19 @@ uint32_t RNBeam::convertCoordinateToLED(int coordinate, int8_t roundingDirection
 }
 
 void RNBeam::loop(unsigned long millis) {
-	// position += (speed * direction_sign);
-	// this->position ++;
 
-	// // reset position each time it exceed maxval. 
-	// position = position + (direction_sign * speed);
 	position = ((millis / speed)+offset) % range;
 
-	// speed = (millis() / 1000) % 128;
-
-	// TODO assuming that numLights == maxVal, and that minVal = 0
-
-	// if ( position > maxval ) {
-	// 	position = (minval + position) % range;		// modulus to calculate leftover
-	// }
 
 // DISABLING WIDTH STUFF FOR PERFORMANCE TESTING
-	// width += width_speed * width_direction;
-	// if ( width > 500 ) {
-	// 	width_direction = -1;
-	// } else if ( width <= 60 ) {
-	// 	width_direction = 1;
-	// }
+#if 0
+	width += width_speed * width_direction;
+	if ( width > 500 ) {
+		width_direction = -1;
+	} else if ( width <= 60 ) {
+		width_direction = 1;
+	}
+#endif
 
 	int min = position - width;
 	int max = position + width;
@@ -141,7 +132,7 @@ uint32_t RNBeam::color_for_distance (double d) {
 	uint32_t color = 0;
 
 	if ( d > width ) {
-		color = dannyColor(0, 0, 0);
+		color = 0;
 
 	} else {
 		float percent = 1.0 - (d / (float)width);
@@ -159,6 +150,7 @@ inline void setMax(uint8_t & current, uint8_t value) {
   if (current < value)
     current = value;
 }
+
 uint32_t RNBeam::combine_colors(uint32_t a, uint32_t b) {
 
 	uint32_t foo = 0;
@@ -181,7 +173,7 @@ uint32_t RNBeam::combine_colors(uint32_t a, uint32_t b) {
 
 uint32_t RNBeam::drawPixel(uint16_t i) {
 
-#if 0
+#if 1
 	// check if pixel index is out of range (ie. we know it will return 0 for the color). If so, return 0 (no color).
 	if ( max_range_of_lights_to_draw > min_range_of_lights_to_draw ) {
 		if ( i < min_range_of_lights_to_draw || i > max_range_of_lights_to_draw ) {
@@ -198,10 +190,11 @@ uint32_t RNBeam::drawPixel(uint16_t i) {
 	int distance = this->calc_distance((int)center_position, (int)position);
 	uint32_t color = this->color_for_distance((double)distance);
 
-	if ( i == DEBUG_LED_ID ) {
-		info->printf("position = %ld. Distance = %ld\n", position, distance);
-	}
+	// if ( i == DEBUG_LED_ID ) {
+	// 	info->printf("position = %lu. \tcenter=%lf. \tDistance = %d. \tColor=%016X\n", position, center_position, distance, color);
+	// }
 
+	// TODO: bug in max_range_of_lights_to_draw logic. where the range is wrong once in a while. return a color below to test and you will see that all the lights turn on for 1 loop.
 	// return dannyColor(0,20,20);
 	return color;
 }
