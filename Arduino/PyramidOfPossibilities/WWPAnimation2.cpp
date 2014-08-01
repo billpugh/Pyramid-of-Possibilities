@@ -17,7 +17,7 @@ void WWPAnimation2::paint(RNLights & lights) {
     lights.setPixelHSV(i, baseHue+i*512/lights.getNumPixels(), 255, 255);
   }
 
-  info.showActivity(lights, true, 256);
+  info.showActivity(lights, false, 16);
 }
 
 char * WWPAnimation2:: name() {
