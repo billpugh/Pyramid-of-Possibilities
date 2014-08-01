@@ -1,7 +1,6 @@
 #import "RNBeam.h"
-#include <Adafruit_NeoPixel.h>		// TODO remove depend
 
-#define DEBUG_LED_ID 10
+#define DEBUG_LED_ID 15
 
 #pragma mark - Helper C Functions
  
@@ -10,14 +9,14 @@ void printDouble( double val, unsigned int precision){
 // NOTE: precision is 1 followed by the number of zeros for the desired number of decimial places
 // example: printDouble( 3.1415, 100); // prints 3.14 (two decimal places)
 
-    Serial.print (int(val));  //prints the int part
-    Serial.print("."); // print the decimal point
+    // Serial.print (int(val));  //prints the int part
+    // Serial.print("."); // print the decimal point
     unsigned int frac;
     if(val >= 0)
         frac = (val - int(val)) * precision;
     else
         frac = (int(val)- val ) * precision;
-    Serial.println(frac,DEC) ;
+    // Serial.println(frac,DEC) ;
 }
 
 // TODO: inline
@@ -30,18 +29,18 @@ uint32_t dannyColor(uint32_t r, uint32_t g, uint32_t b) {
 
 RNBeam::RNBeam() {
 	position = 0;
-	maxval = 240;
-	range = 240;
-	halfrange = 120;
+	maxval = 1000;
+	range = 1000;
+	halfrange = range/2;
 	minval = 0;
-	speed = 22;
+	speed = 2;
 	direction_sign = 1;
 	width = 100;
 	width_speed = 0;
 	width_direction = 1;
 	r = 100;
 	g = 0;
-	b = 200;
+	b = 250;
 	min_range_of_lights_to_draw = 0;
 	max_range_of_lights_to_draw = 0; 
 	offset = 0;
@@ -60,41 +59,35 @@ uint32_t RNBeam::convertCoordinateToLED(int coordinate, int8_t roundingDirection
 
 	// NOTE: when numLights == range, then no conversion is needed
 
-	return coordinate;
-	// coordinate = coordinate - minval;
-	// float percent = (float)coordinate/(float)range;
-	// int i = (int)(percent * numLights) + roundingDirection;
-	// if ( i < 0 ) {
-	// 	return 0;
-	// } if ( i >= numLights ) {
-	// 	return numLights-1;
-	// }
-	// return i;
+	// return coordinate;
+
+
+	// TODO: this is not optimized because numLights != range
+	coordinate = coordinate - minval;
+	float percent = (float)coordinate/(float)range;
+	int i = (int)(percent * info->numLEDs) + roundingDirection;
+	if ( i < 0 ) {
+		return 0;
+	} if ( i >= info->numLEDs ) {
+		return info->numLEDs-1;
+	}
+	return i;
 }
 
-void RNBeam::loop() {
-	// position += (speed * direction_sign);
-	// this->position ++;
+void RNBeam::loop(unsigned long millis) {
 
-	// // reset position each time it exceed maxval. 
-	// position = position + (direction_sign * speed);
-	position = ((millis() / speed)+offset) % numLights;
+	position = ((millis / speed)+offset) % range;
 
-	// speed = (millis() / 1000) % 128;
-
-	// TODO assuming that numLights == maxVal, and that minVal = 0
-
-	// if ( position > maxval ) {
-	// 	position = (minval + position) % range;		// modulus to calculate leftover
-	// }
 
 // DISABLING WIDTH STUFF FOR PERFORMANCE TESTING
-	// width += width_speed * width_direction;
-	// if ( width > 500 ) {
-	// 	width_direction = -1;
-	// } else if ( width <= 60 ) {
-	// 	width_direction = 1;
-	// }
+#if 0
+	width += width_speed * width_direction;
+	if ( width > 500 ) {
+		width_direction = -1;
+	} else if ( width <= 60 ) {
+		width_direction = 1;
+	}
+#endif
 
 	int min = position - width;
 	int max = position + width;
@@ -107,11 +100,6 @@ void RNBeam::loop() {
 
 	min_range_of_lights_to_draw = this->convertCoordinateToLED(min,-1);
 	max_range_of_lights_to_draw = this->convertCoordinateToLED(max,1);
- //  Serial.println(speed);
- //    Serial.println(direction_sign);
- //      Serial.println(maxval);
-	// Serial.println(position);
-	// Serial.println(":P");
 }
 
 /**
@@ -144,12 +132,12 @@ uint32_t RNBeam::color_for_distance (double d) {
 	uint32_t color = 0;
 
 	if ( d > width ) {
-		color = dannyColor(0, 0, 0);
+		color = 0;
 
 	} else {
 		float percent = 1.0 - (d / (float)width);
 		percent = percent * percent;
-		color = dannyColor(percent*r, percent * g, percent * b);
+		color = dannyColor(percent * r, percent * g, percent * b);
 	}
 
 	return color;
@@ -162,11 +150,8 @@ inline void setMax(uint8_t & current, uint8_t value) {
   if (current < value)
     current = value;
 }
-uint32_t RNBeam::combine_colors(uint32_t a, uint32_t b) {
 
-#if 0
-	return a > b ? a : b;
-#endif
+uint32_t RNBeam::combine_colors(uint32_t a, uint32_t b) {
 
 	uint32_t foo = 0;
 	uint32_t bar = 0;
@@ -201,24 +186,15 @@ uint32_t RNBeam::drawPixel(uint16_t i) {
 	}
 #endif
 
-	// double center_position = this->position_of_led_center(i);		// not need if numLights == range
-	int distance = this->calc_distance((int)i, (int)position);
+	double center_position = this->position_of_led_center(i);		// not need if numLights == range
+	int distance = this->calc_distance((int)center_position, (int)position);
 	uint32_t color = this->color_for_distance((double)distance);
 
 	// if ( i == DEBUG_LED_ID ) {
-	// 	Serial.print("position=");
-	// 	Serial.print(position);
-	// 	Serial.print("  ");
-	// 	Serial.print("center=");
-	// 	printDouble(center_position, 2);
-	// 	Serial.print("  ");
-	// 	Serial.print("distance=");
-	// 	printDouble(distance, 2);
-	// 	// Serial.print("  \tcolor=");
-	// 	// Serial.print(color);
-	// 	Serial.println(".");
+	// 	info->printf("position = %lu. \tcenter=%lf. \tDistance = %d. \tColor=%016X\n", position, center_position, distance, color);
 	// }
 
+	// TODO: bug in max_range_of_lights_to_draw logic. where the range is wrong once in a while. return a color below to test and you will see that all the lights turn on for 1 loop.
 	// return dannyColor(0,20,20);
 	return color;
 }
@@ -235,7 +211,7 @@ converts the led_id into a position. The position is the left edge of the LED (i
 double RNBeam::position_of_led_center (uint32_t led_id) {
 
 	// determine percent of range that the led is located
-	double i = (double)led_id / numLights;
+	double i = (double)led_id / info->numLEDs;
 
 	// find the position in the range
 	i = i * (double)range;
@@ -243,15 +219,15 @@ double RNBeam::position_of_led_center (uint32_t led_id) {
 	// add in the base value of range
 	i += minval;
 
-	if ( led_id == DEBUG_LED_ID ) {	
-		Serial.print("i =");
-		printDouble(i, 2);
-		Serial.print("ledid =");
-		printDouble((double)led_id, 2);
-		Serial.print("numLights =");
-		printDouble((double)numLights, 2);
-		Serial.println(i);
-	}
+	// if ( led_id == DEBUG_LED_ID ) {	
+		// Serial.print("i =");
+		// printDouble(i, 2);
+		// Serial.print("ledid =");
+		// printDouble((double)led_id, 2);
+		// Serial.print("numLights =");
+		// printDouble((double)numLights, 2);
+		// Serial.println(i);
+	// }
 	
 	return i;
 }
