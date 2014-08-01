@@ -95,6 +95,11 @@ uint16_t RNInfo::getRandomPixel() {
   return random(numLEDs);
 }
 
+long RNInfo::getRandom(long max) {
+  return random(max);
+}
+  long random(long max);
+
 void RNInfo::update() {
   sparkles.fade(millis());
   if (getTaps()) {

@@ -41,6 +41,7 @@ public:
   unsigned long getGlobalMillis();
   
   uint16_t getRandomPixel();
+  long getRandom(long max);
 
   // Get the most recent reading from the accelerometer, combine all three axes. 
   // Non-negative, passed through a high pass filter, will be 0.0 when everything is absolutely still.
