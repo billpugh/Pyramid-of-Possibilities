@@ -13,9 +13,12 @@
 class WWPAnimationTest : public RNAnimation {
 public:
     WWPAnimationTest(RNInfo & info, unsigned long animationStartMillis)
-    : RNAnimation(info, animationStartMillis) {};
+    : RNAnimation(info, animationStartMillis), hue(info.getRandom(256)) {};
     virtual void paint(RNLights & lights);
+    
     virtual char * name();
+    
+    uint8_t hue;
 
 };
 
