@@ -129,7 +129,7 @@ void RNInfo::showActivity(RNLights & lights, bool showSparkles, uint16_t minBrig
     int b = 256;
     int age = timeSinceLastTap() - 100;
     if (age > 0)
-      b = 256 - age/4;
+      b = 256 - age/2;
     if (b < minBrightness)
       b = minBrightness;
     int newBrightness = b * lights.getBrightness() / 256;
