@@ -15,15 +15,16 @@
 #define FULL_STRIP 1
 
 #if FULL_STRIP
-#define LEDs 221
-#define FIRST_LED 15
-#define LAST_LED 235
+const int LEDs = 220;
+const int FIRST_LED = 10;
+
 #else
-#define LEDs 60 
-#define FIRST_LED 0
-#define LAST_LED 59
+const int LEDs = 60;
+const int FIRST_LED = 0;
+
 #endif
 
+const int LAST_LED = FIRST_LED+LEDs-1;
 
 const int ledsPerStrip = LAST_LED+1;
 
@@ -60,6 +61,17 @@ void setup() {
   initializeAccelerometer();
   setupSerial2(9600);
 }
+const uint8_t chunk = 16;
+uint8_t scaleBrightness(uint8_t value) {
+  uint8_t result = 0;
+  while (value > chunk) {
+    result += chunk;
+    value -= chunk;
+    value/= 2;
+  }
+  return result + value;
+
+}
 
 unsigned long avgTime = 0;
 int count = 0;
@@ -71,13 +83,11 @@ void loop() {
   controllerPaint(lights);
 
   uint8_t avgPixelBrightness = lights.getAvgPixelBrightness();
-  int avgBrightness = avgPixelBrightness * lights.getBrightness()/256;
-  if (avgBrightness > 96) {
+  uint8_t avgBrightness = avgPixelBrightness * lights.getBrightness()/256;
+  if (avgBrightness > 16) {
 
-    int goal= 48+avgBrightness/2;
-    if (goal > 160)
-      goal = 160;
-
+    int goal= scaleBrightness(avgBrightness);
+    
     int newBrightness = goal * 255 / avgPixelBrightness;
     info.printf("Avg brightness is %d/%d, goal is %d, Reducing brightness from %d -> %d\n",
     avgPixelBrightness, avgBrightness, goal, lights.getBrightness(), newBrightness);
@@ -103,6 +113,7 @@ void loop() {
   }
   // Serial.println(millis()/10);
 }
+
 
 
 
