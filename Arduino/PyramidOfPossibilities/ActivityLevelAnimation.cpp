@@ -18,9 +18,9 @@ RNAnimation(info, animationStartMillis), level(0), direction(random(2)*2-1) {
 
 
 void ActivityLevelAnimation::paint(RNLights & lights) {
-  float activity = info.getLocalActivity()/2;
-  if (activity >= 0.20)
-    activity = 0.20;
+  float activity = info.getLocalActivity()/3;
+  if (activity >= 0.15)
+    activity = 0.15;
   uint16_t num = info.numLEDs *activity+1;
   if (level < num)
     level = num;
@@ -31,9 +31,10 @@ void ActivityLevelAnimation::paint(RNLights & lights) {
   int hue = info.timeSinceLastTap()/8;
   if (hue > 180) hue = 180;
 
-  int16_t position =  getAnimationMillis() * info.numLEDs/10000;
+  int16_t position =  0; // getAnimationMillis() * info.numLEDs/10000;
   for(int i = 0; i < level; i++) 
-    for(int offset = 0; offset < info.numLEDs; offset += (info.numLEDs+3)/4) {
+    for(int side = 0; side < 6; side++) {
+      int offset = side * info.numLEDs/6;
       lights.setPixelHSV(lights.normalize(position+offset+i), hue, 255, 255 - i*200/level);
       lights.setPixelHSV(lights.normalize(position+offset-i), hue, 255, 255 - i*200/level);
     }
