@@ -28,7 +28,7 @@ const int LAST_LED = FIRST_LED+LEDs-1;
 
 const int ledsPerStrip = LAST_LED+1;
 
-RNInfo info(ledsPerStrip, 0,0,0,0,0,0);
+RNInfo info(LEDs, 0,0,0,0,0,0);
 DMAMEM uint8_t displayMemory[ledsPerStrip*24];
 uint8_t drawingMemory[ledsPerStrip*24];
 
@@ -45,6 +45,7 @@ void setup() {
   leds.begin();
   leds.show();
 
+  Serial.println(lights.getNumPixels());
 
   pinMode(ONBOARD_LED_PIN, OUTPUT); 
   for(int i = 0; i < 5; i++) {
