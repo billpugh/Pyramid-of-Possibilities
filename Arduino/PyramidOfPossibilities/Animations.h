@@ -17,6 +17,7 @@ enum  AnimationEnum {
   e_WWPAnimationTest,
   e_ActivityLevelAnimation,
   e_GlowFade,
+  e_SideEffects,
   
   // Animations defined by Bill Pugh (WWP)
   e_WWPAnimation1,
@@ -24,6 +25,7 @@ enum  AnimationEnum {
   e_WWPAnimation3,
   e_WWPAnimation4,
   e_WWPAnimation5,
+  e_FlashAttack,
 
   // Danny's animations.
   e_DRAnimation0,   // RGB simple

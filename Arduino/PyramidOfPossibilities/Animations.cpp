@@ -16,6 +16,8 @@
 #include "WWPAnimation3.h"
 #include "WWPAnimation4.h"
 #include "WWPAnimation5.h"
+#include "FlashAttack.h"
+#include "SideEffects.h"
 
 
 #include "DRAnimation0.h"
@@ -31,8 +33,13 @@ RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animati
   case e_ActivityLevelAnimation:
     return new ActivityLevelAnimation(info, animationStartMillis);
 
+  case  e_SideEffects:
+    return new SideEffects(info, animationStartMillis);
+
   case e_GlowFade:
     return new GlowFade(info, animationStartMillis);
+  case e_FlashAttack:
+    return new FlashAttack(info, animationStartMillis);
 
     // Animations by WWP
   case e_WWPAnimationTest : 
@@ -56,5 +63,6 @@ RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animati
     return 0;
   }
 }
+
 
 
