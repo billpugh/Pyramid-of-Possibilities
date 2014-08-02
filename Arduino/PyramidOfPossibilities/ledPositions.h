@@ -9,6 +9,4 @@
 #ifndef __PlatformCode__ledPositions__
 #define __PlatformCode__ledPositions__
 
-#include <iostream>
-
 #endif /* defined(__PlatformCode__ledPositions__) */
