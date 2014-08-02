@@ -58,8 +58,8 @@
 		1644A184198D354700FBFF63 /* Arduino.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A182198D354700FBFF63 /* Arduino.h */; };
 		1644A185198D354700FBFF63 /* hsv2rgb.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A183198D354700FBFF63 /* hsv2rgb.h */; };
 		1644A187198D37C900FBFF63 /* Accelerometer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A186198D37C900FBFF63 /* Accelerometer.h */; };
-		308D2A30198D57AF00157919 /* Constants.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 308D2A2E198D57AF00157919 /* Constants.cpp */; };
-		308D2A31198D57AF00157919 /* Constants.h in Headers */ = {isa = PBXBuildFile; fileRef = 308D2A2F198D57AF00157919 /* Constants.h */; };
+		30F8EB2F198D5B6E008DEAE9 /* Constants.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F8EB2D198D5B6E008DEAE9 /* Constants.cpp */; };
+		30F8EB30198D5B6E008DEAE9 /* Constants.h in Headers */ = {isa = PBXBuildFile; fileRef = 30F8EB2E198D5B6E008DEAE9 /* Constants.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,8 +115,9 @@
 		1644A182198D354700FBFF63 /* Arduino.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Arduino.h; sourceTree = "<group>"; };
 		1644A183198D354700FBFF63 /* hsv2rgb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hsv2rgb.h; sourceTree = "<group>"; };
 		1644A186198D37C900FBFF63 /* Accelerometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Accelerometer.h; sourceTree = "<group>"; };
-		308D2A2E198D57AF00157919 /* Constants.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Constants.cpp; sourceTree = "<group>"; };
-		308D2A2F198D57AF00157919 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		30F8EB2D198D5B6E008DEAE9 /* Constants.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Constants.cpp; path = ../Arduino/PyramidOfPossibilities/Constants.cpp; sourceTree = "<group>"; };
+		30F8EB2E198D5B6E008DEAE9 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../Arduino/PyramidOfPossibilities/Constants.h; sourceTree = "<group>"; };
+		30F8EB31198D5D92008DEAE9 /* PyramidOfPossibilities.ino */ = {isa = PBXFileReference; lastKnownFileType = text; name = PyramidOfPossibilities.ino; path = ../Arduino/PyramidOfPossibilities/PyramidOfPossibilities.ino; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,14 +134,13 @@
 		1644A110198D34AF00FBFF63 = {
 			isa = PBXGroup;
 			children = (
-				1644A18C198D4D7E00FBFF63 /* ledPositions.cpp */,
-				1644A18D198D4D7E00FBFF63 /* ledPositions.h */,
+				30F8EB31198D5D92008DEAE9 /* PyramidOfPossibilities.ino */,
 				1644A188198D384500FBFF63 /* Animations */,
 				1644A189198D38DB00FBFF63 /* libraries */,
 				1644A123198D34D400FBFF63 /* Animations.cpp */,
 				1644A122198D34D400FBFF63 /* Animations.h */,
-				308D2A2F198D57AF00157919 /* Constants.h */,
-				308D2A2E198D57AF00157919 /* Constants.cpp */,
+				30F8EB2E198D5B6E008DEAE9 /* Constants.h */,
+				30F8EB2D198D5B6E008DEAE9 /* Constants.cpp */,
 				1644A132198D34D400FBFF63 /* Controller.cpp */,
 				1644A147198D34D400FBFF63 /* Controller.h */,
 				1644A148198D34D400FBFF63 /* Platform.cpp */,
@@ -239,11 +239,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1644A18F198D4D7E00FBFF63 /* ledPositions.h in Headers */,
 				1644A152198D34D400FBFF63 /* SideEffects.h in Headers */,
 				1644A185198D354700FBFF63 /* hsv2rgb.h in Headers */,
 				1644A14F198D34D400FBFF63 /* Snow.h in Headers */,
-				308D2A31198D57AF00157919 /* Constants.h in Headers */,
+				30F8EB30198D5B6E008DEAE9 /* Constants.h in Headers */,
 				1644A161198D34D400FBFF63 /* DRAnimation0.h in Headers */,
 				1644A17D198D34FE00FBFF63 /* RNLights.h in Headers */,
 				1644A162198D34D400FBFF63 /* ActivityLevelAnimation.h in Headers */,
@@ -329,9 +328,7 @@
 				1644A180198D351A00FBFF63 /* RNChaser.cpp in Sources */,
 				1644A156198D34D400FBFF63 /* RNInfo.cpp in Sources */,
 				1644A166198D34D400FBFF63 /* WWPAnimation4.cpp in Sources */,
-				1644A18E198D4D7E00FBFF63 /* ledPositions.cpp in Sources */,
 				1644A150198D34D400FBFF63 /* Snow.cpp in Sources */,
-				308D2A30198D57AF00157919 /* Constants.cpp in Sources */,
 				1644A164198D34D400FBFF63 /* WWPAnimation3.cpp in Sources */,
 				1644A15B198D34D400FBFF63 /* RNBeam.cpp in Sources */,
 				1644A173198D34D400FBFF63 /* Platform.cpp in Sources */,
@@ -344,6 +341,7 @@
 				1644A155198D34D400FBFF63 /* ActivityLevelAnimation.cpp in Sources */,
 				1644A15E198D34D400FBFF63 /* AVEAnimation1.cpp in Sources */,
 				1644A151198D34D400FBFF63 /* SideEffects.cpp in Sources */,
+				30F8EB2F198D5B6E008DEAE9 /* Constants.cpp in Sources */,
 				1644A14E198D34D400FBFF63 /* Animations.cpp in Sources */,
 				1644A163198D34D400FBFF63 /* WWPAnimation1.cpp in Sources */,
 				1644A14B198D34D400FBFF63 /* WWPAnimationTest.cpp in Sources */,
