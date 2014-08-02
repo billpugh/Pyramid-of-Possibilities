@@ -31,7 +31,7 @@ void Snow::paint(RNLights & lights) {
 
 }
 
-char * Snow:: name() {
+const char * Snow:: name() {
   return "Snow";
 }
 

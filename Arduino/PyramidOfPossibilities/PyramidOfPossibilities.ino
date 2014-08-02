@@ -1,5 +1,7 @@
 // All libraries used in any other file need to be included here
 
+#include "Constants.h"
+
 #include "OctoWS2811.h"
 #include "Adafruit_NeoPixel.h"
 #include "Accelerometer.h"
@@ -12,23 +14,12 @@
 #include "RNSerial.h"
 #include <malloc.h>
 
-#define FULL_STRIP 1
-
-#if FULL_STRIP
-const int LEDs = 220;
-const int FIRST_LED = 10;
-
-#else
-const int LEDs = 60;
-const int FIRST_LED = 0;
-
-#endif
 
 const int LAST_LED = FIRST_LED+LEDs-1;
-
 const int ledsPerStrip = LAST_LED+1;
 
 RNInfo info(LEDs, 0,0,0,0,0,0);
+RNController controller(info);
 DMAMEM uint8_t displayMemory[ledsPerStrip*24];
 uint8_t drawingMemory[ledsPerStrip*24];
 
@@ -81,7 +72,7 @@ void loop() {
   updateAccelerometer();
   lights.reset();
 
-  controllerPaint(lights);
+  controller.paint(lights);
 
   uint8_t avgPixelBrightness = lights.getAvgPixelBrightness();
   uint8_t avgBrightness = avgPixelBrightness * lights.getBrightness()/256;

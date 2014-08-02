@@ -8,6 +8,7 @@
 
 #include "WWPAnimation5.h"
 #include <Arduino.h>
+#include "Constants.h"
 
 static CHSV hsv;
 static CRGB rgb;
