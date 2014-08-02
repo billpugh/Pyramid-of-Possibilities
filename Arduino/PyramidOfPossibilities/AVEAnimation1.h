@@ -9,7 +9,6 @@
 
 #include "RNAnimation.h"
 #include "RNLights.h"
-#include "RNChaser.h"
 
 class AVEAnimation1 : public RNAnimation {
 public:

@@ -8,7 +8,7 @@
       <itemPath>../Arduino/libraries/Accelerometer/Accelerometer.h</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/ActivityLevelAnimation.h</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/Animations.h</itemPath>
-      <itemPath>../PlatformData/Arduino.h</itemPath>
+      <itemPath>Arduino.h</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/DRAnimation0.h</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/DRAnimation1.h</itemPath>
       <itemPath>FPSControlsHandler.hpp</itemPath>
@@ -281,6 +281,9 @@
             <pElem>../Arduino/libraries/RNChaser</pElem>
             <pElem>../Arduino/libraries/RNLights</pElem>
             <pElem>../Arduino/libraries/Accelerometer</pElem>
+            <pElem>../Arduino/PyramidOfPossibilities</pElem>
+            <pElem>.</pElem>
+            <pElem>../Arduino/libraries/FastLED</pElem>
           </incDir>
           <commandLine>-Wno-write-strings</commandLine>
         </ccTool>
@@ -553,9 +556,9 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../PlatformData/Arduino.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Arduino.c" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Arduino.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ColorFragmentShader.shader" ex="false" tool="3" flavor2="0">
       </item>
@@ -881,9 +884,9 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../PlatformData/Arduino.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Arduino.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="Arduino.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ColorFragmentShader.shader" ex="false" tool="3" flavor2="0">
       </item>
