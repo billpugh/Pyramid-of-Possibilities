@@ -83,6 +83,10 @@ public:
   void showActivityWithBrightness(RNLights & lights,  uint16_t minBrightness);
   void showActivity(RNLights & lights, bool showSparkles, uint16_t minBrightness);
 
+    void accelerometerCallback( float totalG,
+                               float directionalG[3],
+                               uint8_t source);
+    
   // print debugging information
   void println(const char *s);
   void printf(const char *fmt, ... );
@@ -90,6 +94,12 @@ public:
 private:
   float globalAngle[240];
   float localAngle[240];
+    
+    float myTotalG = 0;
+    float myDirectionalG[3];
+    uint8_t myTapSource;
+    unsigned long lastTap = 0;
+    
   RNLights sparkles;
 
 

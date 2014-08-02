@@ -9,22 +9,24 @@
 
 void WWPAnimationTest::paint(RNLights & lights) {
     
-    float timeInMinutes =  getAnimationMillis()/60000.0;
-    uint16_t count = 256*repeats ;
     
-    float basePos =  timeInMinutes * rpm;
-    //  info.printf("rotation %f -> %d\n", timeInMinutes, baseHue);
-    //
-    for(int i = 0; i < lights.getNumPixels(); i++) {
-        float pos = basePos;
-        if (global)
-            pos += info.getGlobalAngle(i);
-        else
-            pos += info.getLocalAngle(i);
-        lights.setPixelColor(i, gradient.getColor( pos * count));
+    uint16_t startPosition =  lights.getNumPixels() * rpm * getAnimationMillis()  / 60000.0;
+    int gradientPosition = 256 * gpm * getAnimationMillis()  / 60000.0;
+    uint32_t headColor = headGradient.getValue(gradientPosition);
+    uint32_t tailColor = tailGradient.getValue(gradientPosition);
+    
+    RNGradient stripGradient(headGradient.isHSV, RNGradientCapped, headColor, tailColor);
+    
+    
+    for(int i = 0; i < length; i++) {
+        int pixelPosition = startPosition - i;
+        int pixelGradientPosition = i * 256 / length;
+        lights.setPixelColor( lights.normalize(pixelPosition), stripGradient.getColor(pixelGradientPosition));
+        
     }
     
-    info.showActivity(lights, false, 40);
+
+    info.showActivityWithBrightness(lights, 40);
     
 }
 

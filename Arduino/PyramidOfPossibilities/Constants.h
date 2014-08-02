@@ -18,7 +18,7 @@
 #ifdef FULL_STRIP
 // DO NOT MODIFY THESE VALUES
 const int LEDs = 220;
-const int FIRST_LED = 10;
+const int FIRST_LED = 15;
 #else
 // Modify these values for testing with a non-full strip.
 const int LEDs = 60;

@@ -27,6 +27,7 @@ enum  AnimationEnum {
   e_WWPAnimation5,
   e_FlashAttack,
   e_Snow,
+    e_GradientSwirl,
 
   // Danny's animations.
   e_DRAnimation0,   // RGB simple
