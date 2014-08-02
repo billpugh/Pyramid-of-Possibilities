@@ -59,6 +59,8 @@
 		1644A184198D354700FBFF63 /* Arduino.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A182198D354700FBFF63 /* Arduino.h */; };
 		1644A185198D354700FBFF63 /* hsv2rgb.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A183198D354700FBFF63 /* hsv2rgb.h */; };
 		1644A187198D37C900FBFF63 /* Accelerometer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A186198D37C900FBFF63 /* Accelerometer.h */; };
+		308D2A30198D57AF00157919 /* Constants.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 308D2A2E198D57AF00157919 /* Constants.cpp */; };
+		308D2A31198D57AF00157919 /* Constants.h in Headers */ = {isa = PBXBuildFile; fileRef = 308D2A2F198D57AF00157919 /* Constants.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,6 +117,8 @@
 		1644A182198D354700FBFF63 /* Arduino.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Arduino.h; sourceTree = "<group>"; };
 		1644A183198D354700FBFF63 /* hsv2rgb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hsv2rgb.h; sourceTree = "<group>"; };
 		1644A186198D37C900FBFF63 /* Accelerometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Accelerometer.h; sourceTree = "<group>"; };
+		308D2A2E198D57AF00157919 /* Constants.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Constants.cpp; sourceTree = "<group>"; };
+		308D2A2F198D57AF00157919 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +139,8 @@
 				1644A189198D38DB00FBFF63 /* libraries */,
 				1644A123198D34D400FBFF63 /* Animations.cpp */,
 				1644A122198D34D400FBFF63 /* Animations.h */,
+				308D2A2F198D57AF00157919 /* Constants.h */,
+				308D2A2E198D57AF00157919 /* Constants.cpp */,
 				1644A132198D34D400FBFF63 /* Controller.cpp */,
 				1644A147198D34D400FBFF63 /* Controller.h */,
 				1644A148198D34D400FBFF63 /* Platform.cpp */,
@@ -221,6 +227,7 @@
 				1644A152198D34D400FBFF63 /* SideEffects.h in Headers */,
 				1644A185198D354700FBFF63 /* hsv2rgb.h in Headers */,
 				1644A14F198D34D400FBFF63 /* Snow.h in Headers */,
+				308D2A31198D57AF00157919 /* Constants.h in Headers */,
 				1644A161198D34D400FBFF63 /* DRAnimation0.h in Headers */,
 				1644A17D198D34FE00FBFF63 /* RNLights.h in Headers */,
 				1644A162198D34D400FBFF63 /* ActivityLevelAnimation.h in Headers */,
@@ -307,6 +314,7 @@
 				1644A156198D34D400FBFF63 /* RNInfo.cpp in Sources */,
 				1644A166198D34D400FBFF63 /* WWPAnimation4.cpp in Sources */,
 				1644A150198D34D400FBFF63 /* Snow.cpp in Sources */,
+				308D2A30198D57AF00157919 /* Constants.cpp in Sources */,
 				1644A164198D34D400FBFF63 /* WWPAnimation3.cpp in Sources */,
 				1644A15B198D34D400FBFF63 /* RNBeam.cpp in Sources */,
 				1644A173198D34D400FBFF63 /* Platform.cpp in Sources */,
@@ -435,6 +443,7 @@
 				1644A11F198D34AF00FBFF63 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
