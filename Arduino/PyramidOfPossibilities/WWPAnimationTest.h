@@ -9,16 +9,22 @@
 #define __PlatformData__WWPAnimationTest__
 
 #include "RNAnimation.h"
+#include "RNGradient.h"
 
 class WWPAnimationTest : public RNAnimation {
 public:
     WWPAnimationTest(RNInfo & info, unsigned long animationStartMillis)
-    : RNAnimation(info, animationStartMillis), hue(info.getRandom(256)) {};
+    : RNAnimation(info, animationStartMillis), gradient(1, RNGradientBounce, 0x8000ff, 0xc000ff) {
+      
+      for(int i = 0; i < 256; i++)
+        info.printf("Gradient(%d) = %x\n", i, gradient.getColor(i));
+    };
     virtual void paint(RNLights & lights);
     
     virtual char * name();
     
-    uint8_t hue;
+    RNGradient gradient;
+
 
 };
 
