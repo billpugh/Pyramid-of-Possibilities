@@ -8,8 +8,6 @@
 #ifndef CONSTANTS_PYRAMID_OF_POP
 #define CONSTANTS_PYRAMID_OF_POP
 
-#define DEBUG true
-
-
+#define DEBUG
 
 #endif /** CONSTANTS_PYRAMID_OF_POP */
