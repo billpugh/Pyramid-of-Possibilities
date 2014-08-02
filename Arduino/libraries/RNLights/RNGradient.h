@@ -46,12 +46,13 @@ public:
     void getColor(int32_t position, uint8_t &red, uint8_t &green, uint8_t &blue);
     uint32_t getColor(int32_t position);
     uint32_t getValue(int32_t position);
-    
-private:
     const bool isHSV;
     const RNGradientKind kind;
     const uint16_t s1, e1;
     const uint8_t s2, s3,  e2, e3;
+    
+private:
+
     uint8_t normalize(int32_t position);
     uint8_t mix(uint8_t position, uint8_t s, uint8_t e);
     uint16_t mix(uint8_t position, uint16_t s, uint16_t e);
