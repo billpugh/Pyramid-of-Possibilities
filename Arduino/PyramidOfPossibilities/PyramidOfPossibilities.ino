@@ -12,13 +12,15 @@
 #include "hsv2rgb.h"
 #include "Controller.h"
 #include "RNSerial.h"
+#include <EEPROM.h>
 #include <malloc.h>
 
 
 const int LAST_LED = FIRST_LED+LEDs-1;
 const int ledsPerStrip = LAST_LED+1;
 
-RNInfo info(LEDs, 0,0,0,0,0,0);
+Platform platform( 0,0,0,0,0,0);
+RNInfo info(LEDs, platform);
 RNController controller(info);
 DMAMEM uint8_t displayMemory[ledsPerStrip*24];
 uint8_t drawingMemory[ledsPerStrip*24];
