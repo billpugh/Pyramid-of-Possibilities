@@ -12,17 +12,14 @@
 #include "Animations.h"
 #include <malloc.h>
 
-extern RNInfo info;
 
-RNAnimation * currentAnimation = 0;
-unsigned long animationExpires = 0;
-AnimationEnum currentAnimationEnum = e_AnimationCount;
+
 
 static int heapSize(){
     return mallinfo().uordblks;
 }
 
-void switchToAnimation(AnimationEnum nextAnimation) {
+void RNController::switchToAnimation(AnimationEnum nextAnimation) {
     if (currentAnimation) {
         info.printf("Deleting old animation\n");
         int before = heapSize();
@@ -44,11 +41,11 @@ void switchToAnimation(AnimationEnum nextAnimation) {
       info.printf("Created %s\n", currentAnimation->name());
 }
 
-void nextAnimation() {
+void RNController::nextAnimation() {
   switchToAnimation((AnimationEnum) (1+((int)currentAnimationEnum)));
 }
 
-void controllerPaint(RNLights & lights) {
+void RNController::paint(RNLights & lights) {
     info.update();
     if (millis() > animationExpires || !currentAnimation) {
         nextAnimation();
