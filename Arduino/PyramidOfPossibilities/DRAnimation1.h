@@ -19,6 +19,8 @@ public:
 
     uint32_t base_color;
 
+    float min_g, max_g;
+
 };
 
 #endif /* defined(__PlatformData__DRAnimation1__) */
