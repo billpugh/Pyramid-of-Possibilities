@@ -9,7 +9,7 @@
 #include "RNEEPROM.h"
 #include <EEPROM.h>
 
-void readFromEEPROM(uint8_t version, uint16_t sz, uint8_t *p) {
+void readFromEEPROM(char version, short sz, char *p) {
      uint8_t storedVersion = EEPROM.read(0);
     if (version != storedVersion) {
         return;
@@ -25,7 +25,7 @@ void readFromEEPROM(uint8_t version, uint16_t sz, uint8_t *p) {
 }
 
 
-void writeTo(uint8_t version, uint16_t sz, uint8_t *p) {
+void writeTo(char version, short sz, char *p) {
     EEPROM.write(0, version);
     EEPROM.write(1, sz>>8);
     EEPROM.write(2, sz);
