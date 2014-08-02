@@ -33,12 +33,8 @@ x(x), y(y), z(z), sparkles(numLEDs) {
 };
 
 
-float myTotalG = 0;
-float myDirectionalG[3];
-uint8_t myTapSource;
-unsigned long lastTap = 0;
 
-void accelerometerCallback( float totalG,
+void RNInfo::accelerometerCallback( float totalG,
                            float directionalG[3],
                            uint8_t source) {
     //  if (source)
