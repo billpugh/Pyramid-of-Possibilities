@@ -66,8 +66,11 @@ public:
   // Get a combined indication of activity across all platforms. Same scale as getLocalActivity
   float getGlobalActivity();
 
-  // getGlobalAngle for LED in degrees (0 = south)
+  // getGlobalAngle for LED in degrees (0 = south, range = is 0 to 0.999...)
   float getGlobalAngle(uint8_t led);
+    
+  // getLocalAngle for LED in degrees (0 = south, range = is 0 to 0.999...)
+   float getLocalAngle(uint8_t led);
   
   // getGlobalRadius for LED in mm (how far in the x/y plan is this LED from the center of the Pyramid
   float getGlobalRadius(uint8_t led);
@@ -76,6 +79,8 @@ public:
   // Only the controller should call this method
   void update();
   
+  void showActivityWithSparkles(RNLights & lights);
+  void showActivityWithBrightness(RNLights & lights,  uint16_t minBrightness);
   void showActivity(RNLights & lights, bool showSparkles, uint16_t minBrightness);
 
   // print debugging information
@@ -84,6 +89,7 @@ public:
 
 private:
   float globalAngle[240];
+  float localAngle[240];
   RNLights sparkles;
 
 
