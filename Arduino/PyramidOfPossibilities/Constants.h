@@ -8,7 +8,6 @@
 #ifndef CONSTANTS_PYRAMID_OF_POP
 #define CONSTANTS_PYRAMID_OF_POP
 
-// To enable DEBUG mode, uncomment the line below
 #define DEBUG 1
 
 // To test without using the full strip of LEDs, uncomment the line below and set the number of LEDs you want, as well as the index of the 1st LED.
@@ -19,7 +18,7 @@
 #ifdef FULL_STRIP
 // DO NOT MODIFY THESE VALUES
 const int LEDs = 220;
-const int FIRST_LED = 10;
+const int FIRST_LED = 15;
 #else
 // Modify these values for testing with a non-full strip.
 const int LEDs = 60;

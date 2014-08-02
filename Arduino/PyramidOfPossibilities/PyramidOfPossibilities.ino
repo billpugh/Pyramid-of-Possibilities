@@ -53,6 +53,7 @@ void setup() {
   initializeAccelerometer();
   setupSerial2(9600);
 }
+
 const uint8_t chunk = 16;
 uint8_t scaleBrightness(uint8_t value) {
   uint8_t result = 0;
@@ -67,6 +68,13 @@ uint8_t scaleBrightness(uint8_t value) {
 
 unsigned long avgTime = 0;
 int count = 0;
+
+void accelerometerCallback( float totalG, float directionalG[3], uint8_t source)  {
+   info.accelerometerCallback(totalG,directionalG, source);
+}
+
+
+
 void loop() {
   unsigned long startMicros = micros();
   updateAccelerometer();

@@ -19,6 +19,7 @@
 #include "FlashAttack.h"
 #include "SideEffects.h"
 #include "Snow.h"
+#include "GradientSwirl.h"
 
 
 #include "DRAnimation0.h"
@@ -29,43 +30,47 @@
 
 
 RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animationStartMillis ) {
-  switch (a) {
-
-  case e_ActivityLevelAnimation:
-    return new ActivityLevelAnimation(info, animationStartMillis);
-
-  case  e_SideEffects:
-    return new SideEffects(info, animationStartMillis);
-
-  case e_Snow:
-    return new Snow(info, animationStartMillis);
-  
-  case e_GlowFade:
-    return new GlowFade(info, animationStartMillis);
-  case e_FlashAttack:
-    return new FlashAttack(info, animationStartMillis);
-
-    // Animations by WWP
-  case e_WWPAnimationTest : 
-    return new WWPAnimationTest(info, animationStartMillis);
-  case e_WWPAnimation1 : 
-    return new WWPAnimation1(info, animationStartMillis);
-  case e_WWPAnimation2 : 
-    return new WWPAnimation2(info, animationStartMillis);
-  case e_WWPAnimation3 : 
-    return new WWPAnimation3(info, animationStartMillis);
-
-  case e_WWPAnimation4 : 
-    return new WWPAnimation4(info, animationStartMillis);
-  case e_WWPAnimation5 : 
-    return new WWPAnimation5(info, animationStartMillis);
-  case e_DRAnimation0 :
-    return new DRAnimation0(info, animationStartMillis);
-  case e_DRAnimation1 :
-    return new DRAnimation1(info, animationStartMillis);
-  default:
-    return 0;
-  }
+    switch (a) {
+            
+        case e_ActivityLevelAnimation:
+            return new ActivityLevelAnimation(info, animationStartMillis);
+            
+        case  e_SideEffects:
+            return new SideEffects(info, animationStartMillis);
+            
+        case e_Snow:
+            return new Snow(info, animationStartMillis);
+            
+        case e_GlowFade:
+            return new GlowFade(info, animationStartMillis);
+        case e_FlashAttack:
+            return new FlashAttack(info, animationStartMillis);
+            
+        case e_GradientSwirl:
+            return new GradientSwirl(info, animationStartMillis);
+            
+            
+            // Animations by WWP
+        case e_WWPAnimationTest :
+            return new WWPAnimationTest(info, animationStartMillis);
+        case e_WWPAnimation1 :
+            return new WWPAnimation1(info, animationStartMillis);
+        case e_WWPAnimation2 :
+            return new WWPAnimation2(info, animationStartMillis);
+        case e_WWPAnimation3 :
+            return new WWPAnimation3(info, animationStartMillis);
+            
+        case e_WWPAnimation4 :
+            return new WWPAnimation4(info, animationStartMillis);
+        case e_WWPAnimation5 :
+            return new WWPAnimation5(info, animationStartMillis);
+        case e_DRAnimation0 :
+            return new DRAnimation0(info, animationStartMillis);
+        case e_DRAnimation1 :
+            return new DRAnimation1(info, animationStartMillis);
+        default:
+            return 0;
+    }
 }
 
 
