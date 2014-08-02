@@ -85,7 +85,7 @@ unsigned long RNInfo::timeSinceLastTap() {
 }
 
 void RNInfo::println(const char * s) {
-    Serial.println(s);
+//    Serial.println(s);
 }
 
 void RNInfo::printf(const char *fmt, ... ){
@@ -94,7 +94,7 @@ void RNInfo::printf(const char *fmt, ... ){
     va_start (args, fmt );
     vsnprintf(tmp, 256, fmt, args);
     va_end (args);
-    Serial.print(tmp);
+//    Serial.print(tmp);
 }
 
 uint16_t RNInfo::getRandomPixel() {

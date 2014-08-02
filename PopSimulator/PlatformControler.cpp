@@ -19,8 +19,10 @@
 
 #include "Snow.h"
 #include "GlowFade.h"
+#include "GradientSwirl.h"
 
 #include "AVEAnimation1.h"
+#include "AVEFlashesAnimation.h"
 
 #include "Arduino.h"
 #include "PyramidArchitecture.hpp"
@@ -39,7 +41,7 @@ PlatformControler::PlatformControler(Pyramid* _pyramid, int _platform) {
             coords[1],
             coords[2]);
 
-    animation = new AVEAnimation1(*info, millis());
+    animation = new GradientSwirl(*info, millis());
 }
 
 void PlatformControler::refreshPlatform() {

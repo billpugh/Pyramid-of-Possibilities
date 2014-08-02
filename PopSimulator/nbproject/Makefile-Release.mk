@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/_ext/1731549632/AVEAnimation1.o \
+	${OBJECTDIR}/_ext/1731549632/AVEFlashesAnimation.o \
 	${OBJECTDIR}/_ext/1731549632/ActivityLevelAnimation.o \
 	${OBJECTDIR}/_ext/1731549632/Animations.o \
 	${OBJECTDIR}/_ext/1731549632/Controller.o \
@@ -43,6 +44,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/1731549632/DRAnimation1.o \
 	${OBJECTDIR}/_ext/1731549632/FlashAttack.o \
 	${OBJECTDIR}/_ext/1731549632/GlowFade.o \
+	${OBJECTDIR}/_ext/1731549632/GradientSwirl.o \
 	${OBJECTDIR}/_ext/1731549632/Platform.o \
 	${OBJECTDIR}/_ext/1731549632/RNAnimation.o \
 	${OBJECTDIR}/_ext/1731549632/RNBeam.o \
@@ -101,6 +103,11 @@ ${OBJECTDIR}/_ext/1731549632/AVEAnimation1.o: ../Arduino/PyramidOfPossibilities/
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/AVEAnimation1.o ../Arduino/PyramidOfPossibilities/AVEAnimation1.cpp
 
+${OBJECTDIR}/_ext/1731549632/AVEFlashesAnimation.o: ../Arduino/PyramidOfPossibilities/AVEFlashesAnimation.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/AVEFlashesAnimation.o ../Arduino/PyramidOfPossibilities/AVEFlashesAnimation.cpp
+
 ${OBJECTDIR}/_ext/1731549632/ActivityLevelAnimation.o: ../Arduino/PyramidOfPossibilities/ActivityLevelAnimation.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
 	${RM} "$@.d"
@@ -135,6 +142,11 @@ ${OBJECTDIR}/_ext/1731549632/GlowFade.o: ../Arduino/PyramidOfPossibilities/GlowF
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/GlowFade.o ../Arduino/PyramidOfPossibilities/GlowFade.cpp
+
+${OBJECTDIR}/_ext/1731549632/GradientSwirl.o: ../Arduino/PyramidOfPossibilities/GradientSwirl.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/GradientSwirl.o ../Arduino/PyramidOfPossibilities/GradientSwirl.cpp
 
 ${OBJECTDIR}/_ext/1731549632/Platform.o: ../Arduino/PyramidOfPossibilities/Platform.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
