@@ -14,6 +14,12 @@
 #include "WWPAnimation4.h"
 #include "WWPAnimation5.h"
 
+#include "DRAnimation0.h"
+#include "DRAnimation1.h"
+
+#include "Snow.h"
+#include "GlowFade.h"
+
 #include "AVEAnimation1.h"
 
 #include "Arduino.h"
@@ -33,7 +39,7 @@ PlatformControler::PlatformControler(Pyramid* _pyramid, int _platform) {
             coords[1],
             coords[2]);
 
-    animation = new AVEAnimation1(*info, millis());
+    animation = new GlowFade(*info, millis());
 }
 
 void PlatformControler::refreshPlatform() {

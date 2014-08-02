@@ -63,7 +63,7 @@ int main(void) {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 
     /* Create a windowed mode window and its OpenGL context */
-    GLFWwindow* window = glfwCreateWindow(800, 600,
+    GLFWwindow* window = glfwCreateWindow(1024, 768,
             "Pyramid of Possibilities Simulator", NULL, NULL);
     if (!window) {
         fprintf(stderr, "Failed to open GLFW window.\n");
