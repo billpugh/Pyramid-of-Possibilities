@@ -9,8 +9,10 @@
 #ifndef PlatformData_Arduino_h
 #define PlatformData_Arduino_h
 
+#define DEBUG 1
+
  unsigned long millis();
 
  int random(int max);
-
+ 
 #endif
