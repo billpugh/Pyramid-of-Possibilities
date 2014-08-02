@@ -7,6 +7,7 @@
 //
 
 #include "ledPositions.h"
+#include <stdint.h>
 
 int16_t ledPositions [220][2]  =
 	{{ -528, 0 },
