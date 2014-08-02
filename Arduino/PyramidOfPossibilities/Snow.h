@@ -18,7 +18,7 @@ public:
    };
     virtual void paint(RNLights & lights);
     
-    virtual char * name();
+    virtual const char * name();
     
     void addSnowFlake();
     

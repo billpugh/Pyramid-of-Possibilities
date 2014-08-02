@@ -19,7 +19,7 @@ void setup() {
   delay(2000);
   Serial.println("Gradient test");
 
-  RNGradient gradient(1, RNGradientBounce, 0x8000FF, 0xc000ff);
+  RNGradient gradient(1, RNGradientBounce, 0x00ffFF, 0x20ffff);
   for(int i = 0; i < 256; i++) {
     p("Gradient(%d) = %x\n", i, gradient.getColor(i));
   }

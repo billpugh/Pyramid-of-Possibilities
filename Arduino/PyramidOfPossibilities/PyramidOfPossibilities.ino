@@ -19,6 +19,7 @@ const int LAST_LED = FIRST_LED+LEDs-1;
 const int ledsPerStrip = LAST_LED+1;
 
 RNInfo info(LEDs, 0,0,0,0,0,0);
+RNController controller(info);
 DMAMEM uint8_t displayMemory[ledsPerStrip*24];
 uint8_t drawingMemory[ledsPerStrip*24];
 
@@ -71,7 +72,7 @@ void loop() {
   updateAccelerometer();
   lights.reset();
 
-  controllerPaint(lights);
+  controller.paint(lights);
 
   uint8_t avgPixelBrightness = lights.getAvgPixelBrightness();
   uint8_t avgBrightness = avgPixelBrightness * lights.getBrightness()/256;
