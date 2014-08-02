@@ -147,7 +147,7 @@ void RNInfo::showActivity(RNLights & lights, bool showSparkles, uint16_t minBrig
 }
 
 
-void RNInfo::showActivityWithSparkles(<#RNLights &lights#>) {
+void RNInfo::showActivityWithSparkles(RNLights & lights) {
     lights.applyBrightness();
     lights.copyPixelsMax(sparkles);
 }
