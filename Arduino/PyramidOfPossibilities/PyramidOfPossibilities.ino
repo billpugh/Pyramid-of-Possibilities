@@ -1,5 +1,7 @@
 // All libraries used in any other file need to be included here
 
+#include "Constants.h"
+
 #include "OctoWS2811.h"
 #include "Adafruit_NeoPixel.h"
 #include "Accelerometer.h"
@@ -12,20 +14,8 @@
 #include "RNSerial.h"
 #include <malloc.h>
 
-#define FULL_STRIP 1
-
-#if FULL_STRIP
-const int LEDs = 220;
-const int FIRST_LED = 15;
-
-#else
-const int LEDs = 60;
-const int FIRST_LED = 0;
-
-#endif
 
 const int LAST_LED = FIRST_LED+LEDs-1;
-
 const int ledsPerStrip = LAST_LED+1;
 
 RNInfo info(LEDs, 0,0,0,0,0,0);
