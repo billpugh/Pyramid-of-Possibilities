@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		163D5077198D841400E882A1 /* RNEEPROM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163D5075198D841400E882A1 /* RNEEPROM.cpp */; };
+		163D5078198D841400E882A1 /* RNEEPROM.h in Headers */ = {isa = PBXBuildFile; fileRef = 163D5076198D841400E882A1 /* RNEEPROM.h */; };
 		1644A14B198D34D400FBFF63 /* WWPAnimationTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A120198D34D400FBFF63 /* WWPAnimationTest.cpp */; };
 		1644A14C198D34D400FBFF63 /* WWPAnimationTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A121198D34D400FBFF63 /* WWPAnimationTest.h */; };
 		1644A14D198D34D400FBFF63 /* Animations.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A122198D34D400FBFF63 /* Animations.h */; };
@@ -48,7 +50,6 @@
 		1644A172198D34D400FBFF63 /* Controller.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A147198D34D400FBFF63 /* Controller.h */; };
 		1644A173198D34D400FBFF63 /* Platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A148198D34D400FBFF63 /* Platform.cpp */; };
 		1644A174198D34D400FBFF63 /* Platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A149198D34D400FBFF63 /* Platform.h */; };
-		1644A175198D34D400FBFF63 /* Saved.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A14A198D34D400FBFF63 /* Saved.h */; };
 		1644A17A198D34FE00FBFF63 /* RNGradient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A176198D34FE00FBFF63 /* RNGradient.cpp */; };
 		1644A17B198D34FE00FBFF63 /* RNGradient.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A177198D34FE00FBFF63 /* RNGradient.h */; };
 		1644A17C198D34FE00FBFF63 /* RNLights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A178198D34FE00FBFF63 /* RNLights.cpp */; };
@@ -67,6 +68,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		163D5075198D841400E882A1 /* RNEEPROM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RNEEPROM.cpp; path = ../Arduino/PyramidOfPossibilities/RNEEPROM.cpp; sourceTree = "<group>"; };
+		163D5076198D841400E882A1 /* RNEEPROM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNEEPROM.h; path = ../Arduino/PyramidOfPossibilities/RNEEPROM.h; sourceTree = "<group>"; };
 		1644A119198D34AF00FBFF63 /* libPlatformCode.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPlatformCode.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1644A120198D34D400FBFF63 /* WWPAnimationTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WWPAnimationTest.cpp; path = ../Arduino/PyramidOfPossibilities/WWPAnimationTest.cpp; sourceTree = "<group>"; };
 		1644A121198D34D400FBFF63 /* WWPAnimationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WWPAnimationTest.h; path = ../Arduino/PyramidOfPossibilities/WWPAnimationTest.h; sourceTree = "<group>"; };
@@ -109,7 +112,6 @@
 		1644A147198D34D400FBFF63 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Controller.h; path = ../Arduino/PyramidOfPossibilities/Controller.h; sourceTree = "<group>"; };
 		1644A148198D34D400FBFF63 /* Platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Platform.cpp; path = ../Arduino/PyramidOfPossibilities/Platform.cpp; sourceTree = "<group>"; };
 		1644A149198D34D400FBFF63 /* Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Platform.h; path = ../Arduino/PyramidOfPossibilities/Platform.h; sourceTree = "<group>"; };
-		1644A14A198D34D400FBFF63 /* Saved.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Saved.h; path = ../Arduino/PyramidOfPossibilities/Saved.h; sourceTree = "<group>"; };
 		1644A176198D34FE00FBFF63 /* RNGradient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RNGradient.cpp; path = ../Arduino/libraries/RNLights/RNGradient.cpp; sourceTree = "<group>"; };
 		1644A177198D34FE00FBFF63 /* RNGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNGradient.h; path = ../Arduino/libraries/RNLights/RNGradient.h; sourceTree = "<group>"; };
 		1644A178198D34FE00FBFF63 /* RNLights.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RNLights.cpp; path = ../Arduino/libraries/RNLights/RNLights.cpp; sourceTree = "<group>"; };
@@ -142,6 +144,8 @@
 		1644A110198D34AF00FBFF63 = {
 			isa = PBXGroup;
 			children = (
+				163D5075198D841400E882A1 /* RNEEPROM.cpp */,
+				163D5076198D841400E882A1 /* RNEEPROM.h */,
 				30F8EB31198D5D92008DEAE9 /* PyramidOfPossibilities.ino */,
 				1644A188198D384500FBFF63 /* Animations */,
 				1644A189198D38DB00FBFF63 /* libraries */,
@@ -161,7 +165,6 @@
 				1644A18A198D4BBC00FBFF63 /* RNLights */,
 				1644A12B198D34D400FBFF63 /* RNInfo.cpp */,
 				1644A12D198D34D400FBFF63 /* RNInfo.h */,
-				1644A14A198D34D400FBFF63 /* Saved.h */,
 				1644A11A198D34AF00FBFF63 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				1644A16E198D34D400FBFF63 /* WWPAnimation1.h in Headers */,
 				1644A172198D34D400FBFF63 /* Controller.h in Headers */,
 				1644A153198D34D400FBFF63 /* FlashAttack.h in Headers */,
+				163D5078198D841400E882A1 /* RNEEPROM.h in Headers */,
 				1644A168198D34D400FBFF63 /* GlowFade.h in Headers */,
 				1644A17B198D34FE00FBFF63 /* RNGradient.h in Headers */,
 				1644A16B198D34D400FBFF63 /* WWPAnimation5.h in Headers */,
@@ -280,7 +284,6 @@
 				1644A187198D37C900FBFF63 /* Accelerometer.h in Headers */,
 				16F839D5198D691200B6419F /* GradientSwirl.h in Headers */,
 				1644A14D198D34D400FBFF63 /* Animations.h in Headers */,
-				1644A175198D34D400FBFF63 /* Saved.h in Headers */,
 				1644A15A198D34D400FBFF63 /* DRAnimation1.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,6 +347,7 @@
 				1644A156198D34D400FBFF63 /* RNInfo.cpp in Sources */,
 				1644A166198D34D400FBFF63 /* WWPAnimation4.cpp in Sources */,
 				1644A150198D34D400FBFF63 /* Snow.cpp in Sources */,
+				163D5077198D841400E882A1 /* RNEEPROM.cpp in Sources */,
 				1644A164198D34D400FBFF63 /* WWPAnimation3.cpp in Sources */,
 				1644A15B198D34D400FBFF63 /* RNBeam.cpp in Sources */,
 				1644A173198D34D400FBFF63 /* Platform.cpp in Sources */,
