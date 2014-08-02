@@ -45,10 +45,12 @@ uint8_t RNGradient::normalize(int32_t position) {
 }
 
 inline  uint8_t RNGradient::mix(uint8_t position, uint8_t s, uint8_t e) {
-    return ((256-position)*s + position * e)/255;
+    if (s == e) return s;
+    return ((255-position)*s + position * e)/255;
 }
 inline  uint16_t RNGradient::mix(uint8_t position, uint16_t s, uint16_t e) {
-    return ((256-position)*s + position * e)/255;
+    if (s == e) return s;
+    return ((255-position)*s + position * e)/255;
 }
 inline void RNGradient::getValue(int32_t position, uint8_t &v1, uint8_t &v2, uint8_t &v3) {
     position = normalize(position);
