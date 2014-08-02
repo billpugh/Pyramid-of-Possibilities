@@ -16,7 +16,7 @@ public:
     WWPAnimation1(RNInfo & info, unsigned long animationStartMillis)
     : RNAnimation(info, animationStartMillis) {};
     virtual void paint(RNLights & lights);
-    virtual char * name();
+    virtual const char * name();
 
 };
 

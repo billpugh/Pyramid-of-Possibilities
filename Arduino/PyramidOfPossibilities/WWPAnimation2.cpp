@@ -20,7 +20,7 @@ void WWPAnimation2::paint(RNLights & lights) {
   info.showActivity(lights, false, 16);
 }
 
-char * WWPAnimation2:: name() {
+const char * WWPAnimation2:: name() {
   return "WWPAnimation2";
 }
 

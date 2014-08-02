@@ -21,7 +21,7 @@ public:
   WWPAnimation5(RNInfo & info, unsigned long animationStartMillis);
   virtual void paint(RNLights & paintMe);
 
-  virtual char * name();
+  virtual const char * name();
   RNLights lights;
   RNLights dots;
   RNChaser chaser[11] = { 

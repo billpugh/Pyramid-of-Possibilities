@@ -16,7 +16,7 @@ public:
 
     AVEAnimation1(RNInfo & info, unsigned long animationStartMillis);;
     virtual void paint(RNLights & lights);
-    virtual char * name();
+    virtual const char * name();
 
 private:
     bool forward;

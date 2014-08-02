@@ -25,12 +25,11 @@ RNAnimation(info, animationStartMillis), lights(info.numLEDs), dots(info.numLEDs
   dots.setFade(animationStartMillis, 750);
 };
 
-
-char * WWPAnimation5:: name() {
+const char * WWPAnimation5:: name() {
   return "WWPAnimation5";
 }
 
-const uint8_t DEBUG = 0;
+
 
 uint8_t WWPAnimation5::currentHue() {
   return (getAnimationMillis() / 100) % 256;
@@ -41,9 +40,9 @@ void WWPAnimation5::setRandomPixel(float v) {
   int brightness = dots.getPixelRed(pixel) 
     + dots.getPixelGreen(pixel) 
       + dots.getPixelBlue(pixel);
-  if (DEBUG)
-    info.printf("brightness %d\n", brightness);
-  if (brightness > 50) 
+
+//    info.printf("brightness %d\n", brightness);
+  if (brightness > 50)
     hsv.v = 50*v;
   else
     hsv.v = 75*v+25;
@@ -53,8 +52,8 @@ void WWPAnimation5::setRandomPixel(float v) {
 
   dots.setPixelColor(pixel, rgb.r, rgb.g, rgb.b);
   lights.setPixelColor(pixel, rgb.r, rgb.g, rgb.b);
-  if (DEBUG)
-    info.printf("brightness %d: %d %d %d\n", brightness, rgb.r, rgb.g, rgb.b);
+
+//    info.printf("brightness %d: %d %d %d\n", brightness, rgb.r, rgb.g, rgb.b);
 
 }
 

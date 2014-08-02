@@ -64,6 +64,6 @@ void GlowFade::paint(RNLights & lights) {
 
    }
 
-  char * GlowFade:: name() {
+  const char * GlowFade:: name() {
     return "GlowFade";
   }

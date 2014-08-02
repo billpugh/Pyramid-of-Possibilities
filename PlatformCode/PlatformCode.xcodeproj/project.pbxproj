@@ -1,0 +1,442 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1644A14B198D34D400FBFF63 /* WWPAnimationTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A120198D34D400FBFF63 /* WWPAnimationTest.cpp */; };
+		1644A14C198D34D400FBFF63 /* WWPAnimationTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A121198D34D400FBFF63 /* WWPAnimationTest.h */; };
+		1644A14D198D34D400FBFF63 /* Animations.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A122198D34D400FBFF63 /* Animations.h */; };
+		1644A14E198D34D400FBFF63 /* Animations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A123198D34D400FBFF63 /* Animations.cpp */; };
+		1644A14F198D34D400FBFF63 /* Snow.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A124198D34D400FBFF63 /* Snow.h */; };
+		1644A150198D34D400FBFF63 /* Snow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A125198D34D400FBFF63 /* Snow.cpp */; };
+		1644A151198D34D400FBFF63 /* SideEffects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A126198D34D400FBFF63 /* SideEffects.cpp */; };
+		1644A152198D34D400FBFF63 /* SideEffects.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A127198D34D400FBFF63 /* SideEffects.h */; };
+		1644A153198D34D400FBFF63 /* FlashAttack.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A128198D34D400FBFF63 /* FlashAttack.h */; };
+		1644A154198D34D400FBFF63 /* FlashAttack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A129198D34D400FBFF63 /* FlashAttack.cpp */; };
+		1644A155198D34D400FBFF63 /* ActivityLevelAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A12A198D34D400FBFF63 /* ActivityLevelAnimation.cpp */; };
+		1644A156198D34D400FBFF63 /* RNInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A12B198D34D400FBFF63 /* RNInfo.cpp */; };
+		1644A157198D34D400FBFF63 /* WWPAnimation2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A12C198D34D400FBFF63 /* WWPAnimation2.cpp */; };
+		1644A158198D34D400FBFF63 /* RNInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A12D198D34D400FBFF63 /* RNInfo.h */; };
+		1644A159198D34D400FBFF63 /* DRAnimation1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A12E198D34D400FBFF63 /* DRAnimation1.cpp */; };
+		1644A15A198D34D400FBFF63 /* DRAnimation1.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A12F198D34D400FBFF63 /* DRAnimation1.h */; };
+		1644A15B198D34D400FBFF63 /* RNBeam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A130198D34D400FBFF63 /* RNBeam.cpp */; };
+		1644A15C198D34D400FBFF63 /* RNBeam.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A131198D34D400FBFF63 /* RNBeam.h */; };
+		1644A15D198D34D400FBFF63 /* Controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A132198D34D400FBFF63 /* Controller.cpp */; };
+		1644A15E198D34D400FBFF63 /* AVEAnimation1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A133198D34D400FBFF63 /* AVEAnimation1.cpp */; };
+		1644A15F198D34D400FBFF63 /* AVEAnimation1.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A134198D34D400FBFF63 /* AVEAnimation1.h */; };
+		1644A160198D34D400FBFF63 /* DRAnimation0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A135198D34D400FBFF63 /* DRAnimation0.cpp */; };
+		1644A161198D34D400FBFF63 /* DRAnimation0.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A136198D34D400FBFF63 /* DRAnimation0.h */; };
+		1644A162198D34D400FBFF63 /* ActivityLevelAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A137198D34D400FBFF63 /* ActivityLevelAnimation.h */; };
+		1644A163198D34D400FBFF63 /* WWPAnimation1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A138198D34D400FBFF63 /* WWPAnimation1.cpp */; };
+		1644A164198D34D400FBFF63 /* WWPAnimation3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A139198D34D400FBFF63 /* WWPAnimation3.cpp */; };
+		1644A165198D34D400FBFF63 /* GlowFade.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A13A198D34D400FBFF63 /* GlowFade.cpp */; };
+		1644A166198D34D400FBFF63 /* WWPAnimation4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A13B198D34D400FBFF63 /* WWPAnimation4.cpp */; };
+		1644A167198D34D400FBFF63 /* WWPAnimation5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A13C198D34D400FBFF63 /* WWPAnimation5.cpp */; };
+		1644A168198D34D400FBFF63 /* GlowFade.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A13D198D34D400FBFF63 /* GlowFade.h */; };
+		1644A169198D34D400FBFF63 /* RNSerial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A13E198D34D400FBFF63 /* RNSerial.cpp */; };
+		1644A16A198D34D400FBFF63 /* RNSerial.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A13F198D34D400FBFF63 /* RNSerial.h */; };
+		1644A16B198D34D400FBFF63 /* WWPAnimation5.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A140198D34D400FBFF63 /* WWPAnimation5.h */; };
+		1644A16C198D34D400FBFF63 /* RNAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A141198D34D400FBFF63 /* RNAnimation.h */; };
+		1644A16D198D34D400FBFF63 /* RNAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A142198D34D400FBFF63 /* RNAnimation.cpp */; };
+		1644A16E198D34D400FBFF63 /* WWPAnimation1.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A143198D34D400FBFF63 /* WWPAnimation1.h */; };
+		1644A16F198D34D400FBFF63 /* WWPAnimation2.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A144198D34D400FBFF63 /* WWPAnimation2.h */; };
+		1644A170198D34D400FBFF63 /* WWPAnimation3.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A145198D34D400FBFF63 /* WWPAnimation3.h */; };
+		1644A171198D34D400FBFF63 /* WWPAnimation4.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A146198D34D400FBFF63 /* WWPAnimation4.h */; };
+		1644A172198D34D400FBFF63 /* Controller.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A147198D34D400FBFF63 /* Controller.h */; };
+		1644A173198D34D400FBFF63 /* Platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A148198D34D400FBFF63 /* Platform.cpp */; };
+		1644A174198D34D400FBFF63 /* Platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A149198D34D400FBFF63 /* Platform.h */; };
+		1644A175198D34D400FBFF63 /* Saved.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A14A198D34D400FBFF63 /* Saved.h */; };
+		1644A17A198D34FE00FBFF63 /* RNGradient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A176198D34FE00FBFF63 /* RNGradient.cpp */; };
+		1644A17B198D34FE00FBFF63 /* RNGradient.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A177198D34FE00FBFF63 /* RNGradient.h */; };
+		1644A17C198D34FE00FBFF63 /* RNLights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A178198D34FE00FBFF63 /* RNLights.cpp */; };
+		1644A17D198D34FE00FBFF63 /* RNLights.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A179198D34FE00FBFF63 /* RNLights.h */; };
+		1644A180198D351A00FBFF63 /* RNChaser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A17E198D351A00FBFF63 /* RNChaser.cpp */; };
+		1644A181198D351A00FBFF63 /* RNChaser.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A17F198D351A00FBFF63 /* RNChaser.h */; };
+		1644A184198D354700FBFF63 /* Arduino.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A182198D354700FBFF63 /* Arduino.h */; };
+		1644A185198D354700FBFF63 /* hsv2rgb.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A183198D354700FBFF63 /* hsv2rgb.h */; };
+		1644A187198D37C900FBFF63 /* Accelerometer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A186198D37C900FBFF63 /* Accelerometer.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1644A119198D34AF00FBFF63 /* libPlatformCode.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPlatformCode.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1644A120198D34D400FBFF63 /* WWPAnimationTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WWPAnimationTest.cpp; path = ../Arduino/PyramidOfPossibilities/WWPAnimationTest.cpp; sourceTree = "<group>"; };
+		1644A121198D34D400FBFF63 /* WWPAnimationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WWPAnimationTest.h; path = ../Arduino/PyramidOfPossibilities/WWPAnimationTest.h; sourceTree = "<group>"; };
+		1644A122198D34D400FBFF63 /* Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Animations.h; path = ../Arduino/PyramidOfPossibilities/Animations.h; sourceTree = "<group>"; };
+		1644A123198D34D400FBFF63 /* Animations.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Animations.cpp; path = ../Arduino/PyramidOfPossibilities/Animations.cpp; sourceTree = "<group>"; };
+		1644A124198D34D400FBFF63 /* Snow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Snow.h; path = ../Arduino/PyramidOfPossibilities/Snow.h; sourceTree = "<group>"; };
+		1644A125198D34D400FBFF63 /* Snow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Snow.cpp; path = ../Arduino/PyramidOfPossibilities/Snow.cpp; sourceTree = "<group>"; };
+		1644A126198D34D400FBFF63 /* SideEffects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SideEffects.cpp; path = ../Arduino/PyramidOfPossibilities/SideEffects.cpp; sourceTree = "<group>"; };
+		1644A127198D34D400FBFF63 /* SideEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SideEffects.h; path = ../Arduino/PyramidOfPossibilities/SideEffects.h; sourceTree = "<group>"; };
+		1644A128198D34D400FBFF63 /* FlashAttack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlashAttack.h; path = ../Arduino/PyramidOfPossibilities/FlashAttack.h; sourceTree = "<group>"; };
+		1644A129198D34D400FBFF63 /* FlashAttack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FlashAttack.cpp; path = ../Arduino/PyramidOfPossibilities/FlashAttack.cpp; sourceTree = "<group>"; };
+		1644A12A198D34D400FBFF63 /* ActivityLevelAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ActivityLevelAnimation.cpp; path = ../Arduino/PyramidOfPossibilities/ActivityLevelAnimation.cpp; sourceTree = "<group>"; };
+		1644A12B198D34D400FBFF63 /* RNInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RNInfo.cpp; path = ../Arduino/PyramidOfPossibilities/RNInfo.cpp; sourceTree = "<group>"; };
+		1644A12C198D34D400FBFF63 /* WWPAnimation2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WWPAnimation2.cpp; path = ../Arduino/PyramidOfPossibilities/WWPAnimation2.cpp; sourceTree = "<group>"; };
+		1644A12D198D34D400FBFF63 /* RNInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNInfo.h; path = ../Arduino/PyramidOfPossibilities/RNInfo.h; sourceTree = "<group>"; };
+		1644A12E198D34D400FBFF63 /* DRAnimation1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DRAnimation1.cpp; path = ../Arduino/PyramidOfPossibilities/DRAnimation1.cpp; sourceTree = "<group>"; };
+		1644A12F198D34D400FBFF63 /* DRAnimation1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DRAnimation1.h; path = ../Arduino/PyramidOfPossibilities/DRAnimation1.h; sourceTree = "<group>"; };
+		1644A130198D34D400FBFF63 /* RNBeam.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RNBeam.cpp; path = ../Arduino/PyramidOfPossibilities/RNBeam.cpp; sourceTree = "<group>"; };
+		1644A131198D34D400FBFF63 /* RNBeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNBeam.h; path = ../Arduino/PyramidOfPossibilities/RNBeam.h; sourceTree = "<group>"; };
+		1644A132198D34D400FBFF63 /* Controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Controller.cpp; path = ../Arduino/PyramidOfPossibilities/Controller.cpp; sourceTree = "<group>"; };
+		1644A133198D34D400FBFF63 /* AVEAnimation1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AVEAnimation1.cpp; path = ../Arduino/PyramidOfPossibilities/AVEAnimation1.cpp; sourceTree = "<group>"; };
+		1644A134198D34D400FBFF63 /* AVEAnimation1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AVEAnimation1.h; path = ../Arduino/PyramidOfPossibilities/AVEAnimation1.h; sourceTree = "<group>"; };
+		1644A135198D34D400FBFF63 /* DRAnimation0.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DRAnimation0.cpp; path = ../Arduino/PyramidOfPossibilities/DRAnimation0.cpp; sourceTree = "<group>"; };
+		1644A136198D34D400FBFF63 /* DRAnimation0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DRAnimation0.h; path = ../Arduino/PyramidOfPossibilities/DRAnimation0.h; sourceTree = "<group>"; };
+		1644A137198D34D400FBFF63 /* ActivityLevelAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityLevelAnimation.h; path = ../Arduino/PyramidOfPossibilities/ActivityLevelAnimation.h; sourceTree = "<group>"; };
+		1644A138198D34D400FBFF63 /* WWPAnimation1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WWPAnimation1.cpp; path = ../Arduino/PyramidOfPossibilities/WWPAnimation1.cpp; sourceTree = "<group>"; };
+		1644A139198D34D400FBFF63 /* WWPAnimation3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WWPAnimation3.cpp; path = ../Arduino/PyramidOfPossibilities/WWPAnimation3.cpp; sourceTree = "<group>"; };
+		1644A13A198D34D400FBFF63 /* GlowFade.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GlowFade.cpp; path = ../Arduino/PyramidOfPossibilities/GlowFade.cpp; sourceTree = "<group>"; };
+		1644A13B198D34D400FBFF63 /* WWPAnimation4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WWPAnimation4.cpp; path = ../Arduino/PyramidOfPossibilities/WWPAnimation4.cpp; sourceTree = "<group>"; };
+		1644A13C198D34D400FBFF63 /* WWPAnimation5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WWPAnimation5.cpp; path = ../Arduino/PyramidOfPossibilities/WWPAnimation5.cpp; sourceTree = "<group>"; };
+		1644A13D198D34D400FBFF63 /* GlowFade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GlowFade.h; path = ../Arduino/PyramidOfPossibilities/GlowFade.h; sourceTree = "<group>"; };
+		1644A13E198D34D400FBFF63 /* RNSerial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RNSerial.cpp; path = ../Arduino/PyramidOfPossibilities/RNSerial.cpp; sourceTree = "<group>"; };
+		1644A13F198D34D400FBFF63 /* RNSerial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNSerial.h; path = ../Arduino/PyramidOfPossibilities/RNSerial.h; sourceTree = "<group>"; };
+		1644A140198D34D400FBFF63 /* WWPAnimation5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WWPAnimation5.h; path = ../Arduino/PyramidOfPossibilities/WWPAnimation5.h; sourceTree = "<group>"; };
+		1644A141198D34D400FBFF63 /* RNAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNAnimation.h; path = ../Arduino/PyramidOfPossibilities/RNAnimation.h; sourceTree = "<group>"; };
+		1644A142198D34D400FBFF63 /* RNAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RNAnimation.cpp; path = ../Arduino/PyramidOfPossibilities/RNAnimation.cpp; sourceTree = "<group>"; };
+		1644A143198D34D400FBFF63 /* WWPAnimation1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WWPAnimation1.h; path = ../Arduino/PyramidOfPossibilities/WWPAnimation1.h; sourceTree = "<group>"; };
+		1644A144198D34D400FBFF63 /* WWPAnimation2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WWPAnimation2.h; path = ../Arduino/PyramidOfPossibilities/WWPAnimation2.h; sourceTree = "<group>"; };
+		1644A145198D34D400FBFF63 /* WWPAnimation3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WWPAnimation3.h; path = ../Arduino/PyramidOfPossibilities/WWPAnimation3.h; sourceTree = "<group>"; };
+		1644A146198D34D400FBFF63 /* WWPAnimation4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WWPAnimation4.h; path = ../Arduino/PyramidOfPossibilities/WWPAnimation4.h; sourceTree = "<group>"; };
+		1644A147198D34D400FBFF63 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Controller.h; path = ../Arduino/PyramidOfPossibilities/Controller.h; sourceTree = "<group>"; };
+		1644A148198D34D400FBFF63 /* Platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Platform.cpp; path = ../Arduino/PyramidOfPossibilities/Platform.cpp; sourceTree = "<group>"; };
+		1644A149198D34D400FBFF63 /* Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Platform.h; path = ../Arduino/PyramidOfPossibilities/Platform.h; sourceTree = "<group>"; };
+		1644A14A198D34D400FBFF63 /* Saved.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Saved.h; path = ../Arduino/PyramidOfPossibilities/Saved.h; sourceTree = "<group>"; };
+		1644A176198D34FE00FBFF63 /* RNGradient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RNGradient.cpp; path = ../Arduino/libraries/RNLights/RNGradient.cpp; sourceTree = "<group>"; };
+		1644A177198D34FE00FBFF63 /* RNGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNGradient.h; path = ../Arduino/libraries/RNLights/RNGradient.h; sourceTree = "<group>"; };
+		1644A178198D34FE00FBFF63 /* RNLights.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RNLights.cpp; path = ../Arduino/libraries/RNLights/RNLights.cpp; sourceTree = "<group>"; };
+		1644A179198D34FE00FBFF63 /* RNLights.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNLights.h; path = ../Arduino/libraries/RNLights/RNLights.h; sourceTree = "<group>"; };
+		1644A17E198D351A00FBFF63 /* RNChaser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RNChaser.cpp; path = ../Arduino/libraries/RNChaser/RNChaser.cpp; sourceTree = "<group>"; };
+		1644A17F198D351A00FBFF63 /* RNChaser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNChaser.h; path = ../Arduino/libraries/RNChaser/RNChaser.h; sourceTree = "<group>"; };
+		1644A182198D354700FBFF63 /* Arduino.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Arduino.h; sourceTree = "<group>"; };
+		1644A183198D354700FBFF63 /* hsv2rgb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hsv2rgb.h; sourceTree = "<group>"; };
+		1644A186198D37C900FBFF63 /* Accelerometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Accelerometer.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1644A116198D34AF00FBFF63 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1644A110198D34AF00FBFF63 = {
+			isa = PBXGroup;
+			children = (
+				1644A188198D384500FBFF63 /* Animations */,
+				1644A189198D38DB00FBFF63 /* libraries */,
+				1644A123198D34D400FBFF63 /* Animations.cpp */,
+				1644A122198D34D400FBFF63 /* Animations.h */,
+				1644A132198D34D400FBFF63 /* Controller.cpp */,
+				1644A147198D34D400FBFF63 /* Controller.h */,
+				1644A148198D34D400FBFF63 /* Platform.cpp */,
+				1644A149198D34D400FBFF63 /* Platform.h */,
+				1644A142198D34D400FBFF63 /* RNAnimation.cpp */,
+				1644A141198D34D400FBFF63 /* RNAnimation.h */,
+				1644A130198D34D400FBFF63 /* RNBeam.cpp */,
+				1644A131198D34D400FBFF63 /* RNBeam.h */,
+				1644A17E198D351A00FBFF63 /* RNChaser.cpp */,
+				1644A17F198D351A00FBFF63 /* RNChaser.h */,
+				1644A176198D34FE00FBFF63 /* RNGradient.cpp */,
+				1644A177198D34FE00FBFF63 /* RNGradient.h */,
+				1644A12B198D34D400FBFF63 /* RNInfo.cpp */,
+				1644A12D198D34D400FBFF63 /* RNInfo.h */,
+				1644A178198D34FE00FBFF63 /* RNLights.cpp */,
+				1644A179198D34FE00FBFF63 /* RNLights.h */,
+				1644A14A198D34D400FBFF63 /* Saved.h */,
+				1644A11A198D34AF00FBFF63 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1644A11A198D34AF00FBFF63 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1644A119198D34AF00FBFF63 /* libPlatformCode.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1644A188198D384500FBFF63 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				1644A12A198D34D400FBFF63 /* ActivityLevelAnimation.cpp */,
+				1644A137198D34D400FBFF63 /* ActivityLevelAnimation.h */,
+				1644A133198D34D400FBFF63 /* AVEAnimation1.cpp */,
+				1644A134198D34D400FBFF63 /* AVEAnimation1.h */,
+				1644A135198D34D400FBFF63 /* DRAnimation0.cpp */,
+				1644A136198D34D400FBFF63 /* DRAnimation0.h */,
+				1644A12E198D34D400FBFF63 /* DRAnimation1.cpp */,
+				1644A12F198D34D400FBFF63 /* DRAnimation1.h */,
+				1644A129198D34D400FBFF63 /* FlashAttack.cpp */,
+				1644A128198D34D400FBFF63 /* FlashAttack.h */,
+				1644A13A198D34D400FBFF63 /* GlowFade.cpp */,
+				1644A13D198D34D400FBFF63 /* GlowFade.h */,
+				1644A126198D34D400FBFF63 /* SideEffects.cpp */,
+				1644A127198D34D400FBFF63 /* SideEffects.h */,
+				1644A125198D34D400FBFF63 /* Snow.cpp */,
+				1644A124198D34D400FBFF63 /* Snow.h */,
+				1644A138198D34D400FBFF63 /* WWPAnimation1.cpp */,
+				1644A143198D34D400FBFF63 /* WWPAnimation1.h */,
+				1644A12C198D34D400FBFF63 /* WWPAnimation2.cpp */,
+				1644A144198D34D400FBFF63 /* WWPAnimation2.h */,
+				1644A139198D34D400FBFF63 /* WWPAnimation3.cpp */,
+				1644A145198D34D400FBFF63 /* WWPAnimation3.h */,
+				1644A13B198D34D400FBFF63 /* WWPAnimation4.cpp */,
+				1644A146198D34D400FBFF63 /* WWPAnimation4.h */,
+				1644A13C198D34D400FBFF63 /* WWPAnimation5.cpp */,
+				1644A140198D34D400FBFF63 /* WWPAnimation5.h */,
+				1644A120198D34D400FBFF63 /* WWPAnimationTest.cpp */,
+				1644A121198D34D400FBFF63 /* WWPAnimationTest.h */,
+			);
+			name = Animations;
+			sourceTree = "<group>";
+		};
+		1644A189198D38DB00FBFF63 /* libraries */ = {
+			isa = PBXGroup;
+			children = (
+				1644A186198D37C900FBFF63 /* Accelerometer.h */,
+				1644A182198D354700FBFF63 /* Arduino.h */,
+				1644A183198D354700FBFF63 /* hsv2rgb.h */,
+				1644A13E198D34D400FBFF63 /* RNSerial.cpp */,
+				1644A13F198D34D400FBFF63 /* RNSerial.h */,
+			);
+			name = libraries;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		1644A117198D34AF00FBFF63 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1644A152198D34D400FBFF63 /* SideEffects.h in Headers */,
+				1644A185198D354700FBFF63 /* hsv2rgb.h in Headers */,
+				1644A14F198D34D400FBFF63 /* Snow.h in Headers */,
+				1644A161198D34D400FBFF63 /* DRAnimation0.h in Headers */,
+				1644A17D198D34FE00FBFF63 /* RNLights.h in Headers */,
+				1644A162198D34D400FBFF63 /* ActivityLevelAnimation.h in Headers */,
+				1644A171198D34D400FBFF63 /* WWPAnimation4.h in Headers */,
+				1644A16E198D34D400FBFF63 /* WWPAnimation1.h in Headers */,
+				1644A172198D34D400FBFF63 /* Controller.h in Headers */,
+				1644A153198D34D400FBFF63 /* FlashAttack.h in Headers */,
+				1644A168198D34D400FBFF63 /* GlowFade.h in Headers */,
+				1644A17B198D34FE00FBFF63 /* RNGradient.h in Headers */,
+				1644A16B198D34D400FBFF63 /* WWPAnimation5.h in Headers */,
+				1644A181198D351A00FBFF63 /* RNChaser.h in Headers */,
+				1644A170198D34D400FBFF63 /* WWPAnimation3.h in Headers */,
+				1644A15F198D34D400FBFF63 /* AVEAnimation1.h in Headers */,
+				1644A15C198D34D400FBFF63 /* RNBeam.h in Headers */,
+				1644A14C198D34D400FBFF63 /* WWPAnimationTest.h in Headers */,
+				1644A158198D34D400FBFF63 /* RNInfo.h in Headers */,
+				1644A174198D34D400FBFF63 /* Platform.h in Headers */,
+				1644A184198D354700FBFF63 /* Arduino.h in Headers */,
+				1644A16A198D34D400FBFF63 /* RNSerial.h in Headers */,
+				1644A16F198D34D400FBFF63 /* WWPAnimation2.h in Headers */,
+				1644A16C198D34D400FBFF63 /* RNAnimation.h in Headers */,
+				1644A187198D37C900FBFF63 /* Accelerometer.h in Headers */,
+				1644A14D198D34D400FBFF63 /* Animations.h in Headers */,
+				1644A175198D34D400FBFF63 /* Saved.h in Headers */,
+				1644A15A198D34D400FBFF63 /* DRAnimation1.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		1644A118198D34AF00FBFF63 /* PlatformCode */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1644A11D198D34AF00FBFF63 /* Build configuration list for PBXNativeTarget "PlatformCode" */;
+			buildPhases = (
+				1644A115198D34AF00FBFF63 /* Sources */,
+				1644A116198D34AF00FBFF63 /* Frameworks */,
+				1644A117198D34AF00FBFF63 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PlatformCode;
+			productName = PlatformCode;
+			productReference = 1644A119198D34AF00FBFF63 /* libPlatformCode.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1644A111198D34AF00FBFF63 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = RN;
+			};
+			buildConfigurationList = 1644A114198D34AF00FBFF63 /* Build configuration list for PBXProject "PlatformCode" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1644A110198D34AF00FBFF63;
+			productRefGroup = 1644A11A198D34AF00FBFF63 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1644A118198D34AF00FBFF63 /* PlatformCode */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1644A115198D34AF00FBFF63 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1644A16D198D34D400FBFF63 /* RNAnimation.cpp in Sources */,
+				1644A17C198D34FE00FBFF63 /* RNLights.cpp in Sources */,
+				1644A160198D34D400FBFF63 /* DRAnimation0.cpp in Sources */,
+				1644A180198D351A00FBFF63 /* RNChaser.cpp in Sources */,
+				1644A156198D34D400FBFF63 /* RNInfo.cpp in Sources */,
+				1644A166198D34D400FBFF63 /* WWPAnimation4.cpp in Sources */,
+				1644A150198D34D400FBFF63 /* Snow.cpp in Sources */,
+				1644A164198D34D400FBFF63 /* WWPAnimation3.cpp in Sources */,
+				1644A15B198D34D400FBFF63 /* RNBeam.cpp in Sources */,
+				1644A173198D34D400FBFF63 /* Platform.cpp in Sources */,
+				1644A157198D34D400FBFF63 /* WWPAnimation2.cpp in Sources */,
+				1644A17A198D34FE00FBFF63 /* RNGradient.cpp in Sources */,
+				1644A165198D34D400FBFF63 /* GlowFade.cpp in Sources */,
+				1644A159198D34D400FBFF63 /* DRAnimation1.cpp in Sources */,
+				1644A167198D34D400FBFF63 /* WWPAnimation5.cpp in Sources */,
+				1644A154198D34D400FBFF63 /* FlashAttack.cpp in Sources */,
+				1644A155198D34D400FBFF63 /* ActivityLevelAnimation.cpp in Sources */,
+				1644A15E198D34D400FBFF63 /* AVEAnimation1.cpp in Sources */,
+				1644A151198D34D400FBFF63 /* SideEffects.cpp in Sources */,
+				1644A14E198D34D400FBFF63 /* Animations.cpp in Sources */,
+				1644A163198D34D400FBFF63 /* WWPAnimation1.cpp in Sources */,
+				1644A14B198D34D400FBFF63 /* WWPAnimationTest.cpp in Sources */,
+				1644A15D198D34D400FBFF63 /* Controller.cpp in Sources */,
+				1644A169198D34D400FBFF63 /* RNSerial.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1644A11B198D34AF00FBFF63 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		1644A11C198D34AF00FBFF63 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		1644A11E198D34AF00FBFF63 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		1644A11F198D34AF00FBFF63 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1644A114198D34AF00FBFF63 /* Build configuration list for PBXProject "PlatformCode" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1644A11B198D34AF00FBFF63 /* Debug */,
+				1644A11C198D34AF00FBFF63 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1644A11D198D34AF00FBFF63 /* Build configuration list for PBXNativeTarget "PlatformCode" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1644A11E198D34AF00FBFF63 /* Debug */,
+				1644A11F198D34AF00FBFF63 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1644A111198D34AF00FBFF63 /* Project object */;
+}

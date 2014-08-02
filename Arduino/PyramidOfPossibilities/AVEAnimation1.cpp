@@ -27,6 +27,6 @@ void AVEAnimation1::paint(RNLights & lights) {
     }
 }
 
-char * AVEAnimation1::name() {
+const char * AVEAnimation1::name() {
     return "AVEAnimation1";
 }

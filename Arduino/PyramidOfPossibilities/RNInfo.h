@@ -79,8 +79,8 @@ public:
   void showActivity(RNLights & lights, bool showSparkles, uint16_t minBrightness);
 
   // print debugging information
-  void println(char *s);
-  void printf(char *fmt, ... );
+  void println(const char *s);
+  void printf(const char *fmt, ... );
 
 private:
   float globalAngle[240];

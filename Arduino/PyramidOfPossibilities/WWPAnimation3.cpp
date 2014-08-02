@@ -16,7 +16,7 @@ void WWPAnimation3::paint(RNLights & lights) {
   info.showActivity(lights, true, 16);
 }
 
-  char * WWPAnimation3:: name() {
+  const char * WWPAnimation3:: name() {
     return "WWPAnimation3";
   }
   

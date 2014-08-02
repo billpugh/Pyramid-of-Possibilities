@@ -42,7 +42,7 @@ void ActivityLevelAnimation::paint(RNLights & lights) {
 
 }
 
-char * ActivityLevelAnimation:: name() {
+const char * ActivityLevelAnimation:: name() {
   return "ActivityLevelAnimation";
 }
 

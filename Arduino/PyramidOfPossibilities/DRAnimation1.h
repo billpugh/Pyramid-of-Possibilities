@@ -15,7 +15,7 @@ class DRAnimation1 : public RNAnimation {
 public:
     DRAnimation1(RNInfo & info, unsigned long animationStartMillis) : RNAnimation(info, animationStartMillis) {};
     virtual void paint(RNLights & lights);
-    virtual char * name();
+    virtual const char * name();
 
     uint32_t base_color;
 

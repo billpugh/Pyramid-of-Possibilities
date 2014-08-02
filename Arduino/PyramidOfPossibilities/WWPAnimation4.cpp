@@ -8,7 +8,7 @@
 
 #include "WWPAnimation4.h"
 
-char * WWPAnimation4:: name() {
+const char * WWPAnimation4:: name() {
   return "WWPAnimation4";
 }
 

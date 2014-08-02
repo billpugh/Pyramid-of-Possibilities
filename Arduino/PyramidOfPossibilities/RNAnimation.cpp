@@ -25,7 +25,7 @@ void RNAnimation::setParameters(int size, char * data) {
     
 }
 
-  char * RNAnimation:: name() {
+  const char * RNAnimation:: name() {
     return "Unknown";
   }
    

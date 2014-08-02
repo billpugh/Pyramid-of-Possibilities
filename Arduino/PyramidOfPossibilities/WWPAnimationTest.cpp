@@ -8,14 +8,22 @@
 #include "WWPAnimationTest.h"
 
 void WWPAnimationTest::paint(RNLights & lights) {
+  
+  float timeInMinutes =  getAnimationMillis()/60000.0;
 
-  uint8_t baseHue = (getAnimationMillis() / 10) % 256;
-
+  float basePos =  timeInMinutes * rpm;
+//  info.printf("rotation %f -> %d\n", timeInMinutes, baseHue);
+//  
   for(int i = 0; i < lights.getNumPixels(); i++) {
-    lights.setPixelColor(i, gradient.getColor(baseHue+i*256*4/info.numLEDs));
+    float pos = basePos;
+    if (global)
+      pos += info.getGlobalAngle(i)/360;
+    else
+      pos += ((float)i)/info.numLEDs;
+      lights.setPixelColor(i, gradient.getColor( pos*256*repeats ));
   }
-  lights.setBrightness(40);
-  info.showActivity(lights, false, 16);
+
+  info.showActivity(lights, false, 40);
 
 }
 

@@ -11,6 +11,7 @@
 #include "Arduino.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdarg.h>
 
 
 RNInfo::RNInfo(
@@ -78,17 +79,17 @@ unsigned long RNInfo::timeSinceLastTap() {
   return millis() - lastTap;
 }
 
-void RNInfo::println(char * s) {
-  Serial.println(s);
+void RNInfo::println(const char * s) {
+//  Serial.println(s);
 }
 
-void RNInfo::printf(char *fmt, ... ){
+void RNInfo::printf(const char *fmt, ... ){
   char tmp[256]; // resulting string limited to 256 chars
   va_list args;
   va_start (args, fmt );
   vsnprintf(tmp, 256, fmt, args);
   va_end (args);
-  Serial.print(tmp);
+//  Serial.print(tmp);
 }
 
 uint16_t RNInfo::getRandomPixel() {

@@ -22,6 +22,6 @@ void DRAnimation0::paint(RNLights & lights) {
 	}
 }
 
-char * DRAnimation0:: name() {
+const char * DRAnimation0:: name() {
 	return "DRAnimation0";
 }

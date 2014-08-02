@@ -15,7 +15,7 @@ class GlowFade : public RNAnimation {
 public:
     GlowFade(RNInfo & info, unsigned long animationStartMillis);
     virtual void paint(RNLights & lights);
-    virtual char * name();
+    virtual const char * name();
 private:
     RNLights sparkles;
 
