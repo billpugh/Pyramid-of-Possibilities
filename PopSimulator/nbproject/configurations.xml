@@ -46,6 +46,8 @@
                    displayName="Resource Files"
                    projectFiles="true">
       <itemPath>ColorFragmentShader.shader</itemPath>
+      <itemPath>LedsFragmentShader.shader</itemPath>
+      <itemPath>LedsVertexShader.shader</itemPath>
       <itemPath>TransformVertexShader.shader</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
@@ -566,6 +568,10 @@
       </item>
       <item path="FPSControlsHandler.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="LedsFragmentShader.shader" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="LedsVertexShader.shader" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="PlatformControler.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="PlatformControler.hpp" ex="false" tool="3" flavor2="0">
@@ -893,6 +899,10 @@
       <item path="FPSControlsHandler.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="FPSControlsHandler.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="LedsFragmentShader.shader" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="LedsVertexShader.shader" ex="false" tool="3" flavor2="0">
       </item>
       <item path="PlatformControler.cpp" ex="false" tool="1" flavor2="0">
       </item>

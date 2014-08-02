@@ -39,7 +39,7 @@ PlatformControler::PlatformControler(Pyramid* _pyramid, int _platform) {
             coords[1],
             coords[2]);
 
-    animation = new GlowFade(*info, millis());
+    animation = new AVEAnimation1(*info, millis());
 }
 
 void PlatformControler::refreshPlatform() {
