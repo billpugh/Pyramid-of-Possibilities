@@ -117,6 +117,7 @@
 		1644A186198D37C900FBFF63 /* Accelerometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Accelerometer.h; sourceTree = "<group>"; };
 		30F8EB2D198D5B6E008DEAE9 /* Constants.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Constants.cpp; path = ../Arduino/PyramidOfPossibilities/Constants.cpp; sourceTree = "<group>"; };
 		30F8EB2E198D5B6E008DEAE9 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../Arduino/PyramidOfPossibilities/Constants.h; sourceTree = "<group>"; };
+		30F8EB31198D5D92008DEAE9 /* PyramidOfPossibilities.ino */ = {isa = PBXFileReference; lastKnownFileType = text; name = PyramidOfPossibilities.ino; path = ../Arduino/PyramidOfPossibilities/PyramidOfPossibilities.ino; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +134,7 @@
 		1644A110198D34AF00FBFF63 = {
 			isa = PBXGroup;
 			children = (
+				30F8EB31198D5D92008DEAE9 /* PyramidOfPossibilities.ino */,
 				1644A188198D384500FBFF63 /* Animations */,
 				1644A189198D38DB00FBFF63 /* libraries */,
 				1644A123198D34D400FBFF63 /* Animations.cpp */,
