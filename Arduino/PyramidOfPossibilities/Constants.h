@@ -9,7 +9,7 @@
 #define CONSTANTS_PYRAMID_OF_POP
 
 // To enable DEBUG mode, uncomment the line below
-#define DEBUG
+#define DEBUG 1
 
 // To test without using the full strip of LEDs, uncomment the line below and set the number of LEDs you want, as well as the index of the 1st LED.
 #define FULL_STRIP
