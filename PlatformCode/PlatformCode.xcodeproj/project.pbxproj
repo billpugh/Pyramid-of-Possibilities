@@ -60,6 +60,8 @@
 		1644A187198D37C900FBFF63 /* Accelerometer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A186198D37C900FBFF63 /* Accelerometer.h */; };
 		1644A192198D600200FBFF63 /* ledPositions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A190198D600200FBFF63 /* ledPositions.cpp */; };
 		1644A193198D600200FBFF63 /* ledPositions.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A191198D600200FBFF63 /* ledPositions.h */; };
+		16F839D5198D691200B6419F /* GradientSwirl.h in Headers */ = {isa = PBXBuildFile; fileRef = 16F839D3198D691200B6419F /* GradientSwirl.h */; };
+		16F839D6198D691200B6419F /* GradientSwirl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16F839D4198D691200B6419F /* GradientSwirl.cpp */; };
 		30F8EB2F198D5B6E008DEAE9 /* Constants.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F8EB2D198D5B6E008DEAE9 /* Constants.cpp */; };
 		30F8EB30198D5B6E008DEAE9 /* Constants.h in Headers */ = {isa = PBXBuildFile; fileRef = 30F8EB2E198D5B6E008DEAE9 /* Constants.h */; };
 /* End PBXBuildFile section */
@@ -119,6 +121,8 @@
 		1644A186198D37C900FBFF63 /* Accelerometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Accelerometer.h; sourceTree = "<group>"; };
 		1644A190198D600200FBFF63 /* ledPositions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ledPositions.cpp; path = ../Arduino/PyramidOfPossibilities/ledPositions.cpp; sourceTree = "<group>"; };
 		1644A191198D600200FBFF63 /* ledPositions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ledPositions.h; path = ../Arduino/PyramidOfPossibilities/ledPositions.h; sourceTree = "<group>"; };
+		16F839D3198D691200B6419F /* GradientSwirl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GradientSwirl.h; path = ../Arduino/PyramidOfPossibilities/GradientSwirl.h; sourceTree = "<group>"; };
+		16F839D4198D691200B6419F /* GradientSwirl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GradientSwirl.cpp; path = ../Arduino/PyramidOfPossibilities/GradientSwirl.cpp; sourceTree = "<group>"; };
 		30F8EB2D198D5B6E008DEAE9 /* Constants.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Constants.cpp; path = ../Arduino/PyramidOfPossibilities/Constants.cpp; sourceTree = "<group>"; };
 		30F8EB2E198D5B6E008DEAE9 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../Arduino/PyramidOfPossibilities/Constants.h; sourceTree = "<group>"; };
 		30F8EB31198D5D92008DEAE9 /* PyramidOfPossibilities.ino */ = {isa = PBXFileReference; lastKnownFileType = text; name = PyramidOfPossibilities.ino; path = ../Arduino/PyramidOfPossibilities/PyramidOfPossibilities.ino; sourceTree = "<group>"; };
@@ -173,6 +177,8 @@
 		1644A188198D384500FBFF63 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				16F839D3198D691200B6419F /* GradientSwirl.h */,
+				16F839D4198D691200B6419F /* GradientSwirl.cpp */,
 				1644A12A198D34D400FBFF63 /* ActivityLevelAnimation.cpp */,
 				1644A137198D34D400FBFF63 /* ActivityLevelAnimation.h */,
 				1644A133198D34D400FBFF63 /* AVEAnimation1.cpp */,
@@ -272,6 +278,7 @@
 				1644A16F198D34D400FBFF63 /* WWPAnimation2.h in Headers */,
 				1644A16C198D34D400FBFF63 /* RNAnimation.h in Headers */,
 				1644A187198D37C900FBFF63 /* Accelerometer.h in Headers */,
+				16F839D5198D691200B6419F /* GradientSwirl.h in Headers */,
 				1644A14D198D34D400FBFF63 /* Animations.h in Headers */,
 				1644A175198D34D400FBFF63 /* Saved.h in Headers */,
 				1644A15A198D34D400FBFF63 /* DRAnimation1.h in Headers */,
@@ -330,6 +337,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1644A16D198D34D400FBFF63 /* RNAnimation.cpp in Sources */,
+				16F839D6198D691200B6419F /* GradientSwirl.cpp in Sources */,
 				1644A17C198D34FE00FBFF63 /* RNLights.cpp in Sources */,
 				1644A160198D34D400FBFF63 /* DRAnimation0.cpp in Sources */,
 				1644A180198D351A00FBFF63 /* RNChaser.cpp in Sources */,
