@@ -25,6 +25,7 @@ void AVEAnimation1::paint(RNLights & lights) {
         int pos = lights.normalize(currentPos - i);
         lights.setPixelColor(pos, intensity, intensity, intensity);
     }
+    info.showActivityWithBrightness(lights, 128);
 }
 
 const char * AVEAnimation1::name() {
