@@ -37,7 +37,6 @@
 		1644A166198D34D400FBFF63 /* WWPAnimation4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A13B198D34D400FBFF63 /* WWPAnimation4.cpp */; };
 		1644A167198D34D400FBFF63 /* WWPAnimation5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A13C198D34D400FBFF63 /* WWPAnimation5.cpp */; };
 		1644A168198D34D400FBFF63 /* GlowFade.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A13D198D34D400FBFF63 /* GlowFade.h */; };
-		1644A169198D34D400FBFF63 /* RNSerial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A13E198D34D400FBFF63 /* RNSerial.cpp */; };
 		1644A16A198D34D400FBFF63 /* RNSerial.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A13F198D34D400FBFF63 /* RNSerial.h */; };
 		1644A16B198D34D400FBFF63 /* WWPAnimation5.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A140198D34D400FBFF63 /* WWPAnimation5.h */; };
 		1644A16C198D34D400FBFF63 /* RNAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A141198D34D400FBFF63 /* RNAnimation.h */; };
@@ -95,7 +94,6 @@
 		1644A13B198D34D400FBFF63 /* WWPAnimation4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WWPAnimation4.cpp; path = ../Arduino/PyramidOfPossibilities/WWPAnimation4.cpp; sourceTree = "<group>"; };
 		1644A13C198D34D400FBFF63 /* WWPAnimation5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WWPAnimation5.cpp; path = ../Arduino/PyramidOfPossibilities/WWPAnimation5.cpp; sourceTree = "<group>"; };
 		1644A13D198D34D400FBFF63 /* GlowFade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GlowFade.h; path = ../Arduino/PyramidOfPossibilities/GlowFade.h; sourceTree = "<group>"; };
-		1644A13E198D34D400FBFF63 /* RNSerial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RNSerial.cpp; path = ../Arduino/PyramidOfPossibilities/RNSerial.cpp; sourceTree = "<group>"; };
 		1644A13F198D34D400FBFF63 /* RNSerial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNSerial.h; path = ../Arduino/PyramidOfPossibilities/RNSerial.h; sourceTree = "<group>"; };
 		1644A140198D34D400FBFF63 /* WWPAnimation5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WWPAnimation5.h; path = ../Arduino/PyramidOfPossibilities/WWPAnimation5.h; sourceTree = "<group>"; };
 		1644A141198D34D400FBFF63 /* RNAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNAnimation.h; path = ../Arduino/PyramidOfPossibilities/RNAnimation.h; sourceTree = "<group>"; };
@@ -135,6 +133,8 @@
 		1644A110198D34AF00FBFF63 = {
 			isa = PBXGroup;
 			children = (
+				1644A18C198D4D7E00FBFF63 /* ledPositions.cpp */,
+				1644A18D198D4D7E00FBFF63 /* ledPositions.h */,
 				1644A188198D384500FBFF63 /* Animations */,
 				1644A189198D38DB00FBFF63 /* libraries */,
 				1644A123198D34D400FBFF63 /* Animations.cpp */,
@@ -147,16 +147,10 @@
 				1644A149198D34D400FBFF63 /* Platform.h */,
 				1644A142198D34D400FBFF63 /* RNAnimation.cpp */,
 				1644A141198D34D400FBFF63 /* RNAnimation.h */,
-				1644A130198D34D400FBFF63 /* RNBeam.cpp */,
-				1644A131198D34D400FBFF63 /* RNBeam.h */,
-				1644A17E198D351A00FBFF63 /* RNChaser.cpp */,
-				1644A17F198D351A00FBFF63 /* RNChaser.h */,
-				1644A176198D34FE00FBFF63 /* RNGradient.cpp */,
-				1644A177198D34FE00FBFF63 /* RNGradient.h */,
+				1644A18B198D4BCA00FBFF63 /* Effects */,
+				1644A18A198D4BBC00FBFF63 /* RNLights */,
 				1644A12B198D34D400FBFF63 /* RNInfo.cpp */,
 				1644A12D198D34D400FBFF63 /* RNInfo.h */,
-				1644A178198D34FE00FBFF63 /* RNLights.cpp */,
-				1644A179198D34FE00FBFF63 /* RNLights.h */,
 				1644A14A198D34D400FBFF63 /* Saved.h */,
 				1644A11A198D34AF00FBFF63 /* Products */,
 			);
@@ -211,10 +205,31 @@
 				1644A186198D37C900FBFF63 /* Accelerometer.h */,
 				1644A182198D354700FBFF63 /* Arduino.h */,
 				1644A183198D354700FBFF63 /* hsv2rgb.h */,
-				1644A13E198D34D400FBFF63 /* RNSerial.cpp */,
 				1644A13F198D34D400FBFF63 /* RNSerial.h */,
 			);
 			name = libraries;
+			sourceTree = "<group>";
+		};
+		1644A18A198D4BBC00FBFF63 /* RNLights */ = {
+			isa = PBXGroup;
+			children = (
+				1644A176198D34FE00FBFF63 /* RNGradient.cpp */,
+				1644A177198D34FE00FBFF63 /* RNGradient.h */,
+				1644A178198D34FE00FBFF63 /* RNLights.cpp */,
+				1644A179198D34FE00FBFF63 /* RNLights.h */,
+			);
+			name = RNLights;
+			sourceTree = "<group>";
+		};
+		1644A18B198D4BCA00FBFF63 /* Effects */ = {
+			isa = PBXGroup;
+			children = (
+				1644A130198D34D400FBFF63 /* RNBeam.cpp */,
+				1644A131198D34D400FBFF63 /* RNBeam.h */,
+				1644A17E198D351A00FBFF63 /* RNChaser.cpp */,
+				1644A17F198D351A00FBFF63 /* RNChaser.h */,
+			);
+			name = Effects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,6 +239,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1644A18F198D4D7E00FBFF63 /* ledPositions.h in Headers */,
 				1644A152198D34D400FBFF63 /* SideEffects.h in Headers */,
 				1644A185198D354700FBFF63 /* hsv2rgb.h in Headers */,
 				1644A14F198D34D400FBFF63 /* Snow.h in Headers */,
@@ -313,6 +329,7 @@
 				1644A180198D351A00FBFF63 /* RNChaser.cpp in Sources */,
 				1644A156198D34D400FBFF63 /* RNInfo.cpp in Sources */,
 				1644A166198D34D400FBFF63 /* WWPAnimation4.cpp in Sources */,
+				1644A18E198D4D7E00FBFF63 /* ledPositions.cpp in Sources */,
 				1644A150198D34D400FBFF63 /* Snow.cpp in Sources */,
 				308D2A30198D57AF00157919 /* Constants.cpp in Sources */,
 				1644A164198D34D400FBFF63 /* WWPAnimation3.cpp in Sources */,
@@ -331,7 +348,6 @@
 				1644A163198D34D400FBFF63 /* WWPAnimation1.cpp in Sources */,
 				1644A14B198D34D400FBFF63 /* WWPAnimationTest.cpp in Sources */,
 				1644A15D198D34D400FBFF63 /* Controller.cpp in Sources */,
-				1644A169198D34D400FBFF63 /* RNSerial.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

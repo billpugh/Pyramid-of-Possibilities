@@ -17,12 +17,10 @@ public:
     : RNAnimation(info, animationStartMillis), gradient(1, RNGradientBounce, 
          0x90ffff, 0xffffff), repeats(6), rpm(10), global(1) {
       
-      for(int i = 0; i < 256; i++)
-        info.printf("Gradient(%d) = %x\n", i, gradient.getColor(i));
-    };
+       };
     virtual void paint(RNLights & lights);
     
-    virtual char * name();
+    virtual const char * name();
     
     RNGradient gradient;
     
