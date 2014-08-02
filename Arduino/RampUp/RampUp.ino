@@ -24,7 +24,7 @@ void setup() {
 }
 
 int count = 0;
-const int value = 128;
+const int value = 255;
 void loop() {
   count++;
   if (count >= numLEDs) {
@@ -33,9 +33,9 @@ void loop() {
   }
   for(int i = 0; i < numLEDs; i++) 
     if (i <= count || i+count > numLEDs)
-      strip.setPixelColor(i+10, value, value, value);
+      strip.setPixelColor(i+15, value, value, value);
     else
-      strip.setPixelColor(i+10, 0);
+      strip.setPixelColor(i+15, 0);
   strip.show();
 
 }
