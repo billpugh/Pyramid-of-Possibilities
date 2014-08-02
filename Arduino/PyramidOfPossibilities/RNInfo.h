@@ -10,10 +10,13 @@
 #define __PlatformData__RNInfo__
 
 #include <stdint.h>
+#include "Platform.h"
 #include "RNLights.h"
 
-class RNInfo {
+class RNInfo : public Platform {
 public:
+    RNInfo(  uint8_t numLEDs, Platform & p);
+    
   RNInfo(
   uint8_t numLEDs,
   uint8_t tier,
@@ -27,16 +30,6 @@ public:
   // Information about the platform
   // Number of visible LEDs on the platform
   const uint8_t numLEDs;
-  // What tier is the platform on
-  const uint8_t tier;
-  // What is the number of the platform within that tier
-  const uint8_t number;
-  // What is the identify of the platform (unique)
-  const uint8_t identifier;
-
-  // What is the x,y,z displacement of the center of the platform 
-  // from the center base of the Pyramid
-  const int16_t x,y,z;
   // Get the global clock value (synchronized across all platforms)
   unsigned long getGlobalMillis();
   
@@ -101,6 +94,8 @@ private:
     unsigned long lastTap = 0;
     
   RNLights sparkles;
+    
+    void initialize();
 
 
 };
