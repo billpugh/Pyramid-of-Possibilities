@@ -8,8 +8,10 @@
 
 #include "DRAnimation1.h"
 #include "RNBeam.h"
+#include "Arduino.h"
 
-#define MAX_BRIGHTNESS 100
+
+#define CONSIDER_THE_ACCELEROMETER
 
 // TODO: don't statically allocate these. move to constructor.
 const uint8_t numBeams = 3;
@@ -19,19 +21,33 @@ RNBeam beams[numBeams] = {
 	RNBeam(),
 	RNBeam()
 };
+float widths[numBeams] = {300,300,300};
 static int once = 0;
 
 void initalizeBeams(RNInfo * info) {
 
 	for ( uint8_t n = 0; n < numBeams; n++ ) {
-  		beams[n].speed = n+1;
-  		beams[n].width = 53+107 * n;
+  		beams[n].speed = 4;
   		beams[n].offset = 333 * n;
-
+        
+  		switch (n) {
+//  			case 0:
+//                beams[n].width = 50;
+//                break;
+//  			case 1:
+//                beams[n].width = 50;
+//                break;
+//  			case 2:
+//                beams[n].width = 100;
+//                break;
+  			// default:
+     //            beams[n].width = 150;
+  		}
+        beams[n].width = widths[n];
   		beams[n].r = (n==0)*200;
   		beams[n].g = (n==1)*200;
   		beams[n].b = (n==2)*200;
-
+        
 		beams[n].info = info;
 	}
 }
@@ -40,17 +56,29 @@ void DRAnimation1::paint(RNLights & lights) {
 
 	// TODO: move to initalizer
 	if ( once == 0 ) {
-		base_color = 0x000006;
+		base_color = 0x000000;
 		initalizeBeams(&info);
-	}
-	if ( ++once < 20 ) {
-		lights.setAllPixelColors(once, 0, 0);
-		return;
+		min_g = .1;
+		max_g = .3;
 	}
 
 	// Begin real animation
-
+#ifdef CONSIDER_THE_ACCELEROMETER
 	unsigned long millis = getAnimationMillis();
+	float activity = info.getLocalActivity();
+	if ( activity < min_g ) {
+		activity = min_g;
+	} else if ( activity > max_g ) {
+		activity = max_g;
+	}
+	float g_range = max_g - min_g;
+	float multiplier = (activity - min_g) / g_range;
+	for ( int i = 0; i < numBeams; i++ ) {
+		beams[i].width = widths[i] * multiplier + 33;
+	}
+	info.printf("multiplier is %f.  Local Activity is %f\n", multiplier, info.getLocalActivity());
+#endif
+
 
 	for ( int i = 0; i < numBeams; i++ ) {
 		beams[i].loop(millis);
