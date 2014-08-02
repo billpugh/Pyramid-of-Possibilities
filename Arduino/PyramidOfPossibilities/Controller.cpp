@@ -36,7 +36,7 @@ void RNController::switchToAnimation(AnimationEnum nextAnimation) {
     currentAnimation = getAnimation(currentAnimationEnum, info, start);
     int after = heapSize();
     info.printf("%d bytes allocated\n",after-before);
-    animationExpires = start + 30000;
+    animationExpires = start + 60000;
     if (currentAnimation)
       info.printf("Created %s\n", currentAnimation->name());
 }
