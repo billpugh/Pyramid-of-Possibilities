@@ -59,9 +59,9 @@ void setup() {
   Serial.println(lights.getNumPixels());
   initializeAccelerometer();
   setupSerial2(9600);
-  Platform platform( 0,0,0,0,700,0);
+  Platform platform( 0,0,0,0,1200,0);
   info = new RNInfo(LEDs, platform);
-  controller = new RNController(info);
+  controller = new RNController(*info);
 }
 
 const uint8_t chunk = 16;
@@ -91,7 +91,7 @@ void capOverallBrightness(RNLights & lights) {
     int goal= scaleBrightness(avgBrightness);
     
     int newBrightness = goal * 255 / avgPixelBrightness;
-    info.printf("Avg brightness is %d/%d, goal is %d, Reducing brightness from %d -> %d\n",
+    info->printf("Avg brightness is %d/%d, goal is %d, Reducing brightness from %d -> %d\n",
     avgPixelBrightness, avgBrightness, goal, lights.getBrightness(), newBrightness);
     lights.setBrightness(newBrightness);
   }
@@ -124,7 +124,7 @@ void loop() {
   int blink = (millis() /100)%2;
   digitalWrite(ONBOARD_LED_PIN, blink);
   if (count++ >= 100) {
-    info.printf("Avg time = %5d, delay = %dms, heapSize = %d\n",
+    info->printf("Avg time = %5d, delay = %dms, heapSize = %d\n",
     avgTime, timeToDelay, heapSize());
     count = 0;
   }
