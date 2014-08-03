@@ -32,9 +32,6 @@ void RNInfo::initialize() {
     for(int i = 0; i < numLEDs; i++) {
         localAngle[i] = ((float)i)/numLEDs;
         
-        uint_t x,y;
-        getLo
-        
         globalAngle[i] = localAngle[i];
     }
 
