@@ -42,7 +42,10 @@ void RNInfo::initialize() {
             globalAngle[i] = d;
         }
 
-        globalRadius[i] = sqrt(xLED*xLED + yLED*yLED);
+        float r = xLED*xLED + yLED*yLED;
+        globalRadius[i] = sqrt(r);
+        globalRadiusGround[i] = sqrt(r+((float) z)*z);
+        
     }
     
     
@@ -98,9 +101,15 @@ float RNInfo::getLocalAngle(uint8_t led) {
     return localAngle[led];
 }
 
-float getGlobalRadius(uint8_t led) {
-    return 1.0;
+float RNInfo::getGlobalRadius(uint8_t led) {
+    return globalRadius[led];
 }
+
+// Distance of pixel from center at ground level
+float RNInfo::getGlobalRadiusGround(uint8_t led) {
+    return globalRadiusGround[led];
+}
+
 
 unsigned long RNInfo::timeSinceLastTap() {
     return millis() - lastTap;
