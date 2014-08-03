@@ -1,6 +1,7 @@
 
 #include "Accelerometer.h"
 #include "i2c_t3.h"
+#include "Arduino.h"
 #include <stdlib.h>
 
 // The SparkFun breakout board defaults to 1, set to 0 if SA0 jumper on the bottom of the board is set
@@ -17,69 +18,73 @@ const uint8_t dataRate = 0;  // 0=800Hz, 1=400, 2=200, 3=100, 4=50, 5=12.5, 6=6.
 void initMMA8452(uint8_t fsr, uint8_t dataRate);
 
 void initializeAccelerometer() {
-//  Serial.println("Initializing accelerometer");
-//  Wire.begin(); //Join the bus as a master
-//  Serial.println("Joined bus");
-//  // Set up the interrupt pins, they're set as active high, push-pull
-//  pinMode(int1Pin, INPUT);
-//  digitalWrite(int1Pin, LOW);
-//  pinMode(int2Pin, INPUT);
-//  digitalWrite(int2Pin, LOW);
-//  Serial.println("Ready to read whoAmI");
-//  // Read the WHO_AM_I register, this is a good test of communication
-//  int c = readRegister(0x0D, 10);  // Read WHO_AM_I register
-//  if (c == -1) {
-//    Serial.println("timeout when reading who_am_i");
-//    while (true) {
-//      delay(4000);
-//      Serial.println("timeout when reading who_am_i");
-//    }
-//  }
-//
-//  Serial.println("got whoami");
-//  Serial.println(c, HEX);
-//  if (c == 0x1A || c == 0x2A) // WHO_AM_I should be 0x1A or 0x2A
-//  {  
-//    initMMA8452(SCALE, dataRate);  // init the accelerometer if communication is OK
-//    if (c == 0x2A) 
-//      Serial.println("MMA8452Q is online...");
-//    else
-//      Serial.println("MMA8451Q is online...");
-//  }
-//  else
-//  {
-//    // Loop forever if communication doesn't happen
-//    while(1) {
-//      Serial.print("Could not connect to MMA8452Q: 0x");
-//      Serial.println(c, HEX);
-//      delay(1000);
-//    }
-//  }
+#ifndef POP_SIMULATOR
+  Serial.println("Initializing accelerometer");
+  Wire.begin(); //Join the bus as a master
+  Serial.println("Joined bus");
+  // Set up the interrupt pins, they're set as active high, push-pull
+  pinMode(int1Pin, INPUT);
+  digitalWrite(int1Pin, LOW);
+  pinMode(int2Pin, INPUT);
+  digitalWrite(int2Pin, LOW);
+  Serial.println("Ready to read whoAmI");
+  // Read the WHO_AM_I register, this is a good test of communication
+  int c = readRegister(0x0D, 10);  // Read WHO_AM_I register
+  if (c == -1) {
+    Serial.println("timeout when reading who_am_i");
+    while (true) {
+      delay(4000);
+      Serial.println("timeout when reading who_am_i");
+    }
+  }
+
+  Serial.println("got whoami");
+  Serial.println(c, HEX);
+  if (c == 0x1A || c == 0x2A) // WHO_AM_I should be 0x1A or 0x2A
+  {  
+    initMMA8452(SCALE, dataRate);  // init the accelerometer if communication is OK
+    if (c == 0x2A) 
+      Serial.println("MMA8452Q is online...");
+    else
+      Serial.println("MMA8451Q is online...");
+  }
+  else
+  {
+    // Loop forever if communication doesn't happen
+    while(1) {
+      Serial.print("Could not connect to MMA8452Q: 0x");
+      Serial.println(c, HEX);
+      delay(1000);
+    }
+  }
+#endif
 }
 
 void updateAccelerometer() {
-//  float totalDiff = 0.0;
-//  float accelG[3];
-//  for(int i = 0; i < 3; i++)
-//    accelG[i] = 0.0;
-//  if (digitalRead(int1Pin)==1)  // Interrupt pin, should probably attach to interrupt function
-//  {
-//    readAccelData(accelG);  // Read the x/y/z adc values
-//
-//
-//    for (int i=0; i<3; i++) 
-//      totalDiff += abs(accelG[i]);
-//
-//  }
-//  uint8_t tapValue = 0;
-//  if (digitalRead(int2Pin)==1)
-//  { 
-//    byte source;
-//    source = readRegister(0x0C);  // Read the interrupt source reg.
-//    if ((source & 0x08))  // If tap register is set go check that
-//      tapValue = readRegister(0x22); 
-//  }
-//  accelerometerCallback(totalDiff, accelG, tapValue);
+#ifndef POP_SIMULATOR
+  float totalDiff = 0.0;
+  float accelG[3];
+  for(int i = 0; i < 3; i++)
+    accelG[i] = 0.0;
+  if (digitalRead(int1Pin)==1)  // Interrupt pin, should probably attach to interrupt function
+  {
+    readAccelData(accelG);  // Read the x/y/z adc values
+
+
+    for (int i=0; i<3; i++) 
+      totalDiff += abs(accelG[i]);
+
+  }
+  uint8_t tapValue = 0;
+  if (digitalRead(int2Pin)==1)
+  { 
+    byte source;
+    source = readRegister(0x0C);  // Read the interrupt source reg.
+    if ((source & 0x08))  // If tap register is set go check that
+      tapValue = readRegister(0x22); 
+  }
+  accelerometerCallback(totalDiff, accelG, tapValue);
+#endif
 }
 
 
@@ -182,56 +187,64 @@ void MMA8452Active()
 // Read bytesToRead sequentially, starting at addressToRead into the dest byte array
 void readRegisters(uint8_t addressToRead, int bytesToRead, uint8_t * dest)
 {
-//  Wire.beginTransmission(MMA8452_ADDRESS);
-//  Wire.write(addressToRead);
-//  Wire.endTransmission(I2C_NOSTOP); //endTransmission but keep the connection active
-//
-//  Wire.requestFrom(MMA8452_ADDRESS, bytesToRead); //Ask for bytes, once done, bus is released by default
-//
-//  while(Wire.available() < bytesToRead); //Hang out until we get the # of bytes we expect
-//
-//  for(int x = 0 ; x < bytesToRead ; x++)
-//    dest[x] = Wire.read();    
+#ifndef POP_SIMULATOR
+  Wire.beginTransmission(MMA8452_ADDRESS);
+  Wire.write(addressToRead);
+  Wire.endTransmission(I2C_NOSTOP); //endTransmission but keep the connection active
+
+  Wire.requestFrom(MMA8452_ADDRESS, bytesToRead); //Ask for bytes, once done, bus is released by default
+
+  while(Wire.available() < bytesToRead); //Hang out until we get the # of bytes we expect
+
+  for(int x = 0 ; x < bytesToRead ; x++)
+    dest[x] = Wire.read();    
+#endif
 }
 
 // Read a single byte from addressToRead and return it as a byte
 uint8_t readRegister(uint8_t addressToRead)
 {
-//  Wire.beginTransmission(MMA8452_ADDRESS);
-//  Wire.write(addressToRead);
-//  Wire.endTransmission(I2C_NOSTOP); //endTransmission but keep the connection active
-//
-//  Wire.requestFrom(MMA8452_ADDRESS, 1); //Ask for 1 byte, once done, bus is released by default
-//
-//  while(!Wire.available()) ; //Wait for the data to come back
-//  return Wire.read(); //Return this one byte
+#ifndef POP_SIMULATOR
+  Wire.beginTransmission(MMA8452_ADDRESS);
+  Wire.write(addressToRead);
+  Wire.endTransmission(I2C_NOSTOP); //endTransmission but keep the connection active
+
+  Wire.requestFrom(MMA8452_ADDRESS, 1); //Ask for 1 byte, once done, bus is released by default
+
+  while(!Wire.available()) ; //Wait for the data to come back
+  return Wire.read(); //Return this one byte
+#endif
 }
 
 // Read a single byte from addressToRead and return it as a byte, with a timeout
 // return -1 on timeout
 int readRegister(uint8_t addressToRead, unsigned long timeout)
 {
-//  Wire.beginTransmission(MMA8452_ADDRESS);
-//  Wire.write(addressToRead);
-//  Wire.endTransmission(I2C_NOSTOP); //endTransmission but keep the connection active
-//  Serial.print("Send address to read: ");
-//  Serial.println(addressToRead, HEX);
-//
-//  Wire.requestFrom(MMA8452_ADDRESS, 1); //Ask for 1 byte, once done, bus is released by default
-//  unsigned long expires = millis() + timeout;
-//  while(!Wire.available() && millis() < expires) ; //Wait for the data to come back
-//  if (!Wire.available())
-//    return -1;
-//  return Wire.read(); //Return this one byte
+#ifndef POP_SIMULATOR
+  Wire.beginTransmission(MMA8452_ADDRESS);
+  Wire.write(addressToRead);
+  Wire.endTransmission(I2C_NOSTOP); //endTransmission but keep the connection active
+  Serial.print("Send address to read: ");
+  Serial.println(addressToRead, HEX);
+
+  Wire.requestFrom(MMA8452_ADDRESS, 1); //Ask for 1 byte, once done, bus is released by default
+  unsigned long expires = millis() + timeout;
+  while(!Wire.available() && millis() < expires) ; //Wait for the data to come back
+  if (!Wire.available())
+    return -1;
+  return Wire.read(); //Return this one byte
+#endif
 }
 
 // Writes a single byte (dataToWrite) into addressToWrite
 void writeRegister(uint8_t addressToWrite, uint8_t dataToWrite)
 {
-//  Wire.beginTransmission(MMA8452_ADDRESS);
-//  Wire.write(addressToWrite);
-//  Wire.write(dataToWrite);
-//  Wire.endTransmission(); //Stop transmitting
+#ifndef POP_SIMULATOR
+  Wire.beginTransmission(MMA8452_ADDRESS);
+  Wire.write(addressToWrite);
+  Wire.write(dataToWrite);
+  Wire.endTransmission(); //Stop transmitting
+#endif
 }
 
 
