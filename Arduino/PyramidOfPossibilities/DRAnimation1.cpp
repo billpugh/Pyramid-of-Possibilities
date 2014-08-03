@@ -6,65 +6,41 @@
 //  Copyright (c) 2014 RN. All rights reserved.
 //
 
+#include "Arduino.h"
 #include "DRAnimation1.h"
 #include "RNBeam.h"
-#include "Arduino.h"
 
-
-#define CONSIDER_THE_ACCELEROMETER
+//#define CONSIDER_THE_ACCELEROMETER
 
 // TODO: don't statically allocate these. move to constructor.
 const uint8_t numBeams = 3;
-RNBeam beams[numBeams] = { 
-	// RNBeam(),
-	RNBeam(), 
+RNBeam beams[numBeams] = {
+	RNBeam(),
 	RNBeam(),
 	RNBeam()
 };
-float widths[numBeams] = {300,300,300};
+float widths[numBeams] = {100,100,100};
 static int once = 0;
 
 void initalizeBeams(RNInfo * info) {
-
+    
 	for ( uint8_t n = 0; n < numBeams; n++ ) {
   		beams[n].speed = 4;
   		beams[n].offset = 333 * n;
-        
-  		switch (n) {
-//  			case 0:
-//                beams[n].width = 50;
-//                break;
-//  			case 1:
-//                beams[n].width = 50;
-//                break;
-//  			case 2:
-//                beams[n].width = 100;
-//                break;
-  			// default:
-     //            beams[n].width = 150;
-  		}
         beams[n].width = widths[n];
   		beams[n].r = (n==0)*200;
   		beams[n].g = (n==1)*200;
   		beams[n].b = (n==2)*200;
-        
 		beams[n].info = info;
 	}
 }
 
 void DRAnimation1::paint(RNLights & lights) {
-
-	// TODO: move to initalizer
-	if ( once == 0 ) {
-		base_color = 0x000000;
-		initalizeBeams(&info);
-		min_g = .1;
-		max_g = .3;
-	}
-
+    
+	unsigned long millis = getAnimationMillis();
+    
 	// Begin real animation
 #ifdef CONSIDER_THE_ACCELEROMETER
-	unsigned long millis = getAnimationMillis();
 	float activity = info.getLocalActivity();
 	if ( activity < min_g ) {
 		activity = min_g;
@@ -78,13 +54,30 @@ void DRAnimation1::paint(RNLights & lights) {
 	}
 	info.printf("multiplier is %f.  Local Activity is %f\n", multiplier, info.getLocalActivity());
 #endif
-
-
+    
+    
 	for ( int i = 0; i < numBeams; i++ ) {
+//        uint32_t bcolor = 0;
+//        switch (i) {
+//            case 0:
+//                bcolor = parameters.color_0;
+//                break;
+//            case 1:
+//                bcolor = parameters.color_1;
+//                break;
+//            case 2:
+//                bcolor = parameters.color_2;
+//            default:
+//                break;
+//        }
+//        beams[i].r = bcolor >> 16;
+//        beams[i].g = bcolor >> 8;
+//        beams[i].b = bcolor;
 		beams[i].loop(millis);
 	}
+    
 	for ( int j = 0; j < info.numLEDs; j++ ) {
-		uint32_t currentColor = base_color;
+		uint32_t currentColor = parameters.base_color;
     	for ( int i = 0; i < numBeams; i++ ) {
 			uint32_t color = beams[i].drawPixel(j);
 			if (color > 0)
