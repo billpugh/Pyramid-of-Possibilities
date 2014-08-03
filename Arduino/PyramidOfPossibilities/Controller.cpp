@@ -11,7 +11,7 @@
 #include "Arduino.h"
 #include "Animations.h"
 #include <malloc.h>
-
+#include "Constants.h"
 
 
 
@@ -36,7 +36,10 @@ void RNController::switchToAnimation(AnimationEnum nextAnimation) {
     currentAnimation = getAnimation(currentAnimationEnum, info, start);
     int after = heapSize();
     info.printf("%d bytes allocated\n",after-before);
-    animationExpires = start + 60000;
+
+    // See Constants.h
+    animationExpires = start + ConstantsAnimationDuration();
+
     if (currentAnimation)
       info.printf("Created %s\n", currentAnimation->name());
 }
