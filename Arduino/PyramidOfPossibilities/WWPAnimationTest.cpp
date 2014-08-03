@@ -6,27 +6,37 @@
 //
 
 #include "WWPAnimationTest.h"
+#include <math.h>
 
 void WWPAnimationTest::paint(RNLights & lights) {
     
+    int firstLED = 1000;
+    int lastLED = -1;
     
-    uint16_t startPosition =  lights.getNumPixels() * rpm * getAnimationMillis()  / 60000.0;
-    int gradientPosition = 256 * gpm * getAnimationMillis()  / 60000.0;
-    uint32_t headColor = headGradient.getValue(gradientPosition);
-    uint32_t tailColor = tailGradient.getValue(gradientPosition);
+    float angle = getAnimationMillis()/2000.0;
     
-    RNGradient stripGradient(headGradient.isHSV, RNGradientCapped, headColor, tailColor);
-    
-    
-    for(int i = 0; i < length; i++) {
-        int pixelPosition = startPosition - i;
-        int pixelGradientPosition = i * 256 / length;
-        lights.setPixelColor( lights.normalize(pixelPosition), stripGradient.getColor(pixelGradientPosition));
+    for(int i = 0; i < lights.getNumPixels(); i++) {
+        float a = info.getGlobalAngle(i) - angle;
+        if (a < 0) a = -a;
+        a = a - floor(a);
+        if (a > 0.5) a = 1.0-a;
+        if (a < 0.05) {
+
+        lights.setPixelColor( i, 255, 0, 0);
+            if (firstLED > i)
+                firstLED =i;
+            if (lastLED < i)
+                lastLED = i;
+                
+        }
         
     }
+    if (firstLED <= lastLED)
+        info.printf("Angle %f, LEDs %d ... %d\n", angle, firstLED, lastLED);
+    else
+        info.printf("Angle %f, no LEDs\n", angle);
     
-
-    info.showActivityWithBrightness(lights, 40);
+    
     
 }
 
