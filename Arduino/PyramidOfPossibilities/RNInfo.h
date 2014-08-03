@@ -86,6 +86,7 @@ public:
 
 private:
   float globalAngle[240];
+    float globalRadius[240];
   float localAngle[240];
     
     float myTotalG = 0;

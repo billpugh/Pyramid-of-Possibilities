@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
+#include <math.h>
 
 RNInfo::RNInfo(
                uint8_t numLEDs,
@@ -31,15 +32,24 @@ void RNInfo::initialize() {
     sparkles.setFade(millis(), 750);
     for(int i = 0; i < numLEDs; i++) {
         localAngle[i] = ((float)i)/numLEDs;
-        
-        globalAngle[i] = localAngle[i];
-    }
+        float  xLED = x+getLEDXPosition(i);
+        float  yLED = y+getLEDYPosition(i);
+        if (xLED == 0 && yLED == 0)
+            globalAngle[i] = 0;
+        else {
+            float d = atan2(yLED, xLED)/radiansInCircle;
+            if (d < 0) d = 1.0+d;
+            globalAngle[i] = d;
+        }
 
+        globalRadius[i] = sqrt(xLED*xLED + yLED*yLED);
+    }
+    
     
 }
 
 RNInfo::RNInfo(uint8_t numLEDs, Platform & p)
-               
+
                 : Platform(p),
 numLEDs(numLEDs), sparkles(numLEDs)  {
     initialize();
