@@ -8,22 +8,7 @@
 #include "PlatformControler.hpp"
 #include "RNLightsSimulator.hpp"
 
-#include "WWPAnimation1.h"
-#include "WWPAnimation2.h"
-#include "WWPAnimation3.h"
-#include "WWPAnimation4.h"
-#include "WWPAnimation5.h"
-
-#include "DRAnimation0.h"
-#include "DRAnimation1.h"
-
-#include "Snow.h"
-#include "GlowFade.h"
-#include "GradientSwirl.h"
-
-#include "AVEAnimation1.h"
-#include "AVEFlashesAnimation.h"
-
+#include "Animations.h"
 #include "Arduino.h"
 #include "PyramidArchitecture.hpp"
 
@@ -41,7 +26,7 @@ PlatformControler::PlatformControler(Pyramid* _pyramid, int _platform) {
             coords[1],
             coords[2]);
 
-    animation = new GradientSwirl(*info, millis());
+    animation = getAnimation(e_WWPAnimationTest, *info, millis());
 }
 
 void PlatformControler::refreshPlatform() {

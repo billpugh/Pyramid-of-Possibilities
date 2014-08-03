@@ -8,10 +8,12 @@
 #ifndef PYRAMIDARCHITECTURE_HPP
 #define	PYRAMIDARCHITECTURE_HPP
 
+#include <stdint.h>
+
 class PyramidArchitecture {
 public:
     static const int nbPlatforms = 84;
-    static const int nbLedsPerPlatform = 219;
+    static const int nbLedsPerPlatform = 220;
     
     static void getLocationOfPlatform(int platform, short* &location);
 
@@ -25,7 +27,7 @@ public:
 
     static unsigned int getNumVertices();
 
-    static void getLedPosition(int led, short *&position);
+    static void getLedPosition(uint8_t led, int16_t &x, int16_t &y);
 private:
 
 };

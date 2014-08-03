@@ -9,7 +9,7 @@
 #include "platforms.h"
 #include "tier.h"
 #include "model.h"
-#include "leds.h"
+#include "ledPositions.h"
 
 void PyramidArchitecture::getLocationOfPlatform(int platform,
         short* &location) {
@@ -44,6 +44,6 @@ unsigned int PyramidArchitecture::getNumVertices() {
     return popNumVerts;
 }
 
-void PyramidArchitecture::getLedPosition(int led, short *&position) {
-    position = ledPositions[led];
+void PyramidArchitecture::getLedPosition(uint8_t led, int16_t &x, int16_t &y) {
+    getLEDPosition(led, x, y);
 }

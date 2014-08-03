@@ -39,6 +39,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/1731549632/AVEFlashesAnimation.o \
 	${OBJECTDIR}/_ext/1731549632/ActivityLevelAnimation.o \
 	${OBJECTDIR}/_ext/1731549632/Animations.o \
+	${OBJECTDIR}/_ext/1731549632/Constants.o \
 	${OBJECTDIR}/_ext/1731549632/Controller.o \
 	${OBJECTDIR}/_ext/1731549632/DRAnimation0.o \
 	${OBJECTDIR}/_ext/1731549632/DRAnimation1.o \
@@ -48,16 +49,19 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/1731549632/Platform.o \
 	${OBJECTDIR}/_ext/1731549632/RNAnimation.o \
 	${OBJECTDIR}/_ext/1731549632/RNBeam.o \
+	${OBJECTDIR}/_ext/1731549632/RNEEPROM.o \
 	${OBJECTDIR}/_ext/1731549632/RNInfo.o \
 	${OBJECTDIR}/_ext/1731549632/RNSerial.o \
 	${OBJECTDIR}/_ext/1731549632/SideEffects.o \
 	${OBJECTDIR}/_ext/1731549632/Snow.o \
+	${OBJECTDIR}/_ext/1731549632/Swirl.o \
 	${OBJECTDIR}/_ext/1731549632/WWPAnimation1.o \
 	${OBJECTDIR}/_ext/1731549632/WWPAnimation2.o \
 	${OBJECTDIR}/_ext/1731549632/WWPAnimation3.o \
 	${OBJECTDIR}/_ext/1731549632/WWPAnimation4.o \
 	${OBJECTDIR}/_ext/1731549632/WWPAnimation5.o \
 	${OBJECTDIR}/_ext/1731549632/WWPAnimationTest.o \
+	${OBJECTDIR}/_ext/1731549632/ledPositions.o \
 	${OBJECTDIR}/_ext/1989308899/Accelerometer.o \
 	${OBJECTDIR}/_ext/1989308899/i2c_t3.o \
 	${OBJECTDIR}/_ext/1253334877/hsv2rgb.o \
@@ -118,6 +122,11 @@ ${OBJECTDIR}/_ext/1731549632/Animations.o: ../Arduino/PyramidOfPossibilities/Ani
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../Arduino/PyramidOfPossibilities -I../PlatformData -I../Arduino/libraries/RNChaser -I../Arduino/libraries/RNLights -I../Arduino/libraries/Accelerometer -I../Arduino/PyramidOfPossibilities -I. -I../Arduino/libraries/FastLED -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/Animations.o ../Arduino/PyramidOfPossibilities/Animations.cpp
 
+${OBJECTDIR}/_ext/1731549632/Constants.o: ../Arduino/PyramidOfPossibilities/Constants.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../Arduino/PyramidOfPossibilities -I../PlatformData -I../Arduino/libraries/RNChaser -I../Arduino/libraries/RNLights -I../Arduino/libraries/Accelerometer -I../Arduino/PyramidOfPossibilities -I. -I../Arduino/libraries/FastLED -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/Constants.o ../Arduino/PyramidOfPossibilities/Constants.cpp
+
 ${OBJECTDIR}/_ext/1731549632/Controller.o: ../Arduino/PyramidOfPossibilities/Controller.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
 	${RM} "$@.d"
@@ -163,6 +172,11 @@ ${OBJECTDIR}/_ext/1731549632/RNBeam.o: ../Arduino/PyramidOfPossibilities/RNBeam.
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../Arduino/PyramidOfPossibilities -I../PlatformData -I../Arduino/libraries/RNChaser -I../Arduino/libraries/RNLights -I../Arduino/libraries/Accelerometer -I../Arduino/PyramidOfPossibilities -I. -I../Arduino/libraries/FastLED -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/RNBeam.o ../Arduino/PyramidOfPossibilities/RNBeam.cpp
 
+${OBJECTDIR}/_ext/1731549632/RNEEPROM.o: ../Arduino/PyramidOfPossibilities/RNEEPROM.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../Arduino/PyramidOfPossibilities -I../PlatformData -I../Arduino/libraries/RNChaser -I../Arduino/libraries/RNLights -I../Arduino/libraries/Accelerometer -I../Arduino/PyramidOfPossibilities -I. -I../Arduino/libraries/FastLED -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/RNEEPROM.o ../Arduino/PyramidOfPossibilities/RNEEPROM.cpp
+
 ${OBJECTDIR}/_ext/1731549632/RNInfo.o: ../Arduino/PyramidOfPossibilities/RNInfo.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
 	${RM} "$@.d"
@@ -182,6 +196,11 @@ ${OBJECTDIR}/_ext/1731549632/Snow.o: ../Arduino/PyramidOfPossibilities/Snow.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../Arduino/PyramidOfPossibilities -I../PlatformData -I../Arduino/libraries/RNChaser -I../Arduino/libraries/RNLights -I../Arduino/libraries/Accelerometer -I../Arduino/PyramidOfPossibilities -I. -I../Arduino/libraries/FastLED -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/Snow.o ../Arduino/PyramidOfPossibilities/Snow.cpp
+
+${OBJECTDIR}/_ext/1731549632/Swirl.o: ../Arduino/PyramidOfPossibilities/Swirl.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../Arduino/PyramidOfPossibilities -I../PlatformData -I../Arduino/libraries/RNChaser -I../Arduino/libraries/RNLights -I../Arduino/libraries/Accelerometer -I../Arduino/PyramidOfPossibilities -I. -I../Arduino/libraries/FastLED -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/Swirl.o ../Arduino/PyramidOfPossibilities/Swirl.cpp
 
 ${OBJECTDIR}/_ext/1731549632/WWPAnimation1.o: ../Arduino/PyramidOfPossibilities/WWPAnimation1.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
@@ -212,6 +231,11 @@ ${OBJECTDIR}/_ext/1731549632/WWPAnimationTest.o: ../Arduino/PyramidOfPossibiliti
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../Arduino/PyramidOfPossibilities -I../PlatformData -I../Arduino/libraries/RNChaser -I../Arduino/libraries/RNLights -I../Arduino/libraries/Accelerometer -I../Arduino/PyramidOfPossibilities -I. -I../Arduino/libraries/FastLED -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/WWPAnimationTest.o ../Arduino/PyramidOfPossibilities/WWPAnimationTest.cpp
+
+${OBJECTDIR}/_ext/1731549632/ledPositions.o: ../Arduino/PyramidOfPossibilities/ledPositions.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../Arduino/PyramidOfPossibilities -I../PlatformData -I../Arduino/libraries/RNChaser -I../Arduino/libraries/RNLights -I../Arduino/libraries/Accelerometer -I../Arduino/PyramidOfPossibilities -I. -I../Arduino/libraries/FastLED -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/ledPositions.o ../Arduino/PyramidOfPossibilities/ledPositions.cpp
 
 ${OBJECTDIR}/_ext/1989308899/Accelerometer.o: ../Arduino/libraries/Accelerometer/Accelerometer.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1989308899

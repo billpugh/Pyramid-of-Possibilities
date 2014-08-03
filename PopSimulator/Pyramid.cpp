@@ -126,12 +126,13 @@ void Pyramid::loadBuffers() {
         short r = (short) (t & 1);
         short g = (short) ((t & 2) >> 1);
         short b = (short) ((t & 4) >> 2);
-        for (int j = 0; j < nbLedsPerPlatform; j++) {
-            short* ledPosition;
-            PyramidArchitecture::getLedPosition(j, ledPosition);
-            g_leds_buffer_data[k] = (x + 1.05f * ledPosition[1]) * factor;
+        for (uint8_t j = 0; j < nbLedsPerPlatform; j++) {
+            int16_t ledX;
+            int16_t ledY;
+            PyramidArchitecture::getLedPosition(j, ledX, ledY);
+            g_leds_buffer_data[k] = (x + 1.05f * ledX) * factor;
             g_leds_buffer_data[k + 1] = (z - 5000) * factor;
-            g_leds_buffer_data[k + 2] = (y + 1.05f * ledPosition[0]) * factor;
+            g_leds_buffer_data[k + 2] = (y + 1.05f * ledY) * factor;
             g_leds_color_buffer_data[k] = r;
             g_leds_color_buffer_data[k + 1] = g;
             g_leds_color_buffer_data[k + 2] = b;
