@@ -8,21 +8,40 @@
 #ifndef CONSTANTS_PYRAMID_OF_POP
 #define CONSTANTS_PYRAMID_OF_POP
 
-#define DEBUG 1
 
-// To test without using the full strip of LEDs, uncomment the line below and set the number of LEDs you want, as well as the index of the 1st LED.
+//////////////////////////////////////////////////////////////////////////////////////////
+// Global/Constant Functions
+//////////////////////////////////////////////////////////////////////////////////////////
+
+// Returns the duration of each animation. If you define RN_REALLY_LONG_ANIMATIONS below then animation are 1 hour.
+unsigned long ConstantsAnimationDuration();
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// Defines
+//////////////////////////////////////////////////////////////////////////////////////////
+
+#define DEBUG 1
 #define FULL_STRIP
+//#define RN_REALLY_LONG_ANIMATIONS
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
+// You are less likely to need to chage what is below here.
+//////////////////////////////////////////////////////////////////////////////////////////
 
 
 // Set values for the # of LEDs and 1st LED Index
 #ifdef FULL_STRIP
-// DO NOT MODIFY THESE VALUES
+// VALUES FOR FULL-STRIP (ie. platforms on the pyramid!)
 const int LEDs = 220;
 const int FIRST_LED = 15;
 #else
 // Modify these values for testing with a non-full strip.
-const int LEDs = 60;
+const int LEDs = 32;
 const int FIRST_LED = 0;
-#endif
+#endif  /** #ifdef FULL_STRIP **/
+
+
 
 #endif /** CONSTANTS_PYRAMID_OF_POP */

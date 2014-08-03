@@ -21,13 +21,13 @@ RNBeam beams[numBeams] = {
 	RNBeam(),
 	RNBeam()
 };
-float widths[numBeams] = {333,333,333};
+float widths[numBeams] = {300,300,300};
 static int once = 0;
 
 void initalizeBeams(RNInfo * info) {
 
 	for ( uint8_t n = 0; n < numBeams; n++ ) {
-  		beams[n].speed = 1;
+  		beams[n].speed = 4;
   		beams[n].offset = 333 * n;
         
   		switch (n) {
@@ -74,7 +74,7 @@ void DRAnimation1::paint(RNLights & lights) {
 	float g_range = max_g - min_g;
 	float multiplier = (activity - min_g) / g_range;
 	for ( int i = 0; i < numBeams; i++ ) {
-		beams[i].width = widths[i] * multiplier + 10;
+		beams[i].width = widths[i] * multiplier + 33;
 	}
 	info.printf("multiplier is %f.  Local Activity is %f\n", multiplier, info.getLocalActivity());
 #endif

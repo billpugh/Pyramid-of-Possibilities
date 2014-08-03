@@ -6,27 +6,30 @@
 //
 
 #include "WWPAnimationTest.h"
+#include <math.h>
 
 void WWPAnimationTest::paint(RNLights & lights) {
     
     
-    uint16_t startPosition =  lights.getNumPixels() * rpm * getAnimationMillis()  / 60000.0;
-    int gradientPosition = 256 * gpm * getAnimationMillis()  / 60000.0;
-    uint32_t headColor = headGradient.getValue(gradientPosition);
-    uint32_t tailColor = tailGradient.getValue(gradientPosition);
+    float angle = getAnimationMillis()/2000.0;
     
-    RNGradient stripGradient(headGradient.isHSV, RNGradientCapped, headColor, tailColor);
-    
-    
-    for(int i = 0; i < length; i++) {
-        int pixelPosition = startPosition - i;
-        int pixelGradientPosition = i * 256 / length;
-        lights.setPixelColor( lights.normalize(pixelPosition), stripGradient.getColor(pixelGradientPosition));
+    for(int i = 0; i < lights.getNumPixels(); i++) {
+        float a = info.getGlobalAngle(i) - angle;
+        
+        if (1) {
+        a = a - roundf(a);
+        if (a < 0) a = -a;
+        if (a < 0.05) {
+            lights.setPixelHSV(i, 0, 255, 255-a*5000);
+        }
+        } else {
+            a = a - floorf(a);
+            lights.setPixelHSV(i, a*256, 255, 128);
+        }
         
     }
+    info.showActivityWithSparkles(lights);
     
-
-    info.showActivityWithBrightness(lights, 40);
     
 }
 

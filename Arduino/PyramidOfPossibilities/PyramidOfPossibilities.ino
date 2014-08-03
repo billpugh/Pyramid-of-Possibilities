@@ -12,14 +12,13 @@
 #include "hsv2rgb.h"
 #include "Controller.h"
 #include "RNSerial.h"
+#include <EEPROM.h>
 #include <malloc.h>
 
 
 const int LAST_LED = FIRST_LED+LEDs-1;
 const int ledsPerStrip = LAST_LED+1;
 
-RNInfo info(LEDs, 0,0,0,0,0,0);
-RNController controller(info);
 DMAMEM uint8_t displayMemory[ledsPerStrip*24];
 uint8_t drawingMemory[ledsPerStrip*24];
 
@@ -27,16 +26,25 @@ OctoWS2811 leds(ledsPerStrip, displayMemory, drawingMemory);
 
 RNLightsOctoWS2811 lights(leds, drawingMemory, FIRST_LED);
 
+//Platform platform( 0,0,0,0,700,0);
+//RNInfo info(LEDs, platform);
+//RNController controller(info);
+
+RNInfo *info;
+RNController * controller;
+
+
 static int heapSize(){
   return mallinfo().uordblks;
 }
 
 const int ONBOARD_LED_PIN = 13;
 void setup() {
+  
   leds.begin();
   leds.show();
-
-  Serial.println(lights.getNumPixels());
+  Serial.begin(115200);
+  Serial.println("Started");
 
   pinMode(ONBOARD_LED_PIN, OUTPUT); 
   for(int i = 0; i < 5; i++) {
@@ -46,12 +54,14 @@ void setup() {
     delay(300);
   }
 
-  Serial.begin(115200);
-  Serial.println("Started");
+
   Serial.println(leds.numPixels());
   Serial.println(lights.getNumPixels());
   initializeAccelerometer();
   setupSerial2(9600);
+  Platform platform( 0,0,0,0,1200,0);
+  info = new RNInfo(LEDs, platform);
+  controller = new RNController(*info);
 }
 
 const uint8_t chunk = 16;
@@ -70,34 +80,41 @@ unsigned long avgTime = 0;
 int count = 0;
 
 void accelerometerCallback( float totalG, float directionalG[3], uint8_t source)  {
-   info.accelerometerCallback(totalG,directionalG, source);
+   info->accelerometerCallback(totalG,directionalG, source);
 }
 
-
-
-void loop() {
-  unsigned long startMicros = micros();
-  updateAccelerometer();
-  lights.reset();
-
-  controller.paint(lights);
-
-  uint8_t avgPixelBrightness = lights.getAvgPixelBrightness();
+void capOverallBrightness(RNLights & lights) {
+ uint8_t avgPixelBrightness = lights.getAvgPixelBrightness();
   uint8_t avgBrightness = avgPixelBrightness * lights.getBrightness()/256;
   if (avgBrightness > 16) {
 
     int goal= scaleBrightness(avgBrightness);
     
     int newBrightness = goal * 255 / avgPixelBrightness;
-    info.printf("Avg brightness is %d/%d, goal is %d, Reducing brightness from %d -> %d\n",
+    info->printf("Avg brightness is %d/%d, goal is %d, Reducing brightness from %d -> %d\n",
     avgPixelBrightness, avgBrightness, goal, lights.getBrightness(), newBrightness);
     lights.setBrightness(newBrightness);
   }
   //  else info.printf("Avg brightness is %d/%d\n", avgPixelBrightness, avgBrightness);
 
+}
 
 
+Platform platform( 0,0,0,0,700,0);
+
+
+void loop() {
+  unsigned long startMicros = micros();
+
+  updateAccelerometer();
+  
+  // display lights
+  lights.reset();
+  controller->paint(lights);
+  capOverallBrightness(lights);
   lights.show();
+  
+
   unsigned long endMicros = micros();
   avgTime = (15*avgTime + endMicros - startMicros)/16;
 
@@ -107,7 +124,7 @@ void loop() {
   int blink = (millis() /100)%2;
   digitalWrite(ONBOARD_LED_PIN, blink);
   if (count++ >= 100) {
-    info.printf("Avg time = %5d, delay = %dms, heapSize = %d\n",
+    info->printf("Avg time = %5d, delay = %dms, heapSize = %d\n",
     avgTime, timeToDelay, heapSize());
     count = 0;
   }

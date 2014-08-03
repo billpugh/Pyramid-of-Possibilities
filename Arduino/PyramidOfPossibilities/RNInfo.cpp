@@ -9,10 +9,11 @@
 
 #include "RNInfo.h"
 #include "Arduino.h"
+#include "ledPositions.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
-
+#include <math.h>
 
 RNInfo::RNInfo(
                uint8_t numLEDs,
@@ -21,17 +22,41 @@ RNInfo::RNInfo(
                uint8_t identifier,
                int16_t x,
                int16_t y,
-               int16_t z) :
-numLEDs(numLEDs),
-tier(tier), number(number), identifier(identifier),
-x(x), y(y), z(z), sparkles(numLEDs) {
+               int16_t z) : Platform( tier, number, identifier, x, y, z),
+numLEDs(numLEDs), sparkles(numLEDs) {
+    initialize();
+   };
+
+void RNInfo::initialize() {
+    float radiansInCircle = 2 * 3.1415926;
     sparkles.setFade(millis(), 750);
     for(int i = 0; i < numLEDs; i++) {
         localAngle[i] = ((float)i)/numLEDs;
-        globalAngle[i] = localAngle[i];
-    }
-};
+        float  xLED = x+getLEDXPosition(i);
+        float  yLED = y+getLEDYPosition(i);
+        if (xLED == 0 && yLED == 0)
+            globalAngle[i] = 0;
+        else {
+            float d = atan2(yLED, xLED)/radiansInCircle;
+            if (d < 0) d = 1.0+d;
+            globalAngle[i] = d;
+        }
 
+        float r = xLED*xLED + yLED*yLED;
+        globalRadius[i] = sqrt(r);
+        globalRadiusGround[i] = sqrt(r+((float) z)*z);
+        
+    }
+    
+    
+}
+
+RNInfo::RNInfo(uint8_t numLEDs, Platform & p)
+
+                : Platform(p),
+numLEDs(numLEDs), sparkles(numLEDs)  {
+    initialize();
+};
 
 
 void RNInfo::accelerometerCallback( float totalG,
@@ -76,9 +101,15 @@ float RNInfo::getLocalAngle(uint8_t led) {
     return localAngle[led];
 }
 
-float getGlobalRadius(uint8_t led) {
-    return 1.0;
+float RNInfo::getGlobalRadius(uint8_t led) {
+    return globalRadius[led];
 }
+
+// Distance of pixel from center at ground level
+float RNInfo::getGlobalRadiusGround(uint8_t led) {
+    return globalRadiusGround[led];
+}
+
 
 unsigned long RNInfo::timeSinceLastTap() {
     return millis() - lastTap;

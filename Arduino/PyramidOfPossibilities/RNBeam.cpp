@@ -1,4 +1,4 @@
-#import "RNBeam.h"
+#include "RNBeam.h"
 
 #define DEBUG_LED_ID 15
 

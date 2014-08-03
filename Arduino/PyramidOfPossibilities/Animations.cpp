@@ -20,6 +20,7 @@
 #include "SideEffects.h"
 #include "Snow.h"
 #include "GradientSwirl.h"
+#include "Swirl.h"
 
 
 #include "DRAnimation0.h"
@@ -38,6 +39,9 @@ RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animati
         case  e_SideEffects:
             return new SideEffects(info, animationStartMillis);
             
+        case e_Swirl:
+            return new Swirl(info, animationStartMillis);
+           
         case e_Snow:
             return new Snow(info, animationStartMillis);
             
