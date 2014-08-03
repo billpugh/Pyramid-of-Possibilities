@@ -12,5 +12,7 @@
 #include <stdint.h>
 
 void getLEDPosition(uint8_t led, int16_t &x, int16_t &y);
+int16_t getLEDXPosition(uint8_t led);
+int16_t getLEDYPosition(uint8_t led);
 
 #endif /* defined(__PlatformCode__ledPositions__) */

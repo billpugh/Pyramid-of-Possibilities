@@ -237,3 +237,9 @@ void getLEDPosition(uint8_t led, int16_t &x, int16_t &y) {
     x = ledPositions[led][0];
     y = ledPositions[led][1];
 }
+int16_t getLEDXPosition(uint8_t led) {
+    return ledPositions[led][0];
+}
+int16_t getLEDYPosition(uint8_t led) {
+        return ledPositions[led][1];
+}
