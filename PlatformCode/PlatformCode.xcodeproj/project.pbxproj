@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		163D5077198D841400E882A1 /* RNEEPROM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163D5075198D841400E882A1 /* RNEEPROM.cpp */; };
 		163D5078198D841400E882A1 /* RNEEPROM.h in Headers */ = {isa = PBXBuildFile; fileRef = 163D5076198D841400E882A1 /* RNEEPROM.h */; };
+		163D507B198E6D9600E882A1 /* Swirl.h in Headers */ = {isa = PBXBuildFile; fileRef = 163D5079198E6D9600E882A1 /* Swirl.h */; };
+		163D507C198E6D9600E882A1 /* Swirl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163D507A198E6D9600E882A1 /* Swirl.cpp */; };
 		1644A14B198D34D400FBFF63 /* WWPAnimationTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A120198D34D400FBFF63 /* WWPAnimationTest.cpp */; };
 		1644A14C198D34D400FBFF63 /* WWPAnimationTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A121198D34D400FBFF63 /* WWPAnimationTest.h */; };
 		1644A14D198D34D400FBFF63 /* Animations.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A122198D34D400FBFF63 /* Animations.h */; };
@@ -70,6 +72,8 @@
 /* Begin PBXFileReference section */
 		163D5075198D841400E882A1 /* RNEEPROM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RNEEPROM.cpp; path = ../Arduino/PyramidOfPossibilities/RNEEPROM.cpp; sourceTree = "<group>"; };
 		163D5076198D841400E882A1 /* RNEEPROM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNEEPROM.h; path = ../Arduino/PyramidOfPossibilities/RNEEPROM.h; sourceTree = "<group>"; };
+		163D5079198E6D9600E882A1 /* Swirl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Swirl.h; path = ../Arduino/PyramidOfPossibilities/Swirl.h; sourceTree = "<group>"; };
+		163D507A198E6D9600E882A1 /* Swirl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Swirl.cpp; path = ../Arduino/PyramidOfPossibilities/Swirl.cpp; sourceTree = "<group>"; };
 		1644A119198D34AF00FBFF63 /* libPlatformCode.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPlatformCode.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1644A120198D34D400FBFF63 /* WWPAnimationTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WWPAnimationTest.cpp; path = ../Arduino/PyramidOfPossibilities/WWPAnimationTest.cpp; sourceTree = "<group>"; };
 		1644A121198D34D400FBFF63 /* WWPAnimationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WWPAnimationTest.h; path = ../Arduino/PyramidOfPossibilities/WWPAnimationTest.h; sourceTree = "<group>"; };
@@ -180,6 +184,8 @@
 		1644A188198D384500FBFF63 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				163D5079198E6D9600E882A1 /* Swirl.h */,
+				163D507A198E6D9600E882A1 /* Swirl.cpp */,
 				16F839D3198D691200B6419F /* GradientSwirl.h */,
 				16F839D4198D691200B6419F /* GradientSwirl.cpp */,
 				1644A12A198D34D400FBFF63 /* ActivityLevelAnimation.cpp */,
@@ -268,6 +274,7 @@
 				1644A153198D34D400FBFF63 /* FlashAttack.h in Headers */,
 				163D5078198D841400E882A1 /* RNEEPROM.h in Headers */,
 				1644A168198D34D400FBFF63 /* GlowFade.h in Headers */,
+				163D507B198E6D9600E882A1 /* Swirl.h in Headers */,
 				1644A17B198D34FE00FBFF63 /* RNGradient.h in Headers */,
 				1644A16B198D34D400FBFF63 /* WWPAnimation5.h in Headers */,
 				1644A181198D351A00FBFF63 /* RNChaser.h in Headers */,
@@ -358,6 +365,7 @@
 				1644A167198D34D400FBFF63 /* WWPAnimation5.cpp in Sources */,
 				1644A154198D34D400FBFF63 /* FlashAttack.cpp in Sources */,
 				1644A155198D34D400FBFF63 /* ActivityLevelAnimation.cpp in Sources */,
+				163D507C198E6D9600E882A1 /* Swirl.cpp in Sources */,
 				1644A15E198D34D400FBFF63 /* AVEAnimation1.cpp in Sources */,
 				1644A151198D34D400FBFF63 /* SideEffects.cpp in Sources */,
 				1644A192198D600200FBFF63 /* ledPositions.cpp in Sources */,
