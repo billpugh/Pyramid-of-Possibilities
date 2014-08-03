@@ -29,6 +29,8 @@
 #include "GlowFade.h"
 #include "ActivityLevelAnimation.h"
 
+#include "AVEAnimation1.h"
+#include "AVEFlashesAnimation.h"
 
 RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animationStartMillis ) {
     switch (a) {

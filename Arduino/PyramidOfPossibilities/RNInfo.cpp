@@ -62,8 +62,8 @@ numLEDs(numLEDs), sparkles(numLEDs)  {
 void RNInfo::accelerometerCallback( float totalG,
                            float directionalG[3],
                            uint8_t source) {
-    //  if (source)
-    //    printf("TotalG = %f\n", totalG);
+//      if (source)
+//        printf("TotalG = %f\n", totalG);
     if (source)
         lastTap = millis();
     myTotalG = totalG;
@@ -116,16 +116,20 @@ unsigned long RNInfo::timeSinceLastTap() {
 }
 
 void RNInfo::println(const char * s) {
+#ifndef POP_SIMULATOR
     Serial.println(s);
+#endif
 }
 
 void RNInfo::printf(const char *fmt, ... ){
+#ifndef POP_SIMULATOR
     char tmp[256]; // resulting string limited to 256 chars
     va_list args;
     va_start (args, fmt );
     vsnprintf(tmp, 256, fmt, args);
     va_end (args);
     Serial.print(tmp);
+#endif
 }
 
 uint16_t RNInfo::getRandomPixel() {

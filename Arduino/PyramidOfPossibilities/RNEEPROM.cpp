@@ -7,9 +7,15 @@
 //
 
 #include "RNEEPROM.h"
+
+#include <Arduino.h>
+
+#ifndef POP_SIMULATOR
 #include <EEPROM.h>
+#endif
 
 void readFromEEPROM(char version, short sz, char *p) {
+#ifndef POP_SIMULATOR
      uint8_t storedVersion = EEPROM.read(0);
     if (version != storedVersion) {
         return;
@@ -22,10 +28,12 @@ void readFromEEPROM(char version, short sz, char *p) {
     for(int i = 0; i < sz; i++)
         p[i] = EEPROM.read(3+i);
     
+#endif
 }
 
 
 void writeTo(char version, short sz, char *p) {
+#ifndef POP_SIMULATOR
     EEPROM.write(0, version);
     EEPROM.write(1, sz>>8);
     EEPROM.write(2, sz);
@@ -33,4 +41,5 @@ void writeTo(char version, short sz, char *p) {
     for(int i = 0; i < sz; i++)
         EEPROM.write(3+i,p[i]);
     
+#endif
 }

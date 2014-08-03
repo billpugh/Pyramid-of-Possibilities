@@ -17,12 +17,13 @@ void AVEAnimation1::paint(RNLights & lights) {
     if (ms - lastUpdate < 100) {
         return;
     }
-    
-    currentPos++;
+    int direction = forward ? 1 : -1;
+
+    currentPos += direction;
     currentPos = lights.normalize(currentPos);
     for (int i = 0; i <= 100; i++) {
         int intensity = 255 - 2.55 * i;
-        int pos = lights.normalize(currentPos - i);
+        int pos = lights.normalize(currentPos - i * direction);
         lights.setPixelColor(pos, intensity, intensity, intensity);
     }
     info.showActivityWithBrightness(lights, 128);

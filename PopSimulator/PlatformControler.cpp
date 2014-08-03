@@ -8,14 +8,7 @@
 #include "PlatformControler.hpp"
 #include "RNLightsSimulator.hpp"
 
-#include "WWPAnimation1.h"
-#include "WWPAnimation2.h"
-#include "WWPAnimation3.h"
-#include "WWPAnimation4.h"
-#include "WWPAnimation5.h"
-
-#include "AVEAnimation1.h"
-
+#include "Animations.h"
 #include "Arduino.h"
 #include "PyramidArchitecture.hpp"
 
@@ -33,7 +26,7 @@ PlatformControler::PlatformControler(Pyramid* _pyramid, int _platform) {
             coords[1],
             coords[2]);
 
-    animation = new AVEAnimation1(*info, millis());
+    animation = getAnimation(e_WWPAnimationTest, *info, millis());
 }
 
 void PlatformControler::refreshPlatform() {

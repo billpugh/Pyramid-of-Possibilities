@@ -53,14 +53,15 @@ void RNController::paint(RNLights & lights) {
     if (millis() > animationExpires || !currentAnimation) {
         nextAnimation();
     }
+    
+#ifndef POP_SIMULATOR
     if (Serial2.available() > 0) {
       int c = Serial2.read();
       info.printf("Got %d from serial2\n", c);
       if (c >= 0 && c < e_AnimationCount) 
         switchToAnimation((AnimationEnum) c);
     }
-        
-      
+#endif
     
     if (currentAnimation)
         currentAnimation->paint(lights);

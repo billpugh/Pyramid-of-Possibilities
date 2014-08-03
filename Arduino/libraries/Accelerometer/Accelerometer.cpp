@@ -1,6 +1,7 @@
 
 #include "Accelerometer.h"
 #include "i2c_t3.h"
+#include "Arduino.h"
 #include <stdlib.h>
 
 // The SparkFun breakout board defaults to 1, set to 0 if SA0 jumper on the bottom of the board is set
@@ -17,6 +18,7 @@ const uint8_t dataRate = 0;  // 0=800Hz, 1=400, 2=200, 3=100, 4=50, 5=12.5, 6=6.
 void initMMA8452(uint8_t fsr, uint8_t dataRate);
 
 void initializeAccelerometer() {
+#ifndef POP_SIMULATOR
   Serial.println("Initializing accelerometer");
   Wire.begin(); //Join the bus as a master
   Serial.println("Joined bus");
@@ -55,9 +57,11 @@ void initializeAccelerometer() {
       delay(1000);
     }
   }
+#endif
 }
 
 void updateAccelerometer() {
+#ifndef POP_SIMULATOR
   float totalDiff = 0.0;
   float accelG[3];
   for(int i = 0; i < 3; i++)
@@ -80,6 +84,7 @@ void updateAccelerometer() {
       tapValue = readRegister(0x22); 
   }
   accelerometerCallback(totalDiff, accelG, tapValue);
+#endif
 }
 
 
@@ -182,6 +187,7 @@ void MMA8452Active()
 // Read bytesToRead sequentially, starting at addressToRead into the dest byte array
 void readRegisters(uint8_t addressToRead, int bytesToRead, uint8_t * dest)
 {
+#ifndef POP_SIMULATOR
   Wire.beginTransmission(MMA8452_ADDRESS);
   Wire.write(addressToRead);
   Wire.endTransmission(I2C_NOSTOP); //endTransmission but keep the connection active
@@ -192,11 +198,13 @@ void readRegisters(uint8_t addressToRead, int bytesToRead, uint8_t * dest)
 
   for(int x = 0 ; x < bytesToRead ; x++)
     dest[x] = Wire.read();    
+#endif
 }
 
 // Read a single byte from addressToRead and return it as a byte
 uint8_t readRegister(uint8_t addressToRead)
 {
+#ifndef POP_SIMULATOR
   Wire.beginTransmission(MMA8452_ADDRESS);
   Wire.write(addressToRead);
   Wire.endTransmission(I2C_NOSTOP); //endTransmission but keep the connection active
@@ -205,12 +213,14 @@ uint8_t readRegister(uint8_t addressToRead)
 
   while(!Wire.available()) ; //Wait for the data to come back
   return Wire.read(); //Return this one byte
+#endif
 }
 
 // Read a single byte from addressToRead and return it as a byte, with a timeout
 // return -1 on timeout
 int readRegister(uint8_t addressToRead, unsigned long timeout)
 {
+#ifndef POP_SIMULATOR
   Wire.beginTransmission(MMA8452_ADDRESS);
   Wire.write(addressToRead);
   Wire.endTransmission(I2C_NOSTOP); //endTransmission but keep the connection active
@@ -223,15 +233,18 @@ int readRegister(uint8_t addressToRead, unsigned long timeout)
   if (!Wire.available())
     return -1;
   return Wire.read(); //Return this one byte
+#endif
 }
 
 // Writes a single byte (dataToWrite) into addressToWrite
 void writeRegister(uint8_t addressToWrite, uint8_t dataToWrite)
 {
+#ifndef POP_SIMULATOR
   Wire.beginTransmission(MMA8452_ADDRESS);
   Wire.write(addressToWrite);
   Wire.write(dataToWrite);
   Wire.endTransmission(); //Stop transmitting
+#endif
 }
 
 
