@@ -8,6 +8,9 @@
 
 #include "ledPositions.h"
 
+#include "Constants.h"
+
+#ifdef FULL_STRIP
 
 int16_t ledPositions [220][2]  =
 {{ -528, 0 },
@@ -231,7 +234,27 @@ int16_t ledPositions [220][2]  =
 	{ -528, 21 },
 	{ -528, 5 }};
 
+#else
 
+#include <math.h>
+const float radius = 25.4*6;
+
+int16_t ledPositions [constants.LEDs][2];
+
+class InitializeLedPositions {
+    public:
+    InitializeLedPositions() {
+        for(int i = 0; i < constants.LEDs; i++) {
+            float angle = i * 2 * 3.1415926/constants.LEDs;
+            ledPositions[i][0] = (int16_t)(-radius*cos(angle));
+            ledPositions[i][1] = (int16_t)(radius*sin(angle));
+        }
+    }
+};
+
+InitializeLedPositions doit;
+
+#endif
 
 void getLEDPosition(uint8_t led, int16_t &x, int16_t &y) {
     x = ledPositions[led][0];
@@ -243,3 +266,7 @@ int16_t getLEDXPosition(uint8_t led) {
 int16_t getLEDYPosition(uint8_t led) {
         return ledPositions[led][1];
 }
+
+
+
+
