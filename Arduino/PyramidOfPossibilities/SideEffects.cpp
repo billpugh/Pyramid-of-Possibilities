@@ -31,7 +31,7 @@ void SideEffects::paint(RNLights & lights) {
     lights.setPixelColor(i, parameters.colors[c]);
   }
   lights.setBrightness(64);
-  info.showActivity(lights, false, 128);
+   info.showActivityWithBrightness(lights, 128);
 }
 
 const char * SideEffects:: name() {
