@@ -40,10 +40,10 @@ public:
     virtual void setParameters(int size, char * data);
     
     // set the address of the parameters struct (from your animation subclass)
-    void *parametersPointer;
+    void *parametersPointer = 0;
     
     // set the size of the parameters struct (from your animation subclass)
-    unsigned int parametersSize;
+    unsigned int parametersSize = 0;
     
 private:
     
