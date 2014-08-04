@@ -15,8 +15,6 @@ class WWPAnimationTest : public RNAnimation {
 public:
     WWPAnimationTest(RNInfo & info, unsigned long animationStartMillis)
     : RNAnimation(info, animationStartMillis) {
-        for(int i = 0; i < info.numLEDs; i++) 
-            info.printf("Led %3d at %f\n", i, info.getGlobalAngle(i));
             
       
        };
