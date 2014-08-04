@@ -42,7 +42,8 @@ public:
     // Parameters
 
     // Called if there are any parameters from central
-    virtual void setParameters(int size, char * data);
+    // return true if successful
+    virtual bool setParameters(int size, char * data);
     
     // set the address of the parameters struct (from your animation subclass)
     void *parametersPointer;

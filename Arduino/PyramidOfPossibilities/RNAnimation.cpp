@@ -30,21 +30,22 @@ RNAnimation::getAnimationMillis() {
 }
 
 // Default is to ignore parameters
-void RNAnimation::setParameters(int size, char * data) {
+bool RNAnimation::setParameters(int size, char * data) {
     
     // Validate that we can set parameters
     if ( parametersSize <= 0 || parametersPointer == 0 ) {
         // animation class did not setup it's parameters info properly.
         info.printf("Error: Failed to set parameters for %s, no setup\n", name());
-        return;
+        return false;
     }
     if ( size != parametersSize ) {
         info.printf("Error: Failed to set parameters for %s. bad size %d/%d\n", name(), size, parametersSize);
-        return;
+        return false;
     }
     
     memcpy(parametersPointer, data, size);
     info.printf("Copied new parameters for %s\n", name());
+    return true;
 }
 
 const char * RNAnimation:: name() {
