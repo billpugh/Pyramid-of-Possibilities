@@ -7,6 +7,15 @@
 
 #include "Snow.h"
 
+
+// Called if there are any parameters from central
+bool Snow::setParameters(int size, char * data) {
+    if (!RNAnimation::setParameters(size,data))
+        return false;
+    snow.setFade(getAnimationMillis(), parameters.fade);
+    return true;
+}
+
 void Snow::addSnowFlake() {
   int v = parameters.brightnessActivity * info.getLocalActivity() + parameters.brightnessBase + info.getRandom(parameters.brightnessRandom);
   if (v > 255)
