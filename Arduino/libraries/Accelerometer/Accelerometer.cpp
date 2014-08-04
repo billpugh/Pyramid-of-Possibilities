@@ -15,9 +15,19 @@
 // Set the output data rate below. Value should be between 0 and 7
 const uint8_t dataRate = 0;  // 0=800Hz, 1=400, 2=200, 3=100, 4=50, 5=12.5, 6=6.25, 7=1.56
 
-void initMMA8452(uint8_t fsr, uint8_t dataRate);
+void initMMA8452(uint8_t fsr, uint8_t dataRate,
+	uint8_t PULSE_THSX,
+	uint8_t PULSE_THSY,
+	uint8_t PULSE_THSZ
+	);
 
-void initializeAccelerometer() {
+void initializeAccelerometer( ) {
+  initializeAccelerometer(1,1,1);
+}
+void initializeAccelerometer(
+        uint8_t PULSE_THSX,
+        uint8_t PULSE_THSY,
+        uint8_t PULSE_THSZ) {
 #ifndef POP_SIMULATOR
   Serial.println("Initializing accelerometer");
   Wire.begin(); //Join the bus as a master
@@ -42,7 +52,7 @@ void initializeAccelerometer() {
   Serial.println(c, HEX);
   if (c == 0x1A || c == 0x2A) // WHO_AM_I should be 0x1A or 0x2A
   {  
-    initMMA8452(SCALE, dataRate);  // init the accelerometer if communication is OK
+    initMMA8452(SCALE, dataRate, PULSE_THSX, PULSE_THSY, PULSE_THSZ);  // init the accelerometer if communication is OK
     if (c == 0x2A) 
       Serial.println("MMA8452Q is online...");
     else
@@ -113,7 +123,11 @@ void readAccelData(float * destination) {
 // See the many application notes for more info on setting all of these registers:
 // http://www.freescale.com/webapp/sps/site/prod_summary.jsp?code=MMA8452Q
 // Feel free to modify any values, these are settings that work well for me.
-void initMMA8452(uint8_t fsr, uint8_t dataRate)
+void initMMA8452(uint8_t fsr, uint8_t dataRate,
+	uint8_t PULSE_THSX,
+	uint8_t PULSE_THSY,
+	uint8_t PULSE_THSZ
+	)
 {
   MMA8452Standby();  // Must be in standby to change registers
 
@@ -153,9 +167,9 @@ void initMMA8452(uint8_t fsr, uint8_t dataRate)
   // writeRegister(0x21, 0x7F);  // 1. enable single/double taps on all axes
   writeRegister(0x21, 0x55);  // 1. single taps only on all axes
   // writeRegister(0x21, 0x6A);  // 1. double taps only on all axes
-  writeRegister(0x23, 0x01);  // 2. x thresh at 2g, multiply the value by 0.0625g/LSB to get the threshold
-  writeRegister(0x24, 0x01);  // 2. y thresh at 2g, multiply the value by 0.0625g/LSB to get the threshold
-  writeRegister(0x25, 0x01);  // 2. z thresh at .5g, multiply the value by 0.0625g/LSB to get the threshold
+  writeRegister(0x23, PULSE_THSX);  // 2. x thresh at 2g, multiply the value by 0.0625g/LSB to get the threshold
+  writeRegister(0x24, PULSE_THSY);  // 2. y thresh at 2g, multiply the value by 0.0625g/LSB to get the threshold
+  writeRegister(0x25, PULSE_THSZ);  // 2. z thresh at .5g, multiply the value by 0.0625g/LSB to get the threshold
   writeRegister(0x26, 0x30);  // 3. 30ms time limit at 800Hz odr, this is very dependent on data rate, see the app note
   writeRegister(0x27, 0xA0);  // 4. 200ms (at 800Hz odr) between taps min, this also depends on the data rate
   writeRegister(0x28, 0xFF);  // 5. 318ms (max value) between taps max
