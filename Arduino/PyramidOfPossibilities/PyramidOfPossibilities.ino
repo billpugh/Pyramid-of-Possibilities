@@ -12,6 +12,8 @@
 #include "hsv2rgb.h"
 #include "Controller.h"
 #include "RNSerial.h"
+#include "ledPositions.h"
+#include "mac.h"
 #include <EEPROM.h>
 #include <malloc.h>
 
@@ -44,7 +46,7 @@ void setup() {
   leds.begin();
   leds.show();
   Serial.begin(115200);
-  Serial.println("Started");
+  
 
   pinMode(ONBOARD_LED_PIN, OUTPUT); 
   for(int i = 0; i < 5; i++) {
@@ -54,18 +56,22 @@ void setup() {
     delay(300);
   }
 
-
-  Serial.println(leds.numPixels());
-  Serial.println(lights.getNumPixels());
+  Serial.println("PoP board starting");
+  print_mac();
   initializeAccelerometer(constants.PULSE_THSX,constants.PULSE_THSY,
         constants.PULSE_THSZ);
   setupSerial2(9600);
   Platform platform( 0,0,0,0,1200,0);
   info = new RNInfo(constants.LEDs, platform);
   controller = new RNController(*info);
+  
+  if (0) 
+  for(int i = 0; i <constants.LEDs; i++) {
+    info->printf("Led %3d at %4d %4d\n", i, getLEDXPosition(i), getLEDYPosition(i));
+  }
 }
 
-const uint8_t chunk = 16;
+const uint8_t chunk = constants.brightnessChunkSize;
 uint8_t scaleBrightness(uint8_t value) {
   uint8_t result = 0;
   while (value > chunk) {
