@@ -14,33 +14,31 @@
 
 enum  AnimationEnum {
 
+    e_Beacon,
+    e_GlowFade,
 
-    
-  e_WWPAnimationTest,
-  e_ActivityLevelAnimation,
-  e_GlowFade,
-  e_SideEffects,
-  e_GradientSwirl,
-    
-  // Animations defined by Bill Pugh (WWP)
-  e_WWPAnimation1,
-  e_WWPAnimation2,
-  e_WWPAnimation3,
-  e_WWPAnimation4,
-  e_WWPAnimation5,
-  e_FlashAttack,
-  e_Snow,
-  e_Swirl,
+    e_WWPAnimationTest,
+    e_ActivityLevelAnimation,
 
+    e_SideEffects,
+    e_GradientSwirl,
 
-  // Danny's animations.
-  e_DRAnimation0,   // RGB simple
-  e_DRAnimation1,   // RNBeam
-  
+    // Animations defined by Bill Pugh (WWP)
+    e_WWPAnimation1,
+    e_WWPAnimation2,
+    e_WWPAnimation3,
+    e_WWPAnimation4,
+    e_WWPAnimation5,
+    e_FlashAttack,
+    e_Snow,
+    e_Swirl,
 
+    // Danny's animations.
+    e_DRAnimation0,   // RGB simple
+    e_DRAnimation1,   // RNBeam
 
-  // Not an actual enum, just the value used to give us the count of the number of enums
-  e_AnimationCount};
+    // Not an actual enum, just the value used to give us the count of the number of enums
+    e_AnimationCount};
 
 
 RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animationStartMillis );

@@ -21,6 +21,7 @@
 #include "Snow.h"
 #include "GradientSwirl.h"
 #include "Swirl.h"
+#include "Beacon.h"
 
 
 #include "DRAnimation0.h"
@@ -34,6 +35,9 @@
 
 RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animationStartMillis ) {
     switch (a) {
+
+        case e_Beacon:
+            return new Beacon(info, animationStartMillis);
             
         case e_ActivityLevelAnimation:
             return new ActivityLevelAnimation(info, animationStartMillis);
