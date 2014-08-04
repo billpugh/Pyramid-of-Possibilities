@@ -16,6 +16,12 @@ RNAnimation::RNAnimation(RNInfo & info, unsigned long animationStartMillis) : in
     parametersSize = 0;
 };
 
+RNAnimation::RNAnimation(RNInfo & info, unsigned long animationStartMillis,
+            unsigned int parametersSize, void *parametersPointer
+            )  : info(info), animationStartMillis(animationStartMillis), parametersSize(parametersSize), parametersPointer(parametersPointer) {
+    
+}
+
 
 // Gives the time in milliseconds since this animation starter
 unsigned long

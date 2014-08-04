@@ -29,17 +29,17 @@ uint8_t b ) {
 }
 
 void WWPAnimation4::paint(RNLights & lights) {
-
-  int length = info.numLEDs/3;
-
-  int rPos = getAnimationMillis()/20;
-  int gPos = getAnimationMillis()/34;
-  int bPos = -getAnimationMillis()/26;
-  paint(lights, rPos, length, 120, 0, 0);
-  paint(lights, gPos, length, 0, 120, 0);
-  paint(lights, bPos, length, 0, 0, 120);
-  info.showActivity(lights, false, 32);
-
+    
+    int length = info.numLEDs * parameters.lengthFraction;
+    
+    int rPos = getAnimationMillis()/parameters.redSpeed;
+    int gPos = getAnimationMillis()/parameters.greenSpeed;
+    int bPos = getAnimationMillis()/parameters.blueSpeed;
+    paint(lights, rPos, length, parameters.brightness, 0, 0);
+    paint(lights, gPos, length, 0, parameters.brightness, 0);
+    paint(lights, bPos, length, 0, 0, parameters.brightness);
+    info.showActivityWithBrightness( lights, parameters.brightnessWithoutActivity);
+    
 }
 
 

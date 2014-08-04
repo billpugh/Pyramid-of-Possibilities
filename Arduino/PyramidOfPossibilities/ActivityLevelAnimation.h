@@ -17,7 +17,6 @@ public:
     virtual void paint(RNLights & lights);
     virtual const char * name();
     uint16_t level;
-    uint8_t direction;
 
 };
 

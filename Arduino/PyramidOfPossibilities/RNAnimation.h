@@ -17,6 +17,11 @@ class RNAnimation {
 public:
     // Constructor
     RNAnimation(RNInfo & info, unsigned long animationStartMillis);
+    // Constructor
+    RNAnimation(RNInfo & info, unsigned long animationStartMillis,
+                unsigned int parametersSize, void *parametersPointer
+                );
+    
     
     virtual ~RNAnimation() {};
     
@@ -40,10 +45,10 @@ public:
     virtual void setParameters(int size, char * data);
     
     // set the address of the parameters struct (from your animation subclass)
-    void *parametersPointer = 0;
+    void *parametersPointer;
     
     // set the size of the parameters struct (from your animation subclass)
-    unsigned int parametersSize = 0;
+    unsigned int parametersSize;
     
 private:
     

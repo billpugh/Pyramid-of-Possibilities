@@ -8,7 +8,7 @@
 #include "Snow.h"
 
 void Snow::addSnowFlake() {
-  int v = 400 * info.getLocalActivity() + 20 + info.getRandom(50);
+  int v = parameters.brightnessActivity * info.getLocalActivity() + parameters.brightnessBase + info.getRandom(parameters.brightnessRandom);
   if (v > 255)
     v = 255;
   snow.setPixelColorMax(info.getRandomPixel(), v, v, v);
@@ -20,14 +20,14 @@ void Snow::paint(RNLights & lights) {
   snow.fade(ms);
   do {
     addSnowFlake();
-    lastUpdateMillis += 4;
+    lastUpdateMillis += parameters.msPerFlake;
   } 
   while (lastUpdateMillis < ms);
   if (info.getTaps())
-    for(int i = 0; i < 10; i++)
+    for(int i = 0; i < parameters.flakesPerTap; i++)
       addSnowFlake();
   lights.copyPixels(snow);
-  lights.setBrightness(64);
+  lights.setBrightness(parameters.brightness);
 
 }
 

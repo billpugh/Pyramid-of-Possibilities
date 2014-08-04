@@ -13,7 +13,7 @@
 
 ActivityLevelAnimation::ActivityLevelAnimation(RNInfo & info, unsigned long animationStartMillis)
 : 
-RNAnimation(info, animationStartMillis), level(0), direction(random(2)*2-1) {
+RNAnimation(info, animationStartMillis), level(0){
 };
 
 

@@ -10,15 +10,29 @@
 
 #include "RNAnimation.h"
 
+struct SideEffectsParameters {
+    uint32_t colors[6] = {
+        0xff0000, 0x505050, 0x0000ff, 0xff0000, 0x505050, 0x0000ff};
+    uint16_t switchTime = 5000;
+};
+
+
 class SideEffects : public RNAnimation {
 public:
     SideEffects(RNInfo & info, unsigned long animationStartMillis)
-    : RNAnimation(info, animationStartMillis), lastPhaseChange(animationStartMillis) {};
+    : RNAnimation(info, animationStartMillis,
+                  sizeof(SideEffectsParameters), &parameters),
+    lastPhaseChange(animationStartMillis) {};
+    
     virtual void paint(RNLights & lights);
     
-    virtual char * name();
+    virtual const char * name();
     
-    unsigned long lastPhaseChange;
+   
+    SideEffectsParameters parameters;
+     unsigned long lastPhaseChange;
+     uint8_t phase = 0;
+    
 
 };
 

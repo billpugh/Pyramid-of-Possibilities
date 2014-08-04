@@ -9,9 +9,14 @@
 #include "WWPAnimation1.h"
 
 void WWPAnimation1::paint(RNLights & lights) {
-    uint8_t hue = (getAnimationMillis() / 10) % 256;
-    lights.setAllPixelHSVs(hue, 255, 255);
-    info.showActivity(lights, true, 64);
+    
+    uint8_t gradiantPosition = getAnimationMillis() * 256 * parameters.gpm / 60000;
+    
+    uint8_t r,g,b;
+    parameters.gradient.getColor(gradiantPosition, r, g, b);
+
+    lights.setAllPixelColors(r, g, b);
+    info.showActivity(lights, true, parameters.brightnessWithoutActivity);
    }
 
   const char * WWPAnimation1:: name() {

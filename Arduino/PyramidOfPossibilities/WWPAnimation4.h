@@ -11,10 +11,27 @@
 
 #include "RNAnimation.h"
 
+
+struct WWPAnimation4Parameters {
+    
+    
+    uint8_t brightness = 120;
+    int8_t redSpeed = 20;
+    int8_t greenSpeed = 34;
+    int8_t blueSpeed = -26;
+    
+     uint8_t brightnessWithoutActivity = 32;
+    
+    float lengthFraction = 1/3.0;
+    
+    
+};
+
+
 class WWPAnimation4 : public RNAnimation {
 public:
     WWPAnimation4(RNInfo & info, unsigned long animationStartMillis)
-    : RNAnimation(info, animationStartMillis) {};
+    : RNAnimation(info, animationStartMillis, sizeof(WWPAnimation4Parameters), &parameters) {};
     virtual void paint(RNLights & lights);
 
     void paint(RNLights & lights, int position, int length, 
@@ -22,6 +39,8 @@ public:
 	uint8_t g, 
 	uint8_t b );
   virtual const char * name();
+    
+    WWPAnimation4Parameters parameters;
     
 };
 

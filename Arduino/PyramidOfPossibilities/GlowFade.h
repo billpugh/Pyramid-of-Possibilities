@@ -16,8 +16,7 @@ public:
     GlowFade(RNInfo & info, unsigned long animationStartMillis);
     virtual void paint(RNLights & lights);
     virtual const char * name();
-private:
-    RNLights sparkles;
+
 
 };
 

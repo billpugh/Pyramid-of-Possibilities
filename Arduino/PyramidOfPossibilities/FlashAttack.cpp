@@ -16,15 +16,8 @@ void FlashAttack::paint(RNLights & lights) {
   if (value2 > 255) value2 = 255;
   if (value < value2)
     value = value2;
-  lights.setAllPixelHSVs(hue,255,value);
-  //  
-  //    uint16_t length = (getAnimationMillis() / 10) % (info.numLEDs*2);
-  //    if (length >= info.numLEDs)
-  //      length = info.numLEDs*2-1-length;
-  //    if (length >=  info.numLEDs | length < 0)
-  //      length = 0;
-  //    for(int i = 0; i < length; i++)
-  //      lights.setPixelColor(i, 64, 64, 64);
+  lights.setAllPixelHSVs(parameters.hue,255,value);
+
 }
 
 char * FlashAttack:: name() {

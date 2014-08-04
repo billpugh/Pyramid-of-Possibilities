@@ -11,28 +11,33 @@
 #include "RNAnimation.h"
 #include "RNGradient.h"
 
+struct SwirlParameters {
+    RNGradient headGradient = RNGradient(1, RNGradientBounce,
+                            0x90ffff, 0xffffff);
+    RNGradient tailGradient = RNGradient(1, RNGradientBounce,
+                            0x90ff00, 0xffff00);
+    
+    float lengthFraction = 0.7;
+    
+    uint16_t rpm = 30;
+    uint16_t gpm = 10;
+    
+    bool global = 0;
+};
+
+
 class Swirl : public RNAnimation {
 public:
     Swirl(RNInfo & info, unsigned long animationStartMillis)
-    : RNAnimation(info, animationStartMillis), headGradient(1, RNGradientBounce,
-         0x90ffff, 0xffffff),
-    tailGradient(1, RNGradientBounce,
-                 0x90ff00, 0xffff00),
-  rpm(30), gpm(10),  length(info.numLEDs*2/3) {
+    : RNAnimation(info, animationStartMillis, sizeof(SwirlParameters), &parameters) {
       
        };
     virtual void paint(RNLights & lights);
     
     virtual const char * name();
     
-    RNGradient headGradient, tailGradient;
-    
-    uint8_t length;
-    
-    uint16_t rpm;
-     uint16_t gpm;
-    
-    bool global;
+    SwirlParameters parameters;
+   
 
 
 };
