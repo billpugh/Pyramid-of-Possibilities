@@ -9,53 +9,38 @@
 #include "GlowFade.h"
 
 
-void getGradiant(uint8_t pos, uint8_t &h,  uint8_t &s,  uint8_t &v) {
-	h = pos;
-	s = 255;
-	v = 255;
-	}
-
-void getLinear(float pos, uint8_t &value) {
+void GlowFade::getLinear(float pos, uint8_t &value) {
    int result;
-   if (pos < 0.75) {
-	result = (uint8_t) (pos/0.75 * 256);
+   if (pos < parameters.fractionUp) {
+	result = (uint8_t) (pos/parameters.fractionUp * 256);
 	}
    else {
-	result = 255 + (0.75 - pos) * 4 *  256;
+	result = 255 - (pos - parameters.fractionUp)/parameters.fractionUp *  256;
 	}
    if (result < 0) result = 0;
    else if (result > 255) result = 255;
    value = result;
 }
 
-
-  GlowFade::GlowFade(RNInfo & info, unsigned long animationStartMillis)
-    : RNAnimation(info, animationStartMillis) {
-
-    };
     
 void GlowFade::paint(RNLights & lights) {
-    const uint16_t period = 4000;
-    const uint16_t gradiantSkip = 69 ;
+ 
     
     unsigned long ms = getAnimationMillis();
 
-    uint16_t cycle = ms / period;
-    uint8_t gradiantPosition = cycle * gradiantSkip;
-    uint8_t h,s,v;
-    getGradiant(gradiantPosition, h, s, v);
-    lights.setAllPixelHSVs(h,s,v);
+    uint16_t cycle = ms / parameters.period;
+    uint8_t gradiantPosition = cycle * parameters.gradiantSkip;
+    uint8_t r,g,b;
+    parameters.gradient.getColor(gradiantPosition, r,g,b);
     
-    float moment = ((float)(ms % period)) / period;
+    lights.setAllPixelColors(r,g,b);
+    float moment = ((float)(ms % parameters.period)) / parameters.period;
     uint8_t brightness;
     getLinear(moment, brightness);
     lights.setBrightness(brightness);
 
-    info.showActivity(lights, true, 256);
-    
-    info.printf("%3d %f %3d %3d %3d %3d\n", gradiantPosition, moment, h, s, v, brightness);
-
-   }
+    info.showActivityWithSparkles(lights);
+    }
 
   const char * GlowFade:: name() {
     return "GlowFade";
