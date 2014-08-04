@@ -20,7 +20,8 @@ enum  AnimationEnum {
   e_ActivityLevelAnimation,
   e_GlowFade,
   e_SideEffects,
-          e_GradientSwirl,
+  e_GradientSwirl,
+    
   // Animations defined by Bill Pugh (WWP)
   e_WWPAnimation1,
   e_WWPAnimation2,
@@ -29,7 +30,7 @@ enum  AnimationEnum {
   e_WWPAnimation5,
   e_FlashAttack,
   e_Snow,
-    e_Swirl,
+  e_Swirl,
 
 
   // Danny's animations.
