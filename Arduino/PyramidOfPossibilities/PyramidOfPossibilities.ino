@@ -16,15 +16,15 @@
 #include <malloc.h>
 
 
-const int LAST_LED = FIRST_LED+LEDs-1;
+const int LAST_LED = constants.FIRST_LED+constants.LEDs-1;
 const int ledsPerStrip = LAST_LED+1;
 
-DMAMEM uint8_t displayMemory[ledsPerStrip*24];
-uint8_t drawingMemory[ledsPerStrip*24];
+DMAMEM uint8_t displayMemory[240*24];
+uint8_t drawingMemory[240*24];
 
 OctoWS2811 leds(ledsPerStrip, displayMemory, drawingMemory);
 
-RNLightsOctoWS2811 lights(leds, drawingMemory, FIRST_LED);
+RNLightsOctoWS2811 lights(leds, drawingMemory, constants.FIRST_LED);
 
 //Platform platform( 0,0,0,0,700,0);
 //RNInfo info(LEDs, platform);
@@ -57,10 +57,11 @@ void setup() {
 
   Serial.println(leds.numPixels());
   Serial.println(lights.getNumPixels());
-  initializeAccelerometer();
+  initializeAccelerometer(constants.PULSE_THSX,constants.PULSE_THSY,
+        constants.PULSE_THSZ);
   setupSerial2(9600);
   Platform platform( 0,0,0,0,1200,0);
-  info = new RNInfo(LEDs, platform);
+  info = new RNInfo(constants.LEDs, platform);
   controller = new RNController(*info);
 }
 

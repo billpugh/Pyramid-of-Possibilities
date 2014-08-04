@@ -38,7 +38,7 @@ void RNController::switchToAnimation(AnimationEnum nextAnimation) {
     info.printf("%d bytes allocated\n",after-before);
 
     // See Constants.h
-    animationExpires = start + ConstantsAnimationDuration();
+    animationExpires = start + constants.animationDuration;
 
     if (currentAnimation)
       info.printf("Created %s\n", currentAnimation->name());

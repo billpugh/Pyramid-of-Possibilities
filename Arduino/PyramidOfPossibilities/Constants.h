@@ -8,14 +8,7 @@
 #ifndef CONSTANTS_PYRAMID_OF_POP
 #define CONSTANTS_PYRAMID_OF_POP
 
-
-//////////////////////////////////////////////////////////////////////////////////////////
-// Global/Constant Functions
-//////////////////////////////////////////////////////////////////////////////////////////
-
-// Returns the duration of each animation. If you define RN_REALLY_LONG_ANIMATIONS below then animation are 1 hour.
-unsigned long ConstantsAnimationDuration();
-
+#include <stdint.h>
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // Defines
@@ -25,23 +18,35 @@ unsigned long ConstantsAnimationDuration();
 #define FULL_STRIP
 //#define RN_REALLY_LONG_ANIMATIONS
 
+struct RNConstants {
 
-//////////////////////////////////////////////////////////////////////////////////////////
-// You are less likely to need to change what is below here.
-//////////////////////////////////////////////////////////////////////////////////////////
-
-
-// Set values for the # of LEDs and 1st LED Index
+  // Set values for the # of LEDs and 1st LED Index
 #ifdef FULL_STRIP
-// VALUES FOR FULL-STRIP (ie. platforms on the pyramid!)
-const int LEDs = 220;
-const int FIRST_LED = 15;
+  // VALUES FOR FULL-STRIP (ie. platforms on the pyramid!)
+  const uint8_t LEDs = 220;
+  const uint8_t FIRST_LED = 10;
 #else
-// Modify these values for testing with a non-full strip.
-const int LEDs = 32;
-const int FIRST_LED = 0;
+  // Modify these values for testing with a non-full strip.
+  const uint8_t LEDs = 32;
+  const uint8_t FIRST_LED = 0;
 #endif  /** #ifdef FULL_STRIP **/
 
+  const uint8_t PULSE_THSX = 1;
+  const uint8_t PULSE_THSY = 1;
+  const uint8_t PULSE_THSZ = 1;
 
+#ifdef RN_REALLY_LONG_ANIMATIONS
+  const unsigned long animationDuration = 3600000;
+#else
+  const unsigned long animationDuration = 60000;
+#endif
+
+
+
+
+};
+
+extern RNConstants constants;
 
 #endif /** CONSTANTS_PYRAMID_OF_POP */
+
