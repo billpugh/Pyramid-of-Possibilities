@@ -1,14 +1,14 @@
 //
-//  WWPAnimation1.cpp
+//  ChangingColor.cpp
 //  PlatformData
 //
 //  Created by Bill on 7/18/14.
 //  Copyright (c) 2014 RN. All rights reserved.
 //
 
-#include "WWPAnimation1.h"
+#include "ChangingColor.h"
 
-void WWPAnimation1::paint(RNLights & lights) {
+void ChangingColor::paint(RNLights & lights) {
     
     uint8_t gradiantPosition = getAnimationMillis() * 256 * parameters.gpm / 60000;
     
@@ -20,6 +20,6 @@ void WWPAnimation1::paint(RNLights & lights) {
     info.showActivityWithBrightness(lights, parameters.brightnessWithoutActivity);
    }
 
-  const char * WWPAnimation1:: name() {
-    return "WWPAnimation1";
+  const char * ChangingColor:: name() {
+    return "ChangingColor";
   }

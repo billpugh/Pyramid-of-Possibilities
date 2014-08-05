@@ -1,18 +1,18 @@
 //
-//  WWPAnimation1.h
+//  ChangingColor.h
 //  PlatformData
 //
 //  Created by Bill on 7/18/14.
 //  Copyright (c) 2014 RN. All rights reserved.
 //
 
-#ifndef __PlatformData__WWPAnimation1__
-#define __PlatformData__WWPAnimation1__
+#ifndef __PlatformData__ChangingColor__
+#define __PlatformData__ChangingColor__
 
 #include "RNAnimation.h"
 #include "RNGradient.h"
 
-struct WWPAnimation1Parameters {
+struct ChangingColorParameters {
     uint8_t gpm = 10;
     RNGradient gradient = RNGradient(1,RNGradientWrap,
                                          0x00ffff, 0xffffff);
@@ -21,15 +21,15 @@ struct WWPAnimation1Parameters {
 
 };
 
-class WWPAnimation1 : public RNAnimation {
+class ChangingColor : public RNAnimation {
 public:
-    WWPAnimation1(RNInfo & info, unsigned long animationStartMillis)
-    : RNAnimation(info, animationStartMillis, sizeof(WWPAnimation1Parameters), &parameters) {};
+    ChangingColor(RNInfo & info, unsigned long animationStartMillis)
+    : RNAnimation(info, animationStartMillis, sizeof(ChangingColorParameters), &parameters) {};
     virtual void paint(RNLights & lights);
     virtual const char * name();
     
-    WWPAnimation1Parameters parameters;
+    ChangingColorParameters parameters;
 
 };
 
-#endif /* defined(__PlatformData__WWPAnimation1__) */
+#endif /* defined(__PlatformData__ChangingColor__) */
