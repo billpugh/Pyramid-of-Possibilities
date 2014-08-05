@@ -16,7 +16,8 @@ void WWPAnimation1::paint(RNLights & lights) {
     parameters.gradient.getColor(gradiantPosition, r, g, b);
 
     lights.setAllPixelColors(r, g, b);
-    info.showActivity(lights, true, parameters.brightnessWithoutActivity);
+    info.showActivityWithSparkles(lights);
+    info.showActivityWithBrightness(lights, parameters.brightnessWithoutActivity);
    }
 
   const char * WWPAnimation1:: name() {
