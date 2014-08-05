@@ -11,13 +11,21 @@
 
 void CircularGradient::paint(RNLights & lights) {
 
-  uint8_t baseHue = (getAnimationMillis() / 10) % 256;
+  uint16_t gradientSize = 256 * parameters.rpm;
+  float baseAngle =  parameters.rpm * getAnimationMillis()/ 60000.0;
 
   for(int i = 0; i < lights.getNumPixels(); i++) {
-    lights.setPixelHSV(i, baseHue+i*512/lights.getNumPixels(), 255, 255);
-  }
+      float angle;
+      if (parameters.global)
+          angle = info.getGlobalAngle(i);
+      else
+          angle = info.getLocalAngle(i);
 
-  info.showActivity(lights, false, 16);
+
+      lights.setPixelColor(i, parameters.gradient.getColor((baseAngle+angle)*gradientSize));
+    }
+
+  info.showActivityWithBrightness(lights, parameters.brightnessWithoutActivity);
 }
 
 const char * CircularGradient:: name() {
