@@ -1,18 +1,18 @@
 //
-//  WWPAnimation4.h
+//  ColorWorms.h
 //  PlatformData
 //
 //  Created by Bill on 7/18/14.
 //  Copyright (c) 2014 RN. All rights reserved.
 //
 
-#ifndef __PlatformData__WWPAnimation4__
-#define __PlatformData__WWPAnimation4__
+#ifndef __PlatformData__ColorWorms__
+#define __PlatformData__ColorWorms__
 
 #include "RNAnimation.h"
 
 
-struct WWPAnimation4Parameters {
+struct ColorWormsParameters {
     
     
     uint8_t brightness = 120;
@@ -28,10 +28,10 @@ struct WWPAnimation4Parameters {
 };
 
 
-class WWPAnimation4 : public RNAnimation {
+class ColorWorms : public RNAnimation {
 public:
-    WWPAnimation4(RNInfo & info, unsigned long animationStartMillis)
-    : RNAnimation(info, animationStartMillis, sizeof(WWPAnimation4Parameters), &parameters) {};
+    ColorWorms(RNInfo & info, unsigned long animationStartMillis)
+    : RNAnimation(info, animationStartMillis, sizeof(ColorWormsParameters), &parameters) {};
     virtual void paint(RNLights & lights);
 
     void paint(RNLights & lights, int position, int length, 
@@ -40,9 +40,9 @@ public:
 	uint8_t b );
   virtual const char * name();
     
-    WWPAnimation4Parameters parameters;
+    ColorWormsParameters parameters;
     
 };
 
 
-#endif /* defined(__PlatformData__WWPAnimation4__) */
+#endif /* defined(__PlatformData__ColorWorms__) */

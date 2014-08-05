@@ -1,18 +1,18 @@
 //
-//  WWPAnimation4.cpp
+//  ColorWorms.cpp
 //  PlatformData
 //
 //  Created by Bill on 7/18/14.
 //  Copyright (c) 2014 RN. All rights reserved.
 //
 
-#include "WWPAnimation4.h"
+#include "ColorWorms.h"
 
-const char * WWPAnimation4:: name() {
-  return "WWPAnimation4";
+const char * ColorWorms:: name() {
+  return "ColorWorms";
 }
 
-void WWPAnimation4::paint(RNLights & lights, int position, int length, 
+void ColorWorms::paint(RNLights & lights, int position, int length, 
 uint8_t r, 
 uint8_t g, 
 uint8_t b ) {
@@ -28,7 +28,7 @@ uint8_t b ) {
   }
 }
 
-void WWPAnimation4::paint(RNLights & lights) {
+void ColorWorms::paint(RNLights & lights) {
     
     int length = info.numLEDs * parameters.lengthFraction;
     
