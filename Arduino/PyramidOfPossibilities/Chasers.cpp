@@ -1,19 +1,19 @@
 //
-//  WWPAnimation5.cpp
+//  Chasers.cpp
 //  PlatformData
 //
 //  Created by Bill on 7/18/14.
 //  Copyright (c) 2014 RN. All rights reserved.
 //
 
-#include "WWPAnimation5.h"
+#include "Chasers.h"
 #include <Arduino.h>
 #include "Constants.h"
 
 static CHSV hsv;
 static CRGB rgb;
 
-WWPAnimation5::WWPAnimation5(RNInfo & info, unsigned long animationStartMillis)
+Chasers::Chasers(RNInfo & info, unsigned long animationStartMillis)
 : 
 RNAnimation(info, animationStartMillis), lights(info.numLEDs), dots(info.numLEDs) {
 
@@ -26,16 +26,16 @@ RNAnimation(info, animationStartMillis), lights(info.numLEDs), dots(info.numLEDs
   dots.setFade(animationStartMillis, 750);
 };
 
-const char * WWPAnimation5:: name() {
-  return "WWPAnimation5";
+const char * Chasers:: name() {
+  return "Chasers";
 }
 
 
 
-uint8_t WWPAnimation5::currentHue() {
+uint8_t Chasers::currentHue() {
   return (getAnimationMillis() / 100) % 256;
 }
-void WWPAnimation5::setRandomPixel(float v) {
+void Chasers::setRandomPixel(float v) {
   int pixel = random(lights.getNumPixels());
 
   int brightness = dots.getPixelRed(pixel) 
@@ -58,7 +58,7 @@ void WWPAnimation5::setRandomPixel(float v) {
 
 }
 
-void WWPAnimation5::addChaser() {
+void Chasers::addChaser() {
 
 
   if (nextChaser > getAnimationMillis())  return;
@@ -103,7 +103,7 @@ void WWPAnimation5::addChaser() {
   info.printf("chaser added\n");
 }
 
-void WWPAnimation5::tap(float v) {
+void Chasers::tap(float v) {
   if (v >= 1.0) {
     v = 0.5;
     didTap = true;
@@ -122,7 +122,7 @@ void WWPAnimation5::tap(float v) {
 }
 
 
-void WWPAnimation5::paint(RNLights & paintMe) {
+void Chasers::paint(RNLights & paintMe) {
   unsigned long ms = getAnimationMillis();
   float totalG = info.getLocalActivity();
   if (lastUpdate > ms-20)

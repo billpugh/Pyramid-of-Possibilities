@@ -15,7 +15,7 @@
 #include "CircularGradient.h"
 #include "WWPAnimation3.h"
 #include "ColorWorms.h"
-#include "WWPAnimation5.h"
+#include "Chasers.h"
 #include "FlashAttack.h"
 #include "SideEffects.h"
 #include "Snow.h"
@@ -70,8 +70,8 @@ RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animati
            
         case e_ColorWorms :
             return new ColorWorms(info, animationStartMillis);
-        case e_WWPAnimation5 :
-            return new WWPAnimation5(info, animationStartMillis);
+        case e_Chasers :
+            return new Chasers(info, animationStartMillis);
         case e_DRAnimation0 :
             return new DRAnimation0(info, animationStartMillis);
         case e_DRAnimation1 :

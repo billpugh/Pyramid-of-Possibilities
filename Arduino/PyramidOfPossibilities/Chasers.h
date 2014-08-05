@@ -1,24 +1,24 @@
 //
-//  WWPAnimation5.h
+//  Chasers.h
 //  PlatformData
 //
 //  Created by Bill on 7/18/14.
 //  Copyright (c) 2014 RN. All rights reserved.
 //
 
-#ifndef __WWPAnimation5__
-#define __WWPAnimation5__
+#ifndef __Chasers__
+#define __Chasers__
 
 #include "RNAnimation.h"
 #include "RNChaser.h"
 
 
 
-class WWPAnimation5 : 
+class Chasers : 
 public RNAnimation {
 public:
   const uint8_t numChasers = 6;
-  WWPAnimation5(RNInfo & info, unsigned long animationStartMillis);
+  Chasers(RNInfo & info, unsigned long animationStartMillis);
   virtual void paint(RNLights & paintMe);
 
   virtual const char * name();
@@ -45,6 +45,6 @@ public:
 };
 
 
-#endif /* defined(__WWPAnimation5__) */
+#endif /* defined(__Chasers__) */
 
 

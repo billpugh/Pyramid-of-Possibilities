@@ -28,7 +28,7 @@ enum  AnimationEnum {
     e_CircularGradient,
 
     e_ColorWorms,
-    e_WWPAnimation5,
+    e_Chasers,
     e_FlashAttack,
     e_Snow,
     e_Swirl,
