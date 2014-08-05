@@ -26,7 +26,7 @@ enum  AnimationEnum {
     // Animations defined by Bill Pugh (WWP)
     e_WWPAnimation1,
     e_WWPAnimation2,
-    e_WWPAnimation3,
+
     e_WWPAnimation4,
     e_WWPAnimation5,
     e_FlashAttack,

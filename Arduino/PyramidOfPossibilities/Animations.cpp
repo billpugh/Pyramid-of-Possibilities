@@ -67,9 +67,7 @@ RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animati
             return new WWPAnimation1(info, animationStartMillis);
         case e_WWPAnimation2 :
             return new WWPAnimation2(info, animationStartMillis);
-        case e_WWPAnimation3 :
-            return new WWPAnimation3(info, animationStartMillis);
-            
+           
         case e_WWPAnimation4 :
             return new WWPAnimation4(info, animationStartMillis);
         case e_WWPAnimation5 :
