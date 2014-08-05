@@ -27,7 +27,7 @@ enum  AnimationEnum {
     e_ChangingColor,
     e_WWPAnimation2,
 
-    e_WWPAnimation4,
+    e_ColorWorms,
     e_WWPAnimation5,
     e_FlashAttack,
     e_Snow,
