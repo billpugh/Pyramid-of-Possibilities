@@ -24,7 +24,7 @@ enum  AnimationEnum {
     e_GradientSwirl,
 
     // Animations defined by Bill Pugh (WWP)
-    e_WWPAnimation1,
+    e_ChangingColor,
     e_WWPAnimation2,
 
     e_WWPAnimation4,
