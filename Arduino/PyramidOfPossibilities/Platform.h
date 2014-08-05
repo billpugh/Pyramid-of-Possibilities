@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 RN. All rights reserved.
 //
 
-#ifndef __PlatformData__Platform__
-#define __PlatformData__Platform__
+#ifndef __Platform__
+#define __Platform__
 
 #include <stdint.h>
 
@@ -36,4 +36,4 @@ public:
     
 };
 
-#endif /* defined(__PlatformData__Platform__) */
+#endif /* defined(__Platform__) */

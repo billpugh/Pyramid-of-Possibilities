@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 RN. All rights reserved.
 //
 
-#ifndef __PlatformData__Controller__
-#define __PlatformData__Controller__
+#ifndef __Controller__
+#define __Controller__
 
 #include "RNLights.h"
 #include "RNInfo.h"
@@ -37,4 +37,4 @@ private:
 };
 
 
-#endif /* defined(__PlatformData__Controller__) */
+#endif /* defined(__Controller__) */

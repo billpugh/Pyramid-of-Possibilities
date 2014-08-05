@@ -5,8 +5,8 @@
 //  Copyright (c) 2014 RN. All rights reserved.
 //
 
-#ifndef __PlatformData__FlashAttack__
-#define __PlatformData__FlashAttack__
+#ifndef __FlashAttack__
+#define __FlashAttack__
 
 #include "RNAnimation.h"
 
@@ -30,4 +30,4 @@ public:
 
 };
 
-#endif /* defined(__PlatformData__FlashAttack__) */
+#endif /* defined(__FlashAttack__) */

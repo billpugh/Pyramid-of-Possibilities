@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 RN. All rights reserved.
 //
 
-#ifndef __PlatformData__DRAnimation0__
-#define __PlatformData__DRAnimation0__
+#ifndef __DRAnimation0__
+#define __DRAnimation0__
 
 #include "RNAnimation.h"
 
@@ -20,4 +20,4 @@ public:
 
 };
 
-#endif /* defined(__PlatformData__DRAnimation0__) */
+#endif /* defined(__DRAnimation0__) */

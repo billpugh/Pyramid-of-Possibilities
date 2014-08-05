@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 RN. All rights reserved.
 //
 
-#ifndef __PlatformData__WWPAnimation5__
-#define __PlatformData__WWPAnimation5__
+#ifndef __WWPAnimation5__
+#define __WWPAnimation5__
 
 #include "RNAnimation.h"
 #include "RNChaser.h"
@@ -45,6 +45,6 @@ public:
 };
 
 
-#endif /* defined(__PlatformData__WWPAnimation5__) */
+#endif /* defined(__WWPAnimation5__) */
 
 

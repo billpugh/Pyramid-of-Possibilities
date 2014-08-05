@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 RN. All rights reserved.
 //
 
-#ifndef __PlatformData__ColorWorms__
-#define __PlatformData__ColorWorms__
+#ifndef __ColorWorms__
+#define __ColorWorms__
 
 #include "RNAnimation.h"
 
@@ -45,4 +45,4 @@ public:
 };
 
 
-#endif /* defined(__PlatformData__ColorWorms__) */
+#endif /* defined(__ColorWorms__) */

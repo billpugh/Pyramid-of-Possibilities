@@ -4,8 +4,8 @@
 //
 //
 
-#ifndef __PlatformData__AVEAnimation1__
-#define __PlatformData__AVEAnimation1__
+#ifndef __AVEAnimation1__
+#define __AVEAnimation1__
 
 #include "RNAnimation.h"
 #include "RNLights.h"
@@ -23,4 +23,4 @@ private:
     uint16_t currentPos;
 };
 
-#endif /* defined(__PlatformData__AVEAnimation1__) */
+#endif /* defined(__AVEAnimation1__) */

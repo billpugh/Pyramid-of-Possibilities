@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 RN. All rights reserved.
 //
 
-#ifndef __PlatformData__Animations__
-#define __PlatformData__Animations__
+#ifndef __Animations__
+#define __Animations__
 
 #include "RNAnimation.h"
 
@@ -43,5 +43,5 @@ enum  AnimationEnum {
 
 RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animationStartMillis );
 
-#endif /* defined(__PlatformData__Animations__) */
+#endif /* defined(__Animations__) */
 

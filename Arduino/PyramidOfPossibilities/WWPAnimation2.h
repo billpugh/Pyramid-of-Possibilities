@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 RN. All rights reserved.
 //
 
-#ifndef __PlatformData__WWPAnimation2__
-#define __PlatformData__WWPAnimation2__
+#ifndef __WWPAnimation2__
+#define __WWPAnimation2__
 
 #include "RNAnimation.h"
 
@@ -20,4 +20,4 @@ public:
     
 };
 
-#endif /* defined(__PlatformData__WWPAnimation2__) */
+#endif /* defined(__WWPAnimation2__) */

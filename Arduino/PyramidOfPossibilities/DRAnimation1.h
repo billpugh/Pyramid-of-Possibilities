@@ -8,8 +8,8 @@
 
 #include <stdint.h>
 
-#ifndef __PlatformData__DRAnimation1__
-#define __PlatformData__DRAnimation1__
+#ifndef __DRAnimation1__
+#define __DRAnimation1__
 
 struct DRAnimation1Parameters {
     uint32_t base_color;
@@ -39,4 +39,4 @@ public:
     DRAnimation1Parameters parameters;
 };
 
-#endif /* defined(__PlatformData__DRAnimation1__) */
+#endif /* defined(__DRAnimation1__) */

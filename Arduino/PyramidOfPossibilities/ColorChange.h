@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 RN. All rights reserved.
 //
 
-#ifndef __PlatformData__ChangingColor__
-#define __PlatformData__ChangingColor__
+#ifndef __ChangingColor__
+#define __ChangingColor__
 
 #include "RNAnimation.h"
 #include "RNGradient.h"
@@ -32,4 +32,4 @@ public:
 
 };
 
-#endif /* defined(__PlatformData__ChangingColor__) */
+#endif /* defined(__ChangingColor__) */

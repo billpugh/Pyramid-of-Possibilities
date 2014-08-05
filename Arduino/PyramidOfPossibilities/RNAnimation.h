@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 RN. All rights reserved.
 //
 
-#ifndef __PlatformData__RNAnimation__
-#define __PlatformData__RNAnimation__
+#ifndef __RNAnimation__
+#define __RNAnimation__
 
 
 #include "RNLights.h"
@@ -57,4 +57,4 @@ private:
     const unsigned long animationStartMillis;
 };
 
-#endif /* defined(__PlatformData__RNAnimation__) */
+#endif /* defined(__RNAnimation__) */

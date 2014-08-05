@@ -5,8 +5,8 @@
 //  Copyright (c) 2014 RN. All rights reserved.
 //
 
-#ifndef __PlatformData__Snow__
-#define __PlatformData__Snow__
+#ifndef __Snow__
+#define __Snow__
 
 #include "RNAnimation.h"
 
@@ -44,4 +44,4 @@ public:
 
 };
 
-#endif /* defined(__PlatformData__Snow__) */
+#endif /* defined(__Snow__) */

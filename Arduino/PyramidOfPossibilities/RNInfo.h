@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 RN. All rights reserved.
 //
 
-#ifndef __PlatformData__RNInfo__
-#define __PlatformData__RNInfo__
+#ifndef __RNInfo__
+#define __RNInfo__
 
 #include <stdint.h>
 #include "Platform.h"
@@ -108,7 +108,7 @@ private:
 };
 
 
-#endif /* defined(__PlatformData__RNInfo__) */
+#endif /* defined(__RNInfo__) */
 
 
 
