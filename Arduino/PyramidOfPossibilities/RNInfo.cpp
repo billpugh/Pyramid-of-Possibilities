@@ -17,12 +17,10 @@
 
 RNInfo::RNInfo(
                uint8_t numLEDs,
-               uint8_t tier,
-               uint8_t number,
                uint8_t identifier,
                int16_t x,
                int16_t y,
-               int16_t z) : Platform( tier, number, identifier, x, y, z),
+               int16_t z) : Platform( identifier, x, y, z, 1),
 numLEDs(numLEDs), sparkles(numLEDs) {
     initialize();
    };

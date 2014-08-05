@@ -14,6 +14,7 @@
 #include "RNSerial.h"
 #include "ledPositions.h"
 #include "mac.h"
+#include "RNEEPROM.h"
 #include <EEPROM.h>
 #include <malloc.h>
 
@@ -58,17 +59,44 @@ void setup() {
 
   Serial.println("PoP board starting");
   print_mac();
+  char  platformData[9];
+  Platform platform( 0,0,0,0,0);
+  bool success = readFromEEPROM(sizeof(Platform), (char*) &platform);
+  if (success) {
+    Serial.print("Read from EEPROM ");
+    Serial.print(platform.identifier);
+    Serial.println();
+    }
+  int bytesRead = Serial.readBytes(platformData, 9);
+  Serial.print(bytesRead);
+  Serial.println(" bytes read");
+  Serial.print(sizeof(Platform));
+  Serial.println(" platform size");
+  if (bytesRead == 9) {
+        bool success = platform.initialize(platformData, 9);
+        if (success) {
+          writeToEEPROM(sizeof(Platform), (char*) &platform);
+          Serial.println("success");
+          }
+        else
+          Serial.println("Fail");
+        Serial.print(platform.y);
+        }
   initializeAccelerometer(constants.PULSE_THSX,constants.PULSE_THSY,
         constants.PULSE_THSZ);
   setupSerial2(9600);
-  Platform platform( 0,0,0,0,1200,0);
+
   info = new RNInfo(constants.LEDs, platform);
   controller = new RNController(*info);
   
-  if (0) 
-  for(int i = 0; i <constants.LEDs; i++) {
-    info->printf("Led %3d at %4d %4d\n", i, getLEDXPosition(i), getLEDYPosition(i));
-  }
+  info->printf("Running. id = %3d, xyz = %4d,%4d,%4d\n", info->identifier, info->x, info->y,info->z);
+  if (bytesRead == 9) {
+    info->println("data read");
+    for(int i = 0; i < 9; i++)
+      info->printf("%2x ",platformData[i]);
+     info->println("");
+     }
+
 }
 
 const uint8_t chunk = constants.brightnessChunkSize;
@@ -107,7 +135,7 @@ void capOverallBrightness(RNLights & lights) {
 }
 
 
-Platform platform( 0,0,0,0,700,0);
+Platform platform( 0,0,0,700,0);
 
 
 void loop() {

@@ -7,7 +7,7 @@
 
 AVEAnimation1::AVEAnimation1(RNInfo& info, unsigned long animationStartMillis)
 : RNAnimation(info, animationStartMillis) {
-    forward = info.tier % 2 == 0;
+    forward = info.direction==1;
     lastUpdate = 0;
     currentPos = 0;
 }

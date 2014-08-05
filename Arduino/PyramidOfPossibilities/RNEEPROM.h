@@ -11,8 +11,7 @@
 
 
 
-void readFromEEPROM(char version, short sz, char *p);
-// void writeTo(uint8_t version, uint16_t sz, uint8_t *p)
-// void writeTo(char version, short sz, char *p)
+bool readFromEEPROM( short sz, char *p);
+void writeToEEPROM( short sz, char *p);
 
 #endif /* defined(__RNEEPROM__) */

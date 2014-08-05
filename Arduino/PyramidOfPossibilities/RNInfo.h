@@ -19,8 +19,6 @@ public:
     
     RNInfo(
            uint8_t numLEDs,
-           uint8_t tier,
-           uint8_t number,
            uint8_t identifier,
            int16_t x,
            int16_t y,

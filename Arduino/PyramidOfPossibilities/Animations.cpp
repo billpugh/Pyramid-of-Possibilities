@@ -13,7 +13,6 @@
 #include "WWPAnimationTest.h"
 #include "ChangingColor.h"
 #include "CircularGradient.h"
-#include "WWPAnimation3.h"
 #include "ColorWorms.h"
 #include "Chasers.h"
 #include "FlashAttack.h"
