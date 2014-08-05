@@ -12,7 +12,7 @@
 // Animations by WWP
 #include "WWPAnimationTest.h"
 #include "ChangingColor.h"
-#include "WWPAnimation2.h"
+#include "CircularGradient.h"
 #include "WWPAnimation3.h"
 #include "ColorWorms.h"
 #include "WWPAnimation5.h"
@@ -65,8 +65,8 @@ RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animati
             return new WWPAnimationTest(info, animationStartMillis);
         case e_ChangingColor :
             return new ChangingColor(info, animationStartMillis);
-        case e_WWPAnimation2 :
-            return new WWPAnimation2(info, animationStartMillis);
+        case e_CircularGradient :
+            return new CircularGradient(info, animationStartMillis);
            
         case e_ColorWorms :
             return new ColorWorms(info, animationStartMillis);

@@ -1,15 +1,15 @@
 //
-//  WWPAnimation2.cpp
+//  CircularGradient.cpp
 //  PlatformData
 //
 //  Created by Bill on 7/18/14.
 //  Copyright (c) 2014 RN. All rights reserved.
 //
 
-#include "WWPAnimation2.h"
+#include "CircularGradient.h"
 
 
-void WWPAnimation2::paint(RNLights & lights) {
+void CircularGradient::paint(RNLights & lights) {
 
   uint8_t baseHue = (getAnimationMillis() / 10) % 256;
 
@@ -20,7 +20,7 @@ void WWPAnimation2::paint(RNLights & lights) {
   info.showActivity(lights, false, 16);
 }
 
-const char * WWPAnimation2:: name() {
-  return "WWPAnimation2";
+const char * CircularGradient:: name() {
+  return "CircularGradient";
 }
 

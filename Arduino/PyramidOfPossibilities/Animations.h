@@ -25,7 +25,7 @@ enum  AnimationEnum {
 
     // Animations defined by Bill Pugh (WWP)
     e_ChangingColor,
-    e_WWPAnimation2,
+    e_CircularGradient,
 
     e_ColorWorms,
     e_WWPAnimation5,
