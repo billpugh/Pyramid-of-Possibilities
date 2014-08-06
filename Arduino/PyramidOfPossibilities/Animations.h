@@ -21,7 +21,6 @@ enum  AnimationEnum {
     e_ActivityLevelAnimation,
 
     e_SideEffects,
-    e_GradientSwirl,
 
     // Animations defined by Bill Pugh (WWP)
     e_ChangingColor,

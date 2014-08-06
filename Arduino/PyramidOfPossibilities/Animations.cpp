@@ -55,9 +55,6 @@ RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animati
         case e_FlashAttack:
             return new FlashAttack(info, animationStartMillis);
             
-        case e_GradientSwirl:
-            return new GradientSwirl(info, animationStartMillis);
-            
             
             // Animations by WWP
         case e_WWPAnimationTest :
