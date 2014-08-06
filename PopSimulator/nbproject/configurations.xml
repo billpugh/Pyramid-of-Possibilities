@@ -4,18 +4,29 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>../Arduino/PyramidOfPossibilities/AVEAnimation1.h</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/AVEFlashesAnimation.h</itemPath>
+      <logicalFolder name="f1" displayName="Animations" projectFiles="true">
+        <itemPath>../Arduino/PyramidOfPossibilities/AVEAnimation1.h</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/AVEFlashesAnimation.h</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/Beacon.h</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/ChangingColor.h</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/Chasers.h</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/CircularGradient.h</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/ColorWorms.h</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/DRAnimation0.h</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/DRAnimation1.h</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/FlashAttack.h</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/GlowFade.h</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/GradientSwirl.h</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/SideEffects.h</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/Snow.h</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/Swirl.h</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/WWPAnimationTest.h</itemPath>
+      </logicalFolder>
       <itemPath>../Arduino/libraries/Accelerometer/Accelerometer.h</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/ActivityLevelAnimation.h</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/Animations.h</itemPath>
       <itemPath>Arduino.h</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/DRAnimation0.h</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/DRAnimation1.h</itemPath>
       <itemPath>FPSControlsHandler.hpp</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/FlashAttack.h</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/GlowFade.h</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/GradientSwirl.h</itemPath>
       <itemPath>PlatformControler.hpp</itemPath>
       <itemPath>Pyramid.hpp</itemPath>
       <itemPath>PyramidArchitecture.hpp</itemPath>
@@ -29,15 +40,6 @@
       <itemPath>RNLightsSimulator.hpp</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/RNSerial.h</itemPath>
       <itemPath>ShaderLoader.hpp</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/SideEffects.h</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/Snow.h</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/Swirl.h</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/WWPAnimation1.h</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/WWPAnimation2.h</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/WWPAnimation3.h</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/WWPAnimation4.h</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/WWPAnimation5.h</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/WWPAnimationTest.h</itemPath>
       <itemPath>../Arduino/libraries/FastLED/hsv2rgb.h</itemPath>
       <itemPath>../Arduino/libraries/Accelerometer/i2c_t3.h</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/ledPositions.h</itemPath>
@@ -56,20 +58,31 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>../Arduino/PyramidOfPossibilities/AVEAnimation1.cpp</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/AVEFlashesAnimation.cpp</itemPath>
+      <logicalFolder name="f1" displayName="Animations" projectFiles="true">
+        <itemPath>../Arduino/PyramidOfPossibilities/AVEAnimation1.cpp</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/AVEFlashesAnimation.cpp</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/Beacon.cpp</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/ChangingColor.cpp</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/Chasers.cpp</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/CircularGradient.cpp</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/ColorWorms.cpp</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/DRAnimation0.cpp</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/DRAnimation1.cpp</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/FlashAttack.cpp</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/GlowFade.cpp</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/GradientSwirl.cpp</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/SideEffects.cpp</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/Snow.cpp</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/Swirl.cpp</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/WWPAnimationTest.cpp</itemPath>
+      </logicalFolder>
       <itemPath>../Arduino/libraries/Accelerometer/Accelerometer.cpp</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/ActivityLevelAnimation.cpp</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/Animations.cpp</itemPath>
       <itemPath>Arduino.c</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/Constants.cpp</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/Controller.cpp</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/DRAnimation0.cpp</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/DRAnimation1.cpp</itemPath>
       <itemPath>FPSControlsHandler.cpp</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/FlashAttack.cpp</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/GlowFade.cpp</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/GradientSwirl.cpp</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/Platform.cpp</itemPath>
       <itemPath>PlatformControler.cpp</itemPath>
       <itemPath>Pyramid.cpp</itemPath>
@@ -84,15 +97,6 @@
       <itemPath>RNLightsSimulator.cpp</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/RNSerial.cpp</itemPath>
       <itemPath>ShaderLoader.cpp</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/SideEffects.cpp</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/Snow.cpp</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/Swirl.cpp</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/WWPAnimation1.cpp</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/WWPAnimation2.cpp</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/WWPAnimation3.cpp</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/WWPAnimation4.cpp</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/WWPAnimation5.cpp</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/WWPAnimationTest.cpp</itemPath>
       <itemPath>../Arduino/libraries/FastLED/hsv2rgb.cpp</itemPath>
       <itemPath>../Arduino/libraries/Accelerometer/i2c_t3.cpp</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/ledPositions.cpp</itemPath>
@@ -342,6 +346,56 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../Arduino/PyramidOfPossibilities/Beacon.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Beacon.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/ChangingColor.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/ChangingColor.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Chasers.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Chasers.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/CircularGradient.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/CircularGradient.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/ColorWorms.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/ColorWorms.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../Arduino/PyramidOfPossibilities/Constants.cpp"
             ex="false"
             tool="1"
@@ -483,56 +537,6 @@
             flavor2="0">
       </item>
       <item path="../Arduino/PyramidOfPossibilities/Swirl.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/WWPAnimation1.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/WWPAnimation1.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/WWPAnimation2.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/WWPAnimation2.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/WWPAnimation3.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/WWPAnimation3.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/WWPAnimation4.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/WWPAnimation4.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/WWPAnimation5.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/WWPAnimation5.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -722,6 +726,56 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../Arduino/PyramidOfPossibilities/Beacon.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Beacon.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/ChangingColor.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/ChangingColor.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Chasers.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Chasers.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/CircularGradient.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/CircularGradient.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/ColorWorms.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/ColorWorms.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../Arduino/PyramidOfPossibilities/Constants.cpp"
             ex="false"
             tool="1"
@@ -863,56 +917,6 @@
             flavor2="0">
       </item>
       <item path="../Arduino/PyramidOfPossibilities/Swirl.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/WWPAnimation1.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/WWPAnimation1.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/WWPAnimation2.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/WWPAnimation2.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/WWPAnimation3.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/WWPAnimation3.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/WWPAnimation4.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/WWPAnimation4.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/WWPAnimation5.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/WWPAnimation5.h"
             ex="false"
             tool="3"
             flavor2="0">

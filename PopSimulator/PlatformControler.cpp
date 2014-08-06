@@ -19,8 +19,6 @@ PlatformControler::PlatformControler(Pyramid* _pyramid, int _platform) {
     short *coords;
     PyramidArchitecture::getLocationOfPlatform(platform, coords);
     info = new RNInfo(PyramidArchitecture::nbLedsPerPlatform,
-            PyramidArchitecture::getTierOfPlatform(platform),
-            PyramidArchitecture::getPlatformNumberOnTier(platform),
             platform,
             coords[0],
             coords[1],
