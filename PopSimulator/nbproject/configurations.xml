@@ -6,7 +6,6 @@
                    projectFiles="true">
       <logicalFolder name="f1" displayName="Animations" projectFiles="true">
         <itemPath>../Arduino/PyramidOfPossibilities/AVEAnimation1.h</itemPath>
-        <itemPath>../Arduino/PyramidOfPossibilities/AVEFlashesAnimation.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Beacon.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/ChangingColor.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Chasers.h</itemPath>
@@ -60,7 +59,6 @@
                    projectFiles="true">
       <logicalFolder name="f1" displayName="Animations" projectFiles="true">
         <itemPath>../Arduino/PyramidOfPossibilities/AVEAnimation1.cpp</itemPath>
-        <itemPath>../Arduino/PyramidOfPossibilities/AVEFlashesAnimation.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Beacon.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/ChangingColor.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Chasers.cpp</itemPath>
@@ -316,16 +314,6 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../Arduino/PyramidOfPossibilities/AVEFlashesAnimation.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/AVEFlashesAnimation.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="../Arduino/PyramidOfPossibilities/ActivityLevelAnimation.cpp"
             ex="false"
             tool="1"
@@ -401,6 +389,11 @@
             tool="1"
             flavor2="0">
       </item>
+      <item path="../Arduino/PyramidOfPossibilities/Constants.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../Arduino/PyramidOfPossibilities/Controller.cpp"
             ex="false"
             tool="1"
@@ -432,6 +425,16 @@
             flavor2="0">
       </item>
       <item path="../Arduino/PyramidOfPossibilities/FlashAttack.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Flashes.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Flashes.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -696,16 +699,6 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../Arduino/PyramidOfPossibilities/AVEFlashesAnimation.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/AVEFlashesAnimation.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="../Arduino/PyramidOfPossibilities/ActivityLevelAnimation.cpp"
             ex="false"
             tool="1"
@@ -781,6 +774,11 @@
             tool="1"
             flavor2="0">
       </item>
+      <item path="../Arduino/PyramidOfPossibilities/Constants.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../Arduino/PyramidOfPossibilities/Controller.cpp"
             ex="false"
             tool="1"
@@ -812,6 +810,16 @@
             flavor2="0">
       </item>
       <item path="../Arduino/PyramidOfPossibilities/FlashAttack.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Flashes.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Flashes.h"
             ex="false"
             tool="3"
             flavor2="0">

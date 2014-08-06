@@ -36,7 +36,6 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/_ext/1731549632/AVEAnimation1.o \
-	${OBJECTDIR}/_ext/1731549632/AVEFlashesAnimation.o \
 	${OBJECTDIR}/_ext/1731549632/ActivityLevelAnimation.o \
 	${OBJECTDIR}/_ext/1731549632/Animations.o \
 	${OBJECTDIR}/_ext/1731549632/Beacon.o \
@@ -49,6 +48,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/1731549632/DRAnimation0.o \
 	${OBJECTDIR}/_ext/1731549632/DRAnimation1.o \
 	${OBJECTDIR}/_ext/1731549632/FlashAttack.o \
+	${OBJECTDIR}/_ext/1731549632/Flashes.o \
 	${OBJECTDIR}/_ext/1731549632/GlowFade.o \
 	${OBJECTDIR}/_ext/1731549632/GradientSwirl.o \
 	${OBJECTDIR}/_ext/1731549632/Platform.o \
@@ -106,11 +106,6 @@ ${OBJECTDIR}/_ext/1731549632/AVEAnimation1.o: ../Arduino/PyramidOfPossibilities/
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../Arduino/PyramidOfPossibilities -I../PlatformData -I../Arduino/libraries/RNChaser -I../Arduino/libraries/RNLights -I../Arduino/libraries/Accelerometer -I../Arduino/PyramidOfPossibilities -I. -I../Arduino/libraries/FastLED -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/AVEAnimation1.o ../Arduino/PyramidOfPossibilities/AVEAnimation1.cpp
-
-${OBJECTDIR}/_ext/1731549632/AVEFlashesAnimation.o: ../Arduino/PyramidOfPossibilities/AVEFlashesAnimation.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -I../Arduino/PyramidOfPossibilities -I../PlatformData -I../Arduino/libraries/RNChaser -I../Arduino/libraries/RNLights -I../Arduino/libraries/Accelerometer -I../Arduino/PyramidOfPossibilities -I. -I../Arduino/libraries/FastLED -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/AVEFlashesAnimation.o ../Arduino/PyramidOfPossibilities/AVEFlashesAnimation.cpp
 
 ${OBJECTDIR}/_ext/1731549632/ActivityLevelAnimation.o: ../Arduino/PyramidOfPossibilities/ActivityLevelAnimation.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
@@ -171,6 +166,11 @@ ${OBJECTDIR}/_ext/1731549632/FlashAttack.o: ../Arduino/PyramidOfPossibilities/Fl
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../Arduino/PyramidOfPossibilities -I../PlatformData -I../Arduino/libraries/RNChaser -I../Arduino/libraries/RNLights -I../Arduino/libraries/Accelerometer -I../Arduino/PyramidOfPossibilities -I. -I../Arduino/libraries/FastLED -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/FlashAttack.o ../Arduino/PyramidOfPossibilities/FlashAttack.cpp
+
+${OBJECTDIR}/_ext/1731549632/Flashes.o: ../Arduino/PyramidOfPossibilities/Flashes.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../Arduino/PyramidOfPossibilities -I../PlatformData -I../Arduino/libraries/RNChaser -I../Arduino/libraries/RNLights -I../Arduino/libraries/Accelerometer -I../Arduino/PyramidOfPossibilities -I. -I../Arduino/libraries/FastLED -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/Flashes.o ../Arduino/PyramidOfPossibilities/Flashes.cpp
 
 ${OBJECTDIR}/_ext/1731549632/GlowFade.o: ../Arduino/PyramidOfPossibilities/GlowFade.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
