@@ -76,10 +76,10 @@ void setup() {
         bool success = platform.initialize(platformData, 9);
         if (success) {
           writeToEEPROM(sizeof(Platform), (char*) &platform);
-          Serial.println("success");
+          Serial.println("success, wrote to EEPROM");
           }
         else
-          Serial.println("Fail");
+          Serial.println("Fail parsing data from central");
         Serial.print(platform.y);
         }
   initializeAccelerometer(constants.PULSE_THSX,constants.PULSE_THSY,
@@ -90,12 +90,16 @@ void setup() {
   controller = new RNController(*info);
   
   info->printf("Running. id = %3d, xyz = %4d,%4d,%4d\n", info->identifier, info->x, info->y,info->z);
-  if (bytesRead == 9) {
-    info->println("data read");
-    for(int i = 0; i < 9; i++)
-      info->printf("%2x ",platformData[i]);
-     info->println("");
-     }
+  
+  for(int i = 0; i < info->numLEDs; i++) 
+    info->printf("%3d  %4d %4d %11f    %4d %4d   %11f  %11f\n",
+        i, getLEDXPosition(i),
+          getLEDYPosition(i), 
+         info->getLocalAngle(i)*360,
+         info->x + getLEDXPosition(i),
+         info->y + getLEDYPosition(i), 
+         info->getGlobalAngle(i)*360,
+         info->getGlobalRadius(i));
 
 }
 
