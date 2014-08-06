@@ -55,11 +55,14 @@ void RNController::paint(RNLights & lights) {
     }
     
 #ifndef POP_SIMULATOR
-    if (Serial2.available() > 0) {
-      int c = Serial2.read();
-      info.printf("Got %d from serial2\n", c);
-      if (c >= 0 && c < e_AnimationCount) 
-        switchToAnimation((AnimationEnum) c);
+    if (Serial2.available() > 1) {
+        int a = Serial2.read();
+        if (a == 'a') {
+            int c = Serial2.read();
+            info.printf("Got %d from serial2\n", c);
+            if (c >= 0 && c < e_AnimationCount)
+                switchToAnimation((AnimationEnum) c);
+        }
     }
 #endif
     
