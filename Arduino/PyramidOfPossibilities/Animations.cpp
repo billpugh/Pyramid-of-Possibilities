@@ -18,7 +18,6 @@
 #include "FlashAttack.h"
 #include "SideEffects.h"
 #include "Snow.h"
-#include "GradientSwirl.h"
 #include "Swirl.h"
 #include "Beacon.h"
 
