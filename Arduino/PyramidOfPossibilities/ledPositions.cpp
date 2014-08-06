@@ -237,7 +237,7 @@ int16_t ledPositions [220][2]  =
 #else
 
 #include <math.h>
-const float radius = 25.4*6;
+const float radius = 25.4*6/2;
 
 int16_t ledPositions [constants.LEDs][2];
 
@@ -245,9 +245,9 @@ class InitializeLedPositions {
     public:
     InitializeLedPositions() {
         for(int i = 0; i < constants.LEDs; i++) {
-            float angle = i * 2 * 3.1415926/constants.LEDs;
+            float angle = -i * 2 * 3.1415926/constants.LEDs;
             ledPositions[i][0] = (int16_t)(-radius*cos(angle));
-            ledPositions[i][1] = (int16_t)(radius*sin(angle));
+            ledPositions[i][1] = (int16_t)(-radius*sin(angle));
         }
     }
 };
