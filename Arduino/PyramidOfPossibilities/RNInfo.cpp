@@ -29,9 +29,11 @@ void RNInfo::initialize() {
     float radiansInCircle = 2 * 3.1415926;
     sparkles.setFade(millis(), 750);
     for(int i = 0; i < numLEDs; i++) {
-        localAngle[i] = ((float)i)/numLEDs;
-        float  xLED = x+getLEDXPosition(i);
-        float  yLED = y+getLEDYPosition(i);
+        float  xLED = getLEDXPosition(i);
+        float  yLED = getLEDYPosition(i);
+        localAngle[i] =atan2(yLED, xLED)/radiansInCircle;
+        xLED += x;
+        yLED += y;
         if (xLED == 0 && yLED == 0)
             globalAngle[i] = 0;
         else {
