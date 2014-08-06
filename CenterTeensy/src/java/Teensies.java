@@ -39,7 +39,7 @@ public class Teensies {
         
         
         CSVParser parser = CSVParser.parse(stored, Charset.defaultCharset(),
-                CSVFormat.EXCEL.withHeader());
+                CSVFormat.RFC4180.withHeader());
         for (CSVRecord csvRecord : parser) {
             String mac = csvRecord.get("mac");
             Short identifier = Short.parseShort(csvRecord.get("identifier"));
