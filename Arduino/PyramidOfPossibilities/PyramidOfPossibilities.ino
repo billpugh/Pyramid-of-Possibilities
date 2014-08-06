@@ -84,7 +84,7 @@ void setup() {
   }
   initializeAccelerometer(constants.PULSE_THSX,constants.PULSE_THSY,
   constants.PULSE_THSZ);
-  setupSerial2(9600);
+  setupSerial2(57600);
 
   info = new RNInfo(constants.LEDs, platform);
   controller = new RNController(*info);
@@ -126,7 +126,7 @@ void setup() {
 
   }
 
-  lights.setAllPixelColors(0, 80, 0);
+  lights.setAllPixelColors(0, 20, 0);
   lights.setPixelColor(minAngleLED, 255, 0, 0);
   lights.setPixelColor(maxAngleLED, 0, 0, 255);
   lights.setPixelColor(closestLED, 80,80,80);
