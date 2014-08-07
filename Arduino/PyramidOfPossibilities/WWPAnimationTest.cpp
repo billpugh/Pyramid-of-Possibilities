@@ -10,21 +10,16 @@
 
 void WWPAnimationTest::paint(RNLights & lights) {
     
-    
-    float angle = getAnimationMillis()/2000.0;
-    
-    for(int i = 0; i < lights.getNumPixels(); i++) {
-        float a = info.getGlobalAngle(i) - angle;
-        
 
-        a = a - roundf(a);
-        if (a < 0) a = -a;
-        if (a < 0.05) 
-            lights.setPixelHSV(i, 0, 255, 255-a*5000);
-        
-    }
-    info.showActivityWithSparkles(lights);
+    int pos = (int) getAnimationMillis()/10;
+    for(int i = 0; i < 10; i++)
+        lights.setPixelColor(lights.normalize(i+pos), 255, 0, 0);
+
+    for(int i = 0; i < 6; i++)
+        lights.setPixelColor(1<<i, 0, 255, 0);
     
+    info.showActivityWithSparkles(lights);
+
     
 }
 
