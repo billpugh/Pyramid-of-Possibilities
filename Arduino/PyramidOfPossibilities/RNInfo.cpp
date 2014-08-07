@@ -20,7 +20,7 @@ RNInfo::RNInfo(
                uint8_t identifier,
                int16_t x,
                int16_t y,
-               int16_t z) : Platform( identifier, x, y, z, 1),
+               int16_t z) : Platform( identifier, x, y, z, 1, 1),
 numLEDs(numLEDs), sparkles(numLEDs) {
     initialize();
    };
