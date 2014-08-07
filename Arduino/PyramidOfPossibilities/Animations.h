@@ -36,6 +36,9 @@ enum  AnimationEnum {
     e_DRAnimation0,   // RGB simple
     e_DRAnimation1,   // RNBeam
 
+    // Antoine's animations
+    e_Flashes,
+    
     // Not an actual enum, just the value used to give us the count of the number of enums
     e_AnimationCount};
 

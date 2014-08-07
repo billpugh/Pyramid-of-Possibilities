@@ -19,14 +19,12 @@ PlatformControler::PlatformControler(Pyramid* _pyramid, int _platform) {
     short *coords;
     PyramidArchitecture::getLocationOfPlatform(platform, coords);
     info = new RNInfo(PyramidArchitecture::nbLedsPerPlatform,
-            PyramidArchitecture::getTierOfPlatform(platform),
-            PyramidArchitecture::getPlatformNumberOnTier(platform),
             platform,
             coords[0],
             coords[1],
             coords[2]);
 
-    animation = getAnimation(e_WWPAnimationTest, *info, millis());
+    animation = getAnimation(e_Flashes, *info, millis());
 }
 
 void PlatformControler::refreshPlatform() {
