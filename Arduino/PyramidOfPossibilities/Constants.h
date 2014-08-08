@@ -15,10 +15,11 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 
 #define DEBUG 1
-#define FULL_STRIP
+// #define FULL_STRIP
 
 #define PYRAMID_RADIUS 700
 
+#define RN_REALLY_LONG_ANIMATIONS
 
 // #define RN_PRINT_HEAP_SIZE
 
@@ -31,7 +32,7 @@ struct RNConstants {
   const uint8_t FIRST_LED = 10;
 #else
   // Modify these values for testing with a non-full strip.
-  static const uint8_t LEDs = 60;
+  static const uint8_t LEDs = 32;
   const uint8_t FIRST_LED = 0;
 #endif  /** #ifdef FULL_STRIP **/
 
