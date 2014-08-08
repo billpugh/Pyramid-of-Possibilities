@@ -181,7 +181,7 @@ void capOverallBrightness(RNLights & lights) {
 }
 
 
-Platform platform( 0,0,0,700,0);
+Platform platform( 0,0,0,700,0,0);
 
 
 void loop() {
