@@ -9,6 +9,8 @@
 #include "Constants.h"
 #include <math.h>
 
+#define RN_RADIAL_DEBUG 1
+
 float locationForT(float t) {
 
     if ( t > .5 ) {
@@ -29,15 +31,20 @@ void Radial::paint(RNLights & lights) {
     // calculate position of the radial based on t
     float r = locationForT(t);
 
+
+    float innerShellBoundry = r - parameters.thickness;
+    float outerShellBoundry = r + parameters.thickness;
+    float doublethickness = parameters.thickness * 2;
+
     for(int i = 0; i < lights.getNumPixels(); i++) {
 
         float pixelRadius = info.getGlobalRadiusGround(i);
 
         RNGradient *gradientToUse = 0;
         float point = 0;
-        float innerShellBoundry = r - parameters.thickness;
-        float outerShellBoundry = r + parameters.thickness;
         
+        // determine color gradient to use based on whether you are inside, or outside, or within the shell of the radial.
+
         if ( pixelRadius < innerShellBoundry ) {
             
             // inside 
@@ -48,7 +55,7 @@ void Radial::paint(RNLights & lights) {
             
             // shell 
             gradientToUse = &(parameters.gradientShell);
-            point = (pixelRadius - innerShellBoundry ) / (parameters.thickness * 2);
+            point = (pixelRadius - innerShellBoundry ) / doublethickness;
 
         } else {
 
@@ -61,6 +68,8 @@ void Radial::paint(RNLights & lights) {
         uint32_t color = gradientToUse->getColor(point * 255);
         lights.setPixelColor(i,color);
 
+        // debugging stuff
+#if RN_RADIAL_DEBUG
         static int once = 0;
         if ( !once && i == 0) {
             once = 1;
@@ -70,6 +79,8 @@ void Radial::paint(RNLights & lights) {
         if ( i == 0 && (++n%10 == 0)) {
             info.printf("Millis = %lu,  PixelRadius = %.2f, T = %f, R = %f.  innerShellBoundry = %f,  outerShellBoundry = %f\n", millis, pixelRadius, t, r, innerShellBoundry, outerShellBoundry);
         }
+#endif /* RN_RADIAL_DEBUG */
+
     }
 
     info.showActivityWithSparkles(lights);

@@ -12,9 +12,17 @@
 #include "RNGradient.h"
 
 
+/*
+TODO:
+
+`thickness` can be a uint16_t if we want to save bytes in parameters
+`period` can be made into something smaller too, but that may break code where it is used. check first!
+
+*/
+
 struct RadialParameters {
-    unsigned long period = 5000;
-    float thickness = 1000;
+    unsigned long period = 5000;    // duration of single cycle, in milliseconds.
+    float thickness = 100;
     RNGradient gradientInside = RNGradient(0, RNGradientCapped, 0x000000, 0x000000); 
     RNGradient gradientShell = RNGradient(0, RNGradientCapped, 0xFF0000, 0xFF0000); 
     RNGradient gradientOutside = RNGradient(0, RNGradientCapped, 0x000000, 0x000000);   
