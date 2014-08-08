@@ -61,7 +61,7 @@ void setup() {
   Serial.println("PoP board starting");
   print_mac();
   char  platformData[9];
-  Platform platform(0,0,0,0,0);
+  Platform platform(0,0,0,0,0,0);
   bool success = readFromEEPROM(sizeof(Platform), (char*) &platform);
   if (success) {
     Serial.print("Read from EEPROM ");
