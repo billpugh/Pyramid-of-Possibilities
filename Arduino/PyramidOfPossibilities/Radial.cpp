@@ -12,9 +12,9 @@
 float locationForT(float t) {
 
     if ( t > .5 ) {
-        return (1 - t) * pyramidRadiusFromGround * 2;
+        return (1 - t) * constants.pyramidRadiusFromGround * 2;
     }
-    return t * pyramidRadiusFromGround * 2;
+    return t * constants.pyramidRadiusFromGround * 2;
 }
 
 
@@ -42,7 +42,7 @@ void Radial::paint(RNLights & lights) {
             
             // inside 
             gradientToUse = &(parameters.gradientInside);
-            point = pixelRadius / pyramidRadiusFromGround;
+            point = pixelRadius / constants.pyramidRadiusFromGround;
 
         } else if ( pixelRadius < outerShellBoundry ) {
             
@@ -54,11 +54,11 @@ void Radial::paint(RNLights & lights) {
 
             // outside
             gradientToUse = &(parameters.gradientOutside);
-            point = pixelRadius / pyramidRadiusFromGround;
+            point = pixelRadius / constants.pyramidRadiusFromGround;
         }
 
         // find the color now
-        uint32_t color = gradientToUse->getColor(point);
+        uint32_t color = gradientToUse->getColor(point * 255);
         lights.setPixelColor(i,color);
 
         static int once = 0;
