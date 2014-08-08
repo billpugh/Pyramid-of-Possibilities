@@ -30,6 +30,7 @@
 
 #include "AVEAnimation1.h"
 #include "AVEFlashesAnimation.h"
+#include "Radial.h"
 
 RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animationStartMillis ) {
     switch (a) {
@@ -71,6 +72,8 @@ RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animati
             return new DRAnimation0(info, animationStartMillis);
         case e_DRAnimation1 :
             return new DRAnimation1(info, animationStartMillis);
+        case e_Radial:
+            return new Radial(info, animationStartMillis);
         default:
             return 0;
     }
