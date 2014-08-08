@@ -14,6 +14,8 @@
 
 enum  AnimationEnum {
 
+    e_Radial,
+
     e_Beacon,
     e_GlowFade,
 
