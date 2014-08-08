@@ -25,7 +25,7 @@ static int once = 0;
 void initalizeBeams(RNInfo * info) {
     
 	for ( uint8_t n = 0; n < numBeams; n++ ) {
-  		beams[n].speed = 4;
+  		beams[n].speed = 1+n;
   		beams[n].offset = 333 * n;
         beams[n].width = widths[n];
   		beams[n].r = (n==0)*200;
@@ -41,6 +41,7 @@ void DRAnimation1::paint(RNLights & lights) {
     
 	// Begin real animation
 #ifdef CONSIDER_THE_ACCELEROMETER
+	// TODO: find a better multipler. See bill's code where he had a good value to use.
 	float activity = info.getLocalActivity();
 	if ( activity < min_g ) {
 		activity = min_g;
@@ -90,6 +91,8 @@ void DRAnimation1::paint(RNLights & lights) {
 	  	}
 		lights.setPixelColor(j, currentColor);
 	}
+
+	info.showActivityWithSparkles(lights);
 }
 
 const char * DRAnimation1:: name() {

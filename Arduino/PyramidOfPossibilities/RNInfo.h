@@ -59,13 +59,15 @@ public:
     
     // getGlobalAngle for LED in degrees (0 = south, range = is 0 to 0.999...)
     float getGlobalAngle(uint8_t led);
-    
+
+    float getPlatformGlobalAngle();
+
+
     // getLocalAngle for LED in degrees (0 = south, range = is 0 to 0.999...)
     float getLocalAngle(uint8_t led);
     
+
     // getGlobalRadius for LED in mm (how far in the x/y plan is this LED from the center of the Pyramid
-    
-    // Radius of pixel in x,y coordinates (ignores z)
     float getGlobalRadius(uint8_t led);
     
     // Distance of pixel from center at ground level
@@ -94,6 +96,7 @@ private:
     float localAngle[240];
     
     float myTotalG = 0;
+    float platformGlobalAngle = 0;
     float myDirectionalG[3];
     uint8_t myTapSource;
     unsigned long lastTap = 0;

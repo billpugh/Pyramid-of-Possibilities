@@ -15,11 +15,11 @@
 
 struct CircularGradientParameters {
 
-    uint8_t rpm = 30;
+    uint8_t rpm = 15;
     uint8_t repeats = 2;
     uint8_t brightnessWithoutActivity = 64;
     bool global = 0;
-    RNGradient gradient = RNGradient(0, RNGradientCapped, 0x00ffff, 0xffffff);
+    RNGradient gradient = RNGradient(1, RNGradientWrap, 0x00ffff, 0xffffff);
 };
 
 class CircularGradient : public RNAnimation {

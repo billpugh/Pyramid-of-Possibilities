@@ -16,7 +16,7 @@
         <itemPath>../Arduino/PyramidOfPossibilities/FlashAttack.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Flashes.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/GlowFade.h</itemPath>
-        <itemPath>../Arduino/PyramidOfPossibilities/GradientSwirl.h</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/Radial.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/SideEffects.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Snow.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Swirl.h</itemPath>
@@ -71,7 +71,7 @@
         <itemPath>../Arduino/PyramidOfPossibilities/FlashAttack.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Flashes.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/GlowFade.cpp</itemPath>
-        <itemPath>../Arduino/PyramidOfPossibilities/GradientSwirl.cpp</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/Radial.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/SideEffects.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Snow.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Swirl.cpp</itemPath>
@@ -452,16 +452,6 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../Arduino/PyramidOfPossibilities/GradientSwirl.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/GradientSwirl.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="../Arduino/PyramidOfPossibilities/Platform.cpp"
             ex="false"
             tool="1"
@@ -513,6 +503,16 @@
             flavor2="0">
       </item>
       <item path="../Arduino/PyramidOfPossibilities/RNSerial.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Radial.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Radial.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -837,16 +837,6 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../Arduino/PyramidOfPossibilities/GradientSwirl.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/GradientSwirl.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="../Arduino/PyramidOfPossibilities/Platform.cpp"
             ex="false"
             tool="1"
@@ -898,6 +888,16 @@
             flavor2="0">
       </item>
       <item path="../Arduino/PyramidOfPossibilities/RNSerial.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Radial.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Radial.h"
             ex="false"
             tool="3"
             flavor2="0">

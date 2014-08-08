@@ -50,13 +50,13 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/1731549632/FlashAttack.o \
 	${OBJECTDIR}/_ext/1731549632/Flashes.o \
 	${OBJECTDIR}/_ext/1731549632/GlowFade.o \
-	${OBJECTDIR}/_ext/1731549632/GradientSwirl.o \
 	${OBJECTDIR}/_ext/1731549632/Platform.o \
 	${OBJECTDIR}/_ext/1731549632/RNAnimation.o \
 	${OBJECTDIR}/_ext/1731549632/RNBeam.o \
 	${OBJECTDIR}/_ext/1731549632/RNEEPROM.o \
 	${OBJECTDIR}/_ext/1731549632/RNInfo.o \
 	${OBJECTDIR}/_ext/1731549632/RNSerial.o \
+	${OBJECTDIR}/_ext/1731549632/Radial.o \
 	${OBJECTDIR}/_ext/1731549632/SideEffects.o \
 	${OBJECTDIR}/_ext/1731549632/Snow.o \
 	${OBJECTDIR}/_ext/1731549632/Swirl.o \
@@ -177,11 +177,6 @@ ${OBJECTDIR}/_ext/1731549632/GlowFade.o: ../Arduino/PyramidOfPossibilities/GlowF
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/GlowFade.o ../Arduino/PyramidOfPossibilities/GlowFade.cpp
 
-${OBJECTDIR}/_ext/1731549632/GradientSwirl.o: ../Arduino/PyramidOfPossibilities/GradientSwirl.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/GradientSwirl.o ../Arduino/PyramidOfPossibilities/GradientSwirl.cpp
-
 ${OBJECTDIR}/_ext/1731549632/Platform.o: ../Arduino/PyramidOfPossibilities/Platform.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
 	${RM} "$@.d"
@@ -211,6 +206,11 @@ ${OBJECTDIR}/_ext/1731549632/RNSerial.o: ../Arduino/PyramidOfPossibilities/RNSer
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/RNSerial.o ../Arduino/PyramidOfPossibilities/RNSerial.cpp
+
+${OBJECTDIR}/_ext/1731549632/Radial.o: ../Arduino/PyramidOfPossibilities/Radial.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/Radial.o ../Arduino/PyramidOfPossibilities/Radial.cpp
 
 ${OBJECTDIR}/_ext/1731549632/SideEffects.o: ../Arduino/PyramidOfPossibilities/SideEffects.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632

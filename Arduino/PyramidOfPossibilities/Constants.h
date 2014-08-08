@@ -17,9 +17,10 @@
 #define DEBUG 1
 #define FULL_STRIP
 
+// #define RN_REALLY_LONG_ANIMATIONS
 
-
-//#define RN_REALLY_LONG_ANIMATIONS
+// #define RN_PRINT_HEAP_SIZE
+// #define RN_PRINT_BRIGHTNESS_ADJUSTMENTS
 
 struct RNConstants {
 
@@ -45,6 +46,9 @@ struct RNConstants {
 #endif
 
     const uint8_t brightnessChunkSize = 16;
+
+    const uint16_t pyramidRadius = 7209;
+    const uint16_t pyramidRadiusFromGround = 7796;
     
 };
 

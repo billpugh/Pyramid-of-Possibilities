@@ -47,7 +47,7 @@ public class CentralControl {
     public static void main(String args[]) throws Exception {
         System.out.println("\nWelcome to Central\n");
         String ttyConfig = ReadConsole.setTerminalToCBreak();
-        SerialPort teensy = SerialPortFactory.findSerialPortByName("/dev/tty.usbserial-A603IZ6Q", 9600);
+        SerialPort teensy = SerialPortFactory.findSerialPortByName("/dev/tty.usbserial-A603IZ6Q", 57600);
         OutputStream fw = teensy.getOutputStream();
         final int numberAnimations = 5;
         PushbackInputStream in = new PushbackInputStream(System.in);
@@ -118,6 +118,7 @@ public class CentralControl {
      */
     public static void switchToAnimation(OutputStream fw,
             int currentAnimation) throws IOException {
+        fw.write('a');
         fw.write(currentAnimation);
         fw.flush();
         System.out.printf("Switching to animation %d%n", currentAnimation);

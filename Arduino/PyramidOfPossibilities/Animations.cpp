@@ -18,7 +18,6 @@
 #include "FlashAttack.h"
 #include "SideEffects.h"
 #include "Snow.h"
-#include "GradientSwirl.h"
 #include "Swirl.h"
 #include "Beacon.h"
 
@@ -31,6 +30,7 @@
 
 #include "AVEAnimation1.h"
 #include "Flashes.h"
+#include "Radial.h"
 
 RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animationStartMillis ) {
     switch (a) {
@@ -55,9 +55,6 @@ RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animati
         case e_FlashAttack:
             return new FlashAttack(info, animationStartMillis);
             
-        case e_GradientSwirl:
-            return new GradientSwirl(info, animationStartMillis);
-            
             
             // Animations by WWP
         case e_WWPAnimationTest :
@@ -80,6 +77,9 @@ RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animati
             return new Flashes(info, animationStartMillis);
         case e_AVEAnimation1 :
             return new AVEAnimation1(info, animationStartMillis);
+
+        case e_Radial:
+            return new Radial(info, animationStartMillis);
             
         default:
             return 0;

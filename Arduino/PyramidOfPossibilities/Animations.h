@@ -14,6 +14,8 @@
 
 enum  AnimationEnum {
 
+    e_Radial,
+
     e_Beacon,
     e_GlowFade,
 
@@ -21,7 +23,6 @@ enum  AnimationEnum {
     e_ActivityLevelAnimation,
 
     e_SideEffects,
-    e_GradientSwirl,
 
     // Animations defined by Bill Pugh (WWP)
     e_ChangingColor,

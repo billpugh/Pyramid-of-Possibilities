@@ -12,7 +12,7 @@
 
 const char version = 'a';
 #ifndef POP_SIMULATOR
-#include <EEPROM.h>
+#include "EEPROM.h"
 #endif
 
 bool readFromEEPROM(short sz, char *p) {
@@ -28,6 +28,8 @@ bool readFromEEPROM(short sz, char *p) {
     }
     for(int i = 0; i < sz; i++)
         p[i] = EEPROM.read(3+i);
+
+    return true;
     
 #endif
 }

@@ -7,12 +7,16 @@ import java.nio.ByteBuffer;
 import java.nio.channels.Channels;
 import java.nio.channels.WritableByteChannel;
 
+import javax.speech.synthesis.Synthesizer;
+
 public class WaitAndConnect {
     
     
 
     public static void main(String args[]) throws Exception {
 
+        Synthesizer synthesizer = SynthesizerFactory. getSynthesizer();
+        
         while (true) {
             String tty = DetectPort.getPortName("tty.usbmodem");
             SerialPort port = SerialPortFactory.findSerialPortByName(tty, 115200);
@@ -30,13 +34,18 @@ public class WaitAndConnect {
                         if (mac == null) break;
 
                         PlatformData platform = Teensies.getPlatform(mac);
-                        System.out.println(mac + ":" + platform);
+                          System.out.println(mac + ":" + platform);
                         ByteBuffer buf = platform.getBytes();
                         OutputStream out = port.getOutputStream();
                         WritableByteChannel channel = Channels.newChannel(out);
                         channel.write(buf);
                         channel.close();
                         System.out.println("Wrote bytebuffer");
+                        String speak = String.format("This is platform T%d dash %d", 
+                                platform.identifier / 100, platform.identifier % 100);
+                        synthesizer.speakPlainText(speak, null);
+                        // synthesizer.waitEngineState(Synthesizer.QUEUE_EMPTY);
+                  
                         
                     }
                 }

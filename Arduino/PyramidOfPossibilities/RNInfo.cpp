@@ -20,7 +20,7 @@ RNInfo::RNInfo(
                uint8_t identifier,
                int16_t x,
                int16_t y,
-               int16_t z) : Platform( identifier, x, y, z, 1),
+               int16_t z) : Platform( identifier, x, y, z, 1, 1),
 numLEDs(numLEDs), sparkles(numLEDs) {
     initialize();
    };
@@ -28,6 +28,10 @@ numLEDs(numLEDs), sparkles(numLEDs) {
 void RNInfo::initialize() {
     float radiansInCircle = 2 * 3.1415926;
     sparkles.setFade(millis(), 750);
+
+    if (x != 0 || y != 0)
+        platformGlobalAngle = atan2(y, x)/radiansInCircle;
+
     for(int i = 0; i < numLEDs; i++) {
         float  xLED = getLEDXPosition(i);
         float  yLED = getLEDYPosition(i);
@@ -51,6 +55,10 @@ void RNInfo::initialize() {
     
 }
 
+
+float RNInfo::getPlatformGlobalAngle() {
+    return platformGlobalAngle;
+}
 RNInfo::RNInfo(uint8_t numLEDs, Platform & p)
 
                 : Platform(p),

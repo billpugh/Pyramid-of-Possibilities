@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.apache.commons.csv.CSVFormat;
@@ -11,11 +12,14 @@ import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.CSVRecord;
 
+import sun.misc.Sort;
+
 
 public class Teensies {
     
   static Map<String, Short > assignments = new HashMap<String,Short>();
-    
+  static Map<Short, String > teensies = new TreeMap<Short, String>();
+  
     static final File stored = new File("data/assignments.csv");
   
     
@@ -44,6 +48,7 @@ public class Teensies {
             String mac = csvRecord.get("mac");
             Short identifier = Short.parseShort(csvRecord.get("identifier"));
             assignments.put(mac, identifier);
+            teensies.put(identifier, mac);
         }
         parser.close();
         
@@ -62,6 +67,7 @@ public class Teensies {
 
             identifier = available.first();
             assignments.put(mac, identifier);
+            teensies.put(identifier, mac);
             writeAssignments();
         }
         return PlatformData.allPlatforms.get(identifier);
@@ -71,8 +77,8 @@ public class Teensies {
     private static void writeAssignments() throws IOException {
         PrintWriter out = new PrintWriter(stored);
         CSVPrinter printer = new CSVPrinter(out, CSVFormat.RFC4180.withHeader("mac", "identifier"));
-        for(Map.Entry<String, Short> e : assignments.entrySet()) {
-            printer.printRecord(e.getKey(), e.getValue());
+        for(Map.Entry<Short, String> e : teensies.entrySet()) {
+            printer.printRecord(e.getValue(), e.getKey());
         }
         printer.close();
     }

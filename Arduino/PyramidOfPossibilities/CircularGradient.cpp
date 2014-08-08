@@ -11,7 +11,7 @@
 
 void CircularGradient::paint(RNLights & lights) {
 
-  uint16_t gradientSize = 256 * parameters.rpm;
+  uint16_t gradientSize = 256 * parameters.repeats;
   float baseAngle =  parameters.rpm * getAnimationMillis()/ 60000.0;
 
   for(int i = 0; i < lights.getNumPixels(); i++) {
