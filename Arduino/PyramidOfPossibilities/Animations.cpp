@@ -29,8 +29,7 @@
 #include "ActivityLevelAnimation.h"
 
 #include "AVEAnimation1.h"
-#include "AVEFlashesAnimation.h"
-#include "Radial.h"
+#include "Flashes.h"
 
 RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animationStartMillis ) {
     switch (a) {
@@ -41,7 +40,7 @@ RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animati
         case e_ActivityLevelAnimation:
             return new ActivityLevelAnimation(info, animationStartMillis);
             
-        case  e_SideEffects:
+        case e_SideEffects:
             return new SideEffects(info, animationStartMillis);
             
         case e_Swirl:
@@ -72,8 +71,10 @@ RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animati
             return new DRAnimation0(info, animationStartMillis);
         case e_DRAnimation1 :
             return new DRAnimation1(info, animationStartMillis);
-        case e_Radial:
-            return new Radial(info, animationStartMillis);
+            
+        case e_Flashes :
+            return new Flashes(info, animationStartMillis);
+            
         default:
             return 0;
     }

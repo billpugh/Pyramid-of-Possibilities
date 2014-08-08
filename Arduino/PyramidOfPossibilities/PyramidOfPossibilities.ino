@@ -14,6 +14,7 @@
 #include "RNSerial.h"
 #include "ledPositions.h"
 #include "mac.h"
+#include "watchdog.h"
 #include "RNEEPROM.h"
 #include <EEPROM.h>
 #include <malloc.h>
@@ -60,7 +61,7 @@ void setup() {
   Serial.println("PoP board starting");
   print_mac();
   char  platformData[9];
-  Platform platform(0,0,0,0,0);
+  Platform platform(0,0,0,0,0,0);
   bool success = readFromEEPROM(sizeof(Platform), (char*) &platform);
   if (success) {
     Serial.print("Read from EEPROM ");
@@ -138,6 +139,8 @@ void setup() {
   lights.show();
   delay(10000);
   lights.reset();
+  
+  createWatchdog(100000);
 
 
 }
@@ -182,6 +185,7 @@ Platform platform( 0,0,0,700,0);
 
 
 void loop() {
+  refreshWatchdog();
   unsigned long startMicros = micros();
 
   updateAccelerometer();

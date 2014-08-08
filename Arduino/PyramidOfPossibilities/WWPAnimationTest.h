@@ -15,14 +15,11 @@ class WWPAnimationTest : public RNAnimation {
 public:
     WWPAnimationTest(RNInfo & info, unsigned long animationStartMillis)
     : RNAnimation(info, animationStartMillis) {
-            
-      
        };
+
     virtual void paint(RNLights & lights);
     
     virtual const char * name();
-\
-
 
 };
 

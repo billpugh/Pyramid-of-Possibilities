@@ -46,6 +46,9 @@ struct RNConstants {
 #endif
 
     const uint8_t brightnessChunkSize = 16;
+
+    const uint16_t pyramidRadius = 7209;
+    const uint16_t pyramidRadiusFromGround = 7796;
     
 };
 
