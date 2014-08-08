@@ -14,10 +14,10 @@
 
 struct RadialParameters {
     unsigned long period = 5000;
-    float thickness = 100;
-    RNGradient gradientInside = RNGradient(0, RNGradientCapped, 0xFF0000, 0xFF0000); 
-    RNGradient gradientShell = RNGradient(0, RNGradientCapped, 0xFF0000, 0x000000); 
-    RNGradient gradientOutside = RNGradient(0, RNGradientCapped, 0x001111, 0x001111);   
+    float thickness = 1000;
+    RNGradient gradientInside = RNGradient(0, RNGradientCapped, 0x000000, 0x000000); 
+    RNGradient gradientShell = RNGradient(0, RNGradientCapped, 0xFF0000, 0xFF0000); 
+    RNGradient gradientOutside = RNGradient(0, RNGradientCapped, 0x000000, 0x000000);   
 };
 
 

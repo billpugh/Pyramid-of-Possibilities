@@ -17,8 +17,6 @@
 #define DEBUG 1
 // #define FULL_STRIP
 
-#define PYRAMID_RADIUS 700
-
 #define RN_REALLY_LONG_ANIMATIONS
 
 // #define RN_PRINT_HEAP_SIZE

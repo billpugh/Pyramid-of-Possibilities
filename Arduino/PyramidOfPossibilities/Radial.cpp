@@ -12,9 +12,9 @@
 float locationForT(float t) {
 
     if ( t > .5 ) {
-        return (1 - t) * PYRAMID_RADIUS * 2;
+        return (1 - t) * pyramidRadiusFromGround * 2;
     }
-    return t * PYRAMID_RADIUS * 2;
+    return t * pyramidRadiusFromGround * 2;
 }
 
 
@@ -22,7 +22,7 @@ void Radial::paint(RNLights & lights) {
     
     unsigned long millis = getAnimationMillis();
 
-    // t will be a number between 0 and 1.
+    // t will be a number between 0 and 1.    
     /// TODO: Need help setting up parameters that we want for speed, etc.
     float t = (float)((millis / 10 ) % parameters.period) / (float)parameters.period;
 
@@ -42,7 +42,7 @@ void Radial::paint(RNLights & lights) {
             
             // inside 
             gradientToUse = &(parameters.gradientInside);
-            point = pixelRadius / PYRAMID_RADIUS;
+            point = pixelRadius / pyramidRadiusFromGround;
 
         } else if ( pixelRadius < outerShellBoundry ) {
             
@@ -54,7 +54,7 @@ void Radial::paint(RNLights & lights) {
 
             // outside
             gradientToUse = &(parameters.gradientOutside);
-            point = pixelRadius / PYRAMID_RADIUS;
+            point = pixelRadius / pyramidRadiusFromGround;
         }
 
         // find the color now
