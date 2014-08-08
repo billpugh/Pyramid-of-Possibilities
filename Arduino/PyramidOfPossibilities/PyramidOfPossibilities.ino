@@ -172,8 +172,12 @@ void capOverallBrightness(RNLights & lights) {
     int goal= scaleBrightness(avgBrightness);
 
     int newBrightness = goal * 255 / avgPixelBrightness;
+    
+#ifdef RN_PRINT_BRIGHTNESS_ADJUSTMENTS
     info->printf("Avg brightness is %d/%d, goal is %d, Reducing brightness from %d -> %d\n",
     avgPixelBrightness, avgBrightness, goal, lights.getBrightness(), newBrightness);
+#endif /* RN_PRINT_BRIGHTNESS_ADJUSTMENTS */
+
     lights.setBrightness(newBrightness);
   }
   //  else info.printf("Avg brightness is %d/%d\n", avgPixelBrightness, avgBrightness);
@@ -206,9 +210,14 @@ void loop() {
   int blink = (millis() /100)%2;
   digitalWrite(ONBOARD_LED_PIN, blink);
   if (count++ >= 100) {
+
+  // Print head size for debugging.
+#ifdef RN_PRINT_HEAP_SIZE
     info->printf("Avg time = %5d, delay = %dms, heapSize = %d\n",
     avgTime, timeToDelay, heapSize());
     count = 0;
+#endif /* RN_PRINT_HEAP_SIZE */
+
   }
   // Serial.println(millis()/10);
 }
