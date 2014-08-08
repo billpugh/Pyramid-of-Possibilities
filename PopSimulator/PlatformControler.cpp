@@ -24,7 +24,7 @@ PlatformControler::PlatformControler(Pyramid* _pyramid, int _platform) {
             coords[1],
             coords[2]);
 
-    animation = getAnimation(e_Flashes, *info, millis());
+    animation = getAnimation(e_AVEAnimation1, *info, millis());
 }
 
 void PlatformControler::refreshPlatform() {

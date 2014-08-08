@@ -14,6 +14,7 @@
         <itemPath>../Arduino/PyramidOfPossibilities/DRAnimation0.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/DRAnimation1.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/FlashAttack.h</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/Flashes.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/GlowFade.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/GradientSwirl.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/SideEffects.h</itemPath>
@@ -25,6 +26,7 @@
       <itemPath>../Arduino/PyramidOfPossibilities/ActivityLevelAnimation.h</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/Animations.h</itemPath>
       <itemPath>Arduino.h</itemPath>
+      <itemPath>../Arduino/PyramidOfPossibilities/Constants.h</itemPath>
       <itemPath>FPSControlsHandler.hpp</itemPath>
       <itemPath>PlatformControler.hpp</itemPath>
       <itemPath>Pyramid.hpp</itemPath>
@@ -67,6 +69,7 @@
         <itemPath>../Arduino/PyramidOfPossibilities/DRAnimation0.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/DRAnimation1.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/FlashAttack.cpp</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/Flashes.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/GlowFade.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/GradientSwirl.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/SideEffects.cpp</itemPath>

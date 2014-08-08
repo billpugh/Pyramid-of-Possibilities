@@ -78,6 +78,8 @@ RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animati
             
         case e_Flashes :
             return new Flashes(info, animationStartMillis);
+        case e_AVEAnimation1 :
+            return new AVEAnimation1(info, animationStartMillis);
             
         default:
             return 0;
