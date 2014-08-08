@@ -31,7 +31,7 @@ struct RNConstants {
   const uint8_t FIRST_LED = 10;
 #else
   // Modify these values for testing with a non-full strip.
-  static const uint8_t LEDs = 32;
+  static const uint8_t LEDs = 60;
   const uint8_t FIRST_LED = 0;
 #endif  /** #ifdef FULL_STRIP **/
 
