@@ -7,7 +7,7 @@
 //
 
 #include "Kittens.h"
-
+#include <Arduino.h>
 
 static float ease = 0.05;
 
@@ -19,19 +19,19 @@ void Kittens::paint(RNLights & lights) {
     lights.fade(ms);
 
     for (uint8_t i=0; i<3; ++i) {
-        if (abs(kittens[i].pos - kittens[i].goal) < 1) {
+        if (abs(kittens[i].position - kittens[i].goal) < 1) {
             kittens[i].goal = random(numLights);
         }
 
-        distance = kittens[i].goal - kittens[i].pos;
+        distance = kittens[i].goal - kittens[i].position;
 
         if (distance > numLights/2) {
             distance -= numLights/-2;
         }
 
-        kittens[i].pos += distance * ease;
+        kittens[i].position += distance * ease;
 
-        int pixel = round(kittens[i].pos);
+        int pixel = round(kittens[i].position);
         uint8_t red = lights.getPixelRed(pixel);
         uint8_t green = lights.getPixelGreen(pixel);
         uint8_t blue = lights.getPixelBlue(pixel);

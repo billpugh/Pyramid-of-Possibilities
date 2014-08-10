@@ -32,6 +32,8 @@
 #include "Flashes.h"
 #include "Radial.h"
 
+#include "Kittens.h"
+
 RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animationStartMillis ) {
     switch (a) {
 
@@ -77,12 +79,11 @@ RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animati
             return new Flashes(info, animationStartMillis);
         case e_AVEAnimation1 :
             return new AVEAnimation1(info, animationStartMillis);
-
-        case e_Kittens :
-            return new Kittens(info, animationStartMillis);
-
         case e_Radial:
             return new Radial(info, animationStartMillis);
+            
+        case e_Kittens :
+            return new Kittens(info, animationStartMillis);
 
         default:
             return 0;
