@@ -24,8 +24,12 @@
 #include "GlowFade.h"
 #include "ActivityLevelAnimation.h"
 
+#include "MMAnimation0.h"
+#include "MMAnimation1.h"
+
 
 RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animationStartMillis ) {
+
   switch (a) {
 
   case e_ActivityLevelAnimation:
@@ -52,6 +56,11 @@ RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animati
     return new DRAnimation0(info, animationStartMillis);
   case e_DRAnimation1 :
     return new DRAnimation1(info, animationStartMillis);
+	
+  case e_MMAnimation0 :
+	return new MMAnimation0(info, animationStartMillis);
+  case e_MMAnimation1:
+    return new MMAnimation1(info, animationStartMillis);  
   default:
     return 0;
   }

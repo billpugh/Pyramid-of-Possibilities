@@ -29,7 +29,10 @@ enum  AnimationEnum {
   e_DRAnimation0,   // RGB simple
   e_DRAnimation1,   // RNBeam
   
-
+  // milos animations
+  e_MMAnimation0,   		// strip color cycles through HSV, tapping activity brightens, no activity fades out
+  e_MMAnimation1,   		// same as 0, but takes globaltime for cycling through HSV
+  
 
   // Not an actual enum, just the value used to give us the count of the number of enums
   e_AnimationCount};
