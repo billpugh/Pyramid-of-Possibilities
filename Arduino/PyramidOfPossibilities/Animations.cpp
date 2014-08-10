@@ -32,30 +32,32 @@
 #include "Flashes.h"
 #include "Radial.h"
 
+#include "Kittens.h"
+
 RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animationStartMillis ) {
     switch (a) {
 
         case e_Beacon:
             return new Beacon(info, animationStartMillis);
-            
+
         case e_ActivityLevelAnimation:
             return new ActivityLevelAnimation(info, animationStartMillis);
-            
+
         case e_SideEffects:
             return new SideEffects(info, animationStartMillis);
-            
+
         case e_Swirl:
             return new Swirl(info, animationStartMillis);
-           
+
         case e_Snow:
             return new Snow(info, animationStartMillis);
-            
+
         case e_GlowFade:
             return new GlowFade(info, animationStartMillis);
         case e_FlashAttack:
             return new FlashAttack(info, animationStartMillis);
-            
-            
+
+
             // Animations by WWP
         case e_WWPAnimationTest :
             return new WWPAnimationTest(info, animationStartMillis);
@@ -63,7 +65,7 @@ RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animati
             return new ChangingColor(info, animationStartMillis);
         case e_CircularGradient :
             return new CircularGradient(info, animationStartMillis);
-           
+
         case e_ColorWorms :
             return new ColorWorms(info, animationStartMillis);
         case e_Chasers :
@@ -72,15 +74,17 @@ RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animati
             return new DRAnimation0(info, animationStartMillis);
         case e_DRAnimation1 :
             return new DRAnimation1(info, animationStartMillis);
-            
+
         case e_Flashes :
             return new Flashes(info, animationStartMillis);
         case e_AVEAnimation1 :
             return new AVEAnimation1(info, animationStartMillis);
-
         case e_Radial:
             return new Radial(info, animationStartMillis);
             
+        case e_Kittens :
+            return new Kittens(info, animationStartMillis);
+
         default:
             return 0;
     }
