@@ -41,7 +41,10 @@ enum  AnimationEnum {
     // Antoine's animations
     e_Flashes,
     e_AVEAnimation1,
-    
+
+    // Branden's animations
+    e_Kittens,
+
     // Not an actual enum, just the value used to give us the count of the number of enums
     e_AnimationCount};
 
