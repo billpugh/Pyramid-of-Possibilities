@@ -72,6 +72,8 @@
 		166A9D3E19991BA100C2E74C /* PopMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 166A9D3C19991BA100C2E74C /* PopMain.cpp */; };
 		166A9D3F19991BA100C2E74C /* PopMain.h in Headers */ = {isa = PBXBuildFile; fileRef = 166A9D3D19991BA100C2E74C /* PopMain.h */; };
 		166A9D41199923DC00C2E74C /* RNSerial.h in Headers */ = {isa = PBXBuildFile; fileRef = 166A9D40199923DC00C2E74C /* RNSerial.h */; };
+		166A9D48199980B600C2E74C /* RNCommReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 166A9D46199980B600C2E74C /* RNCommReader.cpp */; };
+		166A9D49199980B600C2E74C /* RNCommReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 166A9D47199980B600C2E74C /* RNCommReader.h */; };
 		16838ED419950C48008CD81E /* Radial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16838ED019950C48008CD81E /* Radial.cpp */; };
 		16838ED519950C48008CD81E /* Radial.h in Headers */ = {isa = PBXBuildFile; fileRef = 16838ED119950C48008CD81E /* Radial.h */; };
 		16838ED619950C48008CD81E /* Flashes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16838ED219950C48008CD81E /* Flashes.cpp */; };
@@ -150,6 +152,8 @@
 		166A9D3C19991BA100C2E74C /* PopMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PopMain.cpp; path = ../Arduino/PyramidOfPossibilities/PopMain.cpp; sourceTree = "<group>"; };
 		166A9D3D19991BA100C2E74C /* PopMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopMain.h; path = ../Arduino/PyramidOfPossibilities/PopMain.h; sourceTree = "<group>"; };
 		166A9D40199923DC00C2E74C /* RNSerial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNSerial.h; path = ../Arduino/libraries/RNSerial/RNSerial.h; sourceTree = "<group>"; };
+		166A9D46199980B600C2E74C /* RNCommReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RNCommReader.cpp; path = ../Arduino/PyramidOfPossibilities/RNCommReader.cpp; sourceTree = "<group>"; };
+		166A9D47199980B600C2E74C /* RNCommReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNCommReader.h; path = ../Arduino/PyramidOfPossibilities/RNCommReader.h; sourceTree = "<group>"; };
 		16838ECE19950A02008CD81E /* EEPROM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EEPROM.h; sourceTree = "<group>"; };
 		16838ECF19950ACC008CD81E /* malloc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = malloc.h; sourceTree = "<group>"; };
 		16838ED019950C48008CD81E /* Radial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Radial.cpp; path = ../Arduino/PyramidOfPossibilities/Radial.cpp; sourceTree = "<group>"; };
@@ -178,6 +182,8 @@
 		1644A110198D34AF00FBFF63 = {
 			isa = PBXGroup;
 			children = (
+				166A9D46199980B600C2E74C /* RNCommReader.cpp */,
+				166A9D47199980B600C2E74C /* RNCommReader.h */,
 				166A9D3C19991BA100C2E74C /* PopMain.cpp */,
 				166A9D3D19991BA100C2E74C /* PopMain.h */,
 				30F8EB31198D5D92008DEAE9 /* PyramidOfPossibilities.ino */,
@@ -319,6 +325,7 @@
 				1644A162198D34D400FBFF63 /* ActivityLevelAnimation.h in Headers */,
 				16C35AE8198FEF7100E2E362 /* Beacon.h in Headers */,
 				1644A171198D34D400FBFF63 /* ColorWorms.h in Headers */,
+				166A9D49199980B600C2E74C /* RNCommReader.h in Headers */,
 				1644A16E198D34D400FBFF63 /* ChangingColor.h in Headers */,
 				1644A172198D34D400FBFF63 /* Controller.h in Headers */,
 				1644A153198D34D400FBFF63 /* FlashAttack.h in Headers */,
@@ -409,6 +416,7 @@
 				16838ED619950C48008CD81E /* Flashes.cpp in Sources */,
 				1644A150198D34D400FBFF63 /* Snow.cpp in Sources */,
 				163D5077198D841400E882A1 /* RNEEPROM.cpp in Sources */,
+				166A9D48199980B600C2E74C /* RNCommReader.cpp in Sources */,
 				1644A15B198D34D400FBFF63 /* RNBeam.cpp in Sources */,
 				16C35AE9198FEF7100E2E362 /* Beacon.cpp in Sources */,
 				161181221998D72A00136668 /* FlashEcho.cpp in Sources */,
