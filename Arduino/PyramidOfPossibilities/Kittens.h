@@ -19,8 +19,8 @@ struct KittenParameters {
 
 struct Kitten {
 
-    uint16_t position = 0;
-    uint16_t goal = 0;
+    int16_t position = 0;
+    int16_t goal = 0;
     uint32_t color;
 };
 
