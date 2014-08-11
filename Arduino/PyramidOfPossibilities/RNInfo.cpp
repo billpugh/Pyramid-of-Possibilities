@@ -144,7 +144,7 @@ uint16_t RNInfo::getRandomPixel() {
     return random(numLEDs);
 }
 
-long RNInfo::getRandom(long max) {
+int RNInfo::getRandom(int max) {
     return random(max);
 }
 long random(long max);
