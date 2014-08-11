@@ -20,7 +20,6 @@ void FlashEcho::paint(RNLights & lights) {
 
 		if ( info.getTaps() ) {
 			setIsReplaying(0);
-			// modeBrightness = 100;
 		} else {
 			playHistory();
 		}
@@ -36,7 +35,6 @@ void FlashEcho::paint(RNLights & lights) {
 	
 		if ( info.timeSinceLastTap() > kLullDuration ) {
 			setIsReplaying(1);
-			// modeBrightness = 100;
 		}
 
 	}
@@ -59,13 +57,14 @@ void FlashEcho::playHistory() {
 	unsigned long offsetIntoPlayback = timeSinceModeSwitch % recordingDuration;
 
 	unsigned long loopCountNow = timeSinceModeSwitch / recordingDuration;
+
+	// detect when loopCount changes so we can reset historyReadHead
 	if ( loopCountNow != loopCount ) {
 		loopCount = loopCountNow;
 		historyReadHead = 0;
 		newReadHead = 0;
 	}
-	info.printf("Loop = %lu.  offsetIntoPlayback = %lu.  Next: %d = %lu\n", loopCount, offsetIntoPlayback, historyReadHead, tapHistory[historyReadHead]);
-
+	// info.printf("Loop = %lu.  offsetIntoPlayback = %lu.  Next: %d = %lu\n", loopCount, offsetIntoPlayback, historyReadHead, tapHistory[historyReadHead]);
 
 	for ( int i = historyReadHead; i < historyWriteHead; i++ ) {
 
@@ -92,9 +91,7 @@ void FlashEcho::recordFlash() {
 	unsigned long timediff = info.getGlobalMillis() - lastModeSwitchTimestamp;
 	tapHistory[historyWriteHead] = timediff;
 
-    info.printf("Recording flash[%d] @ %lu\n", historyWriteHead, timediff);
-
-
+    // info.printf("Recording flash[%d] @ %lu\n", historyWriteHead, timediff);
 
 	historyWriteHead++;
 	if ( historyWriteHead >= historySize ) {
@@ -115,11 +112,13 @@ void FlashEcho::setIsReplaying(int replaying) {
 	lastModeSwitchTimestamp = info.getGlobalMillis();
 
 
-	info.printf("Switching modes%s\n", replayMode ? "Replay":"Record");
+	// info.printf("Switching modes%s\n", replayMode ? "Replay":"Record");
 
 	if ( replaying ) {
 
 		recordingDuration = lastModeSwitchTimestamp - previousSwitchTimestamp;
+
+		// subtract off the kLullDuration so it loops cleanly. add a small (10 ms) padding so that the last tap will get correctly played back.
 		if ( recordingDuration < kLullDuration-10 ) {
 			recordingDuration = 0;
 		} else {
@@ -128,7 +127,7 @@ void FlashEcho::setIsReplaying(int replaying) {
 
 		historyReadHead = 0;
 
-		info.printf("Replay History has %d items. Recording duration = %lu ms.\n", historyWriteHead - 1, recordingDuration);
+		// info.printf("Replay History has %d items. Recording duration = %lu ms.\n", historyWriteHead - 1, recordingDuration);
 
 	} else {
 
@@ -152,10 +151,6 @@ void FlashEcho::fade() {
 	brightness-=10;
 	if ( brightness < kMinBrightness ) {
 		brightness = kMinBrightness;
-	}
-	modeBrightness -=10;
-	if ( modeBrightness <= 0 ) {
-		modeBrightness = 0;
 	}
 }
 

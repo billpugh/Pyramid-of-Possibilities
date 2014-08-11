@@ -13,7 +13,7 @@
 
 
 const uint8_t kMinBrightness = 5;
-const uint16_t historySize = 5;
+const uint16_t historySize = 64;
 
 
 class FlashEcho : public RNAnimation {
@@ -41,8 +41,6 @@ public:
     void setIsReplaying(int replaying);
 
     int brightness;
-    int modeBrightness;
-
     int replayMode;
 
     unsigned long tapHistory[historySize];
