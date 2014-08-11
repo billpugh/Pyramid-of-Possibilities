@@ -1,9 +1,10 @@
 import gnu.io.SerialPort;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PushbackInputStream;
+import java.nio.channels.Channels;
+import java.nio.channels.WritableByteChannel;
 
 public class CentralControl {
 
@@ -39,20 +40,21 @@ public class CentralControl {
         return c;
     }
 
-    public static void changeAnimation(int a) {
-
-    }
 
     static SerialPort teeny;
     public static void main(String args[]) throws Exception {
         System.out.println("\nWelcome to Central\n");
         String ttyConfig = ReadConsole.setTerminalToCBreak();
         SerialPort teensy = SerialPortFactory.findSerialPortByName("/dev/tty.usbserial-A603IZ6Q", 57600);
-        OutputStream fw = teensy.getOutputStream();
+
+        OutputStream outputStream = teensy.getOutputStream();
+        WritableByteChannel outputChannel = Channels.newChannel(outputStream);
+        
         final int numberAnimations = 5;
         PushbackInputStream in = new PushbackInputStream(System.in);
         int currentAnimation = 0;
-        fw.write(currentAnimation);
+        switchToAnimation(outputChannel, currentAnimation);
+        outputStream.flush();
         try {
             getInput: while (true) {
 
@@ -75,21 +77,22 @@ public class CentralControl {
                     case '8':
                     case '9':
                         currentAnimation = c - '0';
-                        switchToAnimation(fw, currentAnimation);
+                        switchToAnimation(outputChannel, currentAnimation);
+                        outputStream.flush();
                         break;
                     case LEFT_ARROW:
                         currentAnimation = (currentAnimation - 1)
                                 % numberAnimations;
                         if (currentAnimation < 0)
                             currentAnimation += numberAnimations;
-                        switchToAnimation(fw, currentAnimation);
-
+                        switchToAnimation(outputChannel, currentAnimation);
+                        outputStream.flush();
                         break;
                     case RIGHT_ARROW:
                         currentAnimation = (currentAnimation + 1)
                                 % numberAnimations;
-                        switchToAnimation(fw, currentAnimation);
-
+                        switchToAnimation(outputChannel, currentAnimation);
+                        outputStream.flush();
                         break;
                     }
 
@@ -111,16 +114,21 @@ public class CentralControl {
 
     }
 
+     
+    static Animation animation;
+    
     /**
      * @param fw
      * @param currentAnimation
      * @throws IOException
      */
-    public static void switchToAnimation(OutputStream fw,
+    public static void switchToAnimation(WritableByteChannel outputChannel,
             int currentAnimation) throws IOException {
-        fw.write('a');
-        fw.write(currentAnimation);
-        fw.flush();
+        AnimationProgram program = AnimationProgram.values()[currentAnimation];
+        animation = new Animation(program);
+        Broadcast broadcast = new Broadcast(animation);
+        
+        outputChannel.write(broadcast.getBytes());
         System.out.printf("Switching to animation %d%n", currentAnimation);
     }
 
