@@ -172,8 +172,9 @@ void RNInfo::showActivityWithBrightness(RNLights & lights,  uint16_t minBrightne
     if (b < minBrightness)
         b = minBrightness;
     int newBrightness = b * lights.getBrightness() / 256;
+#ifdef RN_PRINT_BRIGHTNESS_ADJUSTMENTS
     printf("Changing brightness %d -> %d\n", lights.getBrightness(), newBrightness);
-    
+#endif /* RN_PRINT_BRIGHTNESS_ADJUSTMENTS */    
     lights.setBrightness(newBrightness);
 }
 
