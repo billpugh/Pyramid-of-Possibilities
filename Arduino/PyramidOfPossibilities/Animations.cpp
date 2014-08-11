@@ -40,6 +40,9 @@ RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animati
         case e_Beacon:
             return new Beacon(info, animationStartMillis);
 
+        case e_Kittens:
+            return new Kittens(info, animationStartMillis);
+            
         case e_ActivityLevelAnimation:
             return new ActivityLevelAnimation(info, animationStartMillis);
 
@@ -81,9 +84,6 @@ RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animati
             return new AVEAnimation1(info, animationStartMillis);
         case e_Radial:
             return new Radial(info, animationStartMillis);
-            
-        case e_Kittens :
-            return new Kittens(info, animationStartMillis);
 
         default:
             return 0;
