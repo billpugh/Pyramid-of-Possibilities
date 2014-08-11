@@ -12,26 +12,42 @@
 #include <string.h>
 
 
-const uint8_t kMinBrightness = 5;
+const uint8_t kDefaultMinBrightness = 5;
+const uint8_t kDefaultMaxBrightness = 255;
 const uint16_t historySize = 64;
+const unsigned long kDefaultLullDuration = 2000;   // in ms
+
+
+struct FlashEchoParameters {
+    unsigned long lullDuration; // time (in ms) before we switch from RED to GREEN mode
+    uint8_t minBrightness;
+    uint8_t maxBrightness;
+    uint8_t fadeFactor;
+};
 
 
 class FlashEcho : public RNAnimation {
 public:
     FlashEcho(RNInfo & info, unsigned long animationStartMillis)
-    : RNAnimation(info, animationStartMillis) {
+    : RNAnimation(info, animationStartMillis, sizeof(FlashEchoParameters), &parameters) {
     	// initalize the buffer to zero
-    	brightness = kMinBrightness;
+    	brightness = kDefaultMinBrightness;
     	replayMode = 1;
         lastModeSwitchTimestamp = 0;
-    	modeBrightness = 0;
         recordingDuration = 0;
         loopCount = 0;
     	clearHistory();
+
+        parameters.lullDuration = kDefaultLullDuration;
+        parameters.minBrightness = kDefaultMinBrightness;
+        parameters.maxBrightness = kDefaultMaxBrightness;
+        parameters.fadeFactor = 10;
     };
+
     virtual void paint(RNLights & lights);
-    
     virtual const char * name();
+
+    FlashEchoParameters parameters;
 
     void flash();
     void recordFlash();

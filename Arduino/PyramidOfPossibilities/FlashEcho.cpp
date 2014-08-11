@@ -8,8 +8,6 @@
 #include "FlashEcho.h"
 #include "Constants.h"
 
-const unsigned long kLullDuration = 2000;	// in ms
-
 void FlashEcho::paint(RNLights & lights) {
 
 
@@ -33,7 +31,7 @@ void FlashEcho::paint(RNLights & lights) {
 			recordFlash();
 		}
 	
-		if ( info.timeSinceLastTap() > kLullDuration ) {
+		if ( info.timeSinceLastTap() > parameters.lullDuration ) {
 			setIsReplaying(1);
 		}
 
@@ -119,10 +117,10 @@ void FlashEcho::setIsReplaying(int replaying) {
 		recordingDuration = lastModeSwitchTimestamp - previousSwitchTimestamp;
 
 		// subtract off the kLullDuration so it loops cleanly. add a small (10 ms) padding so that the last tap will get correctly played back.
-		if ( recordingDuration < kLullDuration-10 ) {
+		if ( recordingDuration < parameters.lullDuration - 10 ) {
 			recordingDuration = 0;
 		} else {
-			recordingDuration = recordingDuration - kLullDuration + 10;
+			recordingDuration = recordingDuration - parameters.lullDuration + 10;
 		}
 
 		historyReadHead = 0;
@@ -144,13 +142,13 @@ void FlashEcho::clearHistory() {
 }
 
 void FlashEcho::flash() {
-	brightness = 255;	
+	brightness = parameters.maxBrightness;	
 }
 
 void FlashEcho::fade() {
-	brightness-=10;
-	if ( brightness < kMinBrightness ) {
-		brightness = kMinBrightness;
+	brightness-=parameters.fadeFactor;
+	if ( brightness < parameters.minBrightness ) {
+		brightness = parameters.minBrightness;
 	}
 }
 
