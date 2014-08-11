@@ -13,8 +13,6 @@
 #include <malloc.h>
 #include "Constants.h"
 
-
-
 static int heapSize(){
     return mallinfo().uordblks;
 }
@@ -66,10 +64,25 @@ void RNController::paint(RNLights & lights) {
     }
 #endif
     
-    if (currentAnimation)
+
+    // call the paint() method on the current animation. 
+    // NOTE: we use RN_DEBUG_SAMPLE_ANIMATION_DURATION to debug the duration of calls to paint().
+    if (currentAnimation) {
+
+#ifdef RN_PRINT_LOG_ANIMATIONS
+        unsigned long start = millis();
+#endif /* RN_PRINT_LOG_ANIMATIONS */
+
         currentAnimation->paint(lights);
-    
-    
+
+#ifdef RN_PRINT_LOG_ANIMATIONS
+        unsigned long end = millis();
+        unsigned long duration = end - start;
+        if ( duration > kMaxPaintDuration ) {
+            info.printf("WARNING: Animation %s took %lu ms inside paint()\n", currentAnimation->name(), duration);
+        }
+#endif  /* RN_PRINT_LOG_ANIMATIONS */
+    }
 }
 
 
