@@ -16,6 +16,7 @@
         <itemPath>../Arduino/PyramidOfPossibilities/FlashAttack.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Flashes.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/GlowFade.h</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/Kittens.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Radial.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/SideEffects.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Snow.h</itemPath>
@@ -71,6 +72,7 @@
         <itemPath>../Arduino/PyramidOfPossibilities/FlashAttack.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Flashes.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/GlowFade.cpp</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/Kittens.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Radial.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/SideEffects.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Snow.cpp</itemPath>
@@ -448,6 +450,16 @@
             flavor2="0">
       </item>
       <item path="../Arduino/PyramidOfPossibilities/GlowFade.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Kittens.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Kittens.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -833,6 +845,16 @@
             flavor2="0">
       </item>
       <item path="../Arduino/PyramidOfPossibilities/GlowFade.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Kittens.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Kittens.h"
             ex="false"
             tool="3"
             flavor2="0">
