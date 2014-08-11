@@ -6,6 +6,7 @@
                    projectFiles="true">
       <logicalFolder name="f1" displayName="Animations" projectFiles="true">
         <itemPath>../Arduino/PyramidOfPossibilities/AVEAnimation1.h</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/ActivityLevelAnimation.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Beacon.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/ChangingColor.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Chasers.h</itemPath>
@@ -17,6 +18,7 @@
         <itemPath>../Arduino/PyramidOfPossibilities/Flashes.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/GlowFade.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Kittens.h</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/MovingFaces.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Qbert.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Radial.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/SideEffects.h</itemPath>
@@ -25,7 +27,6 @@
         <itemPath>../Arduino/PyramidOfPossibilities/WWPAnimationTest.h</itemPath>
       </logicalFolder>
       <itemPath>../Arduino/libraries/Accelerometer/Accelerometer.h</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/ActivityLevelAnimation.h</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/Animations.h</itemPath>
       <itemPath>Arduino.h</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/Constants.h</itemPath>
@@ -65,6 +66,7 @@
                    projectFiles="true">
       <logicalFolder name="f1" displayName="Animations" projectFiles="true">
         <itemPath>../Arduino/PyramidOfPossibilities/AVEAnimation1.cpp</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/ActivityLevelAnimation.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Beacon.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/ChangingColor.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Chasers.cpp</itemPath>
@@ -76,6 +78,7 @@
         <itemPath>../Arduino/PyramidOfPossibilities/Flashes.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/GlowFade.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Kittens.cpp</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/MovingFaces.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Qbert.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Radial.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/SideEffects.cpp</itemPath>
@@ -84,7 +87,6 @@
         <itemPath>../Arduino/PyramidOfPossibilities/WWPAnimationTest.cpp</itemPath>
       </logicalFolder>
       <itemPath>../Arduino/libraries/Accelerometer/Accelerometer.cpp</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/ActivityLevelAnimation.cpp</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/Animations.cpp</itemPath>
       <itemPath>Arduino.c</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/Constants.cpp</itemPath>
@@ -471,6 +473,16 @@
             flavor2="0">
       </item>
       <item path="../Arduino/PyramidOfPossibilities/Kittens.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/MovingFaces.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/MovingFaces.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -891,6 +903,16 @@
             flavor2="0">
       </item>
       <item path="../Arduino/PyramidOfPossibilities/Kittens.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/MovingFaces.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/MovingFaces.h"
             ex="false"
             tool="3"
             flavor2="0">

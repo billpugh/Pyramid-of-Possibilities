@@ -51,6 +51,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/1731549632/Flashes.o \
 	${OBJECTDIR}/_ext/1731549632/GlowFade.o \
 	${OBJECTDIR}/_ext/1731549632/Kittens.o \
+	${OBJECTDIR}/_ext/1731549632/MovingFaces.o \
 	${OBJECTDIR}/_ext/1731549632/Platform.o \
 	${OBJECTDIR}/_ext/1731549632/Qbert.o \
 	${OBJECTDIR}/_ext/1731549632/RNAnimation.o \
@@ -184,6 +185,11 @@ ${OBJECTDIR}/_ext/1731549632/Kittens.o: ../Arduino/PyramidOfPossibilities/Kitten
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../Arduino/PyramidOfPossibilities -I../PlatformData -I../Arduino/libraries/RNChaser -I../Arduino/libraries/RNLights -I../Arduino/libraries/Accelerometer -I../Arduino/PyramidOfPossibilities -I. -I../Arduino/libraries/FastLED -I../Arduino/libraries/AHEasing -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/Kittens.o ../Arduino/PyramidOfPossibilities/Kittens.cpp
+
+${OBJECTDIR}/_ext/1731549632/MovingFaces.o: ../Arduino/PyramidOfPossibilities/MovingFaces.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../Arduino/PyramidOfPossibilities -I../PlatformData -I../Arduino/libraries/RNChaser -I../Arduino/libraries/RNLights -I../Arduino/libraries/Accelerometer -I../Arduino/PyramidOfPossibilities -I. -I../Arduino/libraries/FastLED -I../Arduino/libraries/AHEasing -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/MovingFaces.o ../Arduino/PyramidOfPossibilities/MovingFaces.cpp
 
 ${OBJECTDIR}/_ext/1731549632/Platform.o: ../Arduino/PyramidOfPossibilities/Platform.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
