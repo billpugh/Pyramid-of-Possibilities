@@ -31,7 +31,7 @@ RNInfo *info;
 RNController * controller;
 Platform platform( 0,0,0,700,0,0);
 
-extern RNLights lights;
+extern RNLights *lights;
 static int heapSize(){
     return mallinfo().uordblks;
 }
@@ -111,7 +111,7 @@ void capOverallBrightness(RNLights & lights) {
 
 #ifdef RN_PRINT_BRIGHTNESS_ADJUSTMENTS
         info->printf("Avg brightness is %d/%d, goal is %d, Reducing brightness from %d -> %d\n",
-                     avgPixelBrightness, avgBrightness, goal, lights.getBrightness(), newBrightness);
+                     avgPixelBrightness, avgBrightness, goal, lights->getBrightness(), newBrightness);
 #endif /* RN_PRINT_BRIGHTNESS_ADJUSTMENTS */
 
         lights.setBrightness(newBrightness);
@@ -131,10 +131,10 @@ void loop() {
     updateAccelerometer();
 
     // display lights
-    lights.reset();
-    controller->paint(lights);
-    capOverallBrightness(lights);
-    lights.show();
+    lights->reset();
+    controller->paint(*lights);
+    capOverallBrightness(*lights);
+    lights->show();
     
     
     unsigned long endMicros = micros();
@@ -200,18 +200,18 @@ void debugTriadPositions() {
 
 
 
-    lights.setAllPixelColors(0, 20, 0);
-    lights.setPixelColor(minAngleLED, 255, 0, 0);
-    lights.setPixelColor(maxAngleLED, 0, 0, 255);
-    lights.setPixelColor(closestLED, 80,80,80);
+    lights->setAllPixelColors(0, 20, 0);
+    lights->setPixelColor(minAngleLED, 255, 0, 0);
+    lights->setPixelColor(maxAngleLED, 0, 0, 255);
+    lights->setPixelColor(closestLED, 80,80,80);
 
     info->printf("minimum led %3d at %11f\n", minAngleLED, minAngle*360);
     info->printf("closest led %3d at %11f\n", closestLED, closestLEDRange*360);
     info->printf("maximum led %3d at %11f\n", maxAngleLED, maxAngle*360);
 
-    lights.show();
+    lights->show();
     delay(10000);
-    lights.reset();
+    lights->reset();
 }
 
 

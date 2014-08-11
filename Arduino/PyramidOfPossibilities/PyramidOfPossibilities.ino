@@ -33,7 +33,9 @@ uint8_t drawingMemory[240*24];
 
 OctoWS2811 leds(ledsPerStrip, displayMemory, drawingMemory);
 
-RNLightsOctoWS2811 lights(leds, drawingMemory, constants.FIRST_LED);
+RNLightsOctoWS2811 octoLights(leds, drawingMemory, constants.FIRST_LED);
+
+RNLights *lights = &octoLights;
 
 void setup() {
 
