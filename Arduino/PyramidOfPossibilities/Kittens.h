@@ -36,7 +36,6 @@ public:
         kittens[0].color = 0xff0000;
         kittens[1].color = 0x00ff00;
         kittens[2].color = 0x0000ff;
-
     }
     virtual void paint(RNLights & lights);
     virtual const char * name();

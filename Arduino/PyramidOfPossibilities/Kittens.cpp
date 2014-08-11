@@ -41,7 +41,7 @@ void Kittens::paint(RNLights & lights) {
 
         kittens[i].position += d2;
 
-        info.printf("%3d %3d %3d %3d %3d  ", kittens[i].position, kittens[i].goal, d, distance, d2);
+        info.printf("%3d %3d %3d %3d %3d ", kittens[i].position, kittens[i].goal, d, distance, d2);
 
 
         int p2 = kittens[i].position;
@@ -50,9 +50,18 @@ void Kittens::paint(RNLights & lights) {
             p1 = p2;
             p2 = tmp;
         }
+
+        int c0 = lights.getPixelColor(p1);
+
+        int colorRGB = kittens[i].color;
+        uint8_t r =colorRGB >> 16;
+        uint8_t g =colorRGB >> 8;
+        uint8_t b = colorRGB;
+
         for(int i = p1; i <= p2; i++)
-        lights.setPixelColorMax(i, kittens[i].color);
-        
+        lights.setPixelColorMax(i, r,g,b);
+        int c1 = lights.getPixelColor(p1);
+        info.printf("%6x %6x %6x\n", c0, kittens[i].color, c1);
         kittens[i].position = lights.normalize(kittens[i].position);
        
     }
