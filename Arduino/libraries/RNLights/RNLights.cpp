@@ -322,6 +322,11 @@ uint16_t RNLights::getNumPixels() {
 }
 
 
+unsigned long RNLights::show() {
+	return 0;
+	}
+
+
 
 
 

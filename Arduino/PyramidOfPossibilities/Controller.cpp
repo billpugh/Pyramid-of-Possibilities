@@ -10,7 +10,7 @@
 #include "RNInfo.h"
 #include "Arduino.h"
 #include "Animations.h"
-#include <malloc.h>
+#include "malloc.h"
 #include "Constants.h"
 
 static int heapSize(){

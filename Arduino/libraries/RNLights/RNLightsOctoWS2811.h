@@ -18,7 +18,7 @@ public RNLights {
 public:
   RNLightsOctoWS2811(OctoWS2811 & strip,  void *frameBuffer,  uint16_t firstPixel=0);
 
-  unsigned long show();
+  virtual unsigned long show();
 
 private:
   OctoWS2811 & strip;

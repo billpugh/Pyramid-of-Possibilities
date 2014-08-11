@@ -28,6 +28,9 @@ void Radial::paint(RNLights & lights) {
     /// TODO: Need help setting up parameters that we want for speed, etc.
     float t =  parameters.bpm  * minutes;
     t = t - floorf(t);
+    AHEasingFunction easingFunction
+    = getEasingFunction(parameters.easingMode, parameters.curveType);
+    t = easingFunction(t);
 
     // calculate position of the radial based on t
     float r = locationForT(t);

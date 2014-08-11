@@ -62,6 +62,7 @@ struct RNConstants {
 };
 
 
+const int ONBOARD_LED_PIN = 13;
 
 const float RADIANS_IN_A_CIRCLE = 2*3.14159265359;
 

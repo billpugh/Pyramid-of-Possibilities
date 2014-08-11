@@ -14,6 +14,7 @@
 
 struct BeaconParameters {
     uint8_t rpm = 30;
+    uint8_t numBeacons = 2;
     float width = 0.05;
     RNGradient gradient = RNGradient(0, RNGradientCapped, 0xff0000, 0x000000);
     

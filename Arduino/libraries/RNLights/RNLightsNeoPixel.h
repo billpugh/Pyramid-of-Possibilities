@@ -20,7 +20,7 @@ public:
   RNLightsNeoPixel(Adafruit_NeoPixel & strip);
   RNLightsNeoPixel(Adafruit_NeoPixel & strip, uint16_t firstPixel);
 
-  unsigned long show();
+  virtual unsigned long show();
 
 private:
   Adafruit_NeoPixel & strip;
