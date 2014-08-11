@@ -18,7 +18,9 @@ struct CircularGradientParameters {
     uint8_t rpm = 15;
     uint8_t repeats = 2;
     uint8_t brightnessWithoutActivity = 64;
+    uint8_t chunkSize = 1;
     bool global = 0;
+
     RNGradient gradient = RNGradient(1, RNGradientWrap, 0x00ffff, 0xffffff);
 };
 
