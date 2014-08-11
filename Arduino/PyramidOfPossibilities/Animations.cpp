@@ -22,7 +22,7 @@
 #include "Beacon.h"
 
 
-#include "DRAnimation0.h"
+#include "Qbert.h"
 #include "DRAnimation1.h"
 
 #include "GlowFade.h"
@@ -73,8 +73,8 @@ RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animati
             return new ColorWorms(info, animationStartMillis);
         case e_Chasers :
             return new Chasers(info, animationStartMillis);
-        case e_DRAnimation0 :
-            return new DRAnimation0(info, animationStartMillis);
+        case e_Qbert :
+            return new Qbert(info, animationStartMillis);
         case e_DRAnimation1 :
             return new DRAnimation1(info, animationStartMillis);
 

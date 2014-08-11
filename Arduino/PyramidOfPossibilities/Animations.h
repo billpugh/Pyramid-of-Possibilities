@@ -38,7 +38,7 @@ enum  AnimationEnum {
     e_Swirl,
 
     // Danny's animations.
-    e_DRAnimation0,   // RGB simple
+    e_Qbert,   // RGB simple
     e_DRAnimation1,   // RNBeam
 
     // Antoine's animations
