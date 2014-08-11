@@ -7,8 +7,6 @@ void Flashes::paint(RNLights & lights) {
         return;
     }
 
-    lights.setAllPixelColors(0, 0, 0);
-
     int led = random(lights.getNumPixels());
     for (int i = 0; i < parameters.flashSize; i++) {
         lights.setPixelColor(led + i, 255, 255, 255);

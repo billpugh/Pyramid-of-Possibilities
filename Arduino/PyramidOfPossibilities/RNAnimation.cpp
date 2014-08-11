@@ -29,6 +29,9 @@ RNAnimation::getAnimationMillis() {
     return millis() - animationStartMillis;
 }
 
+float RNAnimation::getAnimationMinutes() {
+    return (millis() - animationStartMillis)/60000.0;
+}
 // Default is to ignore parameters
 bool RNAnimation::setParameters(int size, char * data) {
     

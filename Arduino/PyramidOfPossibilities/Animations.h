@@ -14,6 +14,9 @@
 
 enum  AnimationEnum {
 
+    // Branden's animations
+    e_Kittens, 
+    
     e_Radial,
 
     e_Beacon,
@@ -35,15 +38,14 @@ enum  AnimationEnum {
     e_Swirl,
 
     // Danny's animations.
-    e_DRAnimation0,   // RGB simple
+    e_Qbert,   // RGB simple
     e_DRAnimation1,   // RNBeam
 
     // Antoine's animations
     e_Flashes,
     e_AVEAnimation1,
 
-    // Branden's animations
-    e_Kittens,
+
 
     // Not an actual enum, just the value used to give us the count of the number of enums
     e_AnimationCount};

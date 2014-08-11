@@ -43,6 +43,64 @@ static int heapSize(){
 }
 
 const int ONBOARD_LED_PIN = 13;
+
+
+void debugTriadPositions() {
+
+  info->printf("Running. id = %3d, xyz = %4d,%4d,%4d\n", info->identifier, info->x, info->y,info->z);
+  info->printf("%-3s  %-4s %-4s %-11s    %-4s %-4s   %-11s  %-11s\n",
+  "id", "x", "y", "angle", "g x", "g y", "angle", "radius");
+  int minAngleLED = 0;
+  int maxAngleLED = 0;
+  float maxAngle = 0;
+  float minAngle =1;
+  int closestLED = 0;
+  float closestLEDRange = 100000;
+  for(int i = 0; i < info->numLEDs; i++)  {
+    info->printf("%3d  %4d %4d %11f    %4d %4d   %11f  %11f, %11f\n",
+    i, getLEDXPosition(i),
+    getLEDYPosition(i), 
+    info->getLocalAngle(i)*360,
+    info->x + getLEDXPosition(i),
+    info->y + getLEDYPosition(i), 
+    info->getGlobalAngle(i)*360,
+    (info->getGlobalAngle(i) - info->getPlatformGlobalAngle())*360,
+    info->getGlobalRadius(i));
+    float angleDiff = info->getGlobalAngle(i) - info->getPlatformGlobalAngle();
+    angleDiff = angleDiff  - round(angleDiff);
+
+    if (maxAngle < angleDiff) {
+      maxAngle = angleDiff;
+      maxAngleLED = i;
+    }
+    if (minAngle > angleDiff) {
+      minAngle = angleDiff;
+      minAngleLED = i;
+    }
+    if (closestLEDRange > info->getGlobalRadius(i)) {
+      closestLEDRange =info->getGlobalRadius(i);
+      closestLED = i;
+    }
+
+  }
+  
+
+
+  lights.setAllPixelColors(0, 20, 0);
+  lights.setPixelColor(minAngleLED, 255, 0, 0);
+  lights.setPixelColor(maxAngleLED, 0, 0, 255);
+  lights.setPixelColor(closestLED, 80,80,80);
+
+  info->printf("minimum led %3d at %11f\n", minAngleLED, minAngle*360);
+  info->printf("closest led %3d at %11f\n", closestLED, closestLEDRange*360);
+  info->printf("maximum led %3d at %11f\n", maxAngleLED, maxAngle*360);
+
+  lights.show();
+  delay(10000);
+  lights.reset();
+}
+
+
 void setup() {
 
   leds.begin();
@@ -85,62 +143,17 @@ void setup() {
   }
   initializeAccelerometer(constants.PULSE_THSX,constants.PULSE_THSY,
   constants.PULSE_THSZ);
-  setupSerial2(57600);
+  setupSerial2(constants.serial2BaudRate);
 
   info = new RNInfo(constants.LEDs, platform);
   controller = new RNController(*info);
 
-  info->printf("Running. id = %3d, xyz = %4d,%4d,%4d\n", info->identifier, info->x, info->y,info->z);
-  info->printf("%-3s  %-4s %-4s %-11s    %-4s %-4s   %-11s  %-11s\n",
-  "id", "x", "y", "angle", "g x", "g y", "angle", "radius");
-  int minAngleLED = 0;
-  int maxAngleLED = 0;
-  float maxAngle = 0;
-  float minAngle =1;
-  int closestLED = 0;
-  float closestLEDRange = 100000;
-  for(int i = 0; i < info->numLEDs; i++)  {
-    info->printf("%3d  %4d %4d %11f    %4d %4d   %11f  %11f, %11f\n",
-    i, getLEDXPosition(i),
-    getLEDYPosition(i), 
-    info->getLocalAngle(i)*360,
-    info->x + getLEDXPosition(i),
-    info->y + getLEDYPosition(i), 
-    info->getGlobalAngle(i)*360,
-    (info->getGlobalAngle(i) - info->getPlatformGlobalAngle())*360,
-    info->getGlobalRadius(i));
-    float angleDiff = info->getGlobalAngle(i) - info->getPlatformGlobalAngle();
-    angleDiff = angleDiff  - round(angleDiff);
 
-    if (maxAngle < angleDiff) {
-      maxAngle = angleDiff;
-      maxAngleLED = i;
-    }
-    if (minAngle > angleDiff) {
-      minAngle = angleDiff;
-      minAngleLED = i;
-    }
-    if (closestLEDRange > info->getGlobalRadius(i)) {
-      closestLEDRange =info->getGlobalRadius(i);
-      closestLED = i;
-    }
+#ifdef FULL_STRIP
+  debugTriadPositions();
+#endif
 
-  }
-
-  lights.setAllPixelColors(0, 20, 0);
-  lights.setPixelColor(minAngleLED, 255, 0, 0);
-  lights.setPixelColor(maxAngleLED, 0, 0, 255);
-  lights.setPixelColor(closestLED, 80,80,80);
-
-  info->printf("minimum led %3d at %11f\n", minAngleLED, minAngle*360);
-  info->printf("closest led %3d at %11f\n", closestLED, closestLEDRange*360);
-  info->printf("maximum led %3d at %11f\n", maxAngleLED, maxAngle*360);
-
-  lights.show();
-  delay(10000);
-  lights.reset();
-  
-  createWatchdog(100000);
+  createWatchdog(constants.watchdogTimeout);
 
 
 }
