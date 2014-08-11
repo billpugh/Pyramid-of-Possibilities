@@ -14,10 +14,13 @@
 
 enum  AnimationEnum {
 
+    e_FlashEcho,
+
+    e_Radial,
+
     // Branden's animations
     e_Kittens, 
     
-    e_Radial,
 
     e_Beacon,
     e_GlowFade,
