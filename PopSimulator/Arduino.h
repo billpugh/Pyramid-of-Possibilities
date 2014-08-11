@@ -18,6 +18,8 @@
 
 unsigned long millis();
 
+unsigned long micros();
+
 int random(int max);
 
 #endif	/* ARDUINO_H */
