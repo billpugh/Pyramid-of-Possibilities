@@ -58,7 +58,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/1731549632/RNBeam.o \
 	${OBJECTDIR}/_ext/1731549632/RNEEPROM.o \
 	${OBJECTDIR}/_ext/1731549632/RNInfo.o \
-	${OBJECTDIR}/_ext/1731549632/RNSerial.o \
 	${OBJECTDIR}/_ext/1731549632/Radial.o \
 	${OBJECTDIR}/_ext/1731549632/SideEffects.o \
 	${OBJECTDIR}/_ext/1731549632/Snow.o \
@@ -66,12 +65,14 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/1731549632/WWPAnimationTest.o \
 	${OBJECTDIR}/_ext/1731549632/ledPositions.o \
 	${OBJECTDIR}/_ext/1926129150/easing.o \
+	${OBJECTDIR}/_ext/1926129150/easingSelect.o \
 	${OBJECTDIR}/_ext/1989308899/Accelerometer.o \
 	${OBJECTDIR}/_ext/1989308899/i2c_t3.o \
 	${OBJECTDIR}/_ext/1253334877/hsv2rgb.o \
 	${OBJECTDIR}/_ext/1827099284/RNChaser.o \
 	${OBJECTDIR}/_ext/1568344763/RNGradient.o \
 	${OBJECTDIR}/_ext/1568344763/RNLights.o \
+	${OBJECTDIR}/_ext/1371306724/RNSerial.o \
 	${OBJECTDIR}/Arduino.o \
 	${OBJECTDIR}/FPSControlsHandler.o \
 	${OBJECTDIR}/PlatformControler.o \
@@ -221,11 +222,6 @@ ${OBJECTDIR}/_ext/1731549632/RNInfo.o: ../Arduino/PyramidOfPossibilities/RNInfo.
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../Arduino/PyramidOfPossibilities -I../PlatformData -I../Arduino/libraries/RNChaser -I../Arduino/libraries/RNLights -I../Arduino/libraries/Accelerometer -I../Arduino/PyramidOfPossibilities -I. -I../Arduino/libraries/FastLED -I../Arduino/libraries/AHEasing -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/RNInfo.o ../Arduino/PyramidOfPossibilities/RNInfo.cpp
 
-${OBJECTDIR}/_ext/1731549632/RNSerial.o: ../Arduino/PyramidOfPossibilities/RNSerial.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -I../Arduino/PyramidOfPossibilities -I../PlatformData -I../Arduino/libraries/RNChaser -I../Arduino/libraries/RNLights -I../Arduino/libraries/Accelerometer -I../Arduino/PyramidOfPossibilities -I. -I../Arduino/libraries/FastLED -I../Arduino/libraries/AHEasing -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/RNSerial.o ../Arduino/PyramidOfPossibilities/RNSerial.cpp
-
 ${OBJECTDIR}/_ext/1731549632/Radial.o: ../Arduino/PyramidOfPossibilities/Radial.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
 	${RM} "$@.d"
@@ -261,6 +257,11 @@ ${OBJECTDIR}/_ext/1926129150/easing.o: ../Arduino/libraries/AHEasing/easing.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../Arduino/PyramidOfPossibilities -I../PlatformData -I../Arduino/libraries/RNChaser -I../Arduino/libraries/RNLights -I../Arduino/libraries/Accelerometer -I../Arduino/PyramidOfPossibilities -I. -I../Arduino/libraries/FastLED -I../Arduino/libraries/AHEasing -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1926129150/easing.o ../Arduino/libraries/AHEasing/easing.cpp
 
+${OBJECTDIR}/_ext/1926129150/easingSelect.o: ../Arduino/libraries/AHEasing/easingSelect.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1926129150
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../Arduino/PyramidOfPossibilities -I../PlatformData -I../Arduino/libraries/RNChaser -I../Arduino/libraries/RNLights -I../Arduino/libraries/Accelerometer -I../Arduino/PyramidOfPossibilities -I. -I../Arduino/libraries/FastLED -I../Arduino/libraries/AHEasing -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1926129150/easingSelect.o ../Arduino/libraries/AHEasing/easingSelect.cpp
+
 ${OBJECTDIR}/_ext/1989308899/Accelerometer.o: ../Arduino/libraries/Accelerometer/Accelerometer.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1989308899
 	${RM} "$@.d"
@@ -290,6 +291,11 @@ ${OBJECTDIR}/_ext/1568344763/RNLights.o: ../Arduino/libraries/RNLights/RNLights.
 	${MKDIR} -p ${OBJECTDIR}/_ext/1568344763
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../Arduino/PyramidOfPossibilities -I../PlatformData -I../Arduino/libraries/RNChaser -I../Arduino/libraries/RNLights -I../Arduino/libraries/Accelerometer -I../Arduino/PyramidOfPossibilities -I. -I../Arduino/libraries/FastLED -I../Arduino/libraries/AHEasing -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1568344763/RNLights.o ../Arduino/libraries/RNLights/RNLights.cpp
+
+${OBJECTDIR}/_ext/1371306724/RNSerial.o: ../Arduino/libraries/RNSerial/RNSerial.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1371306724
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../Arduino/PyramidOfPossibilities -I../PlatformData -I../Arduino/libraries/RNChaser -I../Arduino/libraries/RNLights -I../Arduino/libraries/Accelerometer -I../Arduino/PyramidOfPossibilities -I. -I../Arduino/libraries/FastLED -I../Arduino/libraries/AHEasing -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1371306724/RNSerial.o ../Arduino/libraries/RNSerial/RNSerial.cpp
 
 ${OBJECTDIR}/Arduino.o: Arduino.c 
 	${MKDIR} -p ${OBJECTDIR}
