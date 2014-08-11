@@ -15,6 +15,8 @@
 
  int random(int max);
 
+#define abs(x) ((x)>0?(x):-(x))
+
 class SerialClass {
 public:
     void println();
