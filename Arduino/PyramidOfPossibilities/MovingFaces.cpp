@@ -32,6 +32,9 @@ void MovingFaces::paint(RNLights & lights) {
     }
 
     float ratio = (float) (now - startTime) / (float) (targetTime - startTime);
+    AHEasingFunction easingFunction = getEasingFunction(parameters.easingMode,
+            parameters.curveType);
+    ratio = easingFunction(ratio);
 
     float vector[3] = {
         (pointD[0] - pointA[0]) * ratio,

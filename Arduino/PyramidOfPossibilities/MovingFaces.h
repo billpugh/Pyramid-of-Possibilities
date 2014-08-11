@@ -9,6 +9,7 @@
 
 #include "RNAnimation.h"
 #include "RNLights.h"
+#include "easingSelect.h"
 
 struct MovingFacesParameters {
     short edgePlatform1[3] = {0, 7919, 762};
@@ -20,6 +21,8 @@ struct MovingFacesParameters {
     uint8_t blue = 255;
     unsigned long duration = 1000;
     int thickness = 800;
+    EasingMode easingMode = EaseInOut;
+    CurveType curveType = CurveTypeQuadratic;
 };
 
 class MovingFaces : public RNAnimation {
