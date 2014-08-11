@@ -19,10 +19,11 @@ const unsigned long kDefaultLullDuration = 2000;   // in ms
 
 
 struct FlashEchoParameters {
-    unsigned long lullDuration; // time (in ms) before we switch from RED to GREEN mode
+    uint16_t lullDuration; // time (in ms) before we switch from RED to GREEN mode
     uint8_t minBrightness;
     uint8_t maxBrightness;
     uint8_t fadeFactor;
+    float activityThreshold = 0.05;
 };
 
 
