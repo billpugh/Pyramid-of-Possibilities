@@ -73,6 +73,8 @@ public:
   void setLinearFade(long unsigned ms, uint8_t fadePerSec);
   // update the fade; ms is current time
   int fade(unsigned long ms);
+
+   virtual unsigned long show();
     
     
 protected:
