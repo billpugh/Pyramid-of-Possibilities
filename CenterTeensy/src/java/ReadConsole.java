@@ -28,7 +28,9 @@ public class ReadConsole {
 
                             if ( System.in.available() != 0 ) {
                                     int c = System.in.read();
-                                    System.out.printf("%n%2x", c);
+                                    if (c >= ' ')
+                                    System.out.printf("%n%2x %c", c,c);
+                                    else System.out.printf("%n%2x", c);
                                     if ( c == 'q' ) {
                                             break;
                                     } 

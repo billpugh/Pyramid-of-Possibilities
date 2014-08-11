@@ -12,7 +12,7 @@
 void CircularGradient::paint(RNLights & lights) {
 
   uint16_t gradientSize = 256 * parameters.repeats;
-  float baseAngle =  parameters.rpm * getAnimationMillis()/ 60000.0;
+  float baseAngle =  parameters.rpm * getAnimationMinutes();
 
   for(int i = 0; i < lights.getNumPixels(); i++) {
       float angle;
@@ -22,7 +22,8 @@ void CircularGradient::paint(RNLights & lights) {
           angle = info.getLocalAngle(i);
 
 
-      lights.setPixelColor(i, parameters.gradient.getColor((baseAngle+angle)*gradientSize));
+      uint16_t gradientPosition = (baseAngle+angle)*gradientSize;
+      lights.setPixelColor(i, parameters.gradient.getColor(gradientPosition/parameters.chunkSize * parameters.chunkSize));
     }
 
   info.showActivityWithBrightness(lights, parameters.brightnessWithoutActivity);

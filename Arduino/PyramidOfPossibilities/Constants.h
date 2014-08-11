@@ -54,8 +54,11 @@ struct RNConstants {
     const uint8_t brightnessChunkSize = 16;
 
     const uint16_t pyramidRadius = 7209;
+    const uint16_t pyramidRadiusFromGround = 7796;
 
-    const uint16_t pyramidRadiusFromGround = 7796;    
+    const uint16_t serial2BaudRate = 38400;
+    const uint16_t watchdogTimeout = 10000;
+    
 };
 
 

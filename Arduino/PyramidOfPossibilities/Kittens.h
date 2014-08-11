@@ -11,6 +11,7 @@
 
 #include "RNAnimation.h"
 
+const uint8_t NUM_KITTENS = 3;
 struct KittenParameters {
     float minEase = 0.02;
     float maxEase = 0.08;
@@ -29,7 +30,7 @@ public:
     virtual const char * name();
 
 private:
-    Kitten kittens[];
+    Kitten kittens[NUM_KITTENS];
 
 
     KittenParameters parameters;

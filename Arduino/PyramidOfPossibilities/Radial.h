@@ -10,6 +10,7 @@
 
 #include "RNAnimation.h"
 #include "RNGradient.h"
+#include <stdint.h>
 
 
 /*
@@ -21,7 +22,7 @@ TODO:
 */
 
 struct RadialParameters {
-    unsigned long period = 5000;    // duration of single cycle, in milliseconds.
+    uint8_t bpm = 25;    // beats per minute
     float thickness = 100;
     RNGradient gradientInside = RNGradient(0, RNGradientCapped, 0x000000, 0x000000); 
     RNGradient gradientShell = RNGradient(0, RNGradientCapped, 0xFF0000, 0xFF0000); 
@@ -33,7 +34,6 @@ class Radial : public RNAnimation {
 public:
     Radial(RNInfo & info, unsigned long animationStartMillis)
     : RNAnimation(info, animationStartMillis, sizeof(RadialParameters), &parameters) {
-    	parameters.period = 500;
     };
     virtual void paint(RNLights & lights);
     

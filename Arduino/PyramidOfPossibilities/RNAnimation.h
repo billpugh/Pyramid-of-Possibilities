@@ -30,7 +30,10 @@ public:
     
     // Gives the time in milliseconds since this animation starter
     unsigned long getAnimationMillis();
-    
+
+    // Gives the time in milliseconds since this animation starter
+    float getAnimationMinutes();
+
     // name of the animation
     virtual const char * name();
     
