@@ -31,6 +31,7 @@
 #include "AVEAnimation1.h"
 #include "Flashes.h"
 #include "Radial.h"
+#include "FlashEcho.h"
 
 #include "Kittens.h"
 
@@ -84,6 +85,8 @@ RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animati
             return new AVEAnimation1(info, animationStartMillis);
         case e_Radial:
             return new Radial(info, animationStartMillis);
+        case e_FlashEcho:
+            return new FlashEcho(info, animationStartMillis);
 
         default:
             return 0;
