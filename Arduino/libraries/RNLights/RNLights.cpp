@@ -175,10 +175,10 @@ void RNLights::setPixelColor(uint16_t pixel, uint32_t colorRGB) {
   pixels[pixel+2] = (uint8_t) colorRGB;
 }
 
-void RNLights::setPixelColorMax(uint16_t pixel, uint32_t colorRGB) {
-    setPixelColorMax(pixel,
-        (colorRGB >> 16), (colorRGB >> 8),  colorRGB);
-}
+//void RNLights::setPixelColorMax(uint16_t pixel, uint32_t colorRGB) {
+//    setPixelColorMax(pixel,
+//        (colorRGB >> 16), (colorRGB >> 8),  colorRGB);
+//}
 
 uint32_t RNLights::getPixelColor(uint16_t pixel) {
   pixel = 3*((pixel+offset) % numPixels);
