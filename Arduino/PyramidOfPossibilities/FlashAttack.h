@@ -12,6 +12,10 @@
 
 struct FlashAttackParameters {
     uint8_t hue = 0;
+    uint8_t tapMultiplier = 2;
+    uint8_t minimumValue = 20;
+    uint16_t activityMultiplier = 400;
+
 
 };
 
@@ -24,7 +28,7 @@ public:
     
     virtual void paint(RNLights & lights);
     
-    virtual char * name();
+    virtual const char * name();
     
     FlashAttackParameters parameters;
 
