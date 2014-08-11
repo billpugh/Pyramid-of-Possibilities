@@ -16,11 +16,12 @@ struct KittenParameters {
     float minEase = 0.02;
     float maxEase = 0.08;
     uint16_t fade = 200;
+    uint16_t tapWindow = 5000;
 };
 
 struct Kitten {
 
-    int16_t position = 0;
+    float position = 0;
     int16_t goal = 0;
     uint32_t color;
 };
