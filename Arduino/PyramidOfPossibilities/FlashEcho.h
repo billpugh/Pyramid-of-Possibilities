@@ -32,7 +32,7 @@ public:
     : RNAnimation(info, animationStartMillis, sizeof(FlashEchoParameters), &parameters) {
     	// initalize the buffer to zero
     	brightness = kDefaultMinBrightness;
-    	replayMode = 1;
+    	replayMode = false;
         lastModeSwitchTimestamp = 0;
         recordingDuration = 0;
         loopCount = 0;
@@ -54,10 +54,10 @@ public:
     void fade();
     void clearHistory();
     void playHistory();
-    void setIsReplaying(int replaying);
+    void setIsReplaying(bool replaying);
 
     int brightness;
-    int replayMode;
+    bool replayMode;
 
     unsigned long tapHistory[historySize];
     unsigned long recordingDuration;
