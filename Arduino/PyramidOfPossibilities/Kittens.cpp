@@ -17,7 +17,6 @@ void Kittens::paint(RNLights & lights) {
     int distance;
     int numLights = lights.getNumPixels();
     myLights.fade(getAnimationMillis());
-    unsigned long startTime = micros();
     for (uint8_t i=0; i<NUM_KITTENS; ++i) {
         if (abs(kittens[i].position - kittens[i].goal) < 1) {
             kittens[i].goal = info.getRandomPixel();
@@ -62,11 +61,9 @@ void Kittens::paint(RNLights & lights) {
        
     }
     lights.copyPixels(myLights);
-    unsigned long endTime = micros();
-    int duration =   (int)(endTime- startTime);
-    if (duration > 500)
-        info.printf("Kittens time = %d\n",duration);
+    info.showActivityWithSparkles(lights);
 }
+
 
 const char * Kittens:: name() {
     return "Kittens";
