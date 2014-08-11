@@ -10,12 +10,13 @@
 #include <Arduino.h>
 #include <math.h>
 
+
 static float ease = 0.05;
 
 void Kittens::paint(RNLights & lights) {
     int distance;
     int numLights = lights.getNumPixels();
-
+    myLights.fade(getAnimationMillis());
     unsigned long startTime = micros();
     for (uint8_t i=0; i<NUM_KITTENS; ++i) {
         if (abs(kittens[i].position - kittens[i].goal) < 1) {
@@ -55,15 +56,16 @@ void Kittens::paint(RNLights & lights) {
         uint8_t b = colorRGB;
 
         for(int i = p1; i <= p2; i++)
-          lights.setPixelColorMax(i, r,g,b);
+          myLights.setPixelColorMax(i, r,g,b);
 
         kittens[i].position = lights.normalize(kittens[i].position);
        
     }
+    lights.copyPixels(myLights);
     unsigned long endTime = micros();
     int duration =   (int)(endTime- startTime);
     if (duration > 500)
-                           info.printf("Kittens time = %d\n",duration);
+        info.printf("Kittens time = %d\n",duration);
 }
 
 const char * Kittens:: name() {

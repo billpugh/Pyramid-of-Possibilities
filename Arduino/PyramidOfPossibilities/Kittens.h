@@ -15,6 +15,7 @@ const uint8_t NUM_KITTENS = 3;
 struct KittenParameters {
     float minEase = 0.02;
     float maxEase = 0.08;
+    uint16_t fade = 200;
 };
 
 struct Kitten {
@@ -28,7 +29,8 @@ class Kittens : public RNAnimation {
 
 public:
     Kittens(RNInfo & info, unsigned long animationStartMillis)
-    : RNAnimation(info, animationStartMillis, sizeof(KittenParameters), &parameters) {
+    : RNAnimation(info, animationStartMillis, sizeof(KittenParameters), &parameters), myLights(info.numLEDs) {
+        myLights.setFade(animationStartMillis, parameters.fade);
         for(int i = 0; i < NUM_KITTENS; i++) {
             kittens[i].position = info.getRandomPixel();
             kittens[i].goal = info.getRandomPixel();
@@ -42,6 +44,7 @@ public:
 
 private:
     Kitten kittens[NUM_KITTENS];
+    RNLights myLights;
 
     KittenParameters parameters;
 };
