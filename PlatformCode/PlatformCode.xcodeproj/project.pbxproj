@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1611811C199866D400136668 /* Kittens.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1611811A199866D400136668 /* Kittens.cpp */; };
+		1611811D199866D400136668 /* Kittens.h in Headers */ = {isa = PBXBuildFile; fileRef = 1611811B199866D400136668 /* Kittens.h */; };
 		163D5077198D841400E882A1 /* RNEEPROM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163D5075198D841400E882A1 /* RNEEPROM.cpp */; };
 		163D5078198D841400E882A1 /* RNEEPROM.h in Headers */ = {isa = PBXBuildFile; fileRef = 163D5076198D841400E882A1 /* RNEEPROM.h */; };
 		163D507B198E6D9600E882A1 /* Swirl.h in Headers */ = {isa = PBXBuildFile; fileRef = 163D5079198E6D9600E882A1 /* Swirl.h */; };
@@ -77,6 +79,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1611811A199866D400136668 /* Kittens.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Kittens.cpp; path = ../Arduino/PyramidOfPossibilities/Kittens.cpp; sourceTree = "<group>"; };
+		1611811B199866D400136668 /* Kittens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Kittens.h; path = ../Arduino/PyramidOfPossibilities/Kittens.h; sourceTree = "<group>"; };
 		163D5075198D841400E882A1 /* RNEEPROM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RNEEPROM.cpp; path = ../Arduino/PyramidOfPossibilities/RNEEPROM.cpp; sourceTree = "<group>"; };
 		163D5076198D841400E882A1 /* RNEEPROM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNEEPROM.h; path = ../Arduino/PyramidOfPossibilities/RNEEPROM.h; sourceTree = "<group>"; };
 		163D5079198E6D9600E882A1 /* Swirl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Swirl.h; path = ../Arduino/PyramidOfPossibilities/Swirl.h; sourceTree = "<group>"; };
@@ -198,6 +202,8 @@
 		1644A188198D384500FBFF63 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				1611811A199866D400136668 /* Kittens.cpp */,
+				1611811B199866D400136668 /* Kittens.h */,
 				1644A12A198D34D400FBFF63 /* ActivityLevelAnimation.cpp */,
 				1644A137198D34D400FBFF63 /* ActivityLevelAnimation.h */,
 				1644A133198D34D400FBFF63 /* AVEAnimation1.cpp */,
@@ -309,6 +315,7 @@
 				1644A181198D351A00FBFF63 /* RNChaser.h in Headers */,
 				1644A15F198D34D400FBFF63 /* AVEAnimation1.h in Headers */,
 				1644A15C198D34D400FBFF63 /* RNBeam.h in Headers */,
+				1611811D199866D400136668 /* Kittens.h in Headers */,
 				1644A14C198D34D400FBFF63 /* WWPAnimationTest.h in Headers */,
 				1644A158198D34D400FBFF63 /* RNInfo.h in Headers */,
 				1644A174198D34D400FBFF63 /* Platform.h in Headers */,
@@ -405,6 +412,7 @@
 				1644A14E198D34D400FBFF63 /* Animations.cpp in Sources */,
 				1644A163198D34D400FBFF63 /* ChangingColor.cpp in Sources */,
 				1644A14B198D34D400FBFF63 /* WWPAnimationTest.cpp in Sources */,
+				1611811C199866D400136668 /* Kittens.cpp in Sources */,
 				1644A15D198D34D400FBFF63 /* Controller.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

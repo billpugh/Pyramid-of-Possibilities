@@ -19,7 +19,7 @@ struct QbertParameters {
 class Qbert : public RNAnimation {
 public:
     Qbert(RNInfo & info, unsigned long animationStartMillis)
-    : RNAnimation(info, animationStartMillis) {
+    : RNAnimation(info, animationStartMillis, sizeof(QbertParameters), &parameters) {
 
     	// initialize animation to have 3 colors
     	parameters.colors[0] = 0xFF;

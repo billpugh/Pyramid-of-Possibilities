@@ -149,7 +149,7 @@ void setup() {
   controller = new RNController(*info);
 
 
-#ifdef FULL_STRIP
+#ifndef FULL_STRIP
   debugTriadPositions();
 #endif
 

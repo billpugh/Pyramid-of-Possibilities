@@ -45,7 +45,8 @@ public:
   void blendPixelHSV(uint16_t pixel, uint8_t hue, uint8_t saturation, uint8_t value);
   
   void setPixelColorMax(uint16_t pixel, uint8_t red, uint8_t green, uint8_t blue);
-  void addPixelColor(uint16_t pixel, uint8_t red, uint8_t green, uint8_t blue);
+//  void setPixelColorMax(uint16_t pixel, uint32_t colorRGB);
+    void addPixelColor(uint16_t pixel, uint8_t red, uint8_t green, uint8_t blue);
   void copyPixelColor(uint16_t fromPixel, uint16_t toPixel);
 
   void getPixelColor(uint16_t pixel, uint8_t &red, uint8_t &green, uint8_t &blue);
