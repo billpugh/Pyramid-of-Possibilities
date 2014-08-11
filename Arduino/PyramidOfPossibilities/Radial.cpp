@@ -9,7 +9,7 @@
 #include "Constants.h"
 #include <math.h>
 
-#define RN_RADIAL_DEBUG 1
+// #define RN_RADIAL_DEBUG 1
 
 float locationForT(float t) {
 
