@@ -10,6 +10,8 @@
 
 void FlashEcho::paint(RNLights & lights) {
 
+    bool isTap = info.getTaps()
+    || info.getLocalActivity() > parameters.activityThreshold;
 
 
 	if ( replayMode ) {
@@ -26,7 +28,7 @@ void FlashEcho::paint(RNLights & lights) {
 
 		// USER IS TAPPING MODE
 
-		if ( info.getTaps() ) {
+		if ( isTap ) {
 			flash();
 			recordFlash();
 		}

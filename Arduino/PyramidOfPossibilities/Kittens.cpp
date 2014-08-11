@@ -7,66 +7,68 @@
 //
 
 #include "Kittens.h"
+#include "easing.h"
 #include <Arduino.h>
 #include <math.h>
 
 
-static float ease = 0.05;
+
 
 void Kittens::paint(RNLights & lights) {
-    int distance;
+
     int numLights = lights.getNumPixels();
+
+    float sinceTap = info.timeSinceLastTap()/(float) parameters.tapWindow;
+    if (sinceTap > 1.0)
+        sinceTap = 1.0;
+    else
+        sinceTap = QuadraticEaseOut(sinceTap);
+
+    float ease =
+    parameters.maxEase
+    - (parameters.maxEase -parameters.minEase) * sinceTap;
+    
+    info.printf("sinceTap = %11f, east = %11f\n", sinceTap, ease);
     myLights.fade(getAnimationMillis());
-    unsigned long startTime = micros();
     for (uint8_t i=0; i<NUM_KITTENS; ++i) {
-        if (abs(kittens[i].position - kittens[i].goal) < 1) {
+        if (fabs(kittens[i].position -kittens[i].goal) < 1) {
             kittens[i].goal = info.getRandomPixel();
         }
 
-        distance = kittens[i].goal - kittens[i].position;
+        float distance = kittens[i].goal - kittens[i].position;
         if (distance > numLights/2) {
             distance -= numLights;
         } else if (distance < -numLights/2)
             distance += numLights;
 
-        int p1 = kittens[i].position;
+        float p1 = kittens[i].position;
+        kittens[i].position += distance * ease;
 
-        int d2;
-        if (distance > 0)
-            d2 = ceil(distance*ease);
-        else
-            d2 = floor(distance*ease);
-
-        kittens[i].position += d2;
-
-        int p2 = kittens[i].position;
+        float p2 = kittens[i].position;
         if (p1 > p2) {
-            int tmp = p1;
+            float tmp = p1;
             p1 = p2;
             p2 = tmp;
         }
-        if (p2 - p1 > numLights || p1 > p2) {
-            info.printf("Huh: %d %d\n", p1, p2);
-            p1 = p2;
-        }
+
 
         int colorRGB = kittens[i].color;
         uint8_t r = colorRGB >> 16;
         uint8_t g = colorRGB >> 8;
         uint8_t b = colorRGB;
 
-        for(int i = p1; i <= p2; i++)
+        for(int i = floor(p1); i <= ceil(p2); i++)
           myLights.setPixelColorMax(i, r,g,b);
 
-        kittens[i].position = lights.normalize(kittens[i].position);
+        if (kittens[i].position < 0)
+            kittens[i].position += info.numLEDs;
+        else if (kittens[i].position >= info.numLEDs)
+            kittens[i].position -= info.numLEDs;
        
     }
     lights.copyPixels(myLights);
-    unsigned long endTime = micros();
-    int duration =   (int)(endTime- startTime);
-    if (duration > 500)
-        info.printf("Kittens time = %d\n",duration);
 }
+
 
 const char * Kittens:: name() {
     return "Kittens";
