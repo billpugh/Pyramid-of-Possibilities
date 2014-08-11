@@ -14,6 +14,9 @@
 struct FlashesParameters {
     uint16_t flashDuration = 100; // flash duration in ms
     uint8_t flashSize = 3; // Nb pixels per flash
+    uint8_t red = 255;
+    uint8_t green = 255;
+    uint8_t blue = 255;
 };
 
 class Flashes : public RNAnimation {
@@ -28,6 +31,8 @@ public:
 private:
     FlashesParameters parameters;
     unsigned long lastUpdate = 0;
+    int lastLed = 0;
+    int lastSize = parameters.flashSize;
 };
 
 #endif	/* FLASHES_H */
