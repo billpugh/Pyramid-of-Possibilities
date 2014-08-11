@@ -22,6 +22,12 @@
 // #define RN_PRINT_HEAP_SIZE
 // #define RN_PRINT_BRIGHTNESS_ADJUSTMENTS
 
+
+// Log if any animation takes longer than kMaxPaintDuration inside a call to paint()
+#define RN_PRINT_LOG_ANIMATIONS
+const unsigned long kMaxPaintDuration = 20;    // in ms.  See RN_PRINT_LOG_ANIMATIONS
+
+
 struct RNConstants {
 
   // Set values for the # of LEDs and 1st LED Index
@@ -48,8 +54,8 @@ struct RNConstants {
     const uint8_t brightnessChunkSize = 16;
 
     const uint16_t pyramidRadius = 7209;
-    const uint16_t pyramidRadiusFromGround = 7796;
-    
+
+    const uint16_t pyramidRadiusFromGround = 7796;    
 };
 
 
