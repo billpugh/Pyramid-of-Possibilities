@@ -14,6 +14,7 @@
 #include "RNSerial.h"
 #include "ledPositions.h"
 #include "mac.h"
+#include "easing.h"
 #include "watchdog.h"
 #include "RNEEPROM.h"
 #include <EEPROM.h>
