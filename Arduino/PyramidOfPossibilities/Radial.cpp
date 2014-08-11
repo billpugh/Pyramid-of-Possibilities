@@ -22,11 +22,12 @@ float locationForT(float t) {
 
 void Radial::paint(RNLights & lights) {
     
-    unsigned long millis = getAnimationMillis();
+    float minutes = getAnimationMinutes();
 
     // t will be a number between 0 and 1.    
     /// TODO: Need help setting up parameters that we want for speed, etc.
-    float t = (float)((millis / 10 ) % parameters.period) / (float)parameters.period;
+    float t =  parameters.bpm  * minutes;
+    t = t - floorf(t);
 
     // calculate position of the radial based on t
     float r = locationForT(t);
@@ -36,9 +37,21 @@ void Radial::paint(RNLights & lights) {
     float outerShellBoundry = r + parameters.thickness;
     float doublethickness = parameters.thickness * 2;
 
+    int in = 0;
+    int out = 0;
+    int middle = 0;
+    float minDistance = 10000;
+    float maxDistance = 0;
+
+
     for(int i = 0; i < lights.getNumPixels(); i++) {
 
         float pixelRadius = info.getGlobalRadiusGround(i);
+
+        if (minDistance > pixelRadius)
+            minDistance = pixelRadius;
+        if (maxDistance < pixelRadius)
+            maxDistance = pixelRadius;
 
         RNGradient *gradientToUse = 0;
         float point = 0;
@@ -50,18 +63,21 @@ void Radial::paint(RNLights & lights) {
             // inside 
             gradientToUse = &(parameters.gradientInside);
             point = pixelRadius / constants.pyramidRadiusFromGround;
+            in++;
 
         } else if ( pixelRadius < outerShellBoundry ) {
             
             // shell 
             gradientToUse = &(parameters.gradientShell);
             point = (pixelRadius - innerShellBoundry ) / doublethickness;
+            middle++;
 
         } else {
 
             // outside
             gradientToUse = &(parameters.gradientOutside);
             point = pixelRadius / constants.pyramidRadiusFromGround;
+            out++;
         }
 
         // find the color now
@@ -73,16 +89,18 @@ void Radial::paint(RNLights & lights) {
         static int once = 0;
         if ( !once && i == 0) {
             once = 1;
-            info.printf("pixelRadius = %.2f. Period = %u\n", pixelRadius, parameters.period);
+            info.printf("pixelRadius = %.2f. Period = %u\n", pixelRadius, parameters.bpm);
         }
         static int n = 0;
         if ( i == 0 && (++n%10 == 0)) {
-            info.printf("Millis = %lu,  PixelRadius = %.2f, T = %f, R = %f.  innerShellBoundry = %f,  outerShellBoundry = %f\n", millis, pixelRadius, t, r, innerShellBoundry, outerShellBoundry);
+            info.printf("minutes = %f,  PixelRadius = %.2f, T = %f, R = %f.  innerShellBoundry = %f,  outerShellBoundry = %f\n", minutes, pixelRadius, t, r, innerShellBoundry, outerShellBoundry);
         }
 #endif /* RN_RADIAL_DEBUG */
 
     }
 
+    info.printf("Radial ms = %5d, minutes = %10f, t=%10f, r = %10f, min = %10f, max = %10f, in/mid/out = %3d/%3d/%3d\n",
+                getAnimationMillis(), minutes, t, r, minDistance, maxDistance, in, middle,out);
     info.showActivityWithSparkles(lights);
     
 }
