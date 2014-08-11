@@ -22,7 +22,7 @@ TODO:
 */
 
 struct RadialParameters {
-    uint8_t bpm = 72;    // beats per minute
+    uint8_t bpm = 25;    // beats per minute
     float thickness = 100;
     RNGradient gradientInside = RNGradient(0, RNGradientCapped, 0x000000, 0x000000); 
     RNGradient gradientShell = RNGradient(0, RNGradientCapped, 0xFF0000, 0xFF0000); 
