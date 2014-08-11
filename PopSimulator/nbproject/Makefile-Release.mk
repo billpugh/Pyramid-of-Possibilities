@@ -64,6 +64,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/1731549632/Swirl.o \
 	${OBJECTDIR}/_ext/1731549632/WWPAnimationTest.o \
 	${OBJECTDIR}/_ext/1731549632/ledPositions.o \
+	${OBJECTDIR}/_ext/1926129150/easing.o \
 	${OBJECTDIR}/_ext/1989308899/Accelerometer.o \
 	${OBJECTDIR}/_ext/1989308899/i2c_t3.o \
 	${OBJECTDIR}/_ext/1253334877/hsv2rgb.o \
@@ -248,6 +249,11 @@ ${OBJECTDIR}/_ext/1731549632/ledPositions.o: ../Arduino/PyramidOfPossibilities/l
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/ledPositions.o ../Arduino/PyramidOfPossibilities/ledPositions.cpp
+
+${OBJECTDIR}/_ext/1926129150/easing.o: ../Arduino/libraries/AHEasing/easing.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1926129150
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1926129150/easing.o ../Arduino/libraries/AHEasing/easing.cpp
 
 ${OBJECTDIR}/_ext/1989308899/Accelerometer.o: ../Arduino/libraries/Accelerometer/Accelerometer.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1989308899

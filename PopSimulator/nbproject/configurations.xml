@@ -44,6 +44,7 @@
       <itemPath>RNLightsSimulator.hpp</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/RNSerial.h</itemPath>
       <itemPath>ShaderLoader.hpp</itemPath>
+      <itemPath>../Arduino/libraries/AHEasing/easing.h</itemPath>
       <itemPath>../Arduino/libraries/FastLED/hsv2rgb.h</itemPath>
       <itemPath>../Arduino/libraries/Accelerometer/i2c_t3.h</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/ledPositions.h</itemPath>
@@ -103,6 +104,7 @@
       <itemPath>RNLightsSimulator.cpp</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/RNSerial.cpp</itemPath>
       <itemPath>ShaderLoader.cpp</itemPath>
+      <itemPath>../Arduino/libraries/AHEasing/easing.cpp</itemPath>
       <itemPath>../Arduino/libraries/FastLED/hsv2rgb.cpp</itemPath>
       <itemPath>../Arduino/libraries/Accelerometer/i2c_t3.cpp</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/ledPositions.cpp</itemPath>
@@ -305,6 +307,7 @@
             <pElem>../Arduino/PyramidOfPossibilities</pElem>
             <pElem>.</pElem>
             <pElem>../Arduino/libraries/FastLED</pElem>
+            <pElem>../Arduino/libraries/AHEasing</pElem>
           </incDir>
           <commandLine>-Wno-write-strings</commandLine>
         </ccTool>
@@ -593,6 +596,16 @@
             flavor2="0">
       </item>
       <item path="../Arduino/PyramidOfPossibilities/ledPositions.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/libraries/AHEasing/easing.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/libraries/AHEasing/easing.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -1003,6 +1016,16 @@
             flavor2="0">
       </item>
       <item path="../Arduino/PyramidOfPossibilities/ledPositions.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/libraries/AHEasing/easing.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/libraries/AHEasing/easing.h"
             ex="false"
             tool="3"
             flavor2="0">
