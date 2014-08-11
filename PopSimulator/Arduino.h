@@ -12,9 +12,15 @@
 
 #define POP_SIMULATOR
 
- unsigned long millis();
+// Give abs function
+#include <stdlib.h>
+#include <math.h>
 
- int random(int max);
+unsigned long millis();
+
+unsigned long micros();
+
+int random(int max);
 
 #endif	/* ARDUINO_H */
 

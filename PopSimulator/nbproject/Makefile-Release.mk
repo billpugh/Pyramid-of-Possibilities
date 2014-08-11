@@ -45,12 +45,14 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/1731549632/ColorWorms.o \
 	${OBJECTDIR}/_ext/1731549632/Constants.o \
 	${OBJECTDIR}/_ext/1731549632/Controller.o \
-	${OBJECTDIR}/_ext/1731549632/DRAnimation0.o \
 	${OBJECTDIR}/_ext/1731549632/DRAnimation1.o \
 	${OBJECTDIR}/_ext/1731549632/FlashAttack.o \
+	${OBJECTDIR}/_ext/1731549632/FlashEcho.o \
 	${OBJECTDIR}/_ext/1731549632/Flashes.o \
 	${OBJECTDIR}/_ext/1731549632/GlowFade.o \
+	${OBJECTDIR}/_ext/1731549632/Kittens.o \
 	${OBJECTDIR}/_ext/1731549632/Platform.o \
+	${OBJECTDIR}/_ext/1731549632/Qbert.o \
 	${OBJECTDIR}/_ext/1731549632/RNAnimation.o \
 	${OBJECTDIR}/_ext/1731549632/RNBeam.o \
 	${OBJECTDIR}/_ext/1731549632/RNEEPROM.o \
@@ -152,11 +154,6 @@ ${OBJECTDIR}/_ext/1731549632/Controller.o: ../Arduino/PyramidOfPossibilities/Con
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/Controller.o ../Arduino/PyramidOfPossibilities/Controller.cpp
 
-${OBJECTDIR}/_ext/1731549632/DRAnimation0.o: ../Arduino/PyramidOfPossibilities/DRAnimation0.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/DRAnimation0.o ../Arduino/PyramidOfPossibilities/DRAnimation0.cpp
-
 ${OBJECTDIR}/_ext/1731549632/DRAnimation1.o: ../Arduino/PyramidOfPossibilities/DRAnimation1.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
 	${RM} "$@.d"
@@ -166,6 +163,11 @@ ${OBJECTDIR}/_ext/1731549632/FlashAttack.o: ../Arduino/PyramidOfPossibilities/Fl
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/FlashAttack.o ../Arduino/PyramidOfPossibilities/FlashAttack.cpp
+
+${OBJECTDIR}/_ext/1731549632/FlashEcho.o: ../Arduino/PyramidOfPossibilities/FlashEcho.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/FlashEcho.o ../Arduino/PyramidOfPossibilities/FlashEcho.cpp
 
 ${OBJECTDIR}/_ext/1731549632/Flashes.o: ../Arduino/PyramidOfPossibilities/Flashes.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
@@ -177,10 +179,20 @@ ${OBJECTDIR}/_ext/1731549632/GlowFade.o: ../Arduino/PyramidOfPossibilities/GlowF
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/GlowFade.o ../Arduino/PyramidOfPossibilities/GlowFade.cpp
 
+${OBJECTDIR}/_ext/1731549632/Kittens.o: ../Arduino/PyramidOfPossibilities/Kittens.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/Kittens.o ../Arduino/PyramidOfPossibilities/Kittens.cpp
+
 ${OBJECTDIR}/_ext/1731549632/Platform.o: ../Arduino/PyramidOfPossibilities/Platform.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/Platform.o ../Arduino/PyramidOfPossibilities/Platform.cpp
+
+${OBJECTDIR}/_ext/1731549632/Qbert.o: ../Arduino/PyramidOfPossibilities/Qbert.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/Qbert.o ../Arduino/PyramidOfPossibilities/Qbert.cpp
 
 ${OBJECTDIR}/_ext/1731549632/RNAnimation.o: ../Arduino/PyramidOfPossibilities/RNAnimation.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
