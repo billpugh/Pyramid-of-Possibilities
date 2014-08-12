@@ -7,10 +7,11 @@
 
 #include "Arduino.h"
 #include "RNComm.h"
+#include "RNCommDaemon.h"
 #include "Constants.h"
 #include "RNInfo.h"
 #include "RNSerial.h"
-#include "TimerThree.h"
+
 
 const uint8_t MAX_LENGTH = 255;
 char buffer[MAX_LENGTH];
@@ -19,18 +20,17 @@ bool awaitingBody;
 uint8_t kind;
 uint8_t length;
 uint8_t crc;
-uint32_t timeout;
-uint32_t messageReceiveTime;
-extern volatile uint32_t rx_start_ms;
+comm_time_t timeout;
+comm_time_t messageReceiveTime;
+
 
 union floatRep {
     float f;
     uint32_t i;
 };
-uint8_t getAvailableByte() {
+uint8_t getHeaderByte() {
     int b = Serial2.read();
     return (uint8_t) b;
-
 }
 
 #ifdef POP_SIMULATOR
@@ -38,15 +38,23 @@ void checkComm(RNInfo &info) {}
 #else
 
 void checkCommHead(RNInfo & info) {
-    if (Serial2.available() < 3)  return;
-    kind = getAvailableByte();
-    length = getAvailableByte();
-    crc = getAvailableByte();
-    messageReceiveTime = rx_start_ms;
+    if (!dataAvailable(info, messageReceiveTime))
+        return;
+    info.printf("Got head of %d bytes at %d\n", Serial2.available(), messageReceiveTime);
+    uint8_t k = getHeaderByte();
+    while (k != 'p') {
+        info.printf("Rejecting kind of %x\n", k);
+        k = getHeaderByte();
+        if (Serial2.available() < 3) {
+            lookForData(info);
+            return;
+        }
+    }
+    kind = k;
+    length = getHeaderByte();
+    crc = getHeaderByte();
     timeout = messageReceiveTime + 1000*8*(length+3)/constants.serial2BaudRate+3;
     awaitingBody = true;
-    info.println("Got head");
-
 }
 bool checkCommBody(RNInfo & info) {
     int available =  Serial2.available();
@@ -56,12 +64,14 @@ bool checkCommBody(RNInfo & info) {
             while(Serial2.available()) Serial2.read();
             awaitingBody = false;
             info.printf("body timeout, needed %d, had %d\n", length, available);
+            lookForData(info);
         }
         return false;
     }
     Serial2.readBytes(buffer, length);
     bufferPosition = 0;
     awaitingBody = false;
+    lookForData(info);
     // TODO: check checksum
     info.println("got body");
     return true;
@@ -98,40 +108,10 @@ uint8_t programSeqId;
 uint32_t programStartTime;
 uint8_t programParameterLength;
 
-
-volatile bool waitingToSend = false;
-volatile unsigned long sendAt;
-volatile unsigned long sentAt;
-// Called in an interrupt context
-void checkIfTimeToSend() {
-    if (!waitingToSend)
-        return;
-    unsigned long now = millis();
-    if (now < sendAt)
-        return;
-    waitingToSend = false;
-    sentAt = now;
-}
-
-
-bool scheduleSend(RNInfo &info, unsigned long when) {
-    if (waitingToSend) {
-        info.println("Can't send, another send is pending");
-        return false;
-    }
-    sendAt = when;
-    sentAt = 0;
-    waitingToSend = true;
-
-    return true;
-}
-
 void initializeComm(RNInfo &info) {
     setupSerial2(constants.serial2BaudRate);
-    Timer3.initialize(1000);
-    Timer3.attachInterrupt(checkIfTimeToSend);
+    initializeCommDaemonTimer();
 }
-
 void parseProgramMessage(RNInfo & info) {
     status = get8Bits();
     lastGlobalTime = get32Bits();
@@ -146,17 +126,17 @@ void parseProgramMessage(RNInfo & info) {
     info.printf("Got message at %d, program %d\n", messageReceiveTime, program);
     info.printf("local time %d, Global time %d\n",millis(), lastGlobalTime
                 );
-    unsigned long sendResponseAt = messageReceiveTime + 20 + 10*info.wirePosition;
+    comm_time_t sendResponseAt = messageReceiveTime + 20 + 10*info.wirePosition;
     info.printf("wirePosition %d, scheduling response for %d\n",info.wirePosition, sendResponseAt
                 );
     if (!scheduleSend(info, sendResponseAt))
         info.println("Unable to schedule send");
     }
 
-unsigned long sentAtReported = 0;
+comm_time_t sentAtReported = 0;
 
 void checkComm(RNInfo &info) {
-    unsigned long sa = sentAt;
+    comm_time_t sa = getSentAt();
     if (sa != 0 && sa != sentAtReported) {
         info.printf("Data sent at %d\n", sa);
         sentAtReported = sa;
@@ -165,12 +145,10 @@ void checkComm(RNInfo &info) {
         checkCommHead(info);
     if (awaitingBody)
         if (checkCommBody(info)) {
-
             if (kind == 'p') {
                 parseProgramMessage(info);
             }
         }
-    
 }
 
 #endif
