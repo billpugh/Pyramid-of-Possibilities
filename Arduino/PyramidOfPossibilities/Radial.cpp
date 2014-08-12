@@ -88,7 +88,7 @@ void Radial::paint(RNLights & lights) {
         lights.setPixelColor(i,color);
 
         // debugging stuff
-#if RN_RADIAL_DEBUG
+#ifdef RN_RADIAL_DEBUG
         static int once = 0;
         if ( !once && i == 0) {
             once = 1;
