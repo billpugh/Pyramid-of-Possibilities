@@ -6,9 +6,22 @@
 //  Copyright (c) 2014 RN. All rights reserved.
 //
 
-#ifndef PlatformCode_TimerThree_h
-#define PlatformCode_TimerThree_h
+#ifndef _TimerThree_
+#define _TimerThree_
 
 
+
+class TimerThree {
+public:
+    void initialize(unsigned long);
+    void setPeriod(unsigned long);
+    void start();
+    void stop();
+    void attachInterrupt(void (*isr)());
+    void detachInterrupt();
+    
+};
+
+TimerThree Timer3;
 
 #endif
