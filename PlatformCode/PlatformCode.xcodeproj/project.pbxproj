@@ -67,6 +67,8 @@
 		164B170C1993D28900C0FB57 /* easingSelect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 164B17081993D28900C0FB57 /* easingSelect.cpp */; };
 		164B170D1993D28900C0FB57 /* easing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 164B17091993D28900C0FB57 /* easing.cpp */; };
 		164B170E1993D28900C0FB57 /* easing.h in Headers */ = {isa = PBXBuildFile; fileRef = 164B170A1993D28900C0FB57 /* easing.h */; };
+		164EFE84199A372F0041DAD7 /* RNCommDaemon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 164EFE82199A372F0041DAD7 /* RNCommDaemon.cpp */; };
+		164EFE85199A372F0041DAD7 /* RNCommDaemon.h in Headers */ = {isa = PBXBuildFile; fileRef = 164EFE83199A372F0041DAD7 /* RNCommDaemon.h */; };
 		166A9D391999136100C2E74C /* mac.h in Headers */ = {isa = PBXBuildFile; fileRef = 166A9D381999136100C2E74C /* mac.h */; };
 		166A9D3B1999161800C2E74C /* Accelerometer.h in Headers */ = {isa = PBXBuildFile; fileRef = 166A9D3A1999161800C2E74C /* Accelerometer.h */; };
 		166A9D3E19991BA100C2E74C /* PopMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 166A9D3C19991BA100C2E74C /* PopMain.cpp */; };
@@ -147,6 +149,8 @@
 		164B17081993D28900C0FB57 /* easingSelect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = easingSelect.cpp; path = ../Arduino/libraries/AHEasing/easingSelect.cpp; sourceTree = "<group>"; };
 		164B17091993D28900C0FB57 /* easing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = easing.cpp; path = ../Arduino/libraries/AHEasing/easing.cpp; sourceTree = "<group>"; };
 		164B170A1993D28900C0FB57 /* easing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = easing.h; path = ../Arduino/libraries/AHEasing/easing.h; sourceTree = "<group>"; };
+		164EFE82199A372F0041DAD7 /* RNCommDaemon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RNCommDaemon.cpp; path = ../Arduino/PyramidOfPossibilities/RNCommDaemon.cpp; sourceTree = "<group>"; };
+		164EFE83199A372F0041DAD7 /* RNCommDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNCommDaemon.h; path = ../Arduino/PyramidOfPossibilities/RNCommDaemon.h; sourceTree = "<group>"; };
 		166A9D381999136100C2E74C /* mac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mac.h; path = ../Arduino/libraries/mac/mac.h; sourceTree = "<group>"; };
 		166A9D3A1999161800C2E74C /* Accelerometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Accelerometer.h; path = ../Arduino/libraries/Accelerometer/Accelerometer.h; sourceTree = "<group>"; };
 		166A9D3C19991BA100C2E74C /* PopMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PopMain.cpp; path = ../Arduino/PyramidOfPossibilities/PopMain.cpp; sourceTree = "<group>"; };
@@ -183,6 +187,8 @@
 		1644A110198D34AF00FBFF63 = {
 			isa = PBXGroup;
 			children = (
+				164EFE82199A372F0041DAD7 /* RNCommDaemon.cpp */,
+				164EFE83199A372F0041DAD7 /* RNCommDaemon.h */,
 				16EDC08C199999A8002FA957 /* RNComm.cpp */,
 				16EDC08D199999A8002FA957 /* RNComm.h */,
 				166A9D3C19991BA100C2E74C /* PopMain.cpp */,
@@ -322,6 +328,7 @@
 				1644A14F198D34D400FBFF63 /* Snow.h in Headers */,
 				1644A193198D600200FBFF63 /* ledPositions.h in Headers */,
 				30F8EB30198D5B6E008DEAE9 /* Constants.h in Headers */,
+				164EFE85199A372F0041DAD7 /* RNCommDaemon.h in Headers */,
 				1644A17D198D34FE00FBFF63 /* RNLights.h in Headers */,
 				16838ED519950C48008CD81E /* Radial.h in Headers */,
 				166A9D3B1999161800C2E74C /* Accelerometer.h in Headers */,
@@ -430,6 +437,7 @@
 				1644A167198D34D400FBFF63 /* Chasers.cpp in Sources */,
 				1644A154198D34D400FBFF63 /* FlashAttack.cpp in Sources */,
 				1644A155198D34D400FBFF63 /* ActivityLevelAnimation.cpp in Sources */,
+				164EFE84199A372F0041DAD7 /* RNCommDaemon.cpp in Sources */,
 				166A9D3E19991BA100C2E74C /* PopMain.cpp in Sources */,
 				163D507C198E6D9600E882A1 /* Swirl.cpp in Sources */,
 				1644A15E198D34D400FBFF63 /* AVEAnimation1.cpp in Sources */,
