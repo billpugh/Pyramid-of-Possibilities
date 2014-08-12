@@ -10,6 +10,8 @@
 
 void FlashEcho::paint(RNLights & lights) {
 
+    bool isTap = info.getTaps()
+    || info.getLocalActivity() > parameters.activityThreshold;
 
 
 	if ( replayMode ) {
@@ -26,7 +28,7 @@ void FlashEcho::paint(RNLights & lights) {
 
 		// USER IS TAPPING MODE
 
-		if ( info.getTaps() ) {
+		if ( isTap ) {
 			flash();
 			recordFlash();
 		}
@@ -52,6 +54,9 @@ void FlashEcho::playHistory() {
 	int newReadHead = historyReadHead;
 
 	unsigned long timeSinceModeSwitch = info.getGlobalMillis() - lastModeSwitchTimestamp;
+    // avoid divide by zero errors
+    if (recordingDuration < 1)
+        recordingDuration = 1;
 	unsigned long offsetIntoPlayback = timeSinceModeSwitch % recordingDuration;
 
 	unsigned long loopCountNow = timeSinceModeSwitch / recordingDuration;
@@ -98,7 +103,7 @@ void FlashEcho::recordFlash() {
 	}	
 }
 
-void FlashEcho::setIsReplaying(int replaying) {
+void FlashEcho::setIsReplaying(bool replaying) {
 
 	if ( replaying == replayMode ) {
 		return;

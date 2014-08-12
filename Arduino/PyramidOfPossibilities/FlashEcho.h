@@ -19,10 +19,11 @@ const unsigned long kDefaultLullDuration = 2000;   // in ms
 
 
 struct FlashEchoParameters {
-    unsigned long lullDuration; // time (in ms) before we switch from RED to GREEN mode
+    uint16_t lullDuration; // time (in ms) before we switch from RED to GREEN mode
     uint8_t minBrightness;
     uint8_t maxBrightness;
     uint8_t fadeFactor;
+    float activityThreshold = 0.05;
 };
 
 
@@ -32,7 +33,7 @@ public:
     : RNAnimation(info, animationStartMillis, sizeof(FlashEchoParameters), &parameters) {
     	// initalize the buffer to zero
     	brightness = kDefaultMinBrightness;
-    	replayMode = 1;
+    	replayMode = false;
         lastModeSwitchTimestamp = 0;
         recordingDuration = 0;
         loopCount = 0;
@@ -54,10 +55,10 @@ public:
     void fade();
     void clearHistory();
     void playHistory();
-    void setIsReplaying(int replaying);
+    void setIsReplaying(bool replaying);
 
     int brightness;
-    int replayMode;
+    bool replayMode;
 
     unsigned long tapHistory[historySize];
     unsigned long recordingDuration;

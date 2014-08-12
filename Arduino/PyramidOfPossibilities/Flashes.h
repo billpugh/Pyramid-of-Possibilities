@@ -31,8 +31,6 @@ public:
 private:
     FlashesParameters parameters;
     unsigned long lastUpdate = 0;
-    int lastLed = 0;
-    int lastSize = parameters.flashSize;
 };
 
 #endif	/* FLASHES_H */

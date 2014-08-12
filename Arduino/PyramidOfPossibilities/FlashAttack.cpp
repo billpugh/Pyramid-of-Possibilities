@@ -6,21 +6,23 @@
 //
 
 #include "FlashAttack.h"
+#include "Arduino.h"
 
 void FlashAttack::paint(RNLights & lights) {
 
-  int value = 255 - info.timeSinceLastTap()*2;
-  if (value < 20)
-    value = 20;
-  int value2 = 20+info.getLocalActivity() * 400;
-  if (value2 > 255) value2 = 255;
-  if (value < value2)
-    value = value2;
+  int value = (int)(255 - info.timeSinceLastTap()*parameters.tapMultiplier);
+
+  int value2 = parameters.minimumValue+info.getLocalActivity() * parameters.activityMultiplier;
+
+    value = max(value, value2);
+    value = min(value, 255);
+
+
   lights.setAllPixelHSVs(parameters.hue,255,value);
 
 }
 
-char * FlashAttack:: name() {
+const char * FlashAttack:: name() {
   return "FlashAttack";
 }
 

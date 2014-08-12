@@ -16,6 +16,11 @@
 #include <stdlib.h>
 #include <math.h>
 
+#ifndef max
+#define max(x,y) ((x)>(y)?(x):(y))
+#define min(x,y) ((x)<(y)?(x):(y))
+#endif
+
 unsigned long millis();
 
 unsigned long micros();

@@ -32,9 +32,9 @@ void ColorWorms::paint(RNLights & lights) {
     
     int length = info.numLEDs * parameters.lengthFraction;
     
-    int rPos = getAnimationMillis()/parameters.redSpeed;
-    int gPos = getAnimationMillis()/parameters.greenSpeed;
-    int bPos = getAnimationMillis()/parameters.blueSpeed;
+    int rPos = (int)(((long)getAnimationMillis())/parameters.redSpeed);
+    int gPos = (int)(((long)getAnimationMillis())/parameters.greenSpeed);
+    int bPos = (int)(((long)getAnimationMillis())/parameters.blueSpeed);
     paint(lights, rPos, length, parameters.brightness, 0, 0);
     paint(lights, gPos, length, 0, parameters.brightness, 0);
     paint(lights, bPos, length, 0, 0, parameters.brightness);

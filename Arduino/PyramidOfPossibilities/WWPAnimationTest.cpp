@@ -15,9 +15,6 @@ void WWPAnimationTest::paint(RNLights & lights) {
     for(int i = 0; i < 10; i++)
         lights.setPixelColor(lights.normalize(i+pos), 255, 0, 0);
 
-    for(int i = 0; i < 6; i++)
-        lights.setPixelColor(1<<i, 0, 255, 0);
-    
     info.showActivityWithSparkles(lights);
 
     

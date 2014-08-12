@@ -12,10 +12,16 @@
 #include <stdint.h>
 
  unsigned long millis();
+ unsigned long micros();
+
+#ifndef max
+#define abs(x) ((x)>0?(x):-(x))
+#define max(x,y) ((x)>(y)?(x):(y))
+#define min(x,y) ((x)<(y)?(x):(y))
+#endif
 
  int random(int max);
 
-#define abs(x) ((x)>0?(x):-(x))
 
 class SerialClass {
 public:

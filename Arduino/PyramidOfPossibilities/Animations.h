@@ -47,7 +47,7 @@ enum  AnimationEnum {
     // Antoine's animations
     e_Flashes,
     e_AVEAnimation1,
-
+    e_MovingFaces,
 
 
     // Not an actual enum, just the value used to give us the count of the number of enums

@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		1611811C199866D400136668 /* Kittens.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1611811A199866D400136668 /* Kittens.cpp */; };
 		1611811D199866D400136668 /* Kittens.h in Headers */ = {isa = PBXBuildFile; fileRef = 1611811B199866D400136668 /* Kittens.h */; };
+		161181221998D72A00136668 /* FlashEcho.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1611811E1998D72A00136668 /* FlashEcho.cpp */; };
+		161181231998D72A00136668 /* FlashEcho.h in Headers */ = {isa = PBXBuildFile; fileRef = 1611811F1998D72A00136668 /* FlashEcho.h */; };
+		161181241998D72A00136668 /* Qbert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 161181201998D72A00136668 /* Qbert.cpp */; };
+		161181251998D72A00136668 /* Qbert.h in Headers */ = {isa = PBXBuildFile; fileRef = 161181211998D72A00136668 /* Qbert.h */; };
 		163D5077198D841400E882A1 /* RNEEPROM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163D5075198D841400E882A1 /* RNEEPROM.cpp */; };
 		163D5078198D841400E882A1 /* RNEEPROM.h in Headers */ = {isa = PBXBuildFile; fileRef = 163D5076198D841400E882A1 /* RNEEPROM.h */; };
 		163D507B198E6D9600E882A1 /* Swirl.h in Headers */ = {isa = PBXBuildFile; fileRef = 163D5079198E6D9600E882A1 /* Swirl.h */; };
@@ -34,15 +38,12 @@
 		1644A15D198D34D400FBFF63 /* Controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A132198D34D400FBFF63 /* Controller.cpp */; };
 		1644A15E198D34D400FBFF63 /* AVEAnimation1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A133198D34D400FBFF63 /* AVEAnimation1.cpp */; };
 		1644A15F198D34D400FBFF63 /* AVEAnimation1.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A134198D34D400FBFF63 /* AVEAnimation1.h */; };
-		1644A160198D34D400FBFF63 /* DRAnimation0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A135198D34D400FBFF63 /* DRAnimation0.cpp */; };
-		1644A161198D34D400FBFF63 /* DRAnimation0.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A136198D34D400FBFF63 /* DRAnimation0.h */; };
 		1644A162198D34D400FBFF63 /* ActivityLevelAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A137198D34D400FBFF63 /* ActivityLevelAnimation.h */; };
 		1644A163198D34D400FBFF63 /* ChangingColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A138198D34D400FBFF63 /* ChangingColor.cpp */; };
 		1644A165198D34D400FBFF63 /* GlowFade.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A13A198D34D400FBFF63 /* GlowFade.cpp */; };
 		1644A166198D34D400FBFF63 /* ColorWorms.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A13B198D34D400FBFF63 /* ColorWorms.cpp */; };
 		1644A167198D34D400FBFF63 /* Chasers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A13C198D34D400FBFF63 /* Chasers.cpp */; };
 		1644A168198D34D400FBFF63 /* GlowFade.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A13D198D34D400FBFF63 /* GlowFade.h */; };
-		1644A16A198D34D400FBFF63 /* RNSerial.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A13F198D34D400FBFF63 /* RNSerial.h */; };
 		1644A16B198D34D400FBFF63 /* Chasers.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A140198D34D400FBFF63 /* Chasers.h */; };
 		1644A16C198D34D400FBFF63 /* RNAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A141198D34D400FBFF63 /* RNAnimation.h */; };
 		1644A16D198D34D400FBFF63 /* RNAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A142198D34D400FBFF63 /* RNAnimation.cpp */; };
@@ -60,13 +61,17 @@
 		1644A181198D351A00FBFF63 /* RNChaser.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A17F198D351A00FBFF63 /* RNChaser.h */; };
 		1644A184198D354700FBFF63 /* Arduino.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A182198D354700FBFF63 /* Arduino.h */; };
 		1644A185198D354700FBFF63 /* hsv2rgb.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A183198D354700FBFF63 /* hsv2rgb.h */; };
-		1644A187198D37C900FBFF63 /* Accelerometer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A186198D37C900FBFF63 /* Accelerometer.h */; };
 		1644A192198D600200FBFF63 /* ledPositions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1644A190198D600200FBFF63 /* ledPositions.cpp */; };
 		1644A193198D600200FBFF63 /* ledPositions.h in Headers */ = {isa = PBXBuildFile; fileRef = 1644A191198D600200FBFF63 /* ledPositions.h */; };
 		164B170B1993D28900C0FB57 /* easingSelect.h in Headers */ = {isa = PBXBuildFile; fileRef = 164B17071993D28900C0FB57 /* easingSelect.h */; };
 		164B170C1993D28900C0FB57 /* easingSelect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 164B17081993D28900C0FB57 /* easingSelect.cpp */; };
 		164B170D1993D28900C0FB57 /* easing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 164B17091993D28900C0FB57 /* easing.cpp */; };
 		164B170E1993D28900C0FB57 /* easing.h in Headers */ = {isa = PBXBuildFile; fileRef = 164B170A1993D28900C0FB57 /* easing.h */; };
+		166A9D391999136100C2E74C /* mac.h in Headers */ = {isa = PBXBuildFile; fileRef = 166A9D381999136100C2E74C /* mac.h */; };
+		166A9D3B1999161800C2E74C /* Accelerometer.h in Headers */ = {isa = PBXBuildFile; fileRef = 166A9D3A1999161800C2E74C /* Accelerometer.h */; };
+		166A9D3E19991BA100C2E74C /* PopMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 166A9D3C19991BA100C2E74C /* PopMain.cpp */; };
+		166A9D3F19991BA100C2E74C /* PopMain.h in Headers */ = {isa = PBXBuildFile; fileRef = 166A9D3D19991BA100C2E74C /* PopMain.h */; };
+		166A9D41199923DC00C2E74C /* RNSerial.h in Headers */ = {isa = PBXBuildFile; fileRef = 166A9D40199923DC00C2E74C /* RNSerial.h */; };
 		16838ED419950C48008CD81E /* Radial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16838ED019950C48008CD81E /* Radial.cpp */; };
 		16838ED519950C48008CD81E /* Radial.h in Headers */ = {isa = PBXBuildFile; fileRef = 16838ED119950C48008CD81E /* Radial.h */; };
 		16838ED619950C48008CD81E /* Flashes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16838ED219950C48008CD81E /* Flashes.cpp */; };
@@ -81,6 +86,10 @@
 /* Begin PBXFileReference section */
 		1611811A199866D400136668 /* Kittens.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Kittens.cpp; path = ../Arduino/PyramidOfPossibilities/Kittens.cpp; sourceTree = "<group>"; };
 		1611811B199866D400136668 /* Kittens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Kittens.h; path = ../Arduino/PyramidOfPossibilities/Kittens.h; sourceTree = "<group>"; };
+		1611811E1998D72A00136668 /* FlashEcho.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FlashEcho.cpp; path = ../Arduino/PyramidOfPossibilities/FlashEcho.cpp; sourceTree = "<group>"; };
+		1611811F1998D72A00136668 /* FlashEcho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlashEcho.h; path = ../Arduino/PyramidOfPossibilities/FlashEcho.h; sourceTree = "<group>"; };
+		161181201998D72A00136668 /* Qbert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Qbert.cpp; path = ../Arduino/PyramidOfPossibilities/Qbert.cpp; sourceTree = "<group>"; };
+		161181211998D72A00136668 /* Qbert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Qbert.h; path = ../Arduino/PyramidOfPossibilities/Qbert.h; sourceTree = "<group>"; };
 		163D5075198D841400E882A1 /* RNEEPROM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RNEEPROM.cpp; path = ../Arduino/PyramidOfPossibilities/RNEEPROM.cpp; sourceTree = "<group>"; };
 		163D5076198D841400E882A1 /* RNEEPROM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNEEPROM.h; path = ../Arduino/PyramidOfPossibilities/RNEEPROM.h; sourceTree = "<group>"; };
 		163D5079198E6D9600E882A1 /* Swirl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Swirl.h; path = ../Arduino/PyramidOfPossibilities/Swirl.h; sourceTree = "<group>"; };
@@ -107,15 +116,12 @@
 		1644A132198D34D400FBFF63 /* Controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Controller.cpp; path = ../Arduino/PyramidOfPossibilities/Controller.cpp; sourceTree = "<group>"; };
 		1644A133198D34D400FBFF63 /* AVEAnimation1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AVEAnimation1.cpp; path = ../Arduino/PyramidOfPossibilities/AVEAnimation1.cpp; sourceTree = "<group>"; };
 		1644A134198D34D400FBFF63 /* AVEAnimation1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AVEAnimation1.h; path = ../Arduino/PyramidOfPossibilities/AVEAnimation1.h; sourceTree = "<group>"; };
-		1644A135198D34D400FBFF63 /* DRAnimation0.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DRAnimation0.cpp; path = ../Arduino/PyramidOfPossibilities/DRAnimation0.cpp; sourceTree = "<group>"; };
-		1644A136198D34D400FBFF63 /* DRAnimation0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DRAnimation0.h; path = ../Arduino/PyramidOfPossibilities/DRAnimation0.h; sourceTree = "<group>"; };
 		1644A137198D34D400FBFF63 /* ActivityLevelAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityLevelAnimation.h; path = ../Arduino/PyramidOfPossibilities/ActivityLevelAnimation.h; sourceTree = "<group>"; };
 		1644A138198D34D400FBFF63 /* ChangingColor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ChangingColor.cpp; path = ../Arduino/PyramidOfPossibilities/ChangingColor.cpp; sourceTree = "<group>"; };
 		1644A13A198D34D400FBFF63 /* GlowFade.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GlowFade.cpp; path = ../Arduino/PyramidOfPossibilities/GlowFade.cpp; sourceTree = "<group>"; };
 		1644A13B198D34D400FBFF63 /* ColorWorms.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ColorWorms.cpp; path = ../Arduino/PyramidOfPossibilities/ColorWorms.cpp; sourceTree = "<group>"; };
 		1644A13C198D34D400FBFF63 /* Chasers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Chasers.cpp; path = ../Arduino/PyramidOfPossibilities/Chasers.cpp; sourceTree = "<group>"; };
 		1644A13D198D34D400FBFF63 /* GlowFade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GlowFade.h; path = ../Arduino/PyramidOfPossibilities/GlowFade.h; sourceTree = "<group>"; };
-		1644A13F198D34D400FBFF63 /* RNSerial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNSerial.h; path = ../Arduino/PyramidOfPossibilities/RNSerial.h; sourceTree = "<group>"; };
 		1644A140198D34D400FBFF63 /* Chasers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Chasers.h; path = ../Arduino/PyramidOfPossibilities/Chasers.h; sourceTree = "<group>"; };
 		1644A141198D34D400FBFF63 /* RNAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNAnimation.h; path = ../Arduino/PyramidOfPossibilities/RNAnimation.h; sourceTree = "<group>"; };
 		1644A142198D34D400FBFF63 /* RNAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RNAnimation.cpp; path = ../Arduino/PyramidOfPossibilities/RNAnimation.cpp; sourceTree = "<group>"; };
@@ -133,13 +139,17 @@
 		1644A17F198D351A00FBFF63 /* RNChaser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNChaser.h; path = ../Arduino/libraries/RNChaser/RNChaser.h; sourceTree = "<group>"; };
 		1644A182198D354700FBFF63 /* Arduino.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Arduino.h; sourceTree = "<group>"; };
 		1644A183198D354700FBFF63 /* hsv2rgb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hsv2rgb.h; sourceTree = "<group>"; };
-		1644A186198D37C900FBFF63 /* Accelerometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Accelerometer.h; sourceTree = "<group>"; };
 		1644A190198D600200FBFF63 /* ledPositions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ledPositions.cpp; path = ../Arduino/PyramidOfPossibilities/ledPositions.cpp; sourceTree = "<group>"; };
 		1644A191198D600200FBFF63 /* ledPositions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ledPositions.h; path = ../Arduino/PyramidOfPossibilities/ledPositions.h; sourceTree = "<group>"; };
 		164B17071993D28900C0FB57 /* easingSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = easingSelect.h; path = ../Arduino/libraries/AHEasing/easingSelect.h; sourceTree = "<group>"; };
 		164B17081993D28900C0FB57 /* easingSelect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = easingSelect.cpp; path = ../Arduino/libraries/AHEasing/easingSelect.cpp; sourceTree = "<group>"; };
 		164B17091993D28900C0FB57 /* easing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = easing.cpp; path = ../Arduino/libraries/AHEasing/easing.cpp; sourceTree = "<group>"; };
 		164B170A1993D28900C0FB57 /* easing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = easing.h; path = ../Arduino/libraries/AHEasing/easing.h; sourceTree = "<group>"; };
+		166A9D381999136100C2E74C /* mac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mac.h; path = ../Arduino/libraries/mac/mac.h; sourceTree = "<group>"; };
+		166A9D3A1999161800C2E74C /* Accelerometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Accelerometer.h; path = ../Arduino/libraries/Accelerometer/Accelerometer.h; sourceTree = "<group>"; };
+		166A9D3C19991BA100C2E74C /* PopMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PopMain.cpp; path = ../Arduino/PyramidOfPossibilities/PopMain.cpp; sourceTree = "<group>"; };
+		166A9D3D19991BA100C2E74C /* PopMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopMain.h; path = ../Arduino/PyramidOfPossibilities/PopMain.h; sourceTree = "<group>"; };
+		166A9D40199923DC00C2E74C /* RNSerial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNSerial.h; path = ../Arduino/libraries/RNSerial/RNSerial.h; sourceTree = "<group>"; };
 		16838ECE19950A02008CD81E /* EEPROM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EEPROM.h; sourceTree = "<group>"; };
 		16838ECF19950ACC008CD81E /* malloc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = malloc.h; sourceTree = "<group>"; };
 		16838ED019950C48008CD81E /* Radial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Radial.cpp; path = ../Arduino/PyramidOfPossibilities/Radial.cpp; sourceTree = "<group>"; };
@@ -168,6 +178,8 @@
 		1644A110198D34AF00FBFF63 = {
 			isa = PBXGroup;
 			children = (
+				166A9D3C19991BA100C2E74C /* PopMain.cpp */,
+				166A9D3D19991BA100C2E74C /* PopMain.h */,
 				30F8EB31198D5D92008DEAE9 /* PyramidOfPossibilities.ino */,
 				1644A188198D384500FBFF63 /* Animations */,
 				1644A123198D34D400FBFF63 /* Animations.cpp */,
@@ -202,8 +214,6 @@
 		1644A188198D384500FBFF63 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
-				1611811A199866D400136668 /* Kittens.cpp */,
-				1611811B199866D400136668 /* Kittens.h */,
 				1644A12A198D34D400FBFF63 /* ActivityLevelAnimation.cpp */,
 				1644A137198D34D400FBFF63 /* ActivityLevelAnimation.h */,
 				1644A133198D34D400FBFF63 /* AVEAnimation1.cpp */,
@@ -218,16 +228,20 @@
 				1644A144198D34D400FBFF63 /* CircularGradient.h */,
 				1644A13B198D34D400FBFF63 /* ColorWorms.cpp */,
 				1644A146198D34D400FBFF63 /* ColorWorms.h */,
-				1644A135198D34D400FBFF63 /* DRAnimation0.cpp */,
-				1644A136198D34D400FBFF63 /* DRAnimation0.h */,
 				1644A12E198D34D400FBFF63 /* DRAnimation1.cpp */,
 				1644A12F198D34D400FBFF63 /* DRAnimation1.h */,
 				1644A129198D34D400FBFF63 /* FlashAttack.cpp */,
 				1644A128198D34D400FBFF63 /* FlashAttack.h */,
+				1611811E1998D72A00136668 /* FlashEcho.cpp */,
+				1611811F1998D72A00136668 /* FlashEcho.h */,
 				16838ED219950C48008CD81E /* Flashes.cpp */,
 				16838ED319950C48008CD81E /* Flashes.h */,
 				1644A13A198D34D400FBFF63 /* GlowFade.cpp */,
 				1644A13D198D34D400FBFF63 /* GlowFade.h */,
+				1611811A199866D400136668 /* Kittens.cpp */,
+				1611811B199866D400136668 /* Kittens.h */,
+				161181201998D72A00136668 /* Qbert.cpp */,
+				161181211998D72A00136668 /* Qbert.h */,
 				16838ED019950C48008CD81E /* Radial.cpp */,
 				16838ED119950C48008CD81E /* Radial.h */,
 				1644A126198D34D400FBFF63 /* SideEffects.cpp */,
@@ -245,15 +259,16 @@
 		1644A189198D38DB00FBFF63 /* libraries */ = {
 			isa = PBXGroup;
 			children = (
+				166A9D40199923DC00C2E74C /* RNSerial.h */,
+				166A9D3A1999161800C2E74C /* Accelerometer.h */,
+				166A9D381999136100C2E74C /* mac.h */,
 				164B17071993D28900C0FB57 /* easingSelect.h */,
 				164B17081993D28900C0FB57 /* easingSelect.cpp */,
 				164B17091993D28900C0FB57 /* easing.cpp */,
 				164B170A1993D28900C0FB57 /* easing.h */,
 				1690A1631993CA83006C4A5A /* watchdog.h */,
-				1644A186198D37C900FBFF63 /* Accelerometer.h */,
 				1644A182198D354700FBFF63 /* Arduino.h */,
 				1644A183198D354700FBFF63 /* hsv2rgb.h */,
-				1644A13F198D34D400FBFF63 /* RNSerial.h */,
 				163D5075198D841400E882A1 /* RNEEPROM.cpp */,
 				163D5076198D841400E882A1 /* RNEEPROM.h */,
 				16838ECE19950A02008CD81E /* EEPROM.h */,
@@ -294,18 +309,20 @@
 				1644A152198D34D400FBFF63 /* SideEffects.h in Headers */,
 				16838ED719950C48008CD81E /* Flashes.h in Headers */,
 				1644A185198D354700FBFF63 /* hsv2rgb.h in Headers */,
+				166A9D3F19991BA100C2E74C /* PopMain.h in Headers */,
 				1644A14F198D34D400FBFF63 /* Snow.h in Headers */,
 				1644A193198D600200FBFF63 /* ledPositions.h in Headers */,
 				30F8EB30198D5B6E008DEAE9 /* Constants.h in Headers */,
-				1644A161198D34D400FBFF63 /* DRAnimation0.h in Headers */,
 				1644A17D198D34FE00FBFF63 /* RNLights.h in Headers */,
 				16838ED519950C48008CD81E /* Radial.h in Headers */,
+				166A9D3B1999161800C2E74C /* Accelerometer.h in Headers */,
 				1644A162198D34D400FBFF63 /* ActivityLevelAnimation.h in Headers */,
 				16C35AE8198FEF7100E2E362 /* Beacon.h in Headers */,
 				1644A171198D34D400FBFF63 /* ColorWorms.h in Headers */,
 				1644A16E198D34D400FBFF63 /* ChangingColor.h in Headers */,
 				1644A172198D34D400FBFF63 /* Controller.h in Headers */,
 				1644A153198D34D400FBFF63 /* FlashAttack.h in Headers */,
+				166A9D41199923DC00C2E74C /* RNSerial.h in Headers */,
 				163D5078198D841400E882A1 /* RNEEPROM.h in Headers */,
 				1644A168198D34D400FBFF63 /* GlowFade.h in Headers */,
 				163D507B198E6D9600E882A1 /* Swirl.h in Headers */,
@@ -313,18 +330,19 @@
 				1690A1641993CA83006C4A5A /* watchdog.h in Headers */,
 				1644A16B198D34D400FBFF63 /* Chasers.h in Headers */,
 				1644A181198D351A00FBFF63 /* RNChaser.h in Headers */,
+				161181251998D72A00136668 /* Qbert.h in Headers */,
 				1644A15F198D34D400FBFF63 /* AVEAnimation1.h in Headers */,
 				1644A15C198D34D400FBFF63 /* RNBeam.h in Headers */,
 				1611811D199866D400136668 /* Kittens.h in Headers */,
 				1644A14C198D34D400FBFF63 /* WWPAnimationTest.h in Headers */,
+				161181231998D72A00136668 /* FlashEcho.h in Headers */,
 				1644A158198D34D400FBFF63 /* RNInfo.h in Headers */,
 				1644A174198D34D400FBFF63 /* Platform.h in Headers */,
 				164B170E1993D28900C0FB57 /* easing.h in Headers */,
 				1644A184198D354700FBFF63 /* Arduino.h in Headers */,
-				1644A16A198D34D400FBFF63 /* RNSerial.h in Headers */,
 				1644A16F198D34D400FBFF63 /* CircularGradient.h in Headers */,
 				1644A16C198D34D400FBFF63 /* RNAnimation.h in Headers */,
-				1644A187198D37C900FBFF63 /* Accelerometer.h in Headers */,
+				166A9D391999136100C2E74C /* mac.h in Headers */,
 				1644A14D198D34D400FBFF63 /* Animations.h in Headers */,
 				164B170B1993D28900C0FB57 /* easingSelect.h in Headers */,
 				1644A15A198D34D400FBFF63 /* DRAnimation1.h in Headers */,
@@ -384,7 +402,6 @@
 			files = (
 				1644A16D198D34D400FBFF63 /* RNAnimation.cpp in Sources */,
 				1644A17C198D34FE00FBFF63 /* RNLights.cpp in Sources */,
-				1644A160198D34D400FBFF63 /* DRAnimation0.cpp in Sources */,
 				1644A180198D351A00FBFF63 /* RNChaser.cpp in Sources */,
 				1644A156198D34D400FBFF63 /* RNInfo.cpp in Sources */,
 				164B170D1993D28900C0FB57 /* easing.cpp in Sources */,
@@ -394,6 +411,7 @@
 				163D5077198D841400E882A1 /* RNEEPROM.cpp in Sources */,
 				1644A15B198D34D400FBFF63 /* RNBeam.cpp in Sources */,
 				16C35AE9198FEF7100E2E362 /* Beacon.cpp in Sources */,
+				161181221998D72A00136668 /* FlashEcho.cpp in Sources */,
 				1644A173198D34D400FBFF63 /* Platform.cpp in Sources */,
 				1644A157198D34D400FBFF63 /* CircularGradient.cpp in Sources */,
 				1644A17A198D34FE00FBFF63 /* RNGradient.cpp in Sources */,
@@ -402,6 +420,7 @@
 				1644A167198D34D400FBFF63 /* Chasers.cpp in Sources */,
 				1644A154198D34D400FBFF63 /* FlashAttack.cpp in Sources */,
 				1644A155198D34D400FBFF63 /* ActivityLevelAnimation.cpp in Sources */,
+				166A9D3E19991BA100C2E74C /* PopMain.cpp in Sources */,
 				163D507C198E6D9600E882A1 /* Swirl.cpp in Sources */,
 				1644A15E198D34D400FBFF63 /* AVEAnimation1.cpp in Sources */,
 				164B170C1993D28900C0FB57 /* easingSelect.cpp in Sources */,
@@ -413,6 +432,7 @@
 				1644A163198D34D400FBFF63 /* ChangingColor.cpp in Sources */,
 				1644A14B198D34D400FBFF63 /* WWPAnimationTest.cpp in Sources */,
 				1611811C199866D400136668 /* Kittens.cpp in Sources */,
+				161181241998D72A00136668 /* Qbert.cpp in Sources */,
 				1644A15D198D34D400FBFF63 /* Controller.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
