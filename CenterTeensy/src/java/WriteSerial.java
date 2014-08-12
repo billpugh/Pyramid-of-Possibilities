@@ -1,17 +1,25 @@
-import java.io.File;
-import java.io.FileWriter;
+import gnu.io.SerialPort;
+
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 
 public class WriteSerial {
     
-    public static void main(String args[]) throws IOException, InterruptedException {
-        File f = new File("/dev/tty.usbserial-A603IUEO");
-        FileWriter fw = new FileWriter(f);
+    public static void main(String args[]) throws Exception {
+        String p = "/dev/tty.usbserial-A603IUEO";
+        SerialPort port = SerialPortFactory.findSerialPortByName(p, 9600);
+        OutputStreamWriter fw = new OutputStreamWriter(port.getOutputStream());
+        long nextUpdate = System.currentTimeMillis();
         for(char a = 'a'; a <= 'z'; a++) {
             fw.write(a);
+            fw.write(a);
+             fw.write(a);
+              fw.write(a);
             fw.flush();
-            Thread.sleep(1000);
+            System.out.printf("Wrote '%c'%n", a);
+            nextUpdate += 1000;
+            Thread.sleep(nextUpdate - System.currentTimeMillis());
         }
         fw.close();
     }

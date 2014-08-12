@@ -17,6 +17,7 @@
 #include "watchdog.h"
 #include "RNEEPROM.h"
 #include "PopMain.h"
+#include "TimerThree.h"
 #include <EEPROM.h>
 #include <malloc.h>
 

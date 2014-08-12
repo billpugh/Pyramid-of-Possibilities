@@ -1,2 +1,2 @@
 
-void p(char *fmt, ... );
+void printf(char *fmt, ... );

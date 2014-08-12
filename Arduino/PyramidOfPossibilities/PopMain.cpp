@@ -22,6 +22,7 @@
 #include "RNEEPROM.h"
 #include "malloc.h"
 #include "mac.h"
+#include "RNComm.h"
 #include <math.h>
 
 
@@ -49,13 +50,14 @@ void setupMain() {
         Serial.print(platform.identifier);
         Serial.println();
     }
-    int bytesRead = Serial.readBytes((char *) platformData, 9);
+    const int platformSerialLength = 10;
+    int bytesRead = Serial.readBytes((char *) platformData, platformSerialLength);
     Serial.print(bytesRead);
     Serial.println(" bytes read");
     Serial.print(sizeof(Platform));
     Serial.println(" platform size");
-    if (bytesRead == 9) {
-        bool success = platform.initialize(platformData, 9);
+    if (bytesRead == platformSerialLength) {
+        bool success = platform.initialize(platformData, platformSerialLength);
         if (success) {
             writeToEEPROM(sizeof(Platform), (char*) &platform);
             Serial.println("success, wrote to EEPROM");
@@ -66,12 +68,11 @@ void setupMain() {
     }
     initializeAccelerometer(constants.PULSE_THSX,constants.PULSE_THSY,
                             constants.PULSE_THSZ);
-    setupSerial2(constants.serial2BaudRate);
-
+    
     info = new RNInfo(constants.LEDs, platform);
     controller = new RNController(*info);
 
-
+    initializeComm(*info);
 #ifndef FULL_STRIP
     debugTriadPositions();
 #endif
@@ -125,6 +126,9 @@ void capOverallBrightness(RNLights & lights) {
 
 
 void loop() {
+  int available = Serial2.available();
+  if (available > 0)
+  info->printf("Serial2.available = %d\n",available);
     refreshWatchdog();
     unsigned long startMicros = micros();
 

@@ -79,6 +79,8 @@
 		1690A1641993CA83006C4A5A /* watchdog.h in Headers */ = {isa = PBXBuildFile; fileRef = 1690A1631993CA83006C4A5A /* watchdog.h */; };
 		16C35AE8198FEF7100E2E362 /* Beacon.h in Headers */ = {isa = PBXBuildFile; fileRef = 16C35AE6198FEF7100E2E362 /* Beacon.h */; };
 		16C35AE9198FEF7100E2E362 /* Beacon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16C35AE7198FEF7100E2E362 /* Beacon.cpp */; };
+		16EDC08E199999A8002FA957 /* RNComm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EDC08C199999A8002FA957 /* RNComm.cpp */; };
+		16EDC08F199999A8002FA957 /* RNComm.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDC08D199999A8002FA957 /* RNComm.h */; };
 		30F8EB2F198D5B6E008DEAE9 /* Constants.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F8EB2D198D5B6E008DEAE9 /* Constants.cpp */; };
 		30F8EB30198D5B6E008DEAE9 /* Constants.h in Headers */ = {isa = PBXBuildFile; fileRef = 30F8EB2E198D5B6E008DEAE9 /* Constants.h */; };
 /* End PBXBuildFile section */
@@ -150,6 +152,7 @@
 		166A9D3C19991BA100C2E74C /* PopMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PopMain.cpp; path = ../Arduino/PyramidOfPossibilities/PopMain.cpp; sourceTree = "<group>"; };
 		166A9D3D19991BA100C2E74C /* PopMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopMain.h; path = ../Arduino/PyramidOfPossibilities/PopMain.h; sourceTree = "<group>"; };
 		166A9D40199923DC00C2E74C /* RNSerial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNSerial.h; path = ../Arduino/libraries/RNSerial/RNSerial.h; sourceTree = "<group>"; };
+		166A9D4C199997FD00C2E74C /* TimerThree.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimerThree.h; sourceTree = "<group>"; };
 		16838ECE19950A02008CD81E /* EEPROM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EEPROM.h; sourceTree = "<group>"; };
 		16838ECF19950ACC008CD81E /* malloc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = malloc.h; sourceTree = "<group>"; };
 		16838ED019950C48008CD81E /* Radial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Radial.cpp; path = ../Arduino/PyramidOfPossibilities/Radial.cpp; sourceTree = "<group>"; };
@@ -159,6 +162,8 @@
 		1690A1631993CA83006C4A5A /* watchdog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = watchdog.h; path = ../Arduino/libraries/watchdog/watchdog.h; sourceTree = "<group>"; };
 		16C35AE6198FEF7100E2E362 /* Beacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Beacon.h; path = ../Arduino/PyramidOfPossibilities/Beacon.h; sourceTree = "<group>"; };
 		16C35AE7198FEF7100E2E362 /* Beacon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Beacon.cpp; path = ../Arduino/PyramidOfPossibilities/Beacon.cpp; sourceTree = "<group>"; };
+		16EDC08C199999A8002FA957 /* RNComm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RNComm.cpp; path = ../Arduino/PyramidOfPossibilities/RNComm.cpp; sourceTree = "<group>"; };
+		16EDC08D199999A8002FA957 /* RNComm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNComm.h; path = ../Arduino/PyramidOfPossibilities/RNComm.h; sourceTree = "<group>"; };
 		30F8EB2D198D5B6E008DEAE9 /* Constants.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Constants.cpp; path = ../Arduino/PyramidOfPossibilities/Constants.cpp; sourceTree = "<group>"; };
 		30F8EB2E198D5B6E008DEAE9 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../Arduino/PyramidOfPossibilities/Constants.h; sourceTree = "<group>"; };
 		30F8EB31198D5D92008DEAE9 /* PyramidOfPossibilities.ino */ = {isa = PBXFileReference; lastKnownFileType = text; name = PyramidOfPossibilities.ino; path = ../Arduino/PyramidOfPossibilities/PyramidOfPossibilities.ino; sourceTree = "<group>"; };
@@ -178,6 +183,8 @@
 		1644A110198D34AF00FBFF63 = {
 			isa = PBXGroup;
 			children = (
+				16EDC08C199999A8002FA957 /* RNComm.cpp */,
+				16EDC08D199999A8002FA957 /* RNComm.h */,
 				166A9D3C19991BA100C2E74C /* PopMain.cpp */,
 				166A9D3D19991BA100C2E74C /* PopMain.h */,
 				30F8EB31198D5D92008DEAE9 /* PyramidOfPossibilities.ino */,
@@ -273,6 +280,7 @@
 				163D5076198D841400E882A1 /* RNEEPROM.h */,
 				16838ECE19950A02008CD81E /* EEPROM.h */,
 				16838ECF19950ACC008CD81E /* malloc.h */,
+				166A9D4C199997FD00C2E74C /* TimerThree.h */,
 			);
 			name = libraries;
 			sourceTree = "<group>";
@@ -308,6 +316,7 @@
 			files = (
 				1644A152198D34D400FBFF63 /* SideEffects.h in Headers */,
 				16838ED719950C48008CD81E /* Flashes.h in Headers */,
+				16EDC08F199999A8002FA957 /* RNComm.h in Headers */,
 				1644A185198D354700FBFF63 /* hsv2rgb.h in Headers */,
 				166A9D3F19991BA100C2E74C /* PopMain.h in Headers */,
 				1644A14F198D34D400FBFF63 /* Snow.h in Headers */,
@@ -407,6 +416,7 @@
 				164B170D1993D28900C0FB57 /* easing.cpp in Sources */,
 				1644A166198D34D400FBFF63 /* ColorWorms.cpp in Sources */,
 				16838ED619950C48008CD81E /* Flashes.cpp in Sources */,
+				16EDC08E199999A8002FA957 /* RNComm.cpp in Sources */,
 				1644A150198D34D400FBFF63 /* Snow.cpp in Sources */,
 				163D5077198D841400E882A1 /* RNEEPROM.cpp in Sources */,
 				1644A15B198D34D400FBFF63 /* RNBeam.cpp in Sources */,

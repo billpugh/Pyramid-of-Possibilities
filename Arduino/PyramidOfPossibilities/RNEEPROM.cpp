@@ -10,7 +10,7 @@
 
 #include <Arduino.h>
 
-const char version = 'a';
+const char version = 'b';
 #ifndef POP_SIMULATOR
 #include "EEPROM.h"
 #endif

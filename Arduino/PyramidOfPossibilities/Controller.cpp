@@ -12,6 +12,7 @@
 #include "Animations.h"
 #include "malloc.h"
 #include "Constants.h"
+#include "RNComm.h"
 
 static int heapSize(){
     return mallinfo().uordblks;
@@ -51,19 +52,8 @@ void RNController::paint(RNLights & lights) {
     if (millis() > animationExpires || !currentAnimation) {
         nextAnimation();
     }
-    
-#ifndef POP_SIMULATOR
-    if (Serial2.available() > 1) {
-        int a = Serial2.read();
-        if (a == 'a') {
-            int c = Serial2.read();
-            info.printf("Got %d from serial2\n", c);
-            if (c >= 0 && c < e_AnimationCount)
-                switchToAnimation((AnimationEnum) c);
-        }
-    }
-#endif
-    
+
+    checkComm(info);
 
     // call the paint() method on the current animation. 
     // NOTE: we use RN_DEBUG_SAMPLE_ANIMATION_DURATION to debug the duration of calls to paint().
@@ -82,6 +72,7 @@ void RNController::paint(RNLights & lights) {
             info.printf("WARNING: Animation %s took %lu ms inside paint()\n", currentAnimation->name(), duration);
         }
 #endif  /* RN_PRINT_LOG_ANIMATIONS */
+    checkComm(info);
     }
 }
 

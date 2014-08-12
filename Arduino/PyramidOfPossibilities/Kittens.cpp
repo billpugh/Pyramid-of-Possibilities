@@ -28,12 +28,9 @@ void Kittens::paint(RNLights & lights) {
     parameters.maxEase
     - (parameters.maxEase -parameters.minEase) * sinceTap;
     
-    info.printf("sinceTap = %11f, east = %11f\n", sinceTap, ease);
     myLights.fade(getAnimationMillis());
     for (uint8_t i=0; i<NUM_KITTENS; ++i) {
-        if (fabs(kittens[i].position -kittens[i].goal) < 1) {
-            kittens[i].goal = info.getRandomPixel();
-        }
+
 
         float distance = kittens[i].goal - kittens[i].position;
         if (distance > numLights/2) {
@@ -43,7 +40,6 @@ void Kittens::paint(RNLights & lights) {
 
         float p1 = kittens[i].position;
         kittens[i].position += distance * ease;
-
         float p2 = kittens[i].position;
         if (p1 > p2) {
             float tmp = p1;
@@ -51,11 +47,17 @@ void Kittens::paint(RNLights & lights) {
             p2 = tmp;
         }
 
-
         int colorRGB = kittens[i].color;
         uint8_t r = colorRGB >> 16;
         uint8_t g = colorRGB >> 8;
         uint8_t b = colorRGB;
+
+        if (fabs(distance) < 1) {
+            // pounce
+            p1 -= 2;
+            p2 += 2;
+            kittens[i].goal = info.getRandomPixel();
+        }
 
         for(int i = floor(p1); i <= ceil(p2); i++)
           myLights.setPixelColorMax(i, r,g,b);
