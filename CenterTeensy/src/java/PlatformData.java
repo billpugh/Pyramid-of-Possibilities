@@ -52,6 +52,7 @@ public class PlatformData {
         buf.putShort(y);
         buf.putShort(z);
         buf.put(direction);
+        buf.put(wirePosition);
         buf.flip();
 
         return buf;

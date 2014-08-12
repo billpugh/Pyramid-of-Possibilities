@@ -34,8 +34,8 @@ public class Animation {
     public void write(ByteBuffer buf ) {
         buf.put((byte)program.ordinal());
         buf.put(sequenceId);
-        buf.putShort(byteLength());
         buf.putLong(startTime);
+        buf.putShort(byteLength());
         if (parameters.length > 0)
             buf.put(parameters);
     }

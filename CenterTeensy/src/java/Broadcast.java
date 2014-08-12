@@ -11,22 +11,26 @@ public class Broadcast {
     final byte kind = (byte) 'p';
     float medianActivityLevel;
     Animation animation;
+    byte status = 0;
     
     
     public void write(ByteBuffer buf ) {
+        int position = buf.position();
         buf.put(kind);
         buf.put((byte)0);
         buf.put((byte)0);
+        buf.put(status);
+        buf.putLong(BurnerTime.getGlobalTime());
         buf.putFloat(medianActivityLevel);
+       
         animation.write(buf);
         
         buf.put((byte) 0); // no animations yet
         
-        buf.flip();
-        int size = buf.limit();
+        int size = buf.position() - position - 3;
         if (size > 255)
             throw new IllegalStateException("Broadcast is " + size + " bytes");
-        buf.put(1, (byte) size);
+        buf.put(position+1, (byte) size);
         
     }
     
@@ -36,6 +40,7 @@ public class Broadcast {
         buf.order(ByteOrder.LITTLE_ENDIAN);
         
         write(buf);
+        
         buf.flip();
 
         return buf;

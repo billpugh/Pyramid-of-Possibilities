@@ -3,6 +3,7 @@ import gnu.io.SerialPort;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PushbackInputStream;
+import java.nio.ByteBuffer;
 import java.nio.channels.Channels;
 import java.nio.channels.WritableByteChannel;
 
@@ -45,7 +46,7 @@ public class CentralControl {
     public static void main(String args[]) throws Exception {
         System.out.println("\nWelcome to Central\n");
         String ttyConfig = ReadConsole.setTerminalToCBreak();
-        SerialPort teensy = SerialPortFactory.findSerialPortByName("/dev/tty.usbserial-A603IZ6Q", 57600);
+        SerialPort teensy = SerialPortFactory.findSerialPortByName("/dev/tty.usbserial-A603IUEO", 38400);
 
         OutputStream outputStream = teensy.getOutputStream();
         WritableByteChannel outputChannel = Channels.newChannel(outputStream);
@@ -127,8 +128,12 @@ public class CentralControl {
         AnimationProgram program = AnimationProgram.values()[currentAnimation];
         animation = new Animation(program);
         Broadcast broadcast = new Broadcast(animation);
-        
-        outputChannel.write(broadcast.getBytes());
+        ByteBuffer buf = broadcast.getBytes();
+        System.out.printf("writing bytes %d %d\n", buf.position(), buf.limit());
+        for(int i = buf.position(); i < buf.limit(); i++)
+            System.out.printf("%2x ",  buf.get(i));
+         System.out.println();
+        outputChannel.write(buf);
         System.out.printf("Switching to animation %d%n", currentAnimation);
     }
 
