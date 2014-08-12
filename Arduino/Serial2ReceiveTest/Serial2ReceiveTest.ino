@@ -13,7 +13,7 @@ void setup()
   Serial.println("Hello, this is Serial2ReceiveTest");
   pinMode(rxPin, INPUT_PULLUP);
   pinMode(txPin, OUTPUT); 
-  Serial2.begin(9600); 
+  Serial2.begin(38400); 
 
   // RS485 RTS handshake signal setup
   pinMode(ctsPin, OUTPUT);
@@ -35,7 +35,8 @@ void loop() {
     Serial.print("now: " );
     Serial.println(millis());
     while (Serial2.available() > 0) {
-      Serial.print(Serial2.read());
+      Serial.print(Serial2.read(), HEX);
+       Serial.print(' ');
     }
     Serial.println();
     delay(300);
