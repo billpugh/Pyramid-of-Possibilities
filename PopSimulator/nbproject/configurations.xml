@@ -86,7 +86,6 @@
       <itemPath>../Arduino/PyramidOfPossibilities/Animations.cpp</itemPath>
       <itemPath>Arduino.c</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/Constants.cpp</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/Controller.cpp</itemPath>
       <itemPath>FPSControlsHandler.cpp</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/Platform.cpp</itemPath>
       <itemPath>PlatformControler.cpp</itemPath>
@@ -399,11 +398,6 @@
       <item path="../Arduino/PyramidOfPossibilities/Constants.h"
             ex="false"
             tool="3"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/Controller.cpp"
-            ex="false"
-            tool="1"
             flavor2="0">
       </item>
       <item path="../Arduino/PyramidOfPossibilities/DRAnimation1.cpp"
@@ -804,11 +798,6 @@
       <item path="../Arduino/PyramidOfPossibilities/Constants.h"
             ex="false"
             tool="3"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/Controller.cpp"
-            ex="false"
-            tool="1"
             flavor2="0">
       </item>
       <item path="../Arduino/PyramidOfPossibilities/DRAnimation1.cpp"
