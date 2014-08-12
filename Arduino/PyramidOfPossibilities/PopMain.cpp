@@ -30,7 +30,8 @@
 
 RNInfo *info;
 RNController * controller;
-Platform platform( 0,0,0,700,0,0);
+Platform platform( /* ID */ 0, /* XYZ */ 0,0,700,
+                  /* dir */ 0, /* wire Pos */ 1);
 
 extern RNLights *lights;
 static int heapSize(){
@@ -82,17 +83,8 @@ void setupMain() {
 
 }
 
-const uint8_t chunk = constants.brightnessChunkSize;
-uint8_t scaleBrightness(uint8_t value) {
-    uint8_t result = 0;
-    while (value > chunk) {
-        result += chunk;
-        value -= chunk;
-        value/= 2;
-    }
-    return result + value;
 
-}
+
 
 unsigned long avgTime = 0;
 int count = 0;
@@ -101,12 +93,22 @@ void accelerometerCallback( float totalG, float directionalG[3], uint8_t source)
     info->accelerometerCallback(totalG,directionalG, source);
 }
 
+uint8_t scaleBrightness(uint8_t value) {
+    uint8_t result = 0;
+    while (value > constants.brightnessChunkSize) {
+        result += constants.brightnessChunkSize;
+        value -= constants.brightnessChunkSize;
+        value/= 2;
+    }
+    return result + value;
+}
+
 void capOverallBrightness(RNLights & lights) {
     uint8_t avgPixelBrightness = lights.getAvgPixelBrightness();
     uint8_t avgBrightness = avgPixelBrightness * lights.getBrightness()/256;
-    if (avgBrightness > 16) {
+    if (avgBrightness > constants.brightnessChunkSize) {
 
-        int goal= scaleBrightness(avgBrightness);
+        int goal = scaleBrightness(avgBrightness);
 
         int newBrightness = goal * 255 / avgPixelBrightness;
 
@@ -118,12 +120,7 @@ void capOverallBrightness(RNLights & lights) {
         lights.setBrightness(newBrightness);
     }
     //  else info.printf("Avg brightness is %d/%d\n", avgPixelBrightness, avgBrightness);
-
 }
-
-
-
-
 
 void loop() {
   int available = Serial2.available();
