@@ -10,6 +10,7 @@
 
 #include "RNAnimation.h"
 #include <string.h>
+#include "RNGradient.h"
 
 
 const uint16_t historySize = 64;
@@ -22,6 +23,8 @@ struct FlashEchoParameters {
     uint8_t fadeFactor = 10;
     float minActivityThreshold = 0.1;
     float maxActivityThreshold = 1;
+    RNGradient recordingGradient = RNGradient(0, RNGradientWrap, 0xff0000, 0xff0000);
+    RNGradient playbackGradient = RNGradient(0, RNGradientWrap, 0x00ff00, 0x0000ff);
 };
 
 

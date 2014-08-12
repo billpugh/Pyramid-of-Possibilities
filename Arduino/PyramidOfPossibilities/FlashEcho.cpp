@@ -56,10 +56,29 @@ void FlashEcho::paint(RNLights & lights) {
 	}
 
 	// detect overflow (more taps than our buffer can hold) and make the lights blueish.
-	uint8_t overflow = (!replayMode && historyWriteHead >= historySize-1);
+	bool overflow = (!replayMode && historyWriteHead >= historySize-1);
 
 	// set lights!
-	lights.setAllPixelColors(!replayMode ? brightness : 0, replayMode ? brightness : 0, overflow ? 100 : 0);
+
+
+	uint8_t r,g,b;
+
+	if ( overflow ) {
+
+		r = brightness;
+		g = brightness;
+		b = brightness;
+
+	} else {
+
+		RNGradient *gradientToUse = replayMode ? &(parameters.playbackGradient) : &(parameters.recordingGradient);
+
+		gradientToUse->getColor(brightness, r, g, b);
+		lights.setAllPixelColors(r,g,b);
+
+	}
+	lights.setAllPixelColors(r,g,b);
+	lights.setBrightness(brightness);
 }
 
 void FlashEcho::playHistory() {
