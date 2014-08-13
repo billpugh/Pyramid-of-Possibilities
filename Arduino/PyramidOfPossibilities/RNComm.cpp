@@ -144,7 +144,7 @@ void prepareReportToCentral(RNInfo &info) {
     put8Bits(0);
     put8Bits(0);
     put8Bits(0); // status
-    put8Bits(info.identifier);
+    put16Bits(info.identifier);
     put8Bits(info.wirePosition);
     put8Bits(info.getTaps());
     float gData[3];
@@ -152,7 +152,7 @@ void prepareReportToCentral(RNInfo &info) {
     putFloat(gData[0]);
     putFloat(gData[1]);
     putFloat(gData[2]);
-    sendBuffer[2] = sendBufferPosition;
+    sendBuffer[1] = sendBufferPosition;
 }
 
 void parseProgramMessage(RNInfo & info) {
