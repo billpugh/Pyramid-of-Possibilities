@@ -19,7 +19,8 @@ unsigned long RNLightsSimulator::show() {
     for (uint16_t i = 0; i < getNumPixels(); i++) {
         uint8_t r, g, b;
         getPixelColor(i, r, g, b);
-        pyramid->setLedColor(platform, i, r, g, b);
+        pyramid->setLedColor(platform, i,
+                (float) r / 255.0, (float) g / 255.0, (float) b / 255.0);
     }
 }
 

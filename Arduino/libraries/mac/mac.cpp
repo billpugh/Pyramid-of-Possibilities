@@ -16,17 +16,22 @@ static void read(uint8_t word, uint8_t *mac, uint8_t offset) {
   *(mac+offset+2) = FTFL_FCCOB7;       // Skip FTFL_FCCOB4 as it's always 0.
 }
 
-void read_mac() {
+const uint8_t * read_mac() {
   read(0xe,mac,0);
   read(0xf,mac,3);
+  return mac;
 }
 
 void print_mac()  {
-  size_t count = 0;
+  read_mac();
+  bool printColon= 0;
   for(uint8_t i = 0; i < 6; ++i) {
-    if (i!=0) count += Serial.print(":");
-    count += Serial.print((*(mac+i) & 0xF0) >> 4, 16);
-    count += Serial.print(*(mac+i) & 0x0F, 16);
+    if (printColon) 
+	Serial.print(":");
+    printColon = 1;
+    Serial.print((*(mac+i) & 0xF0) >> 4, 16);
+    Serial.print(*(mac+i) & 0x0F, 16);
   }
+  Serial.println();
 }
 

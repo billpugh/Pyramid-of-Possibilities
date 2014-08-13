@@ -1,6 +1,7 @@
 
 #include "Accelerometer.h"
 #include "i2c_t3.h"
+#include "Arduino.h"
 #include <stdlib.h>
 
 // The SparkFun breakout board defaults to 1, set to 0 if SA0 jumper on the bottom of the board is set
@@ -14,9 +15,20 @@
 // Set the output data rate below. Value should be between 0 and 7
 const uint8_t dataRate = 0;  // 0=800Hz, 1=400, 2=200, 3=100, 4=50, 5=12.5, 6=6.25, 7=1.56
 
-void initMMA8452(uint8_t fsr, uint8_t dataRate);
+void initMMA8452(uint8_t fsr, uint8_t dataRate,
+	uint8_t PULSE_THSX,
+	uint8_t PULSE_THSY,
+	uint8_t PULSE_THSZ
+	);
 
-void initializeAccelerometer() {
+void initializeAccelerometer( ) {
+  initializeAccelerometer(1,1,1);
+}
+void initializeAccelerometer(
+        uint8_t PULSE_THSX,
+        uint8_t PULSE_THSY,
+        uint8_t PULSE_THSZ) {
+#ifndef POP_SIMULATOR
   Serial.println("Initializing accelerometer");
   Wire.begin(); //Join the bus as a master
   Serial.println("Joined bus");
@@ -40,7 +52,7 @@ void initializeAccelerometer() {
   Serial.println(c, HEX);
   if (c == 0x1A || c == 0x2A) // WHO_AM_I should be 0x1A or 0x2A
   {  
-    initMMA8452(SCALE, dataRate);  // init the accelerometer if communication is OK
+    initMMA8452(SCALE, dataRate, PULSE_THSX, PULSE_THSY, PULSE_THSZ);  // init the accelerometer if communication is OK
     if (c == 0x2A) 
       Serial.println("MMA8452Q is online...");
     else
@@ -55,9 +67,11 @@ void initializeAccelerometer() {
       delay(1000);
     }
   }
+#endif
 }
 
 void updateAccelerometer() {
+#ifndef POP_SIMULATOR
   float totalDiff = 0.0;
   float accelG[3];
   for(int i = 0; i < 3; i++)
@@ -80,6 +94,7 @@ void updateAccelerometer() {
       tapValue = readRegister(0x22); 
   }
   accelerometerCallback(totalDiff, accelG, tapValue);
+#endif
 }
 
 
@@ -108,7 +123,11 @@ void readAccelData(float * destination) {
 // See the many application notes for more info on setting all of these registers:
 // http://www.freescale.com/webapp/sps/site/prod_summary.jsp?code=MMA8452Q
 // Feel free to modify any values, these are settings that work well for me.
-void initMMA8452(uint8_t fsr, uint8_t dataRate)
+void initMMA8452(uint8_t fsr, uint8_t dataRate,
+	uint8_t PULSE_THSX,
+	uint8_t PULSE_THSY,
+	uint8_t PULSE_THSZ
+	)
 {
   MMA8452Standby();  // Must be in standby to change registers
 
@@ -148,9 +167,9 @@ void initMMA8452(uint8_t fsr, uint8_t dataRate)
   // writeRegister(0x21, 0x7F);  // 1. enable single/double taps on all axes
   writeRegister(0x21, 0x55);  // 1. single taps only on all axes
   // writeRegister(0x21, 0x6A);  // 1. double taps only on all axes
-  writeRegister(0x23, 0x01);  // 2. x thresh at 2g, multiply the value by 0.0625g/LSB to get the threshold
-  writeRegister(0x24, 0x01);  // 2. y thresh at 2g, multiply the value by 0.0625g/LSB to get the threshold
-  writeRegister(0x25, 0x01);  // 2. z thresh at .5g, multiply the value by 0.0625g/LSB to get the threshold
+  writeRegister(0x23, PULSE_THSX);  // 2. x thresh at 2g, multiply the value by 0.0625g/LSB to get the threshold
+  writeRegister(0x24, PULSE_THSY);  // 2. y thresh at 2g, multiply the value by 0.0625g/LSB to get the threshold
+  writeRegister(0x25, PULSE_THSZ);  // 2. z thresh at .5g, multiply the value by 0.0625g/LSB to get the threshold
   writeRegister(0x26, 0x30);  // 3. 30ms time limit at 800Hz odr, this is very dependent on data rate, see the app note
   writeRegister(0x27, 0xA0);  // 4. 200ms (at 800Hz odr) between taps min, this also depends on the data rate
   writeRegister(0x28, 0xFF);  // 5. 318ms (max value) between taps max
@@ -182,6 +201,7 @@ void MMA8452Active()
 // Read bytesToRead sequentially, starting at addressToRead into the dest byte array
 void readRegisters(uint8_t addressToRead, int bytesToRead, uint8_t * dest)
 {
+#ifndef POP_SIMULATOR
   Wire.beginTransmission(MMA8452_ADDRESS);
   Wire.write(addressToRead);
   Wire.endTransmission(I2C_NOSTOP); //endTransmission but keep the connection active
@@ -192,11 +212,13 @@ void readRegisters(uint8_t addressToRead, int bytesToRead, uint8_t * dest)
 
   for(int x = 0 ; x < bytesToRead ; x++)
     dest[x] = Wire.read();    
+#endif
 }
 
 // Read a single byte from addressToRead and return it as a byte
 uint8_t readRegister(uint8_t addressToRead)
 {
+#ifndef POP_SIMULATOR
   Wire.beginTransmission(MMA8452_ADDRESS);
   Wire.write(addressToRead);
   Wire.endTransmission(I2C_NOSTOP); //endTransmission but keep the connection active
@@ -205,12 +227,14 @@ uint8_t readRegister(uint8_t addressToRead)
 
   while(!Wire.available()) ; //Wait for the data to come back
   return Wire.read(); //Return this one byte
+#endif
 }
 
 // Read a single byte from addressToRead and return it as a byte, with a timeout
 // return -1 on timeout
 int readRegister(uint8_t addressToRead, unsigned long timeout)
 {
+#ifndef POP_SIMULATOR
   Wire.beginTransmission(MMA8452_ADDRESS);
   Wire.write(addressToRead);
   Wire.endTransmission(I2C_NOSTOP); //endTransmission but keep the connection active
@@ -223,15 +247,18 @@ int readRegister(uint8_t addressToRead, unsigned long timeout)
   if (!Wire.available())
     return -1;
   return Wire.read(); //Return this one byte
+#endif
 }
 
 // Writes a single byte (dataToWrite) into addressToWrite
 void writeRegister(uint8_t addressToWrite, uint8_t dataToWrite)
 {
+#ifndef POP_SIMULATOR
   Wire.beginTransmission(MMA8452_ADDRESS);
   Wire.write(addressToWrite);
   Wire.write(dataToWrite);
   Wire.endTransmission(); //Stop transmitting
+#endif
 }
 
 

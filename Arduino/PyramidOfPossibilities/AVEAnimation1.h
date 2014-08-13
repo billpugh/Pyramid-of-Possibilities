@@ -4,19 +4,18 @@
 //
 //
 
-#ifndef __PlatformData__AVEAnimation1__
-#define __PlatformData__AVEAnimation1__
+#ifndef __AVEAnimation1__
+#define __AVEAnimation1__
 
 #include "RNAnimation.h"
 #include "RNLights.h"
-#include "RNChaser.h"
 
 class AVEAnimation1 : public RNAnimation {
 public:
 
     AVEAnimation1(RNInfo & info, unsigned long animationStartMillis);;
     virtual void paint(RNLights & lights);
-    virtual char * name();
+    virtual const char * name();
 
 private:
     bool forward;
@@ -24,4 +23,4 @@ private:
     uint16_t currentPos;
 };
 
-#endif /* defined(__PlatformData__AVEAnimation1__) */
+#endif /* defined(__AVEAnimation1__) */

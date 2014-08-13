@@ -15,7 +15,7 @@ public:
   uint32_t halfrange; // range/2
   uint32_t maxval; // max position
   uint32_t minval;  // min position
-  uint32_t speed;
+  float speed;
   double width; // width (in same units as pos, maxval, minval) of a strobe band
   double width_speed;
   int8_t width_direction;

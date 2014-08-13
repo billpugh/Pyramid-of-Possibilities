@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include "Arduino.h"
 
-void p(char *fmt, ... ){
+void printf(char *fmt, ... ){
   char tmp[256]; // resulting string limited to 256 chars
   va_list args;
   va_start (args, fmt );

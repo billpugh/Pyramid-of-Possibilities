@@ -8,7 +8,7 @@ const int numLEDs = 220;
 //   NEO_GRB     Pixels are wired for GRB bitstream
 //   NEO_KHZ400  400 KHz bitstream (e.g. FLORA pixels)
 //   NEO_KHZ800  800 KHz bitstream (e.g. High Density LED strip)
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(numLEDs+10, 2, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(numLEDs+15, 2, NEO_GRB + NEO_KHZ800);
 
 const int ONBOARD_LED_PIN = 13;
 void setup() {
@@ -24,7 +24,7 @@ void setup() {
 }
 
 int count = 0;
-const int value = 128;
+const int value = 255;
 void loop() {
   count++;
   if (count >= numLEDs) {
@@ -33,9 +33,9 @@ void loop() {
   }
   for(int i = 0; i < numLEDs; i++) 
     if (i <= count || i+count > numLEDs)
-      strip.setPixelColor(i+10, value, value, value);
+      strip.setPixelColor(i+15, value, value, value);
     else
-      strip.setPixelColor(i+10, 0);
+      strip.setPixelColor(i+15, 0);
   strip.show();
 
 }

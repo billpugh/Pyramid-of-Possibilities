@@ -6,13 +6,35 @@
 //  Copyright (c) 2014 RN. All rights reserved.
 //
 
-#ifndef __PlatformData__Controller__
-#define __PlatformData__Controller__
+#ifndef __Controller__
+#define __Controller__
 
 #include "RNLights.h"
+#include "RNInfo.h"
+
+#include "RNAnimation.h"
+#include "Animations.h"
 #include "Accelerometer.h"
 
-void controllerPaint(RNLights & lights);
+
+class RNController {
+    
+    
+public:
+    RNController(RNInfo & info) : info(info) {
+        
+    }
+    
+    void paint(RNLights & lights);
+private:
+    RNInfo & info;
+    RNAnimation * currentAnimation = 0;
+    unsigned long animationExpires = 0;
+    AnimationEnum currentAnimationEnum = e_AnimationCount;
+    void nextAnimation();
+    void switchToAnimation(AnimationEnum nextAnimation);
+
+};
 
 
-#endif /* defined(__PlatformData__Controller__) */
+#endif /* defined(__Controller__) */

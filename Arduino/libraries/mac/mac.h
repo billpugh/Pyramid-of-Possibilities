@@ -1,7 +1,7 @@
-#include <Arduino.h>;
+#include <Arduino.h>
 
 extern uint8_t mac[6];
 
-void read_mac();
+const uint8_t *  read_mac();
 void print_mac();
 

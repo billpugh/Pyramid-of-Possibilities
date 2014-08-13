@@ -5,21 +5,22 @@
 //  Copyright (c) 2014 RN. All rights reserved.
 //
 
-#ifndef __PlatformData__WWPAnimationTest__
-#define __PlatformData__WWPAnimationTest__
+#ifndef __WWPAnimationTest__
+#define __WWPAnimationTest__
 
 #include "RNAnimation.h"
+#include "RNGradient.h"
 
 class WWPAnimationTest : public RNAnimation {
 public:
     WWPAnimationTest(RNInfo & info, unsigned long animationStartMillis)
-    : RNAnimation(info, animationStartMillis), hue(info.getRandom(256)) {};
+    : RNAnimation(info, animationStartMillis) {
+       };
+
     virtual void paint(RNLights & lights);
     
-    virtual char * name();
-    
-    uint8_t hue;
+    virtual const char * name();
 
 };
 
-#endif /* defined(__PlatformData__WWPAnimationTest__) */
+#endif /* defined(__WWPAnimationTest__) */

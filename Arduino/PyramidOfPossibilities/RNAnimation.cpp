@@ -7,11 +7,20 @@
 //
 
 #include "Arduino.h"
-
+#include "string.h"
 #include "RNAnimation.h"
 
 
-RNAnimation::RNAnimation(RNInfo & info, unsigned long animationStartMillis) : info(info), animationStartMillis(animationStartMillis) {};
+RNAnimation::RNAnimation(RNInfo & info, unsigned long animationStartMillis) : info(info), animationStartMillis(animationStartMillis) {
+    parametersPointer = 0;
+    parametersSize = 0;
+};
+
+RNAnimation::RNAnimation(RNInfo & info, unsigned long animationStartMillis,
+            unsigned int parametersSize, void *parametersPointer
+            )  : info(info), animationStartMillis(animationStartMillis), parametersSize(parametersSize), parametersPointer(parametersPointer) {
+    
+}
 
 
 // Gives the time in milliseconds since this animation starter
@@ -20,15 +29,32 @@ RNAnimation::getAnimationMillis() {
     return millis() - animationStartMillis;
 }
 
+float RNAnimation::getAnimationMinutes() {
+    return (millis() - animationStartMillis)/60000.0;
+}
 // Default is to ignore parameters
-void RNAnimation::setParameters(int size, char * data) {
+bool RNAnimation::setParameters(int size, char * data) {
     
+    // Validate that we can set parameters
+    if ( parametersSize <= 0 || parametersPointer == 0 ) {
+        // animation class did not setup it's parameters info properly.
+        info.printf("Error: Failed to set parameters for %s, no setup\n", name());
+        return false;
+    }
+    if ( size != parametersSize ) {
+        info.printf("Error: Failed to set parameters for %s. bad size %d/%d\n", name(), size, parametersSize);
+        return false;
+    }
+    
+    memcpy(parametersPointer, data, size);
+    info.printf("Copied new parameters for %s\n", name());
+    return true;
 }
 
-  char * RNAnimation:: name() {
+const char * RNAnimation:: name() {
     return "Unknown";
-  }
-   
-   
+}
+
+
 
 void RNAnimation::paint(RNLights &lights) {}

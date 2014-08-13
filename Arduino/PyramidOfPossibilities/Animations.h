@@ -6,39 +6,60 @@
 //  Copyright (c) 2014 RN. All rights reserved.
 //
 
-#ifndef __PlatformData__Animations__
-#define __PlatformData__Animations__
+#ifndef __Animations__
+#define __Animations__
 
 #include "RNAnimation.h"
 
 
 enum  AnimationEnum {
 
-  e_WWPAnimationTest,
-  e_ActivityLevelAnimation,
-  e_GlowFade,
-  
-  // Animations defined by Bill Pugh (WWP)
-  e_WWPAnimation1,
-  e_WWPAnimation2,
-  e_WWPAnimation3,
-  e_WWPAnimation4,
-  e_WWPAnimation5,
+      e_Beacon,
+    // Branden's animations
+    e_Kittens,
 
-  // Danny's animations.
-  e_DRAnimation0,   // RGB simple
-  e_DRAnimation1,   // RNBeam
-  
-  // milos animations
-  e_MMAnimation0,   		// strip color cycles through HSV, tapping activity brightens, no activity fades out
-  e_MMAnimation1,   		// same as 0, but takes globaltime for cycling through HSV
-  
 
-  // Not an actual enum, just the value used to give us the count of the number of enums
-  e_AnimationCount};
+  e_FlashEcho,
+
+    e_Radial,
+    e_Mute,
+
+
+    e_GlowFade,
+
+    e_WWPAnimationTest,
+    e_ActivityLevelAnimation,
+
+    e_SideEffects,
+
+    // Animations defined by Bill Pugh (WWP)
+    e_ChangingColor,
+    e_CircularGradient,
+
+    e_ColorWorms,
+    e_Chasers,
+    e_FlashAttack,
+    e_Snow,
+    e_Swirl,
+
+    // Danny's animations.
+    e_Qbert,   // RGB simple
+    e_DRAnimation1,   // RNBeam
+
+    // Antoine's animations
+    e_Flashes,
+    e_AVEAnimation1,
+
+    // meelows animations
+    e_MMAnimation0,   		// strip color cycles through HSV, tapping activity brightens, no activity fades out
+	e_MMAnimation1,   		// same as 0, but takes globaltime for cycling through HSV
+
+
+    // Not an actual enum, just the value used to give us the count of the number of enums
+    e_AnimationCount};
 
 
 RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animationStartMillis );
 
-#endif /* defined(__PlatformData__Animations__) */
+#endif /* defined(__Animations__) */
 

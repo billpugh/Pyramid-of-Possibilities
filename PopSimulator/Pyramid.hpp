@@ -40,6 +40,11 @@ private:
     GLuint AmbientColorID;
     GLuint SpecularColorID;
     GLuint vertexNormal_modelspaceID;
+    
+    GLuint ledsProgramId;
+    GLuint ledsMatrixId;
+    GLuint ledsVertexPosition_modelspaceID;
+    GLuint ledsVertexColorID;
 
     int g_vertex_buffer_data_length;
     GLfloat* g_vertex_buffer_data;

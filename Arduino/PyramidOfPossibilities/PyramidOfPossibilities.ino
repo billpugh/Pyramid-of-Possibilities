@@ -1,5 +1,6 @@
 // All libraries used in any other file need to be included here
 
+#include "Constants.h"
 #include "OctoWS2811.h"
 #include "Adafruit_NeoPixel.h"
 #include "Accelerometer.h"
@@ -10,44 +11,48 @@
 #include "hsv2rgb.h"
 #include "Controller.h"
 #include "RNSerial.h"
+#include "ledPositions.h"
+#include "mac.h"
+#include "easing.h"
+#include "watchdog.h"
+#include "RNEEPROM.h"
+#include "PopMain.h"
+#include "TimerThree.h"
+#include <EEPROM.h>
 #include <malloc.h>
 
-#define FULL_STRIP 1
+// the setup() and loop() methods are in Main.cpp
+// As little code as possible should go here, since Xcode/clang won't check it.
 
-#if FULL_STRIP
-const int LEDs = 220;
-const int FIRST_LED = 10;
+DMAMEM uint8_t displayMemory[240*24];
+uint8_t drawingMemory[240*24];
 
-#else
-const int LEDs = 60;
-const int FIRST_LED = 0;
+ const int LAST_LED = constants.FIRST_LED+constants.LEDs-1;
+  const int ledsPerStrip = LAST_LED+1;
 
-#endif
+  OctoWS2811 leds(ledsPerStrip, displayMemory, drawingMemory);
 
-const int LAST_LED = FIRST_LED+LEDs-1;
+  RNLightsOctoWS2811 oLights(leds, drawingMemory, constants.FIRST_LED);
 
-const int ledsPerStrip = LAST_LED+1;
+RNLights *lights;
 
-RNInfo info(LEDs, 0,0,0,0,0,0);
-DMAMEM uint8_t displayMemory[ledsPerStrip*24];
-uint8_t drawingMemory[ledsPerStrip*24];
-
-OctoWS2811 leds(ledsPerStrip, displayMemory, drawingMemory);
-
-RNLightsOctoWS2811 lights(leds, drawingMemory, FIRST_LED);
-
-static int heapSize(){
-  return mallinfo().uordblks;
+void initializeConstantsFromEEPROM() {
 }
 
-const int ONBOARD_LED_PIN = 13;
-void setup() {
+void initializeLEDs() {
   leds.begin();
   leds.show();
+  lights = & oLights;
 
-  Serial.println(lights.getNumPixels());
+}
+void setup() {
 
-  pinMode(ONBOARD_LED_PIN, OUTPUT); 
+  initializeConstantsFromEEPROM();
+  initializeLEDs();
+
+  Serial.begin(constants.usbSerialBaudRate);
+
+  pinMode(ONBOARD_LED_PIN, OUTPUT);
   for(int i = 0; i < 5; i++) {
     digitalWrite(ONBOARD_LED_PIN, HIGH);
     delay(700);
@@ -55,67 +60,6 @@ void setup() {
     delay(300);
   }
 
-  Serial.begin(115200);
-  Serial.println("Started");
-  Serial.println(leds.numPixels());
-  Serial.println(lights.getNumPixels());
-  initializeAccelerometer();
-  setupSerial2(9600);
+  setupMain();
 }
-const uint8_t chunk = 16;
-uint8_t scaleBrightness(uint8_t value) {
-  uint8_t result = 0;
-  while (value > chunk) {
-    result += chunk;
-    value -= chunk;
-    value/= 2;
-  }
-  return result + value;
-
-}
-
-unsigned long avgTime = 0;
-int count = 0;
-void loop() {
-  unsigned long startMicros = micros();
-  updateAccelerometer();
-  lights.reset();
-
-  controllerPaint(lights);
-
-  uint8_t avgPixelBrightness = lights.getAvgPixelBrightness();
-  uint8_t avgBrightness = avgPixelBrightness * lights.getBrightness()/256;
-  if (avgBrightness > 16) {
-
-    int goal= scaleBrightness(avgBrightness);
-    
-    int newBrightness = goal * 255 / avgPixelBrightness;
-    info.printf("Avg brightness is %d/%d, goal is %d, Reducing brightness from %d -> %d\n",
-    avgPixelBrightness, avgBrightness, goal, lights.getBrightness(), newBrightness);
-    lights.setBrightness(newBrightness);
-  }
-  //  else info.printf("Avg brightness is %d/%d\n", avgPixelBrightness, avgBrightness);
-
-
-
-  lights.show();
-  unsigned long endMicros = micros();
-  avgTime = (15*avgTime + endMicros - startMicros)/16;
-
-  int timeToDelay = (10 - (endMicros - startMicros)/1000);
-  if (timeToDelay > 0)
-    delay(timeToDelay);
-  int blink = (millis() /100)%2;
-  digitalWrite(ONBOARD_LED_PIN, blink);
-  if (count++ >= 100) {
-    info.printf("Avg time = %5d, delay = %dms, heapSize = %d\n",
-    avgTime, timeToDelay, heapSize());
-    count = 0;
-  }
-  // Serial.println(millis()/10);
-}
-
-
-
-
 

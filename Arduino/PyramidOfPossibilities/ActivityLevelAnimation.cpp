@@ -13,7 +13,7 @@
 
 ActivityLevelAnimation::ActivityLevelAnimation(RNInfo & info, unsigned long animationStartMillis)
 : 
-RNAnimation(info, animationStartMillis), level(0), direction(random(2)*2-1) {
+RNAnimation(info, animationStartMillis), level(0){
 };
 
 
@@ -28,7 +28,7 @@ void ActivityLevelAnimation::paint(RNLights & lights) {
     level = (15*level + num)/16;
 
 
-  int hue = info.timeSinceLastTap()/8;
+  int hue = (int)(info.timeSinceLastTap()/8);
   if (hue > 180) hue = 180;
 
   int16_t position =  0; // getAnimationMillis() * info.numLEDs/10000;
@@ -42,7 +42,7 @@ void ActivityLevelAnimation::paint(RNLights & lights) {
 
 }
 
-char * ActivityLevelAnimation:: name() {
+const char * ActivityLevelAnimation:: name() {
   return "ActivityLevelAnimation";
 }
 

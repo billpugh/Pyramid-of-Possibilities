@@ -1,4 +1,4 @@
-#import "RNBeam.h"
+#include "RNBeam.h"
 
 #define DEBUG_LED_ID 15
 
@@ -76,7 +76,7 @@ uint32_t RNBeam::convertCoordinateToLED(int coordinate, int8_t roundingDirection
 
 void RNBeam::loop(unsigned long millis) {
 
-	position = ((millis / speed)+offset) % range;
+	position = ((int)(millis / speed)+offset) % range;
 
 
 // DISABLING WIDTH STUFF FOR PERFORMANCE TESTING
