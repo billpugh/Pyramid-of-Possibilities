@@ -55,7 +55,7 @@ inline  uint16_t RNGradient::mix(uint8_t position, uint16_t s, uint16_t e) {
 inline void RNGradient::getValue(int32_t position, uint8_t &v1, uint8_t &v2, uint8_t &v3) {
     position = normalize(position);
     v1 = mix(position, s1, e1);
-    v2 = mix(position, s2, e3);
+    v2 = mix(position, s2, e2);
     v3 = mix(position, s3, e3);
 }
 void RNGradient::getColor(int32_t position, uint8_t &red, uint8_t &green, uint8_t &blue) {
