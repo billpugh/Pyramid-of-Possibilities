@@ -27,25 +27,28 @@
 DMAMEM uint8_t displayMemory[240*24];
 uint8_t drawingMemory[240*24];
 
+ const int LAST_LED = constants.FIRST_LED+constants.LEDs-1;
+  const int ledsPerStrip = LAST_LED+1;
+
+  OctoWS2811 leds(ledsPerStrip, displayMemory, drawingMemory);
+
+  RNLightsOctoWS2811 oLights(leds, drawingMemory, constants.FIRST_LED);
+
 RNLights *lights;
 
 void initializeConstantsFromEEPROM() {
 }
 
 void initializeLEDs() {
-  const int LAST_LED = constants.FIRST_LED+constants.LEDs-1;
-  const int ledsPerStrip = LAST_LED+1;
+  leds.begin();
+  leds.show();
+  lights = & oLights;
 
-  OctoWS2811* leds = new OctoWS2811(ledsPerStrip, displayMemory, drawingMemory);
-  leds->begin();
-  leds->show();
-  lights = new RNLightsOctoWS2811(*leds, drawingMemory, constants.FIRST_LED);
 }
 void setup() {
 
   initializeConstantsFromEEPROM();
   initializeLEDs();
-
 
   Serial.begin(constants.usbSerialBaudRate);
 
