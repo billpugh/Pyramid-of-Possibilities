@@ -33,6 +33,7 @@
 #include "MovingFaces.h"
 #include "Radial.h"
 #include "FlashEcho.h"
+#include "Mute.h"
 
 #include "Kittens.h"
 #include "MovingFaces.h"
@@ -45,7 +46,10 @@ RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animati
 
         case e_Kittens:
             return new Kittens(info, animationStartMillis);
-            
+
+        case e_Mute:
+            return new Mute(info, animationStartMillis);
+
         case e_ActivityLevelAnimation:
             return new ActivityLevelAnimation(info, animationStartMillis);
 
@@ -93,6 +97,7 @@ RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animati
             return new FlashEcho(info, animationStartMillis);
 
         default:
+            info.printf("Got request for non-existent animation %d\n", a);
             return 0;
     }
 }

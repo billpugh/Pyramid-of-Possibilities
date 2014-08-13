@@ -10,15 +10,30 @@
 
 void FlashEcho::paint(RNLights & lights) {
 
-    bool isTap = info.getTaps()
-    || info.getLocalActivity() > parameters.activityThreshold;
+    bool isTap = false;
+	float activity = info.getLocalActivity();
 
+	info.printf("Activity = %.3f. tapEligible = %s\n", activity, tapEligible ? "YES":"NO" );
+
+	if ( tapEligible ) {
+		if ( activity > parameters.maxActivityThreshold ) {
+			isTap = true;
+			tapEligible = false;
+			lastTapTimestamp = info.getGlobalMillis();
+		}
+	} else {
+		if ( activity < parameters.minActivityThreshold ) {
+			tapEligible = true;
+		}
+	}
+
+	fade();
 
 	if ( replayMode ) {
 
 		// REPLAY MODE
 
-		if ( info.getTaps() ) {
+		if ( isTap ) {
 			setIsReplaying(0);
 		} else {
 			playHistory();
@@ -32,20 +47,38 @@ void FlashEcho::paint(RNLights & lights) {
 			flash();
 			recordFlash();
 		}
-	
-		if ( info.timeSinceLastTap() > parameters.lullDuration ) {
+		
+		// info.getGlobalMillis() - lastTapTimestamp is time since last tap. We must use our own version based off lastTapTimestamp rather than info.lastTapTimestamp since we define taps differently.
+		if ( info.getGlobalMillis() - lastTapTimestamp > parameters.lullDuration ) {
 			setIsReplaying(1);
 		}
 
 	}
 
-	fade();
-
 	// detect overflow (more taps than our buffer can hold) and make the lights blueish.
-	uint8_t overflow = (!replayMode && historyWriteHead >= historySize-1);
+	bool overflow = (!replayMode && historyWriteHead >= historySize-1);
 
 	// set lights!
-	lights.setAllPixelColors(!replayMode ? brightness : 0, replayMode ? brightness : 0, overflow ? 100 : 0);
+
+
+	uint8_t r,g,b;
+
+	if ( overflow ) {
+
+		r = brightness;
+		g = brightness;
+		b = brightness;
+
+	} else {
+
+		RNGradient *gradientToUse = replayMode ? &(parameters.playbackGradient) : &(parameters.recordingGradient);
+
+		gradientToUse->getColor(brightness, r, g, b);
+		lights.setAllPixelColors(r,g,b);
+
+	}
+	lights.setAllPixelColors(r,g,b);
+	lights.setBrightness(brightness);
 }
 
 void FlashEcho::playHistory() {
@@ -94,7 +127,7 @@ void FlashEcho::recordFlash() {
 	unsigned long timediff = info.getGlobalMillis() - lastModeSwitchTimestamp;
 	tapHistory[historyWriteHead] = timediff;
 
-    // info.printf("Recording flash[%d] @ %lu\n", historyWriteHead, timediff);
+    info.printf("Recording flash[%d] @ %lu.\n", historyWriteHead, timediff);
 
 	historyWriteHead++;
 	if ( historyWriteHead >= historySize ) {

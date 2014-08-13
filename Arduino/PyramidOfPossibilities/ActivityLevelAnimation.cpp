@@ -28,7 +28,7 @@ void ActivityLevelAnimation::paint(RNLights & lights) {
     level = (15*level + num)/16;
 
 
-  int hue = info.timeSinceLastTap()/8;
+  int hue = (int)(info.timeSinceLastTap()/8);
   if (hue > 180) hue = 180;
 
   int16_t position =  0; // getAnimationMillis() * info.numLEDs/10000;

@@ -13,6 +13,8 @@
 
  unsigned long millis();
  unsigned long micros();
+ void interrupts();
+ void noInterrupts();
  void delay(uint16_t millis);
  void digitalWrite(uint8_t ONBOARD_LED_PIN, bool LOW);
 

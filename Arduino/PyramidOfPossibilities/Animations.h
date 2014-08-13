@@ -14,15 +14,16 @@
 
 enum  AnimationEnum {
 
+      e_Beacon,
+    // Branden's animations
+    e_Kittens,
+
     e_FlashEcho,
 
     e_Radial,
+    e_Mute,
 
-    // Branden's animations
-    e_Kittens, 
-    
 
-    e_Beacon,
     e_GlowFade,
 
     e_WWPAnimationTest,
