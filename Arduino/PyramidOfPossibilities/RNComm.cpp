@@ -14,8 +14,10 @@
 
 
 const uint8_t MAX_LENGTH = 255;
-char buffer[MAX_LENGTH];
-int bufferPosition;
+char receiveBuffer[MAX_LENGTH];
+int receiveBufferPosition;
+char sendBuffer[MAX_LENGTH];
+int sendBufferPosition;
 bool awaitingBody;
 uint8_t kind;
 uint8_t length;
@@ -44,11 +46,11 @@ void checkCommHead(RNInfo & info) {
     uint8_t k = getHeaderByte();
     while (k != 'p') {
         info.printf("Rejecting kind of %x\n", k);
-        k = getHeaderByte();
         if (Serial2.available() < 3) {
             lookForData(info);
             return;
         }
+        k = getHeaderByte();
     }
     kind = k;
     length = getHeaderByte();
@@ -68,8 +70,8 @@ bool checkCommBody(RNInfo & info) {
         }
         return false;
     }
-    Serial2.readBytes(buffer, length);
-    bufferPosition = 0;
+    Serial2.readBytes(receiveBuffer, length);
+    receiveBufferPosition = 0;
     awaitingBody = false;
     lookForData(info);
     // TODO: check checksum
@@ -80,7 +82,7 @@ bool checkCommBody(RNInfo & info) {
 
 
 uint8_t get8Bits() {
-    return buffer[bufferPosition++];
+    return receiveBuffer[receiveBufferPosition++];
 }
 
 uint16_t get16Bits() {
@@ -99,6 +101,29 @@ float getFloat() {
     return u.f;
 }
 
+void put8Bits(uint8_t value) {
+    sendBuffer[sendBufferPosition++] = value;
+}
+
+void put16Bits(uint16_t value) {
+    put8Bits(value);
+    put8Bits(value>>8);
+}
+
+void put32Bits(uint32_t value) {
+    put8Bits(value);
+    put8Bits(value>>8);
+    put8Bits(value>>16);
+    put8Bits(value>>24);
+}
+
+
+void putFloat(float value) {
+    floatRep u;
+    u.f = value;
+    put32Bits(u.i);
+}
+
 uint8_t status;
 uint32_t lastGlobalTime;
 int32_t adjustmentToMillisToGetGlobal;
@@ -112,6 +137,24 @@ void initializeComm(RNInfo &info) {
     setupSerial2(constants.serial2BaudRate);
     initializeCommDaemonTimer();
 }
+
+void prepareReportToCentral(RNInfo &info) {
+    sendBufferPosition = 0;
+    put8Bits('t');
+    put8Bits(0);
+    put8Bits(0);
+    put8Bits(0); // status
+    put8Bits(info.identifier);
+    put8Bits(info.wirePosition);
+    put8Bits(info.getTaps());
+    float gData[3];
+    info.getLocalXYZActivity(gData);
+    putFloat(gData[0]);
+    putFloat(gData[1]);
+    putFloat(gData[2]);
+    sendBuffer[2] = sendBufferPosition;
+}
+
 void parseProgramMessage(RNInfo & info) {
     status = get8Bits();
     lastGlobalTime = get32Bits();
@@ -126,10 +169,12 @@ void parseProgramMessage(RNInfo & info) {
     info.printf("Got message at %d, program %d\n", messageReceiveTime, program);
     info.printf("local time %d, Global time %d\n",millis(), lastGlobalTime
                 );
+    prepareReportToCentral(info);
     comm_time_t sendResponseAt = messageReceiveTime + 20 + 10*info.wirePosition;
     info.printf("wirePosition %d, scheduling response for %d\n",info.wirePosition, sendResponseAt
                 );
-    if (!scheduleSend(info, sendResponseAt))
+    prepareReportToCentral(info);
+    if (!scheduleSend(info, sendResponseAt, sendBufferPosition, sendBuffer))
         info.println("Unable to schedule send");
     }
 

@@ -57,6 +57,7 @@ struct RNConstants {
     const uint16_t pyramidRadiusFromGround = 7796;
 
     const uint16_t serial2BaudRate = 38400;
+    const uint16_t usbSerialBaudRate = 115200;
     const uint16_t watchdogTimeout = 10000;
     
 };
