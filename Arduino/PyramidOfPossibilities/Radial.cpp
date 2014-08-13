@@ -38,9 +38,9 @@ void Radial::paint(RNLights & lights) {
     float thickness = parameters.thickness
     * constants.pyramidRadiusFromGround;
 
-    float innerShellBoundry = r - parameters.thickness;
-    float outerShellBoundry = r + parameters.thickness;
-    float doublethickness = parameters.thickness * 2;
+    float innerShellBoundry = r - thickness;
+    float outerShellBoundry = r + thickness;
+    float doublethickness = thickness * 2;
 
     int in = 0;
     int out = 0;
