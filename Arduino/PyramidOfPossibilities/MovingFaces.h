@@ -10,15 +10,15 @@
 #include "RNAnimation.h"
 #include "RNLights.h"
 #include "easingSelect.h"
+#include "RNGradient.h"
 
 struct MovingFacesParameters {
     short edgePlatform1[3] = {0, 7919, 762};
     short edgePlatform2[3] = {-6858, -3959, 610};
     short edgePlatform3[3] = {6858, -3959, 686};
     short edgePlatform4[3] = {0, 0, 9144};
-    uint8_t red = 255;
-    uint8_t green = 255;
-    uint8_t blue = 255;
+    RNGradient gradientInside = RNGradient(0, RNGradientCapped, 0x000000, 0xff0000);
+    RNGradient gradientOutside = RNGradient(0, RNGradientCapped, 0x000002, 0x000002);
     unsigned long duration = 1000;
     int thickness = 800;
     EasingMode easingMode = EaseInOut;
@@ -40,6 +40,7 @@ private:
     short * pointB;
     short * pointC;
     short * pointD;
+    float distanceAD;
 
     /**
      * Get the equation of the plan defined by the points ABC in the form

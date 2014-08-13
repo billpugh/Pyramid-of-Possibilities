@@ -27,6 +27,10 @@ void MovingFaces::paint(RNLights & lights) {
         pointB = pointD;
         pointD = backupA;
 
+        int diffX = pointD[0] - pointA[0];
+        int diffY = pointD[1] - pointA[1];
+        int diffZ = pointD[2] - pointA[2];
+        distanceAD = sqrt(diffX * diffX + diffY * diffY + diffZ * diffZ);
         startTime = now;
         targetTime = now + parameters.duration;
     }
@@ -57,10 +61,18 @@ void MovingFaces::paint(RNLights & lights) {
                 a, b, c, d,
                 xLED, yLED, zLED);
 
-        if (abs(distance) < parameters.thickness) {
-            lights.setPixelColor(i,
-                    parameters.red, parameters.green, parameters.blue);
+        RNGradient *gradientToUse = NULL;
+        float point = 0;
+        if (abs(distance) <= parameters.thickness) {
+            gradientToUse = &(parameters.gradientInside);
+            point = (float) (parameters.thickness - abs(distance)) /
+                    (float) parameters.thickness;
+        } else {
+            gradientToUse = &(parameters.gradientOutside);
+            point = (float) abs(distance) / (float) distanceAD;
         }
+        uint32_t color = gradientToUse->getColor(point * 255);
+        lights.setPixelColor(i, color);
     }
 
     lastUpdate = now;
