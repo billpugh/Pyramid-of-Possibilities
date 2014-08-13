@@ -17,7 +17,7 @@ struct MovingFacesParameters {
     short edgePlatform2[3] = {-6858, -3959, 610};
     short edgePlatform3[3] = {6858, -3959, 686};
     short edgePlatform4[3] = {0, 0, 9144};
-    RNGradient gradientInside = RNGradient(0, RNGradientCapped, 0x000000, 0xff0000);
+    RNGradient gradientInside = RNGradient(0, RNGradientCapped, 0x000000, 0x00ff00);
     RNGradient gradientOutside = RNGradient(0, RNGradientCapped, 0x000002, 0x000002);
     bool summitColorMode = false;
     uint32_t summit1Color = 0xff0000;

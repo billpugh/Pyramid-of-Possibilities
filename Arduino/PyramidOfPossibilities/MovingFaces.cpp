@@ -120,9 +120,9 @@ uint32_t MovingFaces::mixColors(uint32_t color1, float ratio1,
 
     uint8_t max = max(red, max(green, blue));
     if (max != 0) {
-        red *= 255 / max;
-        green *= 255 / max;
-        blue *= 255 / max;
+        red *= 255.0 / max;
+        green *= 255.0 / max;
+        blue *= 255.0 / max;
     }
 
     return (red << 16) | (green << 8) | blue;
