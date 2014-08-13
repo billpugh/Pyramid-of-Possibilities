@@ -2,7 +2,7 @@
 //  DRAnimation0.h
 //  PlatformData
 //
-//  Created by Danny
+//  Created by Meelow based on Bills and Dannys work
 //  Copyright (c) 2014 RN. All rights reserved.
 //
 

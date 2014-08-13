@@ -8,26 +8,36 @@
 
 #include "MMAnimation1.h"
 
-#define MIN_BRIGHTNESS 50
-#define MAX_BRIGHTNESS 120
-#define STEP_BRIGHTNESS 3
+#define MIN_BRIGHTNESS 20
+#define MAX_BRIGHTNESS 250
+#define STEP_BRIGHTNESS 5
 
-#define DEBUG false  // print msgs over serial
+#define DEBUG true  // print msgs over serial
 
 static uint8_t brightness = MIN_BRIGHTNESS;
 static unsigned long lastActivity=0;
 
 void MMAnimation1::paint(RNLights & lights) 
 {
-
+  // flash on value if there was a tap, if not use brightness for value
+  int value = 255 - info.timeSinceLastTap();
+  if (value < 20)
+    value = 20;
+  if (value < brightness)
+    value = brightness;	
+	
+  // hue is made from globaltime	
   uint8_t hue = (info.getGlobalMillis() / 150) % 256;
-  lights.setAllPixelHSVs(hue,250,brightness);  
+
+  lights.setAllPixelHSVs(hue,250,value);  
+  
+  // increase /decrease brightness:
   if(info.getTaps() )
   {
     if( brightness<MAX_BRIGHTNESS ) brightness+=STEP_BRIGHTNESS;
     if(DEBUG) info.printf("[MM1]: brightness=%i\n", brightness);
 	lastActivity = getAnimationMillis();
-    if(DEBUG)
+    if(false)
 	{
 	  info.printf("[MM1]: numLEDs %i\n", info.numLEDs);
 	  info.printf("[MM1]: tier    %i\n", info.tier);
@@ -40,9 +50,6 @@ void MMAnimation1::paint(RNLights & lights)
 	  info.printf("[MM1]: getGlobalMillis    %u\n", info.getGlobalMillis());
 	  info.printf("[MM1]: getRandom          %i\n", info.getRandom(1000));
 	  info.printf("[MM1]: getRandomPixel     %i\n", info.getRandomPixel());
-	  
-	  
-
 	}
   }
   
