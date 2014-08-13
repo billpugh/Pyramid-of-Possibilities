@@ -35,6 +35,8 @@ void Radial::paint(RNLights & lights) {
     // calculate position of the radial based on t
     float r = locationForT(t);
 
+    float thickness = parameters.thickness
+    * constants.pyramidRadiusFromGround;
 
     float innerShellBoundry = r - parameters.thickness;
     float outerShellBoundry = r + parameters.thickness;
@@ -43,7 +45,7 @@ void Radial::paint(RNLights & lights) {
     int in = 0;
     int out = 0;
     int middle = 0;
-    float minDistance = 10000;
+    float minDistance = 100000;
     float maxDistance = 0;
 
 
