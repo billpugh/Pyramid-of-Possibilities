@@ -53,10 +53,14 @@ void Kittens::paint(RNLights & lights) {
         uint8_t b = colorRGB;
 
         if (fabs(distance) < 1) {
-            // pounce
-            p1 -= 2;
-            p2 += 2;
             kittens[i].goal = info.getRandomPixel();
+            if (parameters.pounce) {
+                // pounce
+                p1 -= 2;
+                p2 += 2;
+                r = g = b = 255;
+            }
+
         }
 
         for(int i = floor(p1); i <= ceil(p2); i++)
