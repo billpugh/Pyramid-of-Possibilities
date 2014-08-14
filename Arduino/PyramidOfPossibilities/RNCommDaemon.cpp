@@ -23,6 +23,10 @@ static volatile comm_time_t sentAt;
 static volatile char* sendBuffer;
 static volatile uint8_t sendBufferSize;
 
+// Called in an interrupt context
+void sendNow() {
+    Serial2.write((const uint8_t *)sendBuffer, sendBufferSize);
+}
 
 // Called in an interrupt context
 void commDaemonCheck() {
@@ -35,6 +39,7 @@ void commDaemonCheck() {
         comm_time_t now = (comm_time_t)millis();
         if (now < sendAt)
             return;
+        sendNow();
         waitingToSend = false;
         sentAt = now;
     }
@@ -80,6 +85,7 @@ comm_time_t getSentAt() {
     interrupts();
     return result;
 }
+
 void lookForData(RNInfo &info) {
 
     if (waitingForReceive) {
