@@ -56,6 +56,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/1731549632/Qbert.o \
 	${OBJECTDIR}/_ext/1731549632/RNAnimation.o \
 	${OBJECTDIR}/_ext/1731549632/RNBeam.o \
+	${OBJECTDIR}/_ext/1731549632/RNComm.o \
 	${OBJECTDIR}/_ext/1731549632/RNEEPROM.o \
 	${OBJECTDIR}/_ext/1731549632/RNInfo.o \
 	${OBJECTDIR}/_ext/1731549632/Radial.o \
@@ -211,6 +212,11 @@ ${OBJECTDIR}/_ext/1731549632/RNBeam.o: ../Arduino/PyramidOfPossibilities/RNBeam.
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/RNBeam.o ../Arduino/PyramidOfPossibilities/RNBeam.cpp
+
+${OBJECTDIR}/_ext/1731549632/RNComm.o: ../Arduino/PyramidOfPossibilities/RNComm.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/RNComm.o ../Arduino/PyramidOfPossibilities/RNComm.cpp
 
 ${OBJECTDIR}/_ext/1731549632/RNEEPROM.o: ../Arduino/PyramidOfPossibilities/RNEEPROM.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632

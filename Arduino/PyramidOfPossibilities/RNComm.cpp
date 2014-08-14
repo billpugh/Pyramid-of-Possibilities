@@ -30,14 +30,15 @@ union floatRep {
     float f;
     uint32_t i;
 };
-uint8_t getHeaderByte() {
-    int b = Serial2.read();
-    return (uint8_t) b;
-}
 
 #ifdef POP_SIMULATOR
 void checkComm(RNInfo &info) {}
 #else
+
+uint8_t getHeaderByte() {
+    int b = Serial2.read();
+    return (uint8_t) b;
+}
 
 void checkCommHead(RNInfo & info) {
     if (!dataAvailable(info, messageReceiveTime))

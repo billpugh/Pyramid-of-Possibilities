@@ -39,6 +39,7 @@
       <itemPath>../Arduino/PyramidOfPossibilities/RNAnimation.h</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/RNBeam.h</itemPath>
       <itemPath>../Arduino/libraries/RNChaser/RNChaser.h</itemPath>
+      <itemPath>../Arduino/PyramidOfPossibilities/RNComm.h</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/RNEEPROM.h</itemPath>
       <itemPath>../Arduino/libraries/RNLights/RNGradient.h</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/RNInfo.h</itemPath>
@@ -101,6 +102,7 @@
       <itemPath>../Arduino/PyramidOfPossibilities/RNAnimation.cpp</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/RNBeam.cpp</itemPath>
       <itemPath>../Arduino/libraries/RNChaser/RNChaser.cpp</itemPath>
+      <itemPath>../Arduino/PyramidOfPossibilities/RNComm.cpp</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/RNEEPROM.cpp</itemPath>
       <itemPath>../Arduino/libraries/RNLights/RNGradient.cpp</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/RNInfo.cpp</itemPath>
@@ -313,6 +315,7 @@
             <pElem>.</pElem>
             <pElem>../Arduino/libraries/FastLED</pElem>
             <pElem>../Arduino/libraries/AHEasing</pElem>
+            <pElem>../Arduino/libraries/RNSerial</pElem>
           </incDir>
           <commandLine>-Wno-write-strings</commandLine>
         </ccTool>
@@ -526,6 +529,16 @@
             flavor2="0">
       </item>
       <item path="../Arduino/PyramidOfPossibilities/RNBeam.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/RNComm.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/RNComm.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -971,6 +984,16 @@
             flavor2="0">
       </item>
       <item path="../Arduino/PyramidOfPossibilities/RNBeam.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/RNComm.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/RNComm.h"
             ex="false"
             tool="3"
             flavor2="0">
