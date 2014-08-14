@@ -81,6 +81,8 @@
 		1690A1641993CA83006C4A5A /* watchdog.h in Headers */ = {isa = PBXBuildFile; fileRef = 1690A1631993CA83006C4A5A /* watchdog.h */; };
 		16BA0E48199B9B17007E85F8 /* Mute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16BA0E46199B9B17007E85F8 /* Mute.cpp */; };
 		16BA0E49199B9B17007E85F8 /* Mute.h in Headers */ = {isa = PBXBuildFile; fileRef = 16BA0E47199B9B17007E85F8 /* Mute.h */; };
+		16BA0E4C199D06F0007E85F8 /* MovingFaces.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16BA0E4A199D06F0007E85F8 /* MovingFaces.cpp */; };
+		16BA0E4D199D06F0007E85F8 /* MovingFaces.h in Headers */ = {isa = PBXBuildFile; fileRef = 16BA0E4B199D06F0007E85F8 /* MovingFaces.h */; };
 		16C35AE8198FEF7100E2E362 /* Beacon.h in Headers */ = {isa = PBXBuildFile; fileRef = 16C35AE6198FEF7100E2E362 /* Beacon.h */; };
 		16C35AE9198FEF7100E2E362 /* Beacon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16C35AE7198FEF7100E2E362 /* Beacon.cpp */; };
 		16EDC08E199999A8002FA957 /* RNComm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EDC08C199999A8002FA957 /* RNComm.cpp */; };
@@ -168,6 +170,8 @@
 		1690A1631993CA83006C4A5A /* watchdog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = watchdog.h; path = ../Arduino/libraries/watchdog/watchdog.h; sourceTree = "<group>"; };
 		16BA0E46199B9B17007E85F8 /* Mute.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Mute.cpp; path = ../Arduino/PyramidOfPossibilities/Mute.cpp; sourceTree = "<group>"; };
 		16BA0E47199B9B17007E85F8 /* Mute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mute.h; path = ../Arduino/PyramidOfPossibilities/Mute.h; sourceTree = "<group>"; };
+		16BA0E4A199D06F0007E85F8 /* MovingFaces.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MovingFaces.cpp; path = ../Arduino/PyramidOfPossibilities/MovingFaces.cpp; sourceTree = "<group>"; };
+		16BA0E4B199D06F0007E85F8 /* MovingFaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovingFaces.h; path = ../Arduino/PyramidOfPossibilities/MovingFaces.h; sourceTree = "<group>"; };
 		16C35AE6198FEF7100E2E362 /* Beacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Beacon.h; path = ../Arduino/PyramidOfPossibilities/Beacon.h; sourceTree = "<group>"; };
 		16C35AE7198FEF7100E2E362 /* Beacon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Beacon.cpp; path = ../Arduino/PyramidOfPossibilities/Beacon.cpp; sourceTree = "<group>"; };
 		16EDC08C199999A8002FA957 /* RNComm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RNComm.cpp; path = ../Arduino/PyramidOfPossibilities/RNComm.cpp; sourceTree = "<group>"; };
@@ -231,6 +235,8 @@
 		1644A188198D384500FBFF63 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				16BA0E4A199D06F0007E85F8 /* MovingFaces.cpp */,
+				16BA0E4B199D06F0007E85F8 /* MovingFaces.h */,
 				1644A12A198D34D400FBFF63 /* ActivityLevelAnimation.cpp */,
 				1644A137198D34D400FBFF63 /* ActivityLevelAnimation.h */,
 				1644A133198D34D400FBFF63 /* AVEAnimation1.cpp */,
@@ -351,6 +357,7 @@
 				163D507B198E6D9600E882A1 /* Swirl.h in Headers */,
 				1644A17B198D34FE00FBFF63 /* RNGradient.h in Headers */,
 				1690A1641993CA83006C4A5A /* watchdog.h in Headers */,
+				16BA0E4D199D06F0007E85F8 /* MovingFaces.h in Headers */,
 				1644A16B198D34D400FBFF63 /* Chasers.h in Headers */,
 				1644A181198D351A00FBFF63 /* RNChaser.h in Headers */,
 				161181251998D72A00136668 /* Qbert.h in Headers */,
@@ -425,6 +432,7 @@
 			files = (
 				1644A16D198D34D400FBFF63 /* RNAnimation.cpp in Sources */,
 				1644A17C198D34FE00FBFF63 /* RNLights.cpp in Sources */,
+				16BA0E4C199D06F0007E85F8 /* MovingFaces.cpp in Sources */,
 				1644A180198D351A00FBFF63 /* RNChaser.cpp in Sources */,
 				1644A156198D34D400FBFF63 /* RNInfo.cpp in Sources */,
 				164B170D1993D28900C0FB57 /* easing.cpp in Sources */,
