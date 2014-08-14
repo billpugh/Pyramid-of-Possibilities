@@ -39,6 +39,8 @@ public:
     float getLocalActivity();
     // Get the individual x,y,z accelerometer readings passed through a high pass filter. Values may be negative.
     void getLocalXYZActivity(float data[3]);
+    void getAndResetAccumulatedXYZActivity(float data[3]);
+
     // Get whether or not taps have been detected since the last paint refresh. If zero, no taps have been indicated.
     // This is a bit field, with different bits indicating whether the tap was in the X, Y or Z direction,
     // and whether it was positive or negative. In most cases, it is sufficient to check whether or not this value is nonzero.
@@ -50,7 +52,8 @@ public:
     // AxZL 0x40 -- tap in Z axis
     // PxZ: 0x04 -- positive in Z axis
     uint8_t getTaps();
-    
+    uint8_t getAndResetAccumulatedTaps();
+
     // get the number of milliseconds since the last tap
     unsigned long timeSinceLastTap();
     
@@ -98,7 +101,9 @@ private:
     float myTotalG = 0;
     float platformGlobalAngle = 0;
     float myDirectionalG[3];
+    float maxDirectionalG[3];
     uint8_t myTapSource;
+    uint8_t accumulatedTaps;
     unsigned long lastTap = 0;
     
     RNLights sparkles;

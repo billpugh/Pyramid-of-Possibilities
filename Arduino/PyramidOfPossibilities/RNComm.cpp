@@ -146,9 +146,9 @@ void prepareReportToCentral(RNInfo &info) {
     put8Bits(0); // status
     put16Bits(info.identifier);
     put8Bits(info.wirePosition);
-    put8Bits(info.getTaps());
+    put8Bits(info.getAndResetAccumulatedTaps());
     float gData[3];
-    info.getLocalXYZActivity(gData);
+    info.getAndResetAccumulatedXYZActivity(gData);
     putFloat(gData[0]);
     putFloat(gData[1]);
     putFloat(gData[2]);
