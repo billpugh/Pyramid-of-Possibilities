@@ -106,7 +106,7 @@ void MovingFaces::paint(RNLights & lights) {
                 lights.setPixelColor(i, gradient3Colors.getPixelColor(i));
             }
         } else {
-            RNGradient *gradientToUse = NULL;
+            RNGradient *gradientToUse = 0;
             float point = 0;
             if (abs(distance) <= parameters.thickness) {
                 gradientToUse = &(parameters.gradientInside);
