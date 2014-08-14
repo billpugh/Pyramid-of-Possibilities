@@ -9,11 +9,54 @@
 
 MovingFaces::MovingFaces(RNInfo & info, unsigned long animationStartMillis)
 : RNAnimation(info, animationStartMillis, sizeof (MovingFacesParameters),
-&parameters) {
+&parameters), gradient3Colors(info.numLEDs) {
     pointA = parameters.edgePlatform1;
     pointB = parameters.edgePlatform2;
     pointC = parameters.edgePlatform4; // Top platform
     pointD = parameters.edgePlatform3;
+
+    if (parameters.summitColorMode) {
+        for (int i = 0; i < info.numLEDs; i++) {
+            float xLED = getLEDXPosition(i) + info.x;
+            float yLED = getLEDYPosition(i) + info.y;
+            float zLED = info.z;
+            float dist1 = distancePointFromPoint(xLED, yLED, zLED,
+                    parameters.edgePlatform1);
+            float dist2 = distancePointFromPoint(xLED, yLED, zLED,
+                    parameters.edgePlatform2);
+            float dist3 = distancePointFromPoint(xLED, yLED, zLED,
+                    parameters.edgePlatform3);
+            float totalDist = dist1 + dist2 + dist3;
+
+            float normD1 = dist1 / totalDist;
+            float normD2 = dist2 / totalDist;
+            float normD3 = dist3 / totalDist;
+
+            float ratio1;
+            float ratio2;
+            float ratio3;
+
+            if (normD1 != 0 && normD2 != 0 && normD3 != 0) {
+                ratio1 = 1 / normD1;
+                ratio2 = 1 / normD2;
+                ratio3 = 1 / normD3;
+            } else {
+                ratio1 = normD1 == 0 ? 1 : 0;
+                ratio2 = normD2 == 0 ? 1 : 0;
+                ratio3 = normD3 == 0 ? 1 : 0;
+            }
+
+            float totalRatios = ratio1 + ratio2 + ratio3;
+            float normRatio1 = ratio1 / totalRatios;
+            float normRatio2 = ratio2 / totalRatios;
+            float normRatio3 = ratio3 / totalRatios;
+
+            uint32_t color = mixColors(parameters.summit1Color, normRatio1,
+                    parameters.summit2Color, normRatio2,
+                    parameters.summit3Color, normRatio3);
+            gradient3Colors.setPixelColor(i, color);
+        }
+    }
 };
 
 void MovingFaces::paint(RNLights & lights) {
@@ -60,31 +103,7 @@ void MovingFaces::paint(RNLights & lights) {
 
         if (parameters.summitColorMode) {
             if (abs(distance) <= parameters.thickness) {
-                float dist1 = distancePointFromPoint(xLED, yLED, zLED,
-                        parameters.edgePlatform1);
-                float dist2 = distancePointFromPoint(xLED, yLED, zLED,
-                        parameters.edgePlatform2);
-                float dist3 = distancePointFromPoint(xLED, yLED, zLED,
-                        parameters.edgePlatform3);
-                float totalDist = dist1 + dist2 + dist3;
-
-                float normD1 = dist1 / totalDist;
-                float normD2 = dist2 / totalDist;
-                float normD3 = dist3 / totalDist;
-
-                float ratio1 = normD1 == 0 ? totalDist : 1 / normD1;
-                float ratio2 = normD2 == 0 ? totalDist : 1 / normD2;
-                float ratio3 = normD3 == 0 ? totalDist : 1 / normD3;
-
-                float totalRatios = ratio1 + ratio2 + ratio3;
-                float normRatio1 = ratio1 / totalRatios;
-                float normRatio2 = ratio2 / totalRatios;
-                float normRatio3 = ratio3 / totalRatios;
-
-                uint32_t color = mixColors(parameters.summit1Color, normRatio1,
-                        parameters.summit2Color, normRatio2,
-                        parameters.summit3Color, normRatio3);
-                lights.setPixelColor(i, color);
+                lights.setPixelColor(i, gradient3Colors.getPixelColor(i));
             }
         } else {
             RNGradient *gradientToUse = NULL;
