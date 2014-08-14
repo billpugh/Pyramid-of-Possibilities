@@ -24,10 +24,11 @@ PlatformControler::PlatformControler(Pyramid* _pyramid, int _platform) {
             coords[1],
             coords[2]);
 
-    animation = getAnimation(e_Radial, *info, millis());
+    animation = getAnimation(e_MovingFaces, *info, millis());
 }
 
 void PlatformControler::refreshPlatform() {
+    lights->reset();
     animation->paint(*lights);
     lights->show();
 }

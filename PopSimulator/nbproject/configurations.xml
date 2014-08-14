@@ -6,16 +6,21 @@
                    projectFiles="true">
       <logicalFolder name="f1" displayName="Animations" projectFiles="true">
         <itemPath>../Arduino/PyramidOfPossibilities/AVEAnimation1.h</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/ActivityLevelAnimation.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Beacon.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/ChangingColor.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Chasers.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/CircularGradient.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/ColorWorms.h</itemPath>
-        <itemPath>../Arduino/PyramidOfPossibilities/DRAnimation0.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/DRAnimation1.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/FlashAttack.h</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/FlashEcho.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Flashes.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/GlowFade.h</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/Kittens.h</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/MovingFaces.h</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/Mute.h</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/Qbert.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Radial.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/SideEffects.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Snow.h</itemPath>
@@ -23,10 +28,10 @@
         <itemPath>../Arduino/PyramidOfPossibilities/WWPAnimationTest.h</itemPath>
       </logicalFolder>
       <itemPath>../Arduino/libraries/Accelerometer/Accelerometer.h</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/ActivityLevelAnimation.h</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/Animations.h</itemPath>
       <itemPath>Arduino.h</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/Constants.h</itemPath>
+      <itemPath>../Arduino/PyramidOfPossibilities/Controller.h</itemPath>
       <itemPath>FPSControlsHandler.hpp</itemPath>
       <itemPath>PlatformControler.hpp</itemPath>
       <itemPath>Pyramid.hpp</itemPath>
@@ -39,8 +44,10 @@
       <itemPath>../Arduino/PyramidOfPossibilities/RNInfo.h</itemPath>
       <itemPath>../Arduino/libraries/RNLights/RNLights.h</itemPath>
       <itemPath>RNLightsSimulator.hpp</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/RNSerial.h</itemPath>
+      <itemPath>../Arduino/libraries/RNSerial/RNSerial.h</itemPath>
       <itemPath>ShaderLoader.hpp</itemPath>
+      <itemPath>../Arduino/libraries/AHEasing/easing.h</itemPath>
+      <itemPath>../Arduino/libraries/AHEasing/easingSelect.h</itemPath>
       <itemPath>../Arduino/libraries/FastLED/hsv2rgb.h</itemPath>
       <itemPath>../Arduino/libraries/Accelerometer/i2c_t3.h</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/ledPositions.h</itemPath>
@@ -61,16 +68,21 @@
                    projectFiles="true">
       <logicalFolder name="f1" displayName="Animations" projectFiles="true">
         <itemPath>../Arduino/PyramidOfPossibilities/AVEAnimation1.cpp</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/ActivityLevelAnimation.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Beacon.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/ChangingColor.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Chasers.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/CircularGradient.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/ColorWorms.cpp</itemPath>
-        <itemPath>../Arduino/PyramidOfPossibilities/DRAnimation0.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/DRAnimation1.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/FlashAttack.cpp</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/FlashEcho.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Flashes.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/GlowFade.cpp</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/Kittens.cpp</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/MovingFaces.cpp</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/Mute.cpp</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/Qbert.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Radial.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/SideEffects.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Snow.cpp</itemPath>
@@ -78,11 +90,9 @@
         <itemPath>../Arduino/PyramidOfPossibilities/WWPAnimationTest.cpp</itemPath>
       </logicalFolder>
       <itemPath>../Arduino/libraries/Accelerometer/Accelerometer.cpp</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/ActivityLevelAnimation.cpp</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/Animations.cpp</itemPath>
       <itemPath>Arduino.c</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/Constants.cpp</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/Controller.cpp</itemPath>
       <itemPath>FPSControlsHandler.cpp</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/Platform.cpp</itemPath>
       <itemPath>PlatformControler.cpp</itemPath>
@@ -96,8 +106,10 @@
       <itemPath>../Arduino/PyramidOfPossibilities/RNInfo.cpp</itemPath>
       <itemPath>../Arduino/libraries/RNLights/RNLights.cpp</itemPath>
       <itemPath>RNLightsSimulator.cpp</itemPath>
-      <itemPath>../Arduino/PyramidOfPossibilities/RNSerial.cpp</itemPath>
+      <itemPath>../Arduino/libraries/RNSerial/RNSerial.cpp</itemPath>
       <itemPath>ShaderLoader.cpp</itemPath>
+      <itemPath>../Arduino/libraries/AHEasing/easing.cpp</itemPath>
+      <itemPath>../Arduino/libraries/AHEasing/easingSelect.cpp</itemPath>
       <itemPath>../Arduino/libraries/FastLED/hsv2rgb.cpp</itemPath>
       <itemPath>../Arduino/libraries/Accelerometer/i2c_t3.cpp</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/ledPositions.cpp</itemPath>
@@ -300,6 +312,7 @@
             <pElem>../Arduino/PyramidOfPossibilities</pElem>
             <pElem>.</pElem>
             <pElem>../Arduino/libraries/FastLED</pElem>
+            <pElem>../Arduino/libraries/AHEasing</pElem>
           </incDir>
           <commandLine>-Wno-write-strings</commandLine>
         </ccTool>
@@ -397,17 +410,7 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../Arduino/PyramidOfPossibilities/Controller.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/DRAnimation0.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/DRAnimation0.h"
+      <item path="../Arduino/PyramidOfPossibilities/Controller.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -432,6 +435,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../Arduino/PyramidOfPossibilities/FlashEcho.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/FlashEcho.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../Arduino/PyramidOfPossibilities/Flashes.cpp"
             ex="false"
             tool="1"
@@ -452,9 +465,49 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../Arduino/PyramidOfPossibilities/Kittens.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Kittens.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/MovingFaces.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/MovingFaces.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Mute.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Mute.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../Arduino/PyramidOfPossibilities/Platform.cpp"
             ex="false"
             tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Qbert.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Qbert.h"
+            ex="false"
+            tool="3"
             flavor2="0">
       </item>
       <item path="../Arduino/PyramidOfPossibilities/RNAnimation.cpp"
@@ -493,16 +546,6 @@
             flavor2="0">
       </item>
       <item path="../Arduino/PyramidOfPossibilities/RNInfo.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/RNSerial.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/RNSerial.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -567,6 +610,26 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../Arduino/libraries/AHEasing/easing.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/libraries/AHEasing/easing.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/libraries/AHEasing/easingSelect.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/libraries/AHEasing/easingSelect.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../Arduino/libraries/Accelerometer/Accelerometer.cpp"
             ex="false"
             tool="1"
@@ -623,6 +686,16 @@
             flavor2="0">
       </item>
       <item path="../Arduino/libraries/RNLights/RNLights.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/libraries/RNSerial/RNSerial.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/libraries/RNSerial/RNSerial.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -782,17 +855,7 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../Arduino/PyramidOfPossibilities/Controller.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/DRAnimation0.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/DRAnimation0.h"
+      <item path="../Arduino/PyramidOfPossibilities/Controller.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -817,6 +880,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../Arduino/PyramidOfPossibilities/FlashEcho.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/FlashEcho.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../Arduino/PyramidOfPossibilities/Flashes.cpp"
             ex="false"
             tool="1"
@@ -837,9 +910,49 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../Arduino/PyramidOfPossibilities/Kittens.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Kittens.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/MovingFaces.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/MovingFaces.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Mute.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Mute.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../Arduino/PyramidOfPossibilities/Platform.cpp"
             ex="false"
             tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Qbert.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Qbert.h"
+            ex="false"
+            tool="3"
             flavor2="0">
       </item>
       <item path="../Arduino/PyramidOfPossibilities/RNAnimation.cpp"
@@ -878,16 +991,6 @@
             flavor2="0">
       </item>
       <item path="../Arduino/PyramidOfPossibilities/RNInfo.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/RNSerial.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/RNSerial.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -952,6 +1055,26 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../Arduino/libraries/AHEasing/easing.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/libraries/AHEasing/easing.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/libraries/AHEasing/easingSelect.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/libraries/AHEasing/easingSelect.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../Arduino/libraries/Accelerometer/Accelerometer.cpp"
             ex="false"
             tool="1"
@@ -1008,6 +1131,16 @@
             flavor2="0">
       </item>
       <item path="../Arduino/libraries/RNLights/RNLights.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/libraries/RNSerial/RNSerial.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/libraries/RNSerial/RNSerial.h"
             ex="false"
             tool="3"
             flavor2="0">
