@@ -76,8 +76,12 @@ void RNInfo::accelerometerCallback( float totalG,
         lastTap = millis();
     myTotalG = totalG;
     myTapSource = source;
-    for(int i = 0; i < 3; i++)
+    accumulatedTaps |= source;
+    for(int i = 0; i < 3; i++) {
         myDirectionalG[i] = directionalG[i];
+        if (maxDirectionalG[i] < directionalG[i])
+            maxDirectionalG[i] = directionalG[i];
+    }
 }
 
 
@@ -95,9 +99,22 @@ float RNInfo::getLocalActivity() {
 uint8_t RNInfo::getTaps() {
     return myTapSource;
 }
+uint8_t RNInfo::getAndResetAccumulatedTaps() {
+    uint8_t result = accumulatedTaps;
+    accumulatedTaps = 0;
+    return result;
+}
+
 void RNInfo::getLocalXYZActivity(float data[3]) {
     for(int i = 0; i < 3; i++)
         data[i] = myDirectionalG[i];
+}
+
+void RNInfo::getAndResetAccumulatedXYZActivity(float data[3]) {
+    for(int i = 0; i < 3; i++) {
+        data[i] = maxDirectionalG[i];
+    maxDirectionalG[i] = 0.0;
+    }
 }
 
 float RNInfo::getGlobalAngle(uint8_t led) {

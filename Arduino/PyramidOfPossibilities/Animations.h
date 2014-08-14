@@ -14,15 +14,16 @@
 
 enum  AnimationEnum {
 
+      e_Beacon,
+    // Branden's animations
+    e_Kittens,
+
     e_FlashEcho,
 
     e_Radial,
+    e_Mute,
 
-    // Branden's animations
-    e_Kittens, 
-    
 
-    e_Beacon,
     e_GlowFade,
 
     e_WWPAnimationTest,
@@ -47,7 +48,7 @@ enum  AnimationEnum {
     // Antoine's animations
     e_Flashes,
     e_AVEAnimation1,
-
+    e_MovingFaces,
 
 
     // Not an actual enum, just the value used to give us the count of the number of enums

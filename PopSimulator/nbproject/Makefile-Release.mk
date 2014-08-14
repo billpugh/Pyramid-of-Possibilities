@@ -44,30 +44,35 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/1731549632/CircularGradient.o \
 	${OBJECTDIR}/_ext/1731549632/ColorWorms.o \
 	${OBJECTDIR}/_ext/1731549632/Constants.o \
-	${OBJECTDIR}/_ext/1731549632/Controller.o \
-	${OBJECTDIR}/_ext/1731549632/DRAnimation0.o \
 	${OBJECTDIR}/_ext/1731549632/DRAnimation1.o \
 	${OBJECTDIR}/_ext/1731549632/FlashAttack.o \
+	${OBJECTDIR}/_ext/1731549632/FlashEcho.o \
 	${OBJECTDIR}/_ext/1731549632/Flashes.o \
 	${OBJECTDIR}/_ext/1731549632/GlowFade.o \
+	${OBJECTDIR}/_ext/1731549632/Kittens.o \
+	${OBJECTDIR}/_ext/1731549632/MovingFaces.o \
+	${OBJECTDIR}/_ext/1731549632/Mute.o \
 	${OBJECTDIR}/_ext/1731549632/Platform.o \
+	${OBJECTDIR}/_ext/1731549632/Qbert.o \
 	${OBJECTDIR}/_ext/1731549632/RNAnimation.o \
 	${OBJECTDIR}/_ext/1731549632/RNBeam.o \
 	${OBJECTDIR}/_ext/1731549632/RNEEPROM.o \
 	${OBJECTDIR}/_ext/1731549632/RNInfo.o \
-	${OBJECTDIR}/_ext/1731549632/RNSerial.o \
 	${OBJECTDIR}/_ext/1731549632/Radial.o \
 	${OBJECTDIR}/_ext/1731549632/SideEffects.o \
 	${OBJECTDIR}/_ext/1731549632/Snow.o \
 	${OBJECTDIR}/_ext/1731549632/Swirl.o \
 	${OBJECTDIR}/_ext/1731549632/WWPAnimationTest.o \
 	${OBJECTDIR}/_ext/1731549632/ledPositions.o \
+	${OBJECTDIR}/_ext/1926129150/easing.o \
+	${OBJECTDIR}/_ext/1926129150/easingSelect.o \
 	${OBJECTDIR}/_ext/1989308899/Accelerometer.o \
 	${OBJECTDIR}/_ext/1989308899/i2c_t3.o \
 	${OBJECTDIR}/_ext/1253334877/hsv2rgb.o \
 	${OBJECTDIR}/_ext/1827099284/RNChaser.o \
 	${OBJECTDIR}/_ext/1568344763/RNGradient.o \
 	${OBJECTDIR}/_ext/1568344763/RNLights.o \
+	${OBJECTDIR}/_ext/1371306724/RNSerial.o \
 	${OBJECTDIR}/Arduino.o \
 	${OBJECTDIR}/FPSControlsHandler.o \
 	${OBJECTDIR}/PlatformControler.o \
@@ -147,16 +152,6 @@ ${OBJECTDIR}/_ext/1731549632/Constants.o: ../Arduino/PyramidOfPossibilities/Cons
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/Constants.o ../Arduino/PyramidOfPossibilities/Constants.cpp
 
-${OBJECTDIR}/_ext/1731549632/Controller.o: ../Arduino/PyramidOfPossibilities/Controller.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/Controller.o ../Arduino/PyramidOfPossibilities/Controller.cpp
-
-${OBJECTDIR}/_ext/1731549632/DRAnimation0.o: ../Arduino/PyramidOfPossibilities/DRAnimation0.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/DRAnimation0.o ../Arduino/PyramidOfPossibilities/DRAnimation0.cpp
-
 ${OBJECTDIR}/_ext/1731549632/DRAnimation1.o: ../Arduino/PyramidOfPossibilities/DRAnimation1.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
 	${RM} "$@.d"
@@ -166,6 +161,11 @@ ${OBJECTDIR}/_ext/1731549632/FlashAttack.o: ../Arduino/PyramidOfPossibilities/Fl
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/FlashAttack.o ../Arduino/PyramidOfPossibilities/FlashAttack.cpp
+
+${OBJECTDIR}/_ext/1731549632/FlashEcho.o: ../Arduino/PyramidOfPossibilities/FlashEcho.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/FlashEcho.o ../Arduino/PyramidOfPossibilities/FlashEcho.cpp
 
 ${OBJECTDIR}/_ext/1731549632/Flashes.o: ../Arduino/PyramidOfPossibilities/Flashes.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
@@ -177,10 +177,30 @@ ${OBJECTDIR}/_ext/1731549632/GlowFade.o: ../Arduino/PyramidOfPossibilities/GlowF
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/GlowFade.o ../Arduino/PyramidOfPossibilities/GlowFade.cpp
 
+${OBJECTDIR}/_ext/1731549632/Kittens.o: ../Arduino/PyramidOfPossibilities/Kittens.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/Kittens.o ../Arduino/PyramidOfPossibilities/Kittens.cpp
+
+${OBJECTDIR}/_ext/1731549632/MovingFaces.o: ../Arduino/PyramidOfPossibilities/MovingFaces.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/MovingFaces.o ../Arduino/PyramidOfPossibilities/MovingFaces.cpp
+
+${OBJECTDIR}/_ext/1731549632/Mute.o: ../Arduino/PyramidOfPossibilities/Mute.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/Mute.o ../Arduino/PyramidOfPossibilities/Mute.cpp
+
 ${OBJECTDIR}/_ext/1731549632/Platform.o: ../Arduino/PyramidOfPossibilities/Platform.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/Platform.o ../Arduino/PyramidOfPossibilities/Platform.cpp
+
+${OBJECTDIR}/_ext/1731549632/Qbert.o: ../Arduino/PyramidOfPossibilities/Qbert.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/Qbert.o ../Arduino/PyramidOfPossibilities/Qbert.cpp
 
 ${OBJECTDIR}/_ext/1731549632/RNAnimation.o: ../Arduino/PyramidOfPossibilities/RNAnimation.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
@@ -201,11 +221,6 @@ ${OBJECTDIR}/_ext/1731549632/RNInfo.o: ../Arduino/PyramidOfPossibilities/RNInfo.
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/RNInfo.o ../Arduino/PyramidOfPossibilities/RNInfo.cpp
-
-${OBJECTDIR}/_ext/1731549632/RNSerial.o: ../Arduino/PyramidOfPossibilities/RNSerial.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/RNSerial.o ../Arduino/PyramidOfPossibilities/RNSerial.cpp
 
 ${OBJECTDIR}/_ext/1731549632/Radial.o: ../Arduino/PyramidOfPossibilities/Radial.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
@@ -237,6 +252,16 @@ ${OBJECTDIR}/_ext/1731549632/ledPositions.o: ../Arduino/PyramidOfPossibilities/l
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/ledPositions.o ../Arduino/PyramidOfPossibilities/ledPositions.cpp
 
+${OBJECTDIR}/_ext/1926129150/easing.o: ../Arduino/libraries/AHEasing/easing.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1926129150
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1926129150/easing.o ../Arduino/libraries/AHEasing/easing.cpp
+
+${OBJECTDIR}/_ext/1926129150/easingSelect.o: ../Arduino/libraries/AHEasing/easingSelect.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1926129150
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1926129150/easingSelect.o ../Arduino/libraries/AHEasing/easingSelect.cpp
+
 ${OBJECTDIR}/_ext/1989308899/Accelerometer.o: ../Arduino/libraries/Accelerometer/Accelerometer.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1989308899
 	${RM} "$@.d"
@@ -266,6 +291,11 @@ ${OBJECTDIR}/_ext/1568344763/RNLights.o: ../Arduino/libraries/RNLights/RNLights.
 	${MKDIR} -p ${OBJECTDIR}/_ext/1568344763
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1568344763/RNLights.o ../Arduino/libraries/RNLights/RNLights.cpp
+
+${OBJECTDIR}/_ext/1371306724/RNSerial.o: ../Arduino/libraries/RNSerial/RNSerial.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1371306724
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1371306724/RNSerial.o ../Arduino/libraries/RNSerial/RNSerial.cpp
 
 ${OBJECTDIR}/Arduino.o: Arduino.c 
 	${MKDIR} -p ${OBJECTDIR}

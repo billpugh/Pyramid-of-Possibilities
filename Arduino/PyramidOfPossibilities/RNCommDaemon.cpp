@@ -13,12 +13,16 @@
 #include "Arduino.h"
 #include "TimerThree.h"
 
-volatile bool waitingForReceive = true;
-volatile comm_time_t receivedAt;
+static volatile bool waitingForReceive = true;
+static volatile comm_time_t receivedAt;
 
-volatile bool waitingToSend = false;
-volatile comm_time_t sendAt;
-volatile comm_time_t sentAt;
+static volatile bool waitingToSend = false;
+static volatile comm_time_t sendAt;
+static volatile comm_time_t sentAt;
+
+static volatile char* sendBuffer;
+static volatile uint8_t sendBufferSize;
+
 
 // Called in an interrupt context
 void commDaemonCheck() {
@@ -43,7 +47,8 @@ void initializeCommDaemonTimer() {
 
 
 bool scheduleSend(RNInfo &info,
-                  comm_time_t when) {
+                  comm_time_t when,
+                  uint8_t size, char * buffer) {
     if (waitingToSend) {
         info.println("Can't send, another send is pending");
         return false;
@@ -52,6 +57,8 @@ bool scheduleSend(RNInfo &info,
     sendAt = when;
     sentAt = 0;
     waitingToSend = true;
+    sendBufferSize = size;
+    sendBuffer = buffer;
     interrupts();
     
     return true;

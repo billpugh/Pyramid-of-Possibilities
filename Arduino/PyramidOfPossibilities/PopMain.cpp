@@ -34,9 +34,9 @@ Platform platform( /* ID */ 0, /* XYZ */ 0,0,700,
                   /* dir */ 0, /* wire Pos */ 1);
 
 extern RNLights *lights;
-static int heapSize(){
-    return mallinfo().uordblks;
-}
+//static int heapSize(){
+//    return mallinfo().uordblks;
+//}
 
 void debugTriadPositions();
 
@@ -141,7 +141,7 @@ void loop() {
     unsigned long endMicros = micros();
     avgTime = (15*avgTime + endMicros - startMicros)/16;
     
-    int timeToDelay = (10 - (endMicros - startMicros)/1000);
+    int timeToDelay = (int)(10 - (endMicros - startMicros)/1000);
     if (timeToDelay > 0)
         delay(timeToDelay);
     int blink = (millis() /100)%2;

@@ -18,8 +18,10 @@
 typedef uint32_t comm_time_t;
 
 void initializeCommDaemonTimer();
+
 bool scheduleSend(RNInfo &info,
-                  comm_time_t when);
+                  comm_time_t when,
+                  uint8_t size, char * buffer);
 bool dataAvailable(RNInfo &info,
                    comm_time_t &when);
 void lookForData(RNInfo &info);
