@@ -45,10 +45,12 @@ public class CentralControl {
         String ttyConfig = ReadConsole.setTerminalToCBreak();
         
         List<WireController> controllers = new ArrayList<WireController>();
-        System.out.printf("Found %d ports%n", controllers.size());
+        List<String> ports = DetectPort.getPorts("tty.usbserial-");
+        System.out.printf("Found %d ports%n", ports.size());
         if (controllers.isEmpty())
         	return;
-        for(String p : DetectPort.getPorts("tty.usbserial-")) {
+        for(String p : ports) {
+            System.out.println("Connecting to " + p);
         	controllers.add(new WireController(p));
         }
         
