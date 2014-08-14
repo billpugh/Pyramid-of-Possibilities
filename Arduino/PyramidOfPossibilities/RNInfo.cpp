@@ -10,6 +10,7 @@
 #include "RNInfo.h"
 #include "Arduino.h"
 #include "ledPositions.h"
+#include "RNComm.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
@@ -208,4 +209,10 @@ void RNInfo::showActivityWithSparkles(RNLights & lights) {
     lights.applyBrightness();
     lights.copyPixelsMax(sparkles);
 }
+
+
+void RNInfo::yield() {
+    checkComm(*this);
+}
+
 
