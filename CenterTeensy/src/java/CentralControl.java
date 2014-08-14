@@ -47,7 +47,7 @@ public class CentralControl {
         List<WireController> controllers = new ArrayList<WireController>();
         List<String> ports = DetectPort.getPorts("tty.usbserial-");
         System.out.printf("Found %d ports%n", ports.size());
-        if (controllers.isEmpty())
+        if (ports.isEmpty())
         	return;
         for(String p : ports) {
             System.out.println("Connecting to " + p);

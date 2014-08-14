@@ -64,6 +64,7 @@ public class WireController {
 
 		@Override
 		public void run() {
+			System.out.println("Reading from teensies");
 			while (true) {
 				try {
 					int b = inputStream.read();
