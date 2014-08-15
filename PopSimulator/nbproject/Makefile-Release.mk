@@ -45,6 +45,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/1731549632/ColorWorms.o \
 	${OBJECTDIR}/_ext/1731549632/Constants.o \
 	${OBJECTDIR}/_ext/1731549632/DRAnimation1.o \
+	${OBJECTDIR}/_ext/1731549632/Explosion.o \
 	${OBJECTDIR}/_ext/1731549632/FlashAttack.o \
 	${OBJECTDIR}/_ext/1731549632/FlashEcho.o \
 	${OBJECTDIR}/_ext/1731549632/Flashes.o \
@@ -157,6 +158,11 @@ ${OBJECTDIR}/_ext/1731549632/DRAnimation1.o: ../Arduino/PyramidOfPossibilities/D
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/DRAnimation1.o ../Arduino/PyramidOfPossibilities/DRAnimation1.cpp
+
+${OBJECTDIR}/_ext/1731549632/Explosion.o: ../Arduino/PyramidOfPossibilities/Explosion.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/Explosion.o ../Arduino/PyramidOfPossibilities/Explosion.cpp
 
 ${OBJECTDIR}/_ext/1731549632/FlashAttack.o: ../Arduino/PyramidOfPossibilities/FlashAttack.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632

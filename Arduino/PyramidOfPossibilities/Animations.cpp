@@ -37,6 +37,7 @@
 
 #include "Kittens.h"
 #include "MovingFaces.h"
+#include "Explosion.h"
 
 RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animationStartMillis ) {
     switch (a) {
@@ -91,6 +92,8 @@ RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animati
             return new AVEAnimation1(info, animationStartMillis);
         case e_MovingFaces :
             return new MovingFaces(info, animationStartMillis);
+        case e_Explosion :
+            return new Explosion(info, animationStartMillis);
         case e_Radial:
             return new Radial(info, animationStartMillis);
         case e_FlashEcho:

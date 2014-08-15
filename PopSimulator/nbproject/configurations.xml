@@ -13,6 +13,7 @@
         <itemPath>../Arduino/PyramidOfPossibilities/CircularGradient.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/ColorWorms.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/DRAnimation1.h</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/Explosion.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/FlashAttack.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/FlashEcho.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Flashes.h</itemPath>
@@ -76,6 +77,7 @@
         <itemPath>../Arduino/PyramidOfPossibilities/CircularGradient.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/ColorWorms.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/DRAnimation1.cpp</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/Explosion.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/FlashAttack.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/FlashEcho.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Flashes.cpp</itemPath>
@@ -424,6 +426,16 @@
             flavor2="0">
       </item>
       <item path="../Arduino/PyramidOfPossibilities/DRAnimation1.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Explosion.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Explosion.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -879,6 +891,16 @@
             flavor2="0">
       </item>
       <item path="../Arduino/PyramidOfPossibilities/DRAnimation1.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Explosion.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Explosion.h"
             ex="false"
             tool="3"
             flavor2="0">
