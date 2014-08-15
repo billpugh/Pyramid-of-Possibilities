@@ -72,6 +72,8 @@ private:
     int8_t cyclesPerMinute = 30;
     unsigned long lastUpdate;
     float cycleCount;
+
+    friend class RNController;
 };
 
 #endif /* defined(__RNAnimation__) */
