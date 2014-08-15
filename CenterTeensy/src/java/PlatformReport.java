@@ -1,4 +1,5 @@
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.Arrays;
 
 
@@ -17,6 +18,7 @@ public class PlatformReport {
     
 
     public void get(ByteBuffer buf ) {
+        buf.order(ByteOrder.LITTLE_ENDIAN);
         status = buf.get();
         identifier = buf.getShort();
         wirePosition = buf.get();
@@ -29,7 +31,7 @@ public class PlatformReport {
     public String toString() {
         return "PlatformReport [status=" + status + ", identifier="
                 + identifier + ", wirePosition=" + wirePosition + ", taps="
-                + taps + ", localActivity=" + Arrays.toString(localActivity)
+                + Integer.toString(taps,16) + ", localActivity=" + Arrays.toString(localActivity)
                 + "]";
     }
     

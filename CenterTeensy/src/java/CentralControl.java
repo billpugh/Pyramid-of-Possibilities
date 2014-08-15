@@ -96,7 +96,7 @@ public class CentralControl {
                         currentAnimation = (currentAnimation + 1)
                                 % numberAnimations;
                         switchToAnimation(currentAnimation);
-;
+
                         break;
                     }
 
