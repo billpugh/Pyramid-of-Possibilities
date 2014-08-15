@@ -22,12 +22,21 @@ TODO:
 
 */
 
+enum RadialCompressionType {
+    RadialCompressNone = 0x00,
+    RadialCompressInner = 0x01,
+    RadialCompressShell = 0x02,
+    RadialCompressOuter = 0x04,
+    RadialCompressAll = 0xFF
+};
+
 struct RadialParameters {
     uint8_t bpm = 25;    // beats per minute
-    float thickness = 0.05; // portion of entire radius
+    uint8_t compress = RadialCompressInner | RadialCompressOuter;
+    float thickness = 0.10; // portion of entire radius
     RNGradient gradientInside = RNGradient(0, RNGradientCapped, 0x000000, 0xff0000);
     RNGradient gradientShell = RNGradient(0, RNGradientCapped, 0xFF0000, 0xFF8080);
-    RNGradient gradientOutside = RNGradient(0, RNGradientCapped, 0x000002, 0x000002);
+    RNGradient gradientOutside = RNGradient(0, RNGradientCapped, 0x330000, 0x331111);
     EasingMode easingMode = EaseInOut;
     CurveType curveType = CurveTypeQuadratic;
 };

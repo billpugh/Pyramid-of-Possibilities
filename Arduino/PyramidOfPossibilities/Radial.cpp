@@ -67,21 +67,36 @@ void Radial::paint(RNLights & lights) {
             
             // inside 
             gradientToUse = &(parameters.gradientInside);
-            point = pixelRadius / innerShellBoundry;
+            
+            if ( parameters.compress & RadialCompressInner ) {
+                point = pixelRadius / innerShellBoundry;
+            } else {
+                point = pixelRadius / constants.pyramidRadiusFromGround;
+            }
             in++;
 
         } else if ( pixelRadius < outerShellBoundry ) {
             
             // shell 
             gradientToUse = &(parameters.gradientShell);
-            point = (pixelRadius - innerShellBoundry ) / doublethickness;
+            
+            if ( parameters.compress & RadialCompressShell ) {
+                point = (pixelRadius - innerShellBoundry ) / doublethickness;
+            } else {
+                point = pixelRadius / constants.pyramidRadiusFromGround;
+            }
             middle++;
 
         } else {
 
             // outside
             gradientToUse = &(parameters.gradientOutside);
-            point = pixelRadius / constants.pyramidRadiusFromGround;
+            
+            if ( parameters.compress & RadialCompressOuter ) {
+                point = pixelRadius / innerShellBoundry;
+            } else {
+                point = pixelRadius / constants.pyramidRadiusFromGround;
+            }
             out++;
         }
 
