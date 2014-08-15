@@ -15,11 +15,13 @@
 #include "RNGradient.h"
 
 struct ExplosionParameters {
-    short bombPlatform[3] = {0, 0, 9144};
-    unsigned long warmupDuration = 3000;
+    short bombPlatform[3] = {2286, 1320, 4521};
+    unsigned long warmupDuration = 5000;
     unsigned long coolingDuration = 3000;
+    float spinMaxSpeed = 0.7;
     float shockWaveSpeed = 20;
     unsigned long shockWaveThickness = 10000;
+    uint32_t shockWaveColor = 0xffffff;
 };
 
 class Explosion : public RNAnimation {
@@ -34,6 +36,10 @@ private:
     unsigned long explosionTime = parameters.warmupDuration;
     std::vector<float> ledsDistanceToBomb;
     float furthestLedDistance;
+
+    uint8_t r = parameters.shockWaveColor >> 16;
+    uint8_t g = parameters.shockWaveColor >> 8;
+    uint8_t b = parameters.shockWaveColor;
 
     static float distancePointFromPoint(short * A, short * B);
 
