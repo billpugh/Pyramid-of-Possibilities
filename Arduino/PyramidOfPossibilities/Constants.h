@@ -25,7 +25,7 @@
 
 // Log if any animation takes longer than kMaxPaintDuration inside a call to paint()
 #define RN_PRINT_LOG_ANIMATIONS
-const unsigned long kMaxPaintDuration = 20;    // in ms.  See RN_PRINT_LOG_ANIMATIONS
+const unsigned long kMaxPaintDuration = 7;    // in ms.  See RN_PRINT_LOG_ANIMATIONS
 
 
 struct RNConstants {

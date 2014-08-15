@@ -19,7 +19,7 @@ struct MovingFacesParameters {
     short edgePlatform4[3] = {0, 0, 9144};
     RNGradient gradientInside = RNGradient(0, RNGradientCapped, 0x000000, 0x00ff00);
     RNGradient gradientOutside = RNGradient(0, RNGradientCapped, 0x000002, 0x000002);
-    bool summitColorMode = false;
+    bool summitColorMode = true;
     uint32_t summit1Color = 0xff0000;
     uint32_t summit2Color = 0x00ff00;
     uint32_t summit3Color = 0x0000ff;
@@ -45,6 +45,7 @@ private:
     short * pointC;
     short * pointD;
     float distanceAD;
+    RNLights gradient3Colors;
 
     /**
      * Get the equation of the plan defined by the points ABC in the form

@@ -43,6 +43,8 @@ public:
     unsigned int readBytes( char *buffer, unsigned int length);
     uint16_t available();
     uint8_t read();
+    void write( uint8_t *buffer, unsigned int size);
+    void write( const uint8_t *buffer, unsigned int size);
 };
 
 extern SerialClass Serial;

@@ -104,8 +104,10 @@ void Radial::paint(RNLights & lights) {
 
     }
 
+#ifdef RN_RADIAL_DEBUG
     info.printf("Radial ms = %5d, minutes = %10f, t=%10f, r = %10f, min = %10f, max = %10f, in/mid/out = %3d/%3d/%3d\n",
                 getAnimationMillis(), minutes, t, r, minDistance, maxDistance, in, middle,out);
+#endif
     info.showActivityWithSparkles(lights);
     
 }

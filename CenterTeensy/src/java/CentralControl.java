@@ -1,11 +1,7 @@
-import gnu.io.SerialPort;
-
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PushbackInputStream;
-import java.nio.ByteBuffer;
-import java.nio.channels.Channels;
-import java.nio.channels.WritableByteChannel;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CentralControl {
 
@@ -42,20 +38,27 @@ public class CentralControl {
     }
 
 
-    static SerialPort teeny;
+
+    static volatile Animation currentAnimation;
     public static void main(String args[]) throws Exception {
         System.out.println("\nWelcome to Central\n");
         String ttyConfig = ReadConsole.setTerminalToCBreak();
-        SerialPort teensy = SerialPortFactory.findSerialPortByName("/dev/tty.usbserial-A603IUEO", 38400);
-
-        OutputStream outputStream = teensy.getOutputStream();
-        WritableByteChannel outputChannel = Channels.newChannel(outputStream);
+        
+        List<WireController> controllers = new ArrayList<WireController>();
+        List<String> ports = DetectPort.getPorts("tty.usbserial-");
+        System.out.printf("Found %d ports%n", ports.size());
+        if (ports.isEmpty())
+        	return;
+        for(String p : ports) {
+            System.out.println("Connecting to " + p);
+        	controllers.add(new WireController(p));
+        }
         
         final int numberAnimations = 5;
         PushbackInputStream in = new PushbackInputStream(System.in);
         int currentAnimation = 0;
-        switchToAnimation(outputChannel, currentAnimation);
-        outputStream.flush();
+        switchToAnimation(currentAnimation);
+
         try {
             getInput: while (true) {
 
@@ -78,22 +81,22 @@ public class CentralControl {
                     case '8':
                     case '9':
                         currentAnimation = c - '0';
-                        switchToAnimation(outputChannel, currentAnimation);
-                        outputStream.flush();
+                        switchToAnimation(currentAnimation);
+
                         break;
                     case LEFT_ARROW:
                         currentAnimation = (currentAnimation - 1)
                                 % numberAnimations;
                         if (currentAnimation < 0)
                             currentAnimation += numberAnimations;
-                        switchToAnimation(outputChannel, currentAnimation);
-                        outputStream.flush();
+                        switchToAnimation(currentAnimation);
+
                         break;
                     case RIGHT_ARROW:
                         currentAnimation = (currentAnimation + 1)
                                 % numberAnimations;
-                        switchToAnimation(outputChannel, currentAnimation);
-                        outputStream.flush();
+                        switchToAnimation(currentAnimation);
+
                         break;
                     }
 
@@ -115,26 +118,16 @@ public class CentralControl {
 
     }
 
-     
-    static Animation animation;
     
     /**
-     * @param fw
      * @param currentAnimation
+     * @param fw
      * @throws IOException
      */
-    public static void switchToAnimation(WritableByteChannel outputChannel,
-            int currentAnimation) throws IOException {
-        AnimationProgram program = AnimationProgram.values()[currentAnimation];
-        animation = new Animation(program);
-        Broadcast broadcast = new Broadcast(animation);
-        ByteBuffer buf = broadcast.getBytes();
-        System.out.printf("writing bytes %d %d\n", buf.position(), buf.limit());
-        for(int i = buf.position(); i < buf.limit(); i++)
-            System.out.printf("%2x ",  buf.get(i));
-         System.out.println();
-        outputChannel.write(buf);
-        System.out.printf("Switching to animation %d%n", currentAnimation);
+    public static void switchToAnimation(int programId) throws IOException {
+        AnimationProgram program = AnimationProgram.values()[programId];
+        currentAnimation = new Animation(program);
+       
     }
 
 }
