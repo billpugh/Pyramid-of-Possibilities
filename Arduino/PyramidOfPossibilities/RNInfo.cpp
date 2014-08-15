@@ -123,7 +123,7 @@ void RNInfo::getLocalXYZActivity(float data[3]) {
 void RNInfo::getAndResetAccumulatedXYZActivity(float data[3]) {
     for(int i = 0; i < 3; i++) {
         data[i] = maxDirectionalG[i];
-    maxDirectionalG[i] = 0.0;
+        maxDirectionalG[i] = 0.0;
     }
 }
 

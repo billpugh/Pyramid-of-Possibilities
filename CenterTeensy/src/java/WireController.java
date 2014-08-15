@@ -14,7 +14,9 @@ import java.util.concurrent.TimeUnit;
 
 public class WireController {
 
-    static final boolean DEBUG = true;
+    static final boolean DEBUG = false;
+    
+    
 
     static class HighPriorityThreadFactory implements ThreadFactory {
 
@@ -26,11 +28,12 @@ public class WireController {
         }
     }
 
-    static ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(
+   static  ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(
             20, new HighPriorityThreadFactory());
     
     volatile long lastSendNanos;
 
+    volatile boolean shutdown = false;
     class SendToTeensies implements Runnable {
 
         Animation lastAnimation;
@@ -70,6 +73,7 @@ public class WireController {
         public void run() {
             System.out.println("Reading from teensies");
             while (true) {
+                if (shutdown) return;
                 try {
                     int b = inputStream.read();
                     if (b != 't') System.out.println("Rejecting byte");
@@ -87,13 +91,13 @@ public class WireController {
     
                         buf.flip();
 
-
-                        buf.order(ByteOrder.LITTLE_ENDIAN);
+                        ;
                         PlatformReport report = new PlatformReport(buf);
+                        System.out
+                        .println("Got platform report for platform "
+                                + report.identifier);
                         if (DEBUG) {
-                            System.out
-                                    .println("Got platform report for platform "
-                                            + report.identifier);
+                           
                             System.out.println(report);
                             System.out.println();
                         }
@@ -124,6 +128,13 @@ public class WireController {
         executor.scheduleWithFixedDelay(new SendToTeensies(), 0, 100,
                 TimeUnit.MILLISECONDS);
         executor.execute(new ReadFromTeensies());
+    }
+    
+    
+    public void close() throws IOException {
+        inputStream.close();
+        outputStream.close();
+        teensyPort.close();
     }
 
 }

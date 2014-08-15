@@ -13,11 +13,11 @@
 
 struct GlowFadeParameters {
     uint8_t gradiantSkip = 69 ;
+    uint8_t value = 200;
     uint16_t period = 4000;
     float fractionUp = 0.5;
 
-    RNGradient gradient = RNGradient(1, RNGradientWrap,
-                                     0x00ffff, 0xffffff);
+
 
 };
 
