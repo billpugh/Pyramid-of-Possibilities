@@ -47,7 +47,6 @@ enum  AnimationEnum {
 
     // Antoine's animations
     e_Flashes,
-    e_AVEAnimation1,
     e_MovingFaces,
     e_Explosion,
 
