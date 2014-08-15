@@ -14,6 +14,7 @@
 #include "TimerThree.h"
 
 static volatile bool waitingForReceive = true;
+
 static volatile comm_time_t receivedAt;
 
 static volatile bool waitingToSend = false;
