@@ -11,14 +11,14 @@
 #include "RNAnimation.h"
 
 
-RNAnimation::RNAnimation(RNInfo & info, unsigned long animationStartMillis) : info(info), animationStartMillis(animationStartMillis) {
+RNAnimation::RNAnimation(RNInfo & info, unsigned long animationStartMillis) : info(info), animationStartMillis(animationStartMillis), lastUpdate(animationStartMillis)  {
     parametersPointer = 0;
     parametersSize = 0;
 };
 
 RNAnimation::RNAnimation(RNInfo & info, unsigned long animationStartMillis,
             unsigned int parametersSize, void *parametersPointer
-            )  : info(info), animationStartMillis(animationStartMillis), parametersSize(parametersSize), parametersPointer(parametersPointer) {
+            )  : info(info), animationStartMillis(animationStartMillis),lastUpdate(animationStartMillis), parametersSize(parametersSize), parametersPointer(parametersPointer) {
     
 }
 
@@ -58,3 +58,27 @@ const char * RNAnimation:: name() {
 
 
 void RNAnimation::paint(RNLights &lights) {}
+
+// Gives the cycles since this animation started.
+float RNAnimation::getAnimationCycles() {
+    return cycleCount;
+}
+
+uint8_t RNAnimation::getCyclesPerMinute() {
+    return cyclesPerMinute;
+}
+
+
+void RNAnimation::updateCycleCount() {
+    unsigned long now = millis();
+    cycleCount += cyclesPerMinute*(now-lastUpdate)/60000.0;
+    lastUpdate = now;
+}
+
+void RNAnimation::setCyclesPerMinute(int8_t cpm) {
+    cyclesPerMinute = cpm;
+    
+    
+}
+
+
