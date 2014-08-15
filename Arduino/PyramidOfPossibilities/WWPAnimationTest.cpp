@@ -11,12 +11,14 @@
 void WWPAnimationTest::paint(RNLights & lights) {
     
 
-    int pos = (int) getAnimationMillis()/10;
-    for(int i = 0; i < 10; i++)
-        lights.setPixelColor(lights.normalize(i+pos), 255, 0, 0);
+    RNGradient gradient =  RNGradient(true, RNGradientWrap, 0x00ffff, 0xffffff);
+    
 
-    info.showActivityWithSparkles(lights);
-
+    for(int i = 0; i < lights.getNumPixels(); i++) {
+        int gradientPosition = i * 256 /lights.getNumPixels();
+      
+        lights.setPixelColor(i,  gradient.getColor(gradientPosition));
+    }
     
 }
 
