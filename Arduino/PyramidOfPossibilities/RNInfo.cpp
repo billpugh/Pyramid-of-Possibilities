@@ -60,6 +60,15 @@ void RNInfo::initialize() {
 float RNInfo::getPlatformGlobalAngle() {
     return platformGlobalAngle;
 }
+
+bool RNInfo::isExteriorLED(uint8_t led) {
+    if (x == 0 && y == 0)
+        return true;
+    int16_t  xLED = getLEDXPosition(led);
+    int16_t  yLED = getLEDYPosition(led);
+    return x*xLED + y*yLED >= 0;
+}
+
 RNInfo::RNInfo(uint8_t numLEDs, Platform & p)
 
                 : Platform(p),
