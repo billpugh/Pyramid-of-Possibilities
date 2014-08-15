@@ -41,9 +41,16 @@ void Explosion::paint(RNLights & lights) {
         if (info.x == parameters.bombPlatform[0] &&
                 info.y == parameters.bombPlatform[1] &&
                 info.z == parameters.bombPlatform[2]) {
+
             float ratio = (float) (now - startTime) /
                     (float) (explosionTime - startTime);
-            lights.setAllPixelColors(255 * ratio, 255 * ratio, 255 * ratio);
+            float speed = ratio;
+            int position = speed * (now - startTime);
+            for (int i = 0; i <= 100; i++) {
+                int intensity = 255 - 2.55 * i;
+                int pos = lights.normalize(position - i);
+                lights.setPixelColor(pos, intensity, intensity, intensity);
+            }
         }
         return;
     }
@@ -51,7 +58,7 @@ void Explosion::paint(RNLights & lights) {
     float shockWaveDistance = furthestLedDistance +
             (now - explosionTime) * parameters.shockWaveSpeed;
 
-    AHEasingFunction easingFunction = getEasingFunction(EaseIn, CurveTypeExpo);
+    AHEasingFunction shockwaveEasing = getEasingFunction(EaseIn, CurveTypeExpo);
     float endShockWave = shockWaveDistance - parameters.shockWaveThickness;
     for (int i = 0; i < info.numLEDs; i++) {
         float distance = ledsDistanceToBomb.at(i);
@@ -59,7 +66,7 @@ void Explosion::paint(RNLights & lights) {
                 distance <= shockWaveDistance) {
             float ratio = 1 - (shockWaveDistance - distance) /
                     parameters.shockWaveThickness;
-            ratio = easingFunction(ratio);
+            ratio = shockwaveEasing(ratio);
 
             lights.setPixelColor(i, 255 * ratio, 255 * ratio, 255 * ratio);
         }

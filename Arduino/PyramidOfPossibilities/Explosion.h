@@ -15,10 +15,10 @@
 #include "RNGradient.h"
 
 struct ExplosionParameters {
-    short bombPlatform[3] = {-5715, -3300, 1854};
+    short bombPlatform[3] = {0, 0, 9144};
     unsigned long warmupDuration = 3000;
     unsigned long coolingDuration = 3000;
-    float shockWaveSpeed = 10;
+    float shockWaveSpeed = 20;
     unsigned long shockWaveThickness = 10000;
 };
 
