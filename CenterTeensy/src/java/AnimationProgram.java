@@ -1,38 +1,45 @@
 
 public enum AnimationProgram {
 
+    e_WWPAnimationTest,
     e_Beacon,
-  // Branden's animations
-  e_Kittens,
+    // Branden's animations
+    e_Kittens,
 
-  e_FlashEcho,
+    e_FlashEcho,
 
-  e_Radial,
+    e_Radial,
+    e_Mute,
 
 
-  e_GlowFade,
+    e_GlowFade,
 
-  e_WWPAnimationTest,
-  e_ActivityLevelAnimation,
 
-  e_SideEffects,
+    e_ActivityLevelAnimation,
 
-  // Animations defined by Bill Pugh (WWP)
-  e_ChangingColor,
-  e_CircularGradient,
+    e_SideEffects,
 
-  e_ColorWorms,
-  e_Chasers,
-  e_FlashAttack,
-  e_Snow,
-  e_Swirl,
+    // Animations defined by Bill Pugh (WWP)
+    e_ChangingColor,
+    e_CircularGradient,
 
-  // Danny's animations.
-  e_Qbert,   // RGB simple
-  e_DRAnimation1,   // RNBeam
+    e_ColorWorms,
+    e_Chasers,
+    e_FlashAttack,
+    e_Snow,
+    e_Swirl,
 
-  // Antoine's animations
-  e_Flashes,
-  e_AVEAnimation1
+    // Danny's animations.
+    e_Qbert,   // RGB simple
+    e_DRAnimation1,   // RNBeam
+
+    // Antoine's animations
+    e_Flashes,
+    e_AVEAnimation1,
+    e_MovingFaces;
+    
+    static final int SIZE = values().length;
+    
+    
 
 }
