@@ -13,7 +13,7 @@ void FlashEcho::paint(RNLights & lights) {
     bool isTap = false;
 	float activity = info.getLocalActivity();
 
-	info.printf("Activity = %.3f. tapEligible = %s\n", activity, tapEligible ? "YES":"NO" );
+	// info.printf("Activity = %.3f. tapEligible = %s\n", activity, tapEligible ? "YES":"NO" );
 
 	if ( tapEligible ) {
 		if ( activity > parameters.maxActivityThreshold ) {
@@ -127,7 +127,7 @@ void FlashEcho::recordFlash() {
 	unsigned long timediff = info.getGlobalMillis() - lastModeSwitchTimestamp;
 	tapHistory[historyWriteHead] = timediff;
 
-    info.printf("Recording flash[%d] @ %lu.\n", historyWriteHead, timediff);
+    // info.printf("Recording flash[%d] @ %lu.\n", historyWriteHead, timediff);
 
 	historyWriteHead++;
 	if ( historyWriteHead >= historySize ) {
