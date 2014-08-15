@@ -53,7 +53,7 @@ void setup() {
   Serial.begin(constants.usbSerialBaudRate);
 
   pinMode(ONBOARD_LED_PIN, OUTPUT);
-  for(int i = 0; i < 5; i++) {
+  for(int i = 0; i < 10; i++) {
     digitalWrite(ONBOARD_LED_PIN, HIGH);
     delay(700);
     digitalWrite(ONBOARD_LED_PIN, LOW);
