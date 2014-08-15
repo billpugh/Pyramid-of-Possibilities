@@ -28,10 +28,16 @@ void GlowFade::paint(RNLights & lights) {
     
     unsigned long ms = getAnimationMillis();
 
+
+    int sColor = 0x00ffff + parameters.value;
+    int eColor = 0xffffff + parameters.value;
+
+    RNGradient gradient = RNGradient(1, RNGradientWrap,sColor, eColor);
+
     uint16_t cycle = ms / parameters.period;
     uint8_t gradiantPosition = cycle * parameters.gradiantSkip;
     uint8_t r,g,b;
-    parameters.gradient.getColor(gradiantPosition, r,g,b);
+    gradient.getColor(gradiantPosition, r,g,b);
     
     lights.setAllPixelColors(r,g,b);
     float moment = ((float)(ms % parameters.period)) / parameters.period;
