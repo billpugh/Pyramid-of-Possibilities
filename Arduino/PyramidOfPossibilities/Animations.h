@@ -49,6 +49,7 @@ enum  AnimationEnum {
     e_Flashes,
     e_AVEAnimation1,
     e_MovingFaces,
+    e_Explosion,
 
 
     // Not an actual enum, just the value used to give us the count of the number of enums
