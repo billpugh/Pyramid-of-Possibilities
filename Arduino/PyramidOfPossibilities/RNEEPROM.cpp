@@ -19,11 +19,13 @@ bool readFromEEPROM(short sz, char *p) {
 #ifndef POP_SIMULATOR
      uint8_t storedVersion = EEPROM.read(0);
     if (version != storedVersion) {
+        Serial.println("Old version");
         return false;
     }
     uint16_t storedSize = EEPROM.read(1) << 8 | EEPROM.read(2);
     
     if (sz != storedSize) {
+        Serial.println("Sizes don't match");
         return false;
     }
     for(int i = 0; i < sz; i++)

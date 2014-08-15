@@ -1,6 +1,5 @@
 import gnu.io.SerialPort;
 
-import java.io.IOException;
 import java.io.OutputStreamWriter;
 
 

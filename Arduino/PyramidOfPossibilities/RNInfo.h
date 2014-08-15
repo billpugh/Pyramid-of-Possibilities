@@ -65,6 +65,7 @@ public:
 
     float getPlatformGlobalAngle();
 
+    
 
     // getLocalAngle for LED in degrees (0 = south, range = is 0 to 0.999...)
     float getLocalAngle(uint8_t led);
@@ -75,7 +76,9 @@ public:
     
     // Distance of pixel from center at ground level
     float getGlobalRadiusGround(uint8_t led);
-
+    
+    // does this LED face the exterior of the entire pyramid?
+    bool isExteriorLED(uint8_t led);
     
     void showActivityWithSparkles(RNLights & lights);
     void showActivityWithBrightness(RNLights & lights,  uint16_t minBrightness);

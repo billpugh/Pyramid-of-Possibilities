@@ -24,8 +24,11 @@ public class TeensyListener implements Runnable {
                 int l = in.read();
                 int crc = in.read();
                 ByteBuffer buf = ByteBuffer.allocate(l);
-                while (buf.remaining() > 0)
-                    channel.read(buf);
+                System.out.printf("Reading %d bytes\n", l);
+                while (buf.remaining() > 0) {
+                    int bytes = channel.read(buf);
+                    System.out.printf("Read %d bytes\n", bytes);
+                }
                 buf.flip();
                 PlatformReport report = new PlatformReport(buf);
                 System.out.println("Got platform report for platform " + report.identifier);

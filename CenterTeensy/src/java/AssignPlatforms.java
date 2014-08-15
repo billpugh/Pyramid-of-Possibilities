@@ -9,15 +9,16 @@ import java.nio.channels.WritableByteChannel;
 
 import javax.speech.synthesis.Synthesizer;
 
-public class WaitAndConnect {
+public class AssignPlatforms {
     
     
 
     public static void main(String args[]) throws Exception {
 
         Synthesizer synthesizer = SynthesizerFactory. getSynthesizer();
-        
+        synthesizer.speakPlainText("Ready to assign platforms", null);
         while (true) {
+            try {
             String tty = DetectPort.getPortName("tty.usbmodem");
             SerialPort port = SerialPortFactory.findSerialPortByName(tty, 115200);
             System.out.println("Opened " + tty);
@@ -29,7 +30,7 @@ public class WaitAndConnect {
                     if (s == null)
                         break;
                     System.out.println(s);
-                    if (s.equals("PoP board starting")) {
+                    if (s.startsWith("PoP board starting")) {
                         String mac = r.readLine();
                         if (mac == null) break;
 
@@ -53,6 +54,9 @@ public class WaitAndConnect {
                 e.printStackTrace();
             }
             port.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
         }
 

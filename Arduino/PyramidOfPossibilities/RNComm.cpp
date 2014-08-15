@@ -153,7 +153,12 @@ void prepareReportToCentral(RNInfo &info) {
     putFloat(gData[0]);
     putFloat(gData[1]);
     putFloat(gData[2]);
-    sendBuffer[1] = sendBufferPosition;
+    // exclude header length from packet length
+    sendBuffer[1] = sendBufferPosition-3;
+    info.printf("Sending ");
+    for(int i = 0; i < sendBufferPosition; i++)info.printf("%2x ", sendBuffer[i]);
+    info.printf("\n");
+
 }
 
 void parseProgramMessage(RNInfo & info) {
@@ -174,7 +179,7 @@ void parseProgramMessage(RNInfo & info) {
     comm_time_t sendResponseAt = messageReceiveTime + 20 + 10*info.wirePosition;
     info.printf("wirePosition %d, scheduling response for %d\n",info.wirePosition, sendResponseAt
                 );
-    prepareReportToCentral(info);
+
     if (!scheduleSend(info, sendResponseAt, sendBufferPosition, sendBuffer))
         info.println("Unable to schedule send");
     }
@@ -192,6 +197,7 @@ void checkComm(RNInfo &info) {
     if (awaitingBody)
         if (checkCommBody(info)) {
             if (kind == 'p') {
+
                 parseProgramMessage(info);
             }
         }

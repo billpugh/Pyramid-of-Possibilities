@@ -14,6 +14,7 @@ void Beacon::paint(RNLights & lights) {
 
 
     for(int i = 0; i < lights.getNumPixels(); i++) {
+        if (parameters.onlyExterior && !info.isExteriorLED(i)) continue;
         float diff = (info.getGlobalAngle(i) - angle) * parameters.numBeacons;
         
         float a = diff - roundf(diff);

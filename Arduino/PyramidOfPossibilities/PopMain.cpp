@@ -30,7 +30,7 @@
 
 RNInfo *info;
 RNController * controller;
-Platform platform( /* ID */ 0, /* XYZ */ 0,0,700,
+Platform platform( /* ID */ 42, /* XYZ */ 0,0,700,
                   /* dir */ 0, /* wire Pos */ 1);
 
 extern RNLights *lights;
@@ -41,16 +41,16 @@ extern RNLights *lights;
 void debugTriadPositions();
 
 void setupMain() {
-    Serial.println("PoP board starting");
+    Serial.println("PoP board starting 8/14 10:19pm");
     print_mac();
-    char  platformData[9];
-    Platform platform(0,0,0,0,0,0);
+
     bool success = readFromEEPROM(sizeof(Platform), (char*) &platform);
     if (success) {
         Serial.print("Read from EEPROM ");
         Serial.print(platform.identifier);
         Serial.println();
     }
+    char  platformData[10];
     const int platformSerialLength = 10;
     int bytesRead = Serial.readBytes((char *) platformData, platformSerialLength);
     Serial.print(bytesRead);
@@ -73,6 +73,7 @@ void setupMain() {
     info = new RNInfo(constants.LEDs, platform);
     controller = new RNController(*info);
 
+    info->printf("Ready, platform %d, wire %d\n", info->identifier, info->wirePosition);
     initializeComm(*info);
 #ifndef FULL_STRIP
     debugTriadPositions();
@@ -123,9 +124,9 @@ void capOverallBrightness(RNLights & lights) {
 }
 
 void loop() {
-  int available = Serial2.available();
-  if (available > 0)
-  info->printf("Serial2.available = %d\n",available);
+//  int available = Serial2.available();
+//  if (available > 0)
+//  info->printf("Serial2.available = %d\n",available);
     refreshWatchdog();
     unsigned long startMicros = micros();
 
