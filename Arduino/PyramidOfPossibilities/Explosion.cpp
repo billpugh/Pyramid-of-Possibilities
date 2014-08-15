@@ -24,7 +24,7 @@ Explosion::Explosion(RNInfo & info, unsigned long animationStartMillis)
         float zLED = info.z;
         float dist = distancePointFromPoint(xLED, yLED, zLED,
                 parameters.bombPlatform);
-        ledsDistanceToBomb.push_back(dist);
+        ledsDistanceToBomb[i] = dist;
     }
 };
 
@@ -61,7 +61,7 @@ void Explosion::paint(RNLights & lights) {
     AHEasingFunction shockwaveEasing = getEasingFunction(EaseIn, CurveTypeExpo);
     float endShockWave = shockWaveDistance - parameters.shockWaveThickness;
     for (int i = 0; i < info.numLEDs; i++) {
-        float distance = ledsDistanceToBomb.at(i);
+        float distance = ledsDistanceToBomb[i];
         if (endShockWave <= distance &&
                 distance <= shockWaveDistance) {
             float ratio = 1 - (shockWaveDistance - distance) /
