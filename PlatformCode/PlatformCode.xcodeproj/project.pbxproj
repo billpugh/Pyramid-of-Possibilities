@@ -78,6 +78,8 @@
 		16838ED519950C48008CD81E /* Radial.h in Headers */ = {isa = PBXBuildFile; fileRef = 16838ED119950C48008CD81E /* Radial.h */; };
 		16838ED619950C48008CD81E /* Flashes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16838ED219950C48008CD81E /* Flashes.cpp */; };
 		16838ED719950C48008CD81E /* Flashes.h in Headers */ = {isa = PBXBuildFile; fileRef = 16838ED319950C48008CD81E /* Flashes.h */; };
+		168CBA44199E908900EA86C1 /* Explosion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 168CBA42199E908900EA86C1 /* Explosion.cpp */; };
+		168CBA45199E908900EA86C1 /* Explosion.h in Headers */ = {isa = PBXBuildFile; fileRef = 168CBA43199E908900EA86C1 /* Explosion.h */; };
 		1690A1641993CA83006C4A5A /* watchdog.h in Headers */ = {isa = PBXBuildFile; fileRef = 1690A1631993CA83006C4A5A /* watchdog.h */; };
 		16BA0E48199B9B17007E85F8 /* Mute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16BA0E46199B9B17007E85F8 /* Mute.cpp */; };
 		16BA0E49199B9B17007E85F8 /* Mute.h in Headers */ = {isa = PBXBuildFile; fileRef = 16BA0E47199B9B17007E85F8 /* Mute.h */; };
@@ -167,6 +169,8 @@
 		16838ED119950C48008CD81E /* Radial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Radial.h; path = ../Arduino/PyramidOfPossibilities/Radial.h; sourceTree = "<group>"; };
 		16838ED219950C48008CD81E /* Flashes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Flashes.cpp; path = ../Arduino/PyramidOfPossibilities/Flashes.cpp; sourceTree = "<group>"; };
 		16838ED319950C48008CD81E /* Flashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flashes.h; path = ../Arduino/PyramidOfPossibilities/Flashes.h; sourceTree = "<group>"; };
+		168CBA42199E908900EA86C1 /* Explosion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Explosion.cpp; path = ../Arduino/PyramidOfPossibilities/Explosion.cpp; sourceTree = "<group>"; };
+		168CBA43199E908900EA86C1 /* Explosion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Explosion.h; path = ../Arduino/PyramidOfPossibilities/Explosion.h; sourceTree = "<group>"; };
 		1690A1631993CA83006C4A5A /* watchdog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = watchdog.h; path = ../Arduino/libraries/watchdog/watchdog.h; sourceTree = "<group>"; };
 		16BA0E46199B9B17007E85F8 /* Mute.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Mute.cpp; path = ../Arduino/PyramidOfPossibilities/Mute.cpp; sourceTree = "<group>"; };
 		16BA0E47199B9B17007E85F8 /* Mute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mute.h; path = ../Arduino/PyramidOfPossibilities/Mute.h; sourceTree = "<group>"; };
@@ -245,6 +249,8 @@
 		1644A188198D384500FBFF63 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				168CBA42199E908900EA86C1 /* Explosion.cpp */,
+				168CBA43199E908900EA86C1 /* Explosion.h */,
 				16BA0E4A199D06F0007E85F8 /* MovingFaces.cpp */,
 				16BA0E4B199D06F0007E85F8 /* MovingFaces.h */,
 				1644A12A198D34D400FBFF63 /* ActivityLevelAnimation.cpp */,
@@ -379,6 +385,7 @@
 				1644A158198D34D400FBFF63 /* RNInfo.h in Headers */,
 				1644A174198D34D400FBFF63 /* Platform.h in Headers */,
 				164B170E1993D28900C0FB57 /* easing.h in Headers */,
+				168CBA45199E908900EA86C1 /* Explosion.h in Headers */,
 				1644A184198D354700FBFF63 /* Arduino.h in Headers */,
 				1644A16F198D34D400FBFF63 /* CircularGradient.h in Headers */,
 				1644A16C198D34D400FBFF63 /* RNAnimation.h in Headers */,
@@ -466,6 +473,7 @@
 				166A9D3E19991BA100C2E74C /* PopMain.cpp in Sources */,
 				163D507C198E6D9600E882A1 /* Swirl.cpp in Sources */,
 				1644A15E198D34D400FBFF63 /* AVEAnimation1.cpp in Sources */,
+				168CBA44199E908900EA86C1 /* Explosion.cpp in Sources */,
 				164B170C1993D28900C0FB57 /* easingSelect.cpp in Sources */,
 				1644A151198D34D400FBFF63 /* SideEffects.cpp in Sources */,
 				1644A192198D600200FBFF63 /* ledPositions.cpp in Sources */,
