@@ -9,6 +9,7 @@
 #include "RNComm.h"
 #include "RNCommDaemon.h"
 #include "Constants.h"
+#include "PopMain.h"
 #include "RNInfo.h"
 #include "RNSerial.h"
 #include "AnimationBroadcast.h"
@@ -185,6 +186,7 @@ void parseProgramMessage(RNInfo & info) {
     info.printf("Got message at %d, program %d\n", messageReceiveTime, animationStatus.program);
     info.printf("local time %d, Global time %d\n",millis(), lastGlobalTime
                 );
+    controller->animationUpdate(animationStatus);
     prepareReportToCentral(info);
     comm_time_t sendResponseAt = messageReceiveTime + 20 + 10*info.wirePosition;
     info.printf("wirePosition %d, scheduling response for %d\n",info.wirePosition, sendResponseAt
