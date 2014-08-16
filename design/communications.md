@@ -43,9 +43,9 @@ Central broadcast:
 * program (1 byte)
 * program seq id (1 byte)
 * start time (4 bytes)
-* cycle value (4 bytes)
-* cycle time as of (4 bytes)
-* cpm (1 byte)
+* cycles at last tweak (4 bytes, float)
+* tweaked at (4 bytes), relative to animation start time
+* tweak value (1 byte)
 * parameter length (1 byte)
 * parameters (<=28 bytes)
 * animations (1 byte)

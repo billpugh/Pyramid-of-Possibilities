@@ -148,7 +148,7 @@ void Chasers::paint(RNLights & paintMe) {
     }
   }
 
-  if (info.getTaps()) {
+  if (info.getTaps() || hasBeenTweaked()) {
     if (DEBUG) info.printf("Saw tap %f\n", totalG);
     tapStrength = totalG;
     didTap = true;

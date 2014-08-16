@@ -68,5 +68,12 @@ int8_t RNAnimation::getTweakValue() {
     return animationBroadcast.tweakValue;
 }
 
+bool RNAnimation::hasBeenTweaked() {
+    unsigned long now = getAnimationMillis();
+    bool result = animationBroadcast.lastTweakAt > tweakLastChecked;
+    tweakLastChecked = now;
+    return result;
+}
+
 
 
