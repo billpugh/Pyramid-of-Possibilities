@@ -5,17 +5,45 @@ import java.nio.ByteOrder;
 public class Animation {
 
 	 static class CycleStatus {
+		    final byte cpm;
 	    	final  double cycles;
-	    	 final  long computedAt;
-			public CycleStatus(double cycles, long computedAt) {
+	    	 final  int computedAt;
+	    	 public CycleStatus(int computedAt) {
+	    		 this((byte)30, 0, computedAt);
+	    	 }
+			private CycleStatus(byte cpm, double cycles, int computedAt) {
+				this.cpm = cpm;
 				this.cycles = cycles;
 				this.computedAt = computedAt;
 			}
 			
-			CycleStatus asOf(int cpm, long t) {
-				if (t < computedAt) throw new IllegalArgumentException();
-				return new CycleStatus(cycles + cpm * (t-computedAt)/60000.0, t);
+			CycleStatus tweakUp() {
+				int at = BurnerTime.getGlobalTime();
+				if (at < computedAt) throw new IllegalArgumentException();
+				double newCycleCount = cycles + cpm * (at-computedAt)/60000.0;
+				int newValue = cpm;
+				if (computedAt + 100 > at) {
+					newValue += 4;
+				} else
+					newValue ++;
+				if (newValue > 127) newValue = 127;
+
+				return new CycleStatus((byte) newValue, newCycleCount, at);
 			}
+			CycleStatus tweakDown() {
+				int at = BurnerTime.getGlobalTime();
+				if (at < computedAt) throw new IllegalArgumentException();
+				double newCycleCount = cycles + cpm * (at-computedAt)/60000.0;
+				int newValue = cpm;
+				if (computedAt + 100 > at) {
+					newValue -= 4;
+				} else
+					newValue --;
+				if (newValue < -127) newValue = -127;
+
+				return new CycleStatus((byte) newValue, newCycleCount, at);
+			}
+			
 	    }
 	 
     final AnimationProgram program;
@@ -23,12 +51,15 @@ public class Animation {
     
     
    
-    int cpm;
-    final long startTime = BurnerTime.getGlobalTime();
-    volatile CycleStatus cycleStatus = new CycleStatus(0, startTime);
+    public void tweakUp() {
+    	cycleStatus = cycleStatus.tweakUp();
+    }
+    public void tweakDown() {
+    	cycleStatus = cycleStatus.tweakDown();
+    }
+    final int startTime = BurnerTime.getGlobalTime();
+    volatile CycleStatus cycleStatus = new CycleStatus(startTime);
     byte [] parameters;
-   
-    
     
     static byte nextSequenceId = 0;
 
@@ -42,16 +73,12 @@ public class Animation {
        this(program, new byte[0]);
     }
 
-    public synchronized void updateCycles() {
-    	cycleStatus = cycleStatus.asOf(cpm, BurnerTime.getGlobalTime() );
-    	
-    }
     public  CycleStatus getCycles() {
     	return cycleStatus;
     }
 
     public short byteLength() {
-        int length = 1+1+2+8+parameters.length;
+        int length = 17+parameters.length;
         if (length > Short.MAX_VALUE)
             throw new AssertionError();
         return (short) length;
@@ -61,9 +88,11 @@ public class Animation {
     public void write(ByteBuffer buf ) {
         buf.put((byte)program.ordinal());
         buf.put(sequenceId);
-        buf.putLong(startTime);
+        buf.putInt(startTime);
         CycleStatus cycles = getCycles();
         buf.putFloat((float)cycles.cycles);
+        buf.putInt(cycles.computedAt);
+        buf.put(cycles.cpm);
         buf.putShort(byteLength());
         if (parameters.length > 0)
             buf.put(parameters);

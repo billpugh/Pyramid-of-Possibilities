@@ -85,6 +85,8 @@
 		16BA0E4D199D06F0007E85F8 /* MovingFaces.h in Headers */ = {isa = PBXBuildFile; fileRef = 16BA0E4B199D06F0007E85F8 /* MovingFaces.h */; };
 		16C35AE8198FEF7100E2E362 /* Beacon.h in Headers */ = {isa = PBXBuildFile; fileRef = 16C35AE6198FEF7100E2E362 /* Beacon.h */; };
 		16C35AE9198FEF7100E2E362 /* Beacon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16C35AE7198FEF7100E2E362 /* Beacon.cpp */; };
+		16E32C89199EF9850006E6B6 /* AnimationBroadcast.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16E32C87199EF9850006E6B6 /* AnimationBroadcast.cpp */; };
+		16E32C8A199EF9850006E6B6 /* AnimationBroadcast.h in Headers */ = {isa = PBXBuildFile; fileRef = 16E32C88199EF9850006E6B6 /* AnimationBroadcast.h */; };
 		16EDC08E199999A8002FA957 /* RNComm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EDC08C199999A8002FA957 /* RNComm.cpp */; };
 		16EDC08F199999A8002FA957 /* RNComm.h in Headers */ = {isa = PBXBuildFile; fileRef = 16EDC08D199999A8002FA957 /* RNComm.h */; };
 		30F8EB2F198D5B6E008DEAE9 /* Constants.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30F8EB2D198D5B6E008DEAE9 /* Constants.cpp */; };
@@ -174,6 +176,8 @@
 		16BA0E4B199D06F0007E85F8 /* MovingFaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovingFaces.h; path = ../Arduino/PyramidOfPossibilities/MovingFaces.h; sourceTree = "<group>"; };
 		16C35AE6198FEF7100E2E362 /* Beacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Beacon.h; path = ../Arduino/PyramidOfPossibilities/Beacon.h; sourceTree = "<group>"; };
 		16C35AE7198FEF7100E2E362 /* Beacon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Beacon.cpp; path = ../Arduino/PyramidOfPossibilities/Beacon.cpp; sourceTree = "<group>"; };
+		16E32C87199EF9850006E6B6 /* AnimationBroadcast.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AnimationBroadcast.cpp; path = ../Arduino/PyramidOfPossibilities/AnimationBroadcast.cpp; sourceTree = "<group>"; };
+		16E32C88199EF9850006E6B6 /* AnimationBroadcast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnimationBroadcast.h; path = ../Arduino/PyramidOfPossibilities/AnimationBroadcast.h; sourceTree = "<group>"; };
 		16EDC08C199999A8002FA957 /* RNComm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RNComm.cpp; path = ../Arduino/PyramidOfPossibilities/RNComm.cpp; sourceTree = "<group>"; };
 		16EDC08D199999A8002FA957 /* RNComm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNComm.h; path = ../Arduino/PyramidOfPossibilities/RNComm.h; sourceTree = "<group>"; };
 		30514239199E852400D69243 /* PlatformControler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PlatformControler.cpp; path = ../PopSimulator/PlatformControler.cpp; sourceTree = "<group>"; };
@@ -217,6 +221,8 @@
 				1644A122198D34D400FBFF63 /* Animations.h */,
 				1644A142198D34D400FBFF63 /* RNAnimation.cpp */,
 				1644A141198D34D400FBFF63 /* RNAnimation.h */,
+				16E32C87199EF9850006E6B6 /* AnimationBroadcast.cpp */,
+				16E32C88199EF9850006E6B6 /* AnimationBroadcast.h */,
 				30F8EB2E198D5B6E008DEAE9 /* Constants.h */,
 				30F8EB2D198D5B6E008DEAE9 /* Constants.cpp */,
 				1644A132198D34D400FBFF63 /* Controller.cpp */,
@@ -354,6 +360,7 @@
 				1644A17D198D34FE00FBFF63 /* RNLights.h in Headers */,
 				16838ED519950C48008CD81E /* Radial.h in Headers */,
 				166A9D3B1999161800C2E74C /* Accelerometer.h in Headers */,
+				16E32C8A199EF9850006E6B6 /* AnimationBroadcast.h in Headers */,
 				1644A162198D34D400FBFF63 /* ActivityLevelAnimation.h in Headers */,
 				16C35AE8198FEF7100E2E362 /* Beacon.h in Headers */,
 				1644A171198D34D400FBFF63 /* ColorWorms.h in Headers */,
@@ -460,6 +467,7 @@
 				1644A165198D34D400FBFF63 /* GlowFade.cpp in Sources */,
 				1644A159198D34D400FBFF63 /* DRAnimation1.cpp in Sources */,
 				1644A167198D34D400FBFF63 /* Chasers.cpp in Sources */,
+				16E32C89199EF9850006E6B6 /* AnimationBroadcast.cpp in Sources */,
 				1644A154198D34D400FBFF63 /* FlashAttack.cpp in Sources */,
 				1644A155198D34D400FBFF63 /* ActivityLevelAnimation.cpp in Sources */,
 				164EFE84199A372F0041DAD7 /* RNCommDaemon.cpp in Sources */,

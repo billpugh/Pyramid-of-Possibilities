@@ -11,14 +11,14 @@
 #include "RNAnimation.h"
 
 
-RNAnimation::RNAnimation(RNInfo & info, unsigned long animationStartMillis) : info(info), animationStartMillis(animationStartMillis), lastUpdate(animationStartMillis)  {
+RNAnimation::RNAnimation(RNInfo & info, unsigned long animationStartMillis) : info(info), animationStartMillis(animationStartMillis), animationBroadcast((uint32_t)animationStartMillis)  {
     parametersPointer = 0;
     parametersSize = 0;
 };
 
 RNAnimation::RNAnimation(RNInfo & info, unsigned long animationStartMillis,
             unsigned int parametersSize, void *parametersPointer
-            )  : info(info), animationStartMillis(animationStartMillis),lastUpdate(animationStartMillis), parametersSize(parametersSize), parametersPointer(parametersPointer) {
+            )  : info(info), animationStartMillis(animationStartMillis), animationBroadcast((uint32_t)animationStartMillis), parametersSize(parametersSize), parametersPointer(parametersPointer) {
     
 }
 
@@ -61,24 +61,12 @@ void RNAnimation::paint(RNLights &lights) {}
 
 // Gives the cycles since this animation started.
 float RNAnimation::getAnimationCycles() {
-    return cycleCount;
+    return animationBroadcast.cyclesAtLastTweak + animationBroadcast.tweakValue * (millis() - animationBroadcast.lastTweakAt) / 60000.0f;
 }
 
-uint8_t RNAnimation::getCyclesPerMinute() {
-    return cyclesPerMinute;
+int8_t RNAnimation::getTweakValue() {
+    return animationBroadcast.tweakValue;
 }
 
-
-void RNAnimation::updateCycleCount() {
-    unsigned long now = millis();
-    cycleCount += cyclesPerMinute*(now-lastUpdate)/60000.0;
-    lastUpdate = now;
-}
-
-void RNAnimation::setCyclesPerMinute(int8_t cpm) {
-    cyclesPerMinute = cpm;
-    
-    
-}
 
 
