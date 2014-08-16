@@ -44,6 +44,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/1731549632/CircularGradient.o \
 	${OBJECTDIR}/_ext/1731549632/ColorWorms.o \
 	${OBJECTDIR}/_ext/1731549632/Constants.o \
+	${OBJECTDIR}/_ext/1731549632/Controller.o \
 	${OBJECTDIR}/_ext/1731549632/DRAnimation1.o \
 	${OBJECTDIR}/_ext/1731549632/Explosion.o \
 	${OBJECTDIR}/_ext/1731549632/FlashAttack.o \
@@ -78,7 +79,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/1371306724/RNSerial.o \
 	${OBJECTDIR}/Arduino.o \
 	${OBJECTDIR}/FPSControlsHandler.o \
-	${OBJECTDIR}/PlatformControler.o \
+	${OBJECTDIR}/PlatformController.o \
 	${OBJECTDIR}/Pyramid.o \
 	${OBJECTDIR}/PyramidArchitecture.o \
 	${OBJECTDIR}/RNLightsSimulator.o \
@@ -100,7 +101,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS= -L/usr/local/lib -framework OpenGL
+LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
@@ -108,7 +109,7 @@ LDLIBSOPTIONS= -L/usr/local/lib -framework OpenGL
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/popsimulator: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/popsimulator ${OBJECTFILES} ${LDLIBSOPTIONS}  -lglfw3 -lGLEW
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/popsimulator ${OBJECTFILES} ${LDLIBSOPTIONS} -lGL -lglfw -lGLEW
 
 ${OBJECTDIR}/_ext/1731549632/AVEAnimation1.o: ../Arduino/PyramidOfPossibilities/AVEAnimation1.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
@@ -154,6 +155,11 @@ ${OBJECTDIR}/_ext/1731549632/Constants.o: ../Arduino/PyramidOfPossibilities/Cons
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../Arduino/PyramidOfPossibilities -I../PlatformData -I../Arduino/libraries/RNChaser -I../Arduino/libraries/RNLights -I../Arduino/libraries/Accelerometer -I../Arduino/PyramidOfPossibilities -I. -I../Arduino/libraries/FastLED -I../Arduino/libraries/AHEasing -I../Arduino/libraries/RNSerial -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/Constants.o ../Arduino/PyramidOfPossibilities/Constants.cpp
+
+${OBJECTDIR}/_ext/1731549632/Controller.o: ../Arduino/PyramidOfPossibilities/Controller.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../Arduino/PyramidOfPossibilities -I../PlatformData -I../Arduino/libraries/RNChaser -I../Arduino/libraries/RNLights -I../Arduino/libraries/Accelerometer -I../Arduino/PyramidOfPossibilities -I. -I../Arduino/libraries/FastLED -I../Arduino/libraries/AHEasing -I../Arduino/libraries/RNSerial -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/Controller.o ../Arduino/PyramidOfPossibilities/Controller.cpp
 
 ${OBJECTDIR}/_ext/1731549632/DRAnimation1.o: ../Arduino/PyramidOfPossibilities/DRAnimation1.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
@@ -325,10 +331,10 @@ ${OBJECTDIR}/FPSControlsHandler.o: FPSControlsHandler.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../Arduino/PyramidOfPossibilities -I../PlatformData -I../Arduino/libraries/RNChaser -I../Arduino/libraries/RNLights -I../Arduino/libraries/Accelerometer -I../Arduino/PyramidOfPossibilities -I. -I../Arduino/libraries/FastLED -I../Arduino/libraries/AHEasing -I../Arduino/libraries/RNSerial -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/FPSControlsHandler.o FPSControlsHandler.cpp
 
-${OBJECTDIR}/PlatformControler.o: PlatformControler.cpp 
+${OBJECTDIR}/PlatformController.o: PlatformController.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I../Arduino/PyramidOfPossibilities -I../PlatformData -I../Arduino/libraries/RNChaser -I../Arduino/libraries/RNLights -I../Arduino/libraries/Accelerometer -I../Arduino/PyramidOfPossibilities -I. -I../Arduino/libraries/FastLED -I../Arduino/libraries/AHEasing -I../Arduino/libraries/RNSerial -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/PlatformControler.o PlatformControler.cpp
+	$(COMPILE.cc) -g -I../Arduino/PyramidOfPossibilities -I../PlatformData -I../Arduino/libraries/RNChaser -I../Arduino/libraries/RNLights -I../Arduino/libraries/Accelerometer -I../Arduino/PyramidOfPossibilities -I. -I../Arduino/libraries/FastLED -I../Arduino/libraries/AHEasing -I../Arduino/libraries/RNSerial -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/PlatformController.o PlatformController.cpp
 
 ${OBJECTDIR}/Pyramid.o: Pyramid.cpp 
 	${MKDIR} -p ${OBJECTDIR}

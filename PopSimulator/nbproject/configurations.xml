@@ -35,7 +35,7 @@
       <itemPath>../Arduino/PyramidOfPossibilities/Constants.h</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/Controller.h</itemPath>
       <itemPath>FPSControlsHandler.hpp</itemPath>
-      <itemPath>PlatformControler.hpp</itemPath>
+      <itemPath>PlatformController.hpp</itemPath>
       <itemPath>Pyramid.hpp</itemPath>
       <itemPath>PyramidArchitecture.hpp</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/RNAnimation.h</itemPath>
@@ -98,9 +98,10 @@
       <itemPath>../Arduino/PyramidOfPossibilities/Animations.cpp</itemPath>
       <itemPath>Arduino.c</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/Constants.cpp</itemPath>
+      <itemPath>../Arduino/PyramidOfPossibilities/Controller.cpp</itemPath>
       <itemPath>FPSControlsHandler.cpp</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/Platform.cpp</itemPath>
-      <itemPath>PlatformControler.cpp</itemPath>
+      <itemPath>PlatformController.cpp</itemPath>
       <itemPath>Pyramid.cpp</itemPath>
       <itemPath>PyramidArchitecture.cpp</itemPath>
       <itemPath>../Arduino/PyramidOfPossibilities/RNAnimation.cpp</itemPath>
@@ -415,6 +416,11 @@
       <item path="../Arduino/PyramidOfPossibilities/Constants.h"
             ex="false"
             tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Controller.cpp"
+            ex="false"
+            tool="1"
             flavor2="0">
       </item>
       <item path="../Arduino/PyramidOfPossibilities/Controller.h"
@@ -751,9 +757,9 @@
       </item>
       <item path="LedsVertexShader.shader" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="PlatformControler.cpp" ex="false" tool="1" flavor2="0">
+      <item path="PlatformController.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="PlatformControler.hpp" ex="false" tool="3" flavor2="0">
+      <item path="PlatformController.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Pyramid.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -890,6 +896,11 @@
       <item path="../Arduino/PyramidOfPossibilities/Constants.h"
             ex="false"
             tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/Controller.cpp"
+            ex="false"
+            tool="1"
             flavor2="0">
       </item>
       <item path="../Arduino/PyramidOfPossibilities/Controller.h"
@@ -1226,9 +1237,9 @@
       </item>
       <item path="LedsVertexShader.shader" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="PlatformControler.cpp" ex="false" tool="1" flavor2="0">
+      <item path="PlatformController.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="PlatformControler.hpp" ex="false" tool="3" flavor2="0">
+      <item path="PlatformController.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Pyramid.cpp" ex="false" tool="1" flavor2="0">
       </item>

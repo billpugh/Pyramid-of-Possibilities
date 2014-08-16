@@ -105,7 +105,7 @@ private:
     float platformGlobalAngle;
     float myDirectionalG[3];
     float maxDirectionalG[3];
-    uint8_t myTapSource;
+    uint8_t myTapSource = 0;
     uint8_t accumulatedTaps;
     unsigned long lastTap;
     

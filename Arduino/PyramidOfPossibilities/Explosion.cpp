@@ -44,12 +44,13 @@ void Explosion::paint(RNLights & lights) {
 
             float ratio = (float) (now - startTime) /
                     (float) (explosionTime - startTime);
-            float speed = ratio;
+            float speed = parameters.spinMaxSpeed * ratio;
             int position = speed * (now - startTime);
             for (int i = 0; i <= 100; i++) {
-                int intensity = 255 - 2.55 * i;
+                float intensity = 1 - i / 100.0;
                 int pos = lights.normalize(position - i);
-                lights.setPixelColor(pos, intensity, intensity, intensity);
+                lights.setPixelColor(pos,
+                        r * intensity, g * intensity, b * intensity);
             }
         }
         return;
@@ -68,7 +69,7 @@ void Explosion::paint(RNLights & lights) {
                     parameters.shockWaveThickness;
             ratio = shockwaveEasing(ratio);
 
-            lights.setPixelColor(i, 255 * ratio, 255 * ratio, 255 * ratio);
+            lights.setPixelColor(i, r * ratio, g * ratio, b * ratio);
         }
     }
 }
