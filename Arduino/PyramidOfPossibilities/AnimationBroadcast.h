@@ -16,9 +16,10 @@ const int MAX_PARAMETER_SIZE = 32;
 
 struct AnimationBroadcast {
     
-    AnimationBroadcast(uint32_t startTime) : startTime(startTime), lastTweakAt(startTime) {};
+    AnimationBroadcast(uint8_t program, uint32_t startTime) : program(program),startTime(startTime), lastTweakAt(startTime) {};
+    AnimationBroadcast(uint32_t startTime) : program(0),startTime(startTime), lastTweakAt(startTime) {};
     uint8_t program;
-    uint8_t seqId;
+    uint8_t seqId = 0;
     uint32_t startTime;
     uint32_t lastTweakAt;
     float cyclesAtLastTweak = 0.0;
