@@ -10,12 +10,18 @@
 #include "RNInfo.h"
 #include "Arduino.h"
 #include "Animations.h"
+#ifndef POP_SIMULATOR
 #include "malloc.h"
+#endif
 #include "Constants.h"
 #include "RNComm.h"
 
 static int heapSize(){
+#ifdef POP_SIMULATOR
+    return 0;
+#else
     return mallinfo().uordblks;
+#endif
 }
 
 void RNController::switchToAnimation(AnimationEnum nextAnimation) {
