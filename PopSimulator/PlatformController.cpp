@@ -5,14 +5,14 @@
  * Created on July 22, 2014, 7:24 PM
  */
 
-#include "PlatformControler.hpp"
+#include "PlatformController.hpp"
 #include "RNLightsSimulator.hpp"
 
 #include "Animations.h"
 #include "Arduino.h"
 #include "PyramidArchitecture.hpp"
 
-PlatformControler::PlatformControler(Pyramid* _pyramid, int _platform) {
+PlatformController::PlatformController(Pyramid* _pyramid, int _platform) {
     pyramid = _pyramid;
     platform = _platform;
     lights = new RNLightsSimulator(pyramid, platform);
@@ -23,19 +23,24 @@ PlatformControler::PlatformControler(Pyramid* _pyramid, int _platform) {
             coords[0],
             coords[1],
             coords[2]);
-
-    animation = getAnimation(e_Explosion, *info, millis());
+    
+    controller = new RNController(*info);
 }
 
-void PlatformControler::refreshPlatform() {
+const char * PlatformController::nextAnimation() {
+    controller->nextAnimation();
+    return controller->currentAnimation->name();
+}
+
+void PlatformController::refreshPlatform() {
     lights->reset();
-    animation->paint(*lights);
+    controller->paint(*lights);
     lights->show();
 }
 
-PlatformControler::~PlatformControler() {
+PlatformController::~PlatformController() {
     delete lights;
     delete info;
-    delete animation;
+    delete controller;
 }
 
