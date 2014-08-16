@@ -38,6 +38,15 @@ public enum AnimationProgram {
     e_AVEAnimation1,
     e_MovingFaces;
     
+    
+    
+    final public Animation.TweakKind tweakKind;
+    private AnimationProgram(Animation.TweakKind tweakKind) {
+        this.tweakKind = tweakKind;
+    }
+    private AnimationProgram() {
+        this(Animation.TweakKind.SIGNED);
+    }
     static final int SIZE = values().length;
     
     
