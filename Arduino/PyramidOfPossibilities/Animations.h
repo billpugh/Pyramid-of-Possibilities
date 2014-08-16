@@ -14,7 +14,8 @@
 
 enum  AnimationEnum {
 
-      e_Beacon,
+    e_LiftOff,
+    e_Beacon,
     // Branden's animations
     e_Kittens,
 

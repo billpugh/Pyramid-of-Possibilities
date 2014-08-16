@@ -20,7 +20,7 @@
 #include "Snow.h"
 #include "Swirl.h"
 #include "Beacon.h"
-
+#include "LiftOff.h"
 #include "Qbert.h"
 #include "DRAnimation1.h"
 
@@ -48,6 +48,8 @@ RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animati
 
         case e_Mute:
             return new Mute(info, animationStartMillis);
+        case e_LiftOff:
+            return new LiftOff(info, animationStartMillis);
 
         case e_ActivityLevelAnimation:
             return new ActivityLevelAnimation(info, animationStartMillis);
