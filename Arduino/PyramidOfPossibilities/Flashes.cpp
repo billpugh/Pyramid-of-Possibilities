@@ -6,13 +6,14 @@ void Flashes::paint(RNLights & lights) {
     if (now < lastUpdate + parameters.flashDuration) {
         return;
     }
-
-    int led = random(lights.getNumPixels());
-    for (int i = 0; i < parameters.flashSize; i++) {
-        lights.setPixelColor(led + i,
-                parameters.red, parameters.green, parameters.blue);
+    
+    for ( int i = 0; i < parameters.numFlashes; i ++ ) {
+        int led = random(lights.getNumPixels());
+        for (int i = 0; i < parameters.flashSize; i++) {
+            lights.setPixelColor(led + i, parameters.red, parameters.green, parameters.blue);
+        }
     }
-
+    
     lastUpdate = now;
 }
 

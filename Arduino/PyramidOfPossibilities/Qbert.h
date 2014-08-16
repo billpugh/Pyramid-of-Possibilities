@@ -11,34 +11,25 @@
 
 #include "RNAnimation.h"
 
+// Classic
 struct QbertParameters {
-    uint8_t colors[15];		// 3 bytes per color
-    uint8_t numColors;
+    uint8_t colors[15] = {0xFF,0x00,0x00,0x00,0xff,0x00,0x00,0x00,0xff,0,0,0,0,0,0};		// 3 bytes per color
+    uint8_t numColors = 3;
 };
+
+// On/Off
+//struct QbertParameters {
+//    uint8_t colors[15] = {200,200,200,0,20,20,0,0,0,0,0,0,0,0,0};
+//    uint8_t numColors = 2;
+//};
+
 
 class Qbert : public RNAnimation {
 public:
     Qbert(RNInfo & info, unsigned long animationStartMillis)
     : RNAnimation(info, animationStartMillis, sizeof(QbertParameters), &parameters) {
-
-    	// initialize animation to have 3 colors
-    	parameters.colors[0] = 0xFF;
-    	parameters.colors[1] = 0x00;
-    	parameters.colors[2] = 0x00;
-
-    	parameters.colors[3] = 0x00;
-    	parameters.colors[4] = 0xFF;
-    	parameters.colors[5] = 0x00;
-    	
-    	parameters.colors[6] = 0x00;
-    	parameters.colors[7] = 0x00;
-    	parameters.colors[8] = 0xFF;
-
-    	parameters.numColors = 3;
-    
         // initalize class properties
-    	i = 0;
-
+        i = 0;
     };
     virtual void paint(RNLights & lights);
     virtual const char * name();

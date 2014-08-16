@@ -6,6 +6,7 @@
 //
 
 #include "Beacon.h"
+#include "Constants.h"
 #include <math.h>
 
 void Beacon::paint(RNLights & lights) {
@@ -13,8 +14,14 @@ void Beacon::paint(RNLights & lights) {
     float angle = getAnimationCycles();
 
 
+    float height = (float)info.z / (float)constants.pyramidRadiusFromGround;
+    uint32_t platformZValue = height * 255;
+    
     for(int i = 0; i < lights.getNumPixels(); i++) {
-        if (parameters.onlyExterior && !info.isExteriorLED(i)) continue;
+        if (parameters.onlyExterior && !info.isExteriorLED(i)) {
+            lights.setPixelColor(i, parameters.baseGradient.getColor(platformZValue));
+            continue;
+        };
         float diff = (info.getGlobalAngle(i) - angle) * parameters.numBeacons;
         
         float a = diff - roundf(diff);
@@ -23,6 +30,8 @@ void Beacon::paint(RNLights & lights) {
             uint8_t gradientPosition = a*256/parameters.width;
             uint32_t color = parameters.gradient.getColor(gradientPosition);
             lights.setPixelColor(i,color);
+        } else {
+            lights.setPixelColor(i, parameters.baseGradient.getColor(platformZValue));
         }
     }
 

@@ -18,6 +18,22 @@ struct GlowFadeParameters {
     float fractionUp = 0.5;
 };
 
+// Quick Color Rise
+//struct GlowFadeParameters {
+//    uint8_t gradiantSkip = 83 ;
+//    uint8_t maxBrightness = 200;
+//    RNGradient gradient = RNGradient(0, RNGradientWrap,0x00FFFF, 0xFF00FF);
+//    float fractionUp = 0.1;
+//};
+
+// Quick Color Fall
+//struct GlowFadeParameters {
+//    uint8_t gradiantSkip = 69 ;
+//    uint8_t maxBrightness = 255;
+//    RNGradient gradient = RNGradient(1, RNGradientWrap,0x00FFFF, 0xFFFFFF);
+//    float fractionUp = 0.8;
+//};
+
 
 class GlowFade : public RNAnimation {
 
