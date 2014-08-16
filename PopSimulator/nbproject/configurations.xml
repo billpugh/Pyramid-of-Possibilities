@@ -22,6 +22,7 @@
         <itemPath>../Arduino/PyramidOfPossibilities/MovingFaces.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Mute.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Qbert.h</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/LiftOff.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Radial.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/SideEffects.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Snow.h</itemPath>
@@ -86,6 +87,7 @@
         <itemPath>../Arduino/PyramidOfPossibilities/MovingFaces.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Mute.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Qbert.cpp</itemPath>
+        <itemPath>../Arduino/PyramidOfPossibilities/LiftOff.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Radial.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/SideEffects.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Snow.cpp</itemPath>
@@ -580,7 +582,17 @@
             tool="1"
             flavor2="0">
       </item>
+      <item path="../Arduino/PyramidOfPossibilities/LiftOff.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="../Arduino/PyramidOfPossibilities/Radial.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/LiftOff.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -1046,6 +1058,16 @@
             flavor2="0">
       </item>
       <item path="../Arduino/PyramidOfPossibilities/Radial.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/LiftOff.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../Arduino/PyramidOfPossibilities/LiftOff.h"
             ex="false"
             tool="3"
             flavor2="0">

@@ -60,6 +60,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/1731549632/RNComm.o \
 	${OBJECTDIR}/_ext/1731549632/RNEEPROM.o \
 	${OBJECTDIR}/_ext/1731549632/RNInfo.o \
+	${OBJECTDIR}/_ext/1731549632/LiftOff.o \
 	${OBJECTDIR}/_ext/1731549632/Radial.o \
 	${OBJECTDIR}/_ext/1731549632/SideEffects.o \
 	${OBJECTDIR}/_ext/1731549632/Snow.o \
@@ -238,6 +239,11 @@ ${OBJECTDIR}/_ext/1731549632/Radial.o: ../Arduino/PyramidOfPossibilities/Radial.
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/Radial.o ../Arduino/PyramidOfPossibilities/Radial.cpp
+
+${OBJECTDIR}/_ext/1731549632/LiftOff.o: ../Arduino/PyramidOfPossibilities/LiftOff.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/LiftOff.o ../Arduino/PyramidOfPossibilities/LiftOff.cpp
 
 ${OBJECTDIR}/_ext/1731549632/SideEffects.o: ../Arduino/PyramidOfPossibilities/SideEffects.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
