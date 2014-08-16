@@ -12,6 +12,7 @@
 
 #include "RNLights.h"
 #include "RNInfo.h"
+#include "AnimationBroadcast.h"
 
 class RNAnimation {
 public:
@@ -33,7 +34,11 @@ public:
 
     // Gives the time in milliseconds since this animation starter
     float getAnimationMinutes();
-
+    
+    // Gives the cycles since this animation started.
+    float getAnimationCycles();
+    
+    int8_t getTweakValue();
     // name of the animation
     virtual const char * name();
     
@@ -43,6 +48,8 @@ public:
     
     
     // Parameters
+    
+
 
     // Called if there are any parameters from central
     // return true if successful
@@ -55,9 +62,13 @@ public:
     unsigned int parametersSize;
     
 private:
+    AnimationBroadcast animationBroadcast;
     
+
     // Start time of the animation in local time
     const unsigned long animationStartMillis;
+
+    friend class RNController;
 };
 
 #endif /* defined(__RNAnimation__) */

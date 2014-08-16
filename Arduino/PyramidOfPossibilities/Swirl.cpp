@@ -9,11 +9,11 @@
 
 void Swirl::paint(RNLights & lights) {
     
+    float cycles = getAnimationCycles();
     uint16_t length = parameters.lengthFraction * info.numLEDs;
     
-    float animationMinutes = getAnimationMinutes();
-    uint16_t startPosition =  lights.getNumPixels() * parameters.rpm * animationMinutes;
-    int gradientPosition = 256 * parameters.gpm * animationMinutes;
+    uint16_t startPosition =  lights.getNumPixels() * cycles;
+    int gradientPosition = 256 * cycles / parameters.gradientRatio;
     uint32_t headColor = parameters.headGradient.getValue(gradientPosition);
     uint32_t tailColor = parameters.tailGradient.getValue(gradientPosition);
     

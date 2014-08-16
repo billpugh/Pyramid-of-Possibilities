@@ -22,11 +22,10 @@ float locationForT(float t) {
 
 void Radial::paint(RNLights & lights) {
     
-    float minutes = getAnimationMinutes();
 
     // t will be a number between 0 and 1.    
     /// TODO: Need help setting up parameters that we want for speed, etc.
-    float t =  parameters.bpm  * minutes;
+    float t =  getAnimationCycles();
     t = t - floorf(t);
     AHEasingFunction easingFunction
     = getEasingFunction(parameters.easingMode, parameters.curveType);

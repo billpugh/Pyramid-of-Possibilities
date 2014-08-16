@@ -101,13 +101,13 @@ private:
     float globalRadiusGround[240];
     float localAngle[240];
     
-    float myTotalG = 0;
-    float platformGlobalAngle = 0;
+    float myTotalG;
+    float platformGlobalAngle;
     float myDirectionalG[3];
     float maxDirectionalG[3];
     uint8_t myTapSource;
     uint8_t accumulatedTaps;
-    unsigned long lastTap = 0;
+    unsigned long lastTap;
     
     RNLights sparkles;
     

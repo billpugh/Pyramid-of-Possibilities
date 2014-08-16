@@ -32,7 +32,7 @@ private:
     ExplosionParameters parameters;
     unsigned long startTime = 0;
     unsigned long explosionTime = parameters.warmupDuration;
-    std::vector<float> ledsDistanceToBomb;
+    float ledsDistanceToBomb[240];
     float furthestLedDistance;
 
     static float distancePointFromPoint(short * A, short * B);

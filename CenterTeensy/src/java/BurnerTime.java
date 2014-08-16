@@ -16,8 +16,11 @@ public class BurnerTime {
         START.set(Calendar.SECOND, 0);
     }
 
-static long getGlobalTime() {
-    return System.currentTimeMillis() - START.getTimeInMillis();
+static int getGlobalTime() {
+    long value = System.currentTimeMillis() - START.getTimeInMillis();
+    if (value > Integer.MAX_VALUE)
+    	throw new IllegalArgumentException("Can't represent burning time with 32 bits");
+    return (int) value;
 }
     public static void main(String args[]) {
         

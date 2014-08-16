@@ -19,8 +19,7 @@ struct SwirlParameters {
     
     float lengthFraction = 0.7;
     
-    uint16_t rpm = 30;
-    uint16_t gpm = 10;
+    float gradientRatio = 3;
     
     bool global = 0;
 };

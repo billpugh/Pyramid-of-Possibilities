@@ -6,6 +6,7 @@
 #include "MovingFaces.h"
 #include "Arduino.h"
 #include "ledPositions.h"
+#include <math.h>
 
 MovingFaces::MovingFaces(RNInfo & info, unsigned long animationStartMillis)
 : RNAnimation(info, animationStartMillis, sizeof (MovingFacesParameters),
