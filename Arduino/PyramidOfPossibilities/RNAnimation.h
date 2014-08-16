@@ -17,6 +17,8 @@
 class RNAnimation {
 public:
     // Constructor
+    RNAnimation(RNInfo & info, AnimationBroadcast broadcast);
+    RNAnimation(RNInfo & info, AnimationBroadcast broadcast,  unsigned int parametersSize, void *parametersPointer);
     RNAnimation(RNInfo & info, unsigned long animationStartMillis);
     // Constructor
     RNAnimation(RNInfo & info, unsigned long animationStartMillis,

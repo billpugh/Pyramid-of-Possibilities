@@ -9,6 +9,15 @@
 #include "Arduino.h"
 #include "string.h"
 #include "RNAnimation.h"
+#include "AnimationBroadcast.h"
+
+RNAnimation::RNAnimation(RNInfo & info, AnimationBroadcast broadcast) : info(info), animationStartMillis(broadcast.startTime), animationBroadcast(broadcast)  {
+    parametersPointer = 0;
+    parametersSize = 0;
+};
+
+RNAnimation::RNAnimation(RNInfo & info, AnimationBroadcast broadcast,  unsigned int parametersSize, void *parametersPointer) : info(info), animationStartMillis(broadcast.startTime), animationBroadcast(broadcast), parametersSize(parametersSize), parametersPointer(parametersPointer){
+};
 
 
 RNAnimation::RNAnimation(RNInfo & info, unsigned long animationStartMillis) : info(info), animationStartMillis(animationStartMillis), animationBroadcast((uint32_t)animationStartMillis)  {
