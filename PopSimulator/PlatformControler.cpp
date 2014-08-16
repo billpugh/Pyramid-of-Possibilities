@@ -24,7 +24,20 @@ PlatformControler::PlatformControler(Pyramid* _pyramid, int _platform) {
             coords[1],
             coords[2]);
 
-    animation = getAnimation(e_Explosion, *info, millis());
+    animationId = (AnimationEnum) 0;
+    animation = getAnimation(animationId, *info, millis());
+}
+
+const char * PlatformControler::nextAnimation() {
+    if (animation != NULL) {
+        delete animation;
+    }
+    animationId = (AnimationEnum) (animationId + 1);
+    if (animationId == e_AnimationCount) {
+        animationId = (AnimationEnum)0;
+    }
+    animation = getAnimation(animationId, *info, millis());
+    return animation->name();
 }
 
 void PlatformControler::refreshPlatform() {
@@ -36,6 +49,8 @@ void PlatformControler::refreshPlatform() {
 PlatformControler::~PlatformControler() {
     delete lights;
     delete info;
-    delete animation;
+    if (animation != NULL) {
+        delete animation;
+    }
 }
 

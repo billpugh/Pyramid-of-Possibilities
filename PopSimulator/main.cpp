@@ -12,20 +12,29 @@
 
 #include <GLFW/glfw3.h>
 #include <vector>
+#include <iostream>
 
 #include "Pyramid.hpp"
 #include "FPSControlsHandler.hpp"
 #include "PyramidArchitecture.hpp"
 #include "PlatformControler.hpp"
 
+const char * text;
 Pyramid* pyramid = NULL;
 FPSControlsHandler* controlsHandler = NULL;
+std::vector<PlatformControler*> pControlers;
 
 static void key_callback(GLFWwindow* window, int key, int scancode, int action,
         int mods) {
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
         glfwSetWindowShouldClose(window, GL_TRUE);
         return;
+    }
+    if (key == GLFW_KEY_N && action == GLFW_PRESS) {
+        for (int i = 0; i < 84; i++) {
+            text = pControlers.at(i)->nextAnimation();
+        }
+        std::cout << text << "\n";
     }
     if (controlsHandler != NULL) {
         if (action == GLFW_PRESS) {
@@ -86,7 +95,6 @@ int main(void) {
     pyramid = new Pyramid();
     controlsHandler = new FPSControlsHandler();
 
-    std::vector<PlatformControler*> pControlers;
     pControlers.reserve(PyramidArchitecture::nbPlatforms);
     for (int i = 0; i < PyramidArchitecture::nbPlatforms; i++) {
         PlatformControler* pc = new PlatformControler(pyramid, i);

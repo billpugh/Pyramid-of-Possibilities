@@ -12,6 +12,7 @@
 #include "RNLightsSimulator.hpp"
 #include "RNInfo.h"
 #include "RNAnimation.h"
+#include "Animations.h"
 
 class PlatformControler {
 public:
@@ -19,11 +20,13 @@ public:
     virtual ~PlatformControler();
     
     void refreshPlatform();
+    const char * nextAnimation();
 private:
     Pyramid* pyramid;
     int platform;
     RNLightsSimulator* lights;
     RNInfo* info;
+    AnimationEnum animationId;
     RNAnimation* animation;
 };
 
