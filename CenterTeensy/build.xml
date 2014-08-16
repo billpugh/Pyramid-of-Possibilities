@@ -13,16 +13,6 @@
         <pathelement location="build/classes"/>
         <pathelement location="lib/RXTXcomm.jar"/>
         <pathelement location="lib/commons-csv-1.0-SNAPSHOT.jar"/>
-        <pathelement location="../../../tools/freetts/freetts-1.2/lib/cmulex.jar"/>
-        <pathelement location="../../../tools/freetts/freetts-1.2/lib/en_us.jar"/>
-        <pathelement location="../../../tools/freetts/freetts-1.2/lib/cmu_time_awb.jar"/>
-        <pathelement location="../../../tools/freetts/freetts-1.2/lib/cmutimelex.jar"/>
-        <pathelement location="../../../tools/freetts/freetts-1.2/lib/freetts.jar"/>
-        <pathelement location="../../../tools/freetts/freetts-1.2/lib/cmu_us_kal.jar"/>
-        <pathelement location="../../../tools/freetts/freetts-1.2/lib/mbrola.jar"/>
-        <pathelement location="../../../tools/freetts/freetts-1.2/lib/cmudict04.jar"/>
-        <pathelement location="../../../tools/freetts/freetts-1.2/lib/freetts-jsapi10.jar"/>
-        <pathelement location="../../../tools/freetts/freetts-1.2/lib/jsapi.jar"/>
     </path>
     <target name="init">
         <mkdir dir="build/classes"/>

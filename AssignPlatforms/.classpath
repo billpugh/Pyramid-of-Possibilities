@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/Users/pugh/tools/freetts/freetts-1.2/lib/cmulex.jar"/>
+	<classpathentry kind="lib" path="/Users/pugh/tools/freetts/freetts-1.2/lib/en_us.jar"/>
+	<classpathentry kind="lib" path="/Users/pugh/tools/freetts/freetts-1.2/lib/cmu_time_awb.jar"/>
+	<classpathentry kind="lib" path="/Users/pugh/tools/freetts/freetts-1.2/lib/cmutimelex.jar"/>
+	<classpathentry kind="lib" path="/Users/pugh/tools/freetts/freetts-1.2/lib/freetts.jar"/>
+	<classpathentry kind="lib" path="/Users/pugh/tools/freetts/freetts-1.2/lib/cmu_us_kal.jar"/>
+	<classpathentry kind="lib" path="/Users/pugh/tools/freetts/freetts-1.2/lib/mbrola.jar"/>
+	<classpathentry kind="lib" path="/Users/pugh/tools/freetts/freetts-1.2/lib/cmudict04.jar"/>
+	<classpathentry kind="lib" path="/Users/pugh/tools/freetts/freetts-1.2/lib/freetts-jsapi10.jar"/>
+	<classpathentry kind="lib" path="/Users/pugh/tools/freetts/freetts-1.2/lib/jsapi.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/CenterTeensy"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>
