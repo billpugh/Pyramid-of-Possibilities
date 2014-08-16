@@ -82,6 +82,9 @@ void RNController::paint(RNLights & lights) {
     }
 }
 
+void RNController::animationUpdate(AnimationBroadcast broadcast) {
+
+}
 
 
 

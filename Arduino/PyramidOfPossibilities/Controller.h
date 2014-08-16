@@ -31,6 +31,7 @@ public:
     }
     
     void paint(RNLights & lights);
+    void animationUpdate(AnimationBroadcast broadcast);
 private:
     RNInfo & info;
     RNAnimation * currentAnimation = 0;
@@ -38,6 +39,7 @@ private:
     AnimationEnum currentAnimationEnum = e_AnimationCount;
     void nextAnimation();
     void switchToAnimation(AnimationEnum nextAnimation);
+
 
 #ifdef POP_SIMULATOR
     friend PlatformController;
