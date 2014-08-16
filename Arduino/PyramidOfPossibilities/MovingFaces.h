@@ -12,22 +12,43 @@
 #include "easingSelect.h"
 #include "RNGradient.h"
 
+
+// Default
+//struct MovingFacesParameters {
+//    short edgePlatform1[3] = {0, 7919, 762};
+//    short edgePlatform2[3] = {-6858, -3959, 610};
+//    short edgePlatform3[3] = {6858, -3959, 686};
+//    short edgePlatform4[3] = {0, 0, 9144};
+//    RNGradient gradientInside = RNGradient(0, RNGradientCapped, 0x000000, 0x00ff00);
+//    RNGradient gradientOutside = RNGradient(0, RNGradientCapped, 0x000002, 0x000002);
+//    bool summitColorMode = true;
+//    uint32_t summit1Color = 0xff0000;
+//    uint32_t summit2Color = 0x00ff00;
+//    uint32_t summit3Color = 0x0000ff;
+//    unsigned long duration = 1000;
+//    int thickness = 800;
+//    EasingMode easingMode = EaseInOut;
+//    CurveType curveType = CurveTypeQuadratic;
+//};
+
+// Bouncy
 struct MovingFacesParameters {
     short edgePlatform1[3] = {0, 7919, 762};
     short edgePlatform2[3] = {-6858, -3959, 610};
     short edgePlatform3[3] = {6858, -3959, 686};
     short edgePlatform4[3] = {0, 0, 9144};
-    RNGradient gradientInside = RNGradient(0, RNGradientCapped, 0x000000, 0x00ff00);
-    RNGradient gradientOutside = RNGradient(0, RNGradientCapped, 0x000002, 0x000002);
-    bool summitColorMode = true;
+    RNGradient gradientInside = RNGradient(0, RNGradientCapped, 0xffff00, 0xff0000);
+    RNGradient gradientOutside = RNGradient(0, RNGradientCapped, 0x000033, 0x033033);
+    bool summitColorMode = false;
     uint32_t summit1Color = 0xff0000;
-    uint32_t summit2Color = 0x00ff00;
-    uint32_t summit3Color = 0x0000ff;
-    unsigned long duration = 1000;
-    int thickness = 800;
+    uint32_t summit2Color = 0x000000;
+    uint32_t summit3Color = 0x000000;
+    unsigned long duration = 800;
+    int thickness = 1000;
     EasingMode easingMode = EaseInOut;
-    CurveType curveType = CurveTypeQuadratic;
+    CurveType curveType = CurveTypeBack;
 };
+
 
 class MovingFaces : public RNAnimation {
 public:
