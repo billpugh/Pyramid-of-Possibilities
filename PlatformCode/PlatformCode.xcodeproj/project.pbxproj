@@ -13,6 +13,8 @@
 		161181231998D72A00136668 /* FlashEcho.h in Headers */ = {isa = PBXBuildFile; fileRef = 1611811F1998D72A00136668 /* FlashEcho.h */; };
 		161181241998D72A00136668 /* Qbert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 161181201998D72A00136668 /* Qbert.cpp */; };
 		161181251998D72A00136668 /* Qbert.h in Headers */ = {isa = PBXBuildFile; fileRef = 161181211998D72A00136668 /* Qbert.h */; };
+		163A0EE1199F86DA0097C712 /* LiftOff.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163A0EDF199F86DA0097C712 /* LiftOff.cpp */; };
+		163A0EE2199F86DA0097C712 /* LiftOff.h in Headers */ = {isa = PBXBuildFile; fileRef = 163A0EE0199F86DA0097C712 /* LiftOff.h */; };
 		163D5077198D841400E882A1 /* RNEEPROM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163D5075198D841400E882A1 /* RNEEPROM.cpp */; };
 		163D5078198D841400E882A1 /* RNEEPROM.h in Headers */ = {isa = PBXBuildFile; fileRef = 163D5076198D841400E882A1 /* RNEEPROM.h */; };
 		163D507B198E6D9600E882A1 /* Swirl.h in Headers */ = {isa = PBXBuildFile; fileRef = 163D5079198E6D9600E882A1 /* Swirl.h */; };
@@ -100,6 +102,8 @@
 		1611811F1998D72A00136668 /* FlashEcho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlashEcho.h; path = ../Arduino/PyramidOfPossibilities/FlashEcho.h; sourceTree = "<group>"; };
 		161181201998D72A00136668 /* Qbert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Qbert.cpp; path = ../Arduino/PyramidOfPossibilities/Qbert.cpp; sourceTree = "<group>"; };
 		161181211998D72A00136668 /* Qbert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Qbert.h; path = ../Arduino/PyramidOfPossibilities/Qbert.h; sourceTree = "<group>"; };
+		163A0EDF199F86DA0097C712 /* LiftOff.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LiftOff.cpp; path = ../Arduino/PyramidOfPossibilities/LiftOff.cpp; sourceTree = "<group>"; };
+		163A0EE0199F86DA0097C712 /* LiftOff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LiftOff.h; path = ../Arduino/PyramidOfPossibilities/LiftOff.h; sourceTree = "<group>"; };
 		163D5075198D841400E882A1 /* RNEEPROM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RNEEPROM.cpp; path = ../Arduino/PyramidOfPossibilities/RNEEPROM.cpp; sourceTree = "<group>"; };
 		163D5076198D841400E882A1 /* RNEEPROM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNEEPROM.h; path = ../Arduino/PyramidOfPossibilities/RNEEPROM.h; sourceTree = "<group>"; };
 		163D5079198E6D9600E882A1 /* Swirl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Swirl.h; path = ../Arduino/PyramidOfPossibilities/Swirl.h; sourceTree = "<group>"; };
@@ -293,6 +297,8 @@
 				163D5079198E6D9600E882A1 /* Swirl.h */,
 				1644A120198D34D400FBFF63 /* WWPAnimationTest.cpp */,
 				1644A121198D34D400FBFF63 /* WWPAnimationTest.h */,
+				163A0EDF199F86DA0097C712 /* LiftOff.cpp */,
+				163A0EE0199F86DA0097C712 /* LiftOff.h */,
 			);
 			name = Animations;
 			sourceTree = "<group>";
@@ -361,6 +367,7 @@
 				16838ED519950C48008CD81E /* Radial.h in Headers */,
 				166A9D3B1999161800C2E74C /* Accelerometer.h in Headers */,
 				16E32C8A199EF9850006E6B6 /* AnimationBroadcast.h in Headers */,
+				163A0EE2199F86DA0097C712 /* LiftOff.h in Headers */,
 				1644A162198D34D400FBFF63 /* ActivityLevelAnimation.h in Headers */,
 				16C35AE8198FEF7100E2E362 /* Beacon.h in Headers */,
 				1644A171198D34D400FBFF63 /* ColorWorms.h in Headers */,
@@ -461,6 +468,7 @@
 				1644A15B198D34D400FBFF63 /* RNBeam.cpp in Sources */,
 				16C35AE9198FEF7100E2E362 /* Beacon.cpp in Sources */,
 				161181221998D72A00136668 /* FlashEcho.cpp in Sources */,
+				163A0EE1199F86DA0097C712 /* LiftOff.cpp in Sources */,
 				1644A173198D34D400FBFF63 /* Platform.cpp in Sources */,
 				1644A157198D34D400FBFF63 /* CircularGradient.cpp in Sources */,
 				1644A17A198D34FE00FBFF63 /* RNGradient.cpp in Sources */,
