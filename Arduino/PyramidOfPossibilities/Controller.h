@@ -16,6 +16,11 @@
 #include "Animations.h"
 #include "Accelerometer.h"
 
+#include "Arduino.h"
+#ifdef POP_SIMULATOR
+class PlatformController;
+#endif
+
 
 class RNController {
     
@@ -34,6 +39,10 @@ private:
     void nextAnimation();
     void switchToAnimation(AnimationEnum nextAnimation);
 
+#ifdef POP_SIMULATOR
+    friend PlatformController;
+#endif
+    
 };
 
 

@@ -17,12 +17,12 @@
 #include "Pyramid.hpp"
 #include "FPSControlsHandler.hpp"
 #include "PyramidArchitecture.hpp"
-#include "PlatformControler.hpp"
+#include "PlatformController.hpp"
 
 const char * text;
 Pyramid* pyramid = NULL;
 FPSControlsHandler* controlsHandler = NULL;
-std::vector<PlatformControler*> pControlers;
+std::vector<PlatformController*> pControlers;
 
 static void key_callback(GLFWwindow* window, int key, int scancode, int action,
         int mods) {
@@ -97,7 +97,7 @@ int main(void) {
 
     pControlers.reserve(PyramidArchitecture::nbPlatforms);
     for (int i = 0; i < PyramidArchitecture::nbPlatforms; i++) {
-        PlatformControler* pc = new PlatformControler(pyramid, i);
+        PlatformController* pc = new PlatformController(pyramid, i);
         pControlers.push_back(pc);
     }
 
