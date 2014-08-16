@@ -59,6 +59,9 @@ public:
   // Set all pixels to the same color
   void setAllPixelColors(uint8_t red, uint8_t green, uint8_t blue);
     void setAllPixelColors(uint32_t colorRGB);
+    void setAllPixelColorsMax(uint8_t red, uint8_t green, uint8_t blue);
+    void setAllPixelColorsMax(uint32_t colorRGB);
+
     void setAllPixelHSVs(uint8_t hue, uint8_t saturation, uint8_t value);
 
   // Apply brightness values to individual pixels and set strip brightness to full brightness
