@@ -63,7 +63,6 @@ void RNController::paint(RNLights & lights) {
         unsigned long start = millis();
 #endif /* RN_PRINT_LOG_ANIMATIONS */
 
-        currentAnimation->updateCycleCount();
         currentAnimation->paint(lights);
 
 #ifdef RN_PRINT_LOG_ANIMATIONS
