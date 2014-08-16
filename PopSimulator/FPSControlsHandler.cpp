@@ -69,6 +69,12 @@ glm::mat4 FPSControlsHandler::getView() {
             case GLFW_KEY_D:
                 position += right * deltaTime * speed;
                 break;
+            case GLFW_KEY_1:
+                position -= up * deltaTime * speed;
+                break;
+            case GLFW_KEY_2:
+                position += up * deltaTime * speed;
+                break;
         }
     }
     return glm::lookAt(position, position + direction, up);
