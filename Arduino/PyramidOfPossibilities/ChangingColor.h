@@ -23,8 +23,8 @@ struct ChangingColorParameters {
 
 class ChangingColor : public RNAnimation {
 public:
-    ChangingColor(RNInfo & info, unsigned long animationStartMillis)
-    : RNAnimation(info, animationStartMillis, sizeof(ChangingColorParameters), &parameters) {};
+    ChangingColor(RNInfo & info, AnimationInfo animationInfo)
+    : RNAnimation(info, animationInfo, sizeof(ChangingColorParameters), &parameters) {};
     virtual void paint(RNLights & lights);
     virtual const char * name();
     

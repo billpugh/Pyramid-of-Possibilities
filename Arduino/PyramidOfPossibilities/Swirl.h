@@ -27,8 +27,8 @@ struct SwirlParameters {
 
 class Swirl : public RNAnimation {
 public:
-    Swirl(RNInfo & info, unsigned long animationStartMillis)
-    : RNAnimation(info, animationStartMillis, sizeof(SwirlParameters), &parameters) {
+    Swirl(RNInfo & info, AnimationInfo animationInfo)
+    : RNAnimation(info, animationInfo, sizeof(SwirlParameters), &parameters) {
       
        };
     virtual void paint(RNLights & lights);

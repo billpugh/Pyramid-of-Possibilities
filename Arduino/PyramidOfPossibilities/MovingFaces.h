@@ -52,7 +52,7 @@ struct MovingFacesParameters {
 
 class MovingFaces : public RNAnimation {
 public:
-    MovingFaces(RNInfo & info, unsigned long animationStartMillis);
+    MovingFaces(RNInfo & info, AnimationInfo animationInfo);
     virtual void paint(RNLights & lights);
     virtual const char * name();
 

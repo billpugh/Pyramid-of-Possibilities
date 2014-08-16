@@ -11,7 +11,6 @@
 #include "RNAnimation.h"
 
 struct FlashAttackParameters {
-    uint8_t hue = 0;
     uint8_t tapMultiplier = 2;
     uint8_t minimumValue = 20;
     uint16_t activityMultiplier = 400;
@@ -21,10 +20,8 @@ struct FlashAttackParameters {
 
 class FlashAttack : public RNAnimation {
 public:
-    FlashAttack(RNInfo & info, unsigned long animationStartMillis)
-    : RNAnimation(info, animationStartMillis, sizeof(FlashAttackParameters), &parameters) {
-                                                   parameters.hue = info.getRandom(256);
-                                                 };
+    FlashAttack(RNInfo & info, AnimationInfo animationInfo)
+    : RNAnimation(info, animationInfo, sizeof(FlashAttackParameters), &parameters) {};
     
     virtual void paint(RNLights & lights);
     

@@ -8,8 +8,10 @@
 #include "ledPositions.h"
 #include <math.h>
 
-MovingFaces::MovingFaces(RNInfo & info, unsigned long animationStartMillis)
-: RNAnimation(info, animationStartMillis, sizeof (MovingFacesParameters),
+#define abs(x) ((x < 0) ? (x) : (-x))
+
+MovingFaces::MovingFaces(RNInfo & info, AnimationInfo animationInfo)
+: RNAnimation(info, animationInfo, sizeof (MovingFacesParameters),
 &parameters), gradient3Colors(info.numLEDs) {
     pointA = parameters.edgePlatform1;
     pointB = parameters.edgePlatform2;

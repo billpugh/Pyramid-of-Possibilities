@@ -1,24 +1,25 @@
 //
-//  AnimationBroadcast.h
-//  PlatformCode
+//  AnimationInfo.h
 //
 //  Created by Bill on 8/15/14.
 //  Copyright (c) 2014 RN. All rights reserved.
 //
 
-#ifndef __AnimationBroadcast__
-#define __AnimationBroadcast__
+#ifndef __AnimationInfo__
+#define __AnimationInfo__
 
+#include "Animations.h"
 #include <stdint.h>
+
 
 
 const int MAX_PARAMETER_SIZE = 32;
 
-struct AnimationBroadcast {
+struct AnimationInfo {
     
-    AnimationBroadcast(uint8_t program, uint32_t startTime) : program(program),startTime(startTime), lastTweakAt(startTime) {};
-    AnimationBroadcast(uint32_t startTime) : program(0),startTime(startTime), lastTweakAt(startTime) {};
-    uint8_t program;
+    AnimationInfo(AnimationEnum program, uint32_t startTime) : program(program),startTime(startTime), lastTweakAt(startTime) {};
+    AnimationInfo(uint32_t startTime) : program(e_WWPAnimationTest),startTime(startTime), lastTweakAt(startTime) {};
+    AnimationEnum program;
     uint8_t seqId = 0;
     uint32_t startTime;
     uint32_t lastTweakAt;
@@ -28,4 +29,4 @@ struct AnimationBroadcast {
     uint8_t parameters[MAX_PARAMETER_SIZE];
 };
 
-#endif /* defined(__AnimationBroadcast__) */
+#endif /* defined(__AnimationInfo__) */

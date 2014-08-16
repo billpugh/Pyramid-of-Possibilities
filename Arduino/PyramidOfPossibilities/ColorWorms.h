@@ -30,8 +30,8 @@ struct ColorWormsParameters {
 
 class ColorWorms : public RNAnimation {
 public:
-    ColorWorms(RNInfo & info, unsigned long animationStartMillis)
-    : RNAnimation(info, animationStartMillis, sizeof(ColorWormsParameters), &parameters) {};
+    ColorWorms(RNInfo & info, AnimationInfo animationInfo)
+    : RNAnimation(info, animationInfo, sizeof(ColorWormsParameters), &parameters) {};
     virtual void paint(RNLights & lights);
 
     void paint(RNLights & lights, int position, int length, 

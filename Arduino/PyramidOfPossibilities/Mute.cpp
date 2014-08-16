@@ -8,10 +8,8 @@
 #include "Mute.h"
 
 void Mute::paint(RNLights & lights) {
-    lights.setAllPixelColors(parameters.brightness,
-                             parameters.brightness,
-                             parameters.brightness
-                             );
+    uint8_t brightness = 20 + getUnsignedTweakValue()/5;
+    lights.setAllPixelColors(brightness, brightness, brightness);
 }
 
 const char * Mute:: name() {

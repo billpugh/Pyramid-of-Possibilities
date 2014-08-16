@@ -9,8 +9,6 @@
 #ifndef __Animations__
 #define __Animations__
 
-#include "RNAnimation.h"
-
 
 enum  AnimationEnum {
 
@@ -56,7 +54,6 @@ enum  AnimationEnum {
     e_AnimationCount};
 
 
-RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animationStartMillis );
 
 #endif /* defined(__Animations__) */
 

@@ -28,8 +28,8 @@ struct LiftoffParameters {
 
 class LiftOff : public RNAnimation {
 public:
-    LiftOff(RNInfo & info, unsigned long animationStartMillis)
-    : RNAnimation(info, animationStartMillis, sizeof(LiftoffParameters), &parameters) {};
+    LiftOff(RNInfo & info, AnimationInfo animationInfo)
+    : RNAnimation(info, animationInfo, sizeof(LiftoffParameters), &parameters) {};
     virtual void paint(RNLights & lights);
     bool paintWave(RNLights & lights, float height);
 

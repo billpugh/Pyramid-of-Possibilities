@@ -77,8 +77,8 @@ struct RadialParameters {
 
 class Radial : public RNAnimation {
 public:
-    Radial(RNInfo & info, unsigned long animationStartMillis)
-    : RNAnimation(info, animationStartMillis, sizeof(RadialParameters), &parameters) {
+    Radial(RNInfo & info, AnimationInfo animationInfo)
+    : RNAnimation(info, animationInfo, sizeof(RadialParameters), &parameters) {
     };
     virtual void paint(RNLights & lights);
     

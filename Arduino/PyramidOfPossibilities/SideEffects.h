@@ -20,10 +20,10 @@ struct SideEffectsParameters {
 
 class SideEffects : public RNAnimation {
 public:
-    SideEffects(RNInfo & info, unsigned long animationStartMillis)
-    : RNAnimation(info, animationStartMillis,
+    SideEffects(RNInfo & info, AnimationInfo animationInfo)
+    : RNAnimation(info, animationInfo,
                   sizeof(SideEffectsParameters), &parameters),
-    lastPhaseChange(animationStartMillis) {};
+    lastPhaseChange(animationInfo.startTime) {};
     
     virtual void paint(RNLights & lights);
     

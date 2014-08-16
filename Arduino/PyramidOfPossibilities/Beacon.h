@@ -53,8 +53,8 @@ struct BeaconParameters {
 
 class Beacon : public RNAnimation {
 public:
-    Beacon(RNInfo & info, unsigned long animationStartMillis)
-    : RNAnimation(info, animationStartMillis, sizeof(BeaconParameters), &parameters) { };
+    Beacon(RNInfo & info, AnimationInfo animationInfo)
+    : RNAnimation(info, animationInfo, sizeof(BeaconParameters), &parameters) { };
     virtual void paint(RNLights & lights);
     
     virtual const char * name();

@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 public class WireController {
 
-    static final boolean DEBUG = false;
+    static final boolean DEBUG = true;
     
     
 
@@ -29,9 +29,11 @@ public class WireController {
     }
 
    static  ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(
-            20, new HighPriorityThreadFactory());
+            1000, new HighPriorityThreadFactory());
     
     volatile long lastSendNanos;
+    
+    volatile int lastTweekSent = 0;
 
     volatile boolean shutdown = false;
     class SendToTeensies implements Runnable {
@@ -41,14 +43,19 @@ public class WireController {
         @Override
         public void run() {
             try {
-                Animation a = CentralControl.currentAnimation;
-                if (a == lastAnimation || a != null && lastAnimation != null
-                        && a.sequenceId == lastAnimation.sequenceId)
-                    return;
+            	 Animation a = CentralControl.currentAnimation;
+            	 if (a == null) {
+            		return;
+            	 }
+                if (lastAnimation != null
+                        && a.sequenceId == lastAnimation.sequenceId && a.cycleStatus.computedAt <= lastTweekSent) {
+                	return;
+                }
+                int now = a.getAnimationMillis();
                 Broadcast broadcast = new Broadcast(a);
                 ByteBuffer buf = broadcast.getBytes();
                 if (DEBUG) {
-                    System.out.printf("writing bytes %d %d\n", buf.position(),
+                    System.out.printf("writing to %s bytes %d %d\n", portName, buf.position(),
                             buf.limit());
                     for (int i = buf.position(); i < buf.limit(); i++)
                         System.out.printf("%2x ", buf.get(i));
@@ -58,7 +65,8 @@ public class WireController {
                 outputStream.flush();
                 lastSendNanos = System.nanoTime();
                 lastAnimation = a;
-            } catch (IOException e) {
+                lastTweekSent = now;
+            } catch (Throwable e) {
                 e.printStackTrace();
 
             }
@@ -71,7 +79,7 @@ public class WireController {
 
         @Override
         public void run() {
-            System.out.println("Reading from teensies");
+            System.out.println("Reading from teensies on port " + portName);
             while (true) {
                 if (shutdown) return;
                 try {
@@ -91,7 +99,6 @@ public class WireController {
     
                         buf.flip();
 
-                        ;
                         PlatformReport report = new PlatformReport(buf);
                         System.out
                         .println("Got platform report for platform "
@@ -125,7 +132,9 @@ public class WireController {
         inputStream = teensyPort.getInputStream();
         inputChannel = Channels.newChannel(inputStream);
 
-        executor.scheduleWithFixedDelay(new SendToTeensies(), 0, 100,
+        SendToTeensies sendToTeensies = new SendToTeensies();
+        sendToTeensies.run();
+		executor.scheduleWithFixedDelay(sendToTeensies, 0, 100,
                 TimeUnit.MILLISECONDS);
         executor.execute(new ReadFromTeensies());
     }

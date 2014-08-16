@@ -31,7 +31,7 @@ public class PlatformReport {
     public String toString() {
         return "PlatformReport [status=" + status + ", identifier="
                 + identifier + ", wirePosition=" + wirePosition + ", taps="
-                + Integer.toString(taps,16) + ", localActivity=" + Arrays.toString(localActivity)
+                + Integer.toString(0xff&taps,16) + ", localActivity=" + Arrays.toString(localActivity)
                 + "]";
     }
     

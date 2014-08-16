@@ -29,8 +29,8 @@ public class Animation {
 		    final byte cpm;
 	    	final  double cycles;
 	    	 final  int computedAt;
-	    	 public CycleStatus(int computedAt) {
-	    		 this((byte)30, 0, computedAt);
+	    	 public CycleStatus() {
+	    		 this((byte)30, 0, 0);
 	    	 }
 			private CycleStatus(byte cpm, double cycles, int computedAt) {
 				this.cpm = cpm;
@@ -39,7 +39,7 @@ public class Animation {
 			}
 			
 			CycleStatus tweakUp() {
-				int at = BurnerTime.getGlobalTime();
+				int at = getAnimationMillis();
 				if (at < computedAt) throw new IllegalArgumentException();
 				double newCycleCount = cycles + cpm * (at-computedAt)/60000.0;
 				int increment = 1;
@@ -49,7 +49,7 @@ public class Animation {
 				return new CycleStatus(program.tweakKind.add(cpm, increment), newCycleCount, at);
 			}
 			CycleStatus tweakDown() {
-				int at = BurnerTime.getGlobalTime();
+				int at =  getAnimationMillis();
 				if (at < computedAt) throw new IllegalArgumentException();
 				double newCycleCount = cycles + cpm * (at-computedAt)/60000.0;
 				int decrement = -1;
@@ -66,21 +66,39 @@ public class Animation {
 	 
     final AnimationProgram program;
     final byte sequenceId;
-    
-    
    
+    final int startTime = BurnerTime.getGlobalTime();
+    volatile CycleStatus cycleStatus = new CycleStatus();
+    byte [] parameters;
+    
+    
+    public void write(ByteBuffer buf ) {
+        buf.put((byte)program.ordinal());
+        buf.put(sequenceId);
+        buf.putInt(startTime);
+        CycleStatus cycles = getCycles();
+        buf.putFloat((float)cycles.cycles);
+        buf.putInt(cycles.computedAt);
+        buf.put(cycles.cpm);
+        buf.putShort(byteLength());
+        if (parameters.length > 0)
+            buf.put(parameters);
+    }
+    
+    
+    static byte nextSequenceId = 0;
+
     public void tweakUp() {
     	cycleStatus = cycleStatus.tweakUp();
     }
     public void tweakDown() {
     	cycleStatus = cycleStatus.tweakDown();
     }
-    final int startTime = BurnerTime.getGlobalTime();
-    volatile CycleStatus cycleStatus = new CycleStatus(startTime);
-    byte [] parameters;
     
-    static byte nextSequenceId = 0;
-
+    public int getAnimationMillis() {
+    	 return BurnerTime.getGlobalTime() - startTime;
+    }
+    
     public Animation(AnimationProgram program, byte[] parameters) {
         this.program = program;
         this.sequenceId = nextSequenceId++;
@@ -103,18 +121,7 @@ public class Animation {
         
     }
 
-    public void write(ByteBuffer buf ) {
-        buf.put((byte)program.ordinal());
-        buf.put(sequenceId);
-        buf.putInt(startTime);
-        CycleStatus cycles = getCycles();
-        buf.putFloat((float)cycles.cycles);
-        buf.putInt(cycles.computedAt);
-        buf.put(cycles.cpm);
-        buf.putShort(byteLength());
-        if (parameters.length > 0)
-            buf.put(parameters);
-    }
+
     
 
     public ByteBuffer getBytes() {

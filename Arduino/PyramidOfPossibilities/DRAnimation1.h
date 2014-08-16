@@ -21,7 +21,7 @@ void initalizeBeams(RNInfo * info);
 
 class DRAnimation1 : public RNAnimation {
 public:
-    DRAnimation1(RNInfo & info, unsigned long animationStartMillis) : RNAnimation(info, animationStartMillis) {
+    DRAnimation1(RNInfo & info, AnimationInfo animationInfo) : RNAnimation(info, animationInfo) {
 		min_g = .1;
 		max_g = .3;
         initalizeBeams(&info);

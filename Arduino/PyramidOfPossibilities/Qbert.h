@@ -26,8 +26,8 @@ struct QbertParameters {
 
 class Qbert : public RNAnimation {
 public:
-    Qbert(RNInfo & info, unsigned long animationStartMillis)
-    : RNAnimation(info, animationStartMillis, sizeof(QbertParameters), &parameters) {
+    Qbert(RNInfo & info, AnimationInfo animationInfo)
+    : RNAnimation(info, animationInfo, sizeof(QbertParameters), &parameters) {
         // initalize class properties
         i = 0;
     };

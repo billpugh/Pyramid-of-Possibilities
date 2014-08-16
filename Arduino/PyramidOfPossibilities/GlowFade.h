@@ -38,8 +38,8 @@ struct GlowFadeParameters {
 class GlowFade : public RNAnimation {
 
 public:
-    GlowFade(RNInfo & info, unsigned long animationStartMillis)
-    : RNAnimation(info, animationStartMillis, sizeof(GlowFadeParameters), &parameters) {
+    GlowFade(RNInfo & info, AnimationInfo animationInfo)
+    : RNAnimation(info, animationInfo, sizeof(GlowFadeParameters), &parameters) {
 
     };
     virtual void paint(RNLights & lights);

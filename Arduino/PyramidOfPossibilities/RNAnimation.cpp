@@ -9,25 +9,25 @@
 #include "Arduino.h"
 #include "string.h"
 #include "RNAnimation.h"
-#include "AnimationBroadcast.h"
+#include "AnimationInfo.h"
 
-RNAnimation::RNAnimation(RNInfo & info, AnimationBroadcast broadcast) : info(info), animationStartMillis(broadcast.startTime), animationBroadcast(broadcast)  {
+RNAnimation::RNAnimation(RNInfo & info, AnimationInfo broadcast) : info(info), animationStartMillis(broadcast.startTime), animationInfo(broadcast)  {
     parametersPointer = 0;
     parametersSize = 0;
 };
 
-RNAnimation::RNAnimation(RNInfo & info, AnimationBroadcast broadcast,  unsigned int parametersSize, void *parametersPointer) : info(info), animationStartMillis(broadcast.startTime), animationBroadcast(broadcast), parametersSize(parametersSize), parametersPointer(parametersPointer){
+RNAnimation::RNAnimation(RNInfo & info, AnimationInfo broadcast,  unsigned int parametersSize, void *parametersPointer) : info(info), animationStartMillis(broadcast.startTime), animationInfo(broadcast), parametersSize(parametersSize), parametersPointer(parametersPointer){
 };
 
 
-RNAnimation::RNAnimation(RNInfo & info, unsigned long animationStartMillis) : info(info), animationStartMillis(animationStartMillis), animationBroadcast((uint32_t)animationStartMillis)  {
+RNAnimation::RNAnimation(RNInfo & info, unsigned long animationStartMillis) : info(info), animationStartMillis(animationStartMillis), animationInfo((uint32_t)animationStartMillis)  {
     parametersPointer = 0;
     parametersSize = 0;
 };
 
 RNAnimation::RNAnimation(RNInfo & info, unsigned long animationStartMillis,
             unsigned int parametersSize, void *parametersPointer
-            )  : info(info), animationStartMillis(animationStartMillis), animationBroadcast((uint32_t)animationStartMillis), parametersSize(parametersSize), parametersPointer(parametersPointer) {
+            )  : info(info), animationStartMillis(animationStartMillis), animationInfo((uint32_t)animationStartMillis), parametersSize(parametersSize), parametersPointer(parametersPointer) {
     
 }
 
@@ -70,17 +70,28 @@ void RNAnimation::paint(RNLights &lights) {}
 
 // Gives the cycles since this animation started.
 float RNAnimation::getAnimationCycles() {
-    return animationBroadcast.cyclesAtLastTweak + animationBroadcast.tweakValue * (millis() - animationBroadcast.lastTweakAt) / 60000.0f;
+    return animationInfo.cyclesAtLastTweak + animationInfo.tweakValue * (millis() - animationInfo.lastTweakAt) / 60000.0f;
 }
 
 int8_t RNAnimation::getTweakValue() {
-    return animationBroadcast.tweakValue;
+    return animationInfo.tweakValue;
 }
+uint8_t RNAnimation::getUnsignedTweakValue() {
+    return (uint8_t) (0xff & animationInfo.tweakValue);
+}
+
 
 bool RNAnimation::hasBeenTweaked() {
     unsigned long now = getAnimationMillis();
-    bool result = animationBroadcast.lastTweakAt > tweakLastChecked;
+    bool result = animationInfo.lastTweakAt > tweakLastChecked;
     tweakLastChecked = now;
+    return result;
+}
+
+uint32_t RNAnimation::timeSinceTweak() {
+    unsigned long now = getAnimationMillis();
+    int32_t result = (uint32_t)(now - animationInfo.lastTweakAt);
+    if (result < 0) return 0;
     return result;
 }
 

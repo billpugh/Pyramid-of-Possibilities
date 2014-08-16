@@ -30,8 +30,8 @@ struct FlashEchoParameters {
 
 class FlashEcho : public RNAnimation {
 public:
-    FlashEcho(RNInfo & info, unsigned long animationStartMillis)
-    : RNAnimation(info, animationStartMillis, sizeof(FlashEchoParameters), &parameters) {
+    FlashEcho(RNInfo & info, AnimationInfo animationInfo)
+    : RNAnimation(info, animationInfo, sizeof(FlashEchoParameters), &parameters) {
     	// initalize the buffer to zero
     	brightness = kDefaultMinBrightness;
     	replayMode = false;

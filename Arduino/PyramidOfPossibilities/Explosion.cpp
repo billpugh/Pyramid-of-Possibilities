@@ -10,8 +10,8 @@
 #include "ledPositions.h"
 #include <math.h>
 
-Explosion::Explosion(RNInfo & info, unsigned long animationStartMillis)
-: RNAnimation(info, animationStartMillis, sizeof (ExplosionParameters),
+Explosion::Explosion(RNInfo & info, AnimationInfo animationInfo)
+: RNAnimation(info, animationInfo, sizeof (ExplosionParameters),
 &parameters), ledsDistanceToBomb() {
 
     furthestLedDistance = 0;

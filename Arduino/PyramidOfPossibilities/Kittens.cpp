@@ -18,7 +18,7 @@ void Kittens::paint(RNLights & lights) {
 
     int numLights = lights.getNumPixels();
 
-    float sinceTap = info.timeSinceLastTap()/(float) parameters.tapWindow;
+    float sinceTap = min(info.timeSinceLastTap(), timeSinceTweak())/(float) parameters.tapWindow;
     if (sinceTap > 1.0)
         sinceTap = 1.0;
     else
@@ -27,6 +27,7 @@ void Kittens::paint(RNLights & lights) {
     float ease =
     parameters.maxEase
     - (parameters.maxEase -parameters.minEase) * sinceTap;
+    bool tweaked = hasBeenTweaked();
     
     myLights.fade(getAnimationMillis());
     for (uint8_t i=0; i<NUM_KITTENS; ++i) {
@@ -52,7 +53,9 @@ void Kittens::paint(RNLights & lights) {
         uint8_t g = colorRGB >> 8;
         uint8_t b = colorRGB;
 
-        if (fabs(distance) < 1) {
+        if (tweaked)
+            kittens[i].goal = info.getRandomPixel();
+        else if (fabs(distance) < 1) {
             kittens[i].goal = info.getRandomPixel();
             if (parameters.pounce) {
                 // pounce

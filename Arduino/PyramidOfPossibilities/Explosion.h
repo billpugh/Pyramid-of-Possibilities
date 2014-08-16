@@ -26,7 +26,7 @@ struct ExplosionParameters {
 
 class Explosion : public RNAnimation {
 public:
-    Explosion(RNInfo & info, unsigned long animationStartMillis);
+    Explosion(RNInfo & info, AnimationInfo animationInfo);
     virtual void paint(RNLights & lights);
     virtual const char * name();
 

@@ -12,13 +12,13 @@
 
 #include "RNLights.h"
 #include "RNInfo.h"
-#include "AnimationBroadcast.h"
+#include "AnimationInfo.h"
 
 class RNAnimation {
 public:
     // Constructor
-    RNAnimation(RNInfo & info, AnimationBroadcast broadcast);
-    RNAnimation(RNInfo & info, AnimationBroadcast broadcast,  unsigned int parametersSize, void *parametersPointer);
+    RNAnimation(RNInfo & info, AnimationInfo animationInfo);
+    RNAnimation(RNInfo & info, AnimationInfo animationInfo,  unsigned int parametersSize, void *parametersPointer);
     RNAnimation(RNInfo & info, unsigned long animationStartMillis);
     // Constructor
     RNAnimation(RNInfo & info, unsigned long animationStartMillis,
@@ -41,8 +41,9 @@ public:
     float getAnimationCycles();
     
     int8_t getTweakValue();
-    
+    uint8_t getUnsignedTweakValue();
     bool hasBeenTweaked();
+    uint32_t timeSinceTweak();
     // name of the animation
     virtual const char * name();
     
@@ -66,7 +67,7 @@ public:
     unsigned int parametersSize;
     
 private:
-    AnimationBroadcast animationBroadcast;
+    AnimationInfo animationInfo;
     
 
     // Start time of the animation in local time
@@ -76,5 +77,8 @@ private:
 
     friend class RNController;
 };
+
+
+RNAnimation * getAnimation(RNInfo & info, AnimationInfo animationInfo );
 
 #endif /* defined(__RNAnimation__) */

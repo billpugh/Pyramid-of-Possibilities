@@ -54,8 +54,8 @@ struct CircularGradientParameters {
 
 class CircularGradient : public RNAnimation {
 public:
-    CircularGradient(RNInfo & info, unsigned long animationStartMillis)
-    : RNAnimation(info, animationStartMillis, sizeof(CircularGradientParameters), &parameters) {};
+    CircularGradient(RNInfo & info, AnimationInfo animationInfo)
+    : RNAnimation(info, animationInfo, sizeof(CircularGradientParameters), &parameters) {};
     virtual void paint(RNLights & lights);
     virtual const char * name();
     CircularGradientParameters parameters;

@@ -44,8 +44,8 @@ struct FlashesParameters {
 class Flashes : public RNAnimation {
 public:
 
-    Flashes(RNInfo & info, unsigned long animationStartMillis)
-            : RNAnimation(info, animationStartMillis, sizeof(FlashesParameters),
+    Flashes(RNInfo & info, AnimationInfo animationInfo)
+            : RNAnimation(info, animationInfo, sizeof(FlashesParameters),
                     &parameters) {};
     virtual void paint(RNLights & lights);
     virtual const char * name();

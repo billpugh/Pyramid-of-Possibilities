@@ -12,7 +12,7 @@
 #include "PopMain.h"
 #include "RNInfo.h"
 #include "RNSerial.h"
-#include "AnimationBroadcast.h"
+#include "AnimationInfo.h"
 #include <string.h>
 
 const uint8_t MAX_LENGTH = 255;
@@ -138,7 +138,7 @@ uint8_t status;
 uint32_t lastGlobalTime;
 int32_t adjustmentToMillisToGetGlobal;
 float medianActivityLevel;
-AnimationBroadcast animationStatus(0);
+AnimationInfo animationStatus(0);
 
 
 void initializeComm(RNInfo &info) {
@@ -174,7 +174,7 @@ void parseProgramMessage(RNInfo & info) {
     adjustmentToMillisToGetGlobal = lastGlobalTime - messageReceiveTime;
     medianActivityLevel = getFloat();
     
-    animationStatus.program = get8Bits();
+    animationStatus.program = (AnimationEnum) get8Bits();
     animationStatus.seqId = get8Bits();
     animationStatus.startTime = get32Bits();
     animationStatus.cyclesAtLastTweak = getFloat();
