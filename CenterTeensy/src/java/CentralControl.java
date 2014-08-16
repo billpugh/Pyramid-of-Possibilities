@@ -141,6 +141,13 @@ public class CentralControl {
                         switchToAnimation(currentAnimationNumber);
 
                         break;
+                    case UP_ARROW:
+                    	currentAnimation.tweakUp();
+                    	break;
+                    case DOWN_ARROW:
+                    	currentAnimation.tweakDown();
+                    	break;
+                    	
                     }
 
                 }
