@@ -48,13 +48,14 @@ struct RNConstants {
 #ifdef RN_REALLY_LONG_ANIMATIONS
   const unsigned long animationDuration = 3600000;
 #else
-  const unsigned long animationDuration = 60000;
+  const unsigned long animationDuration = 20000;
 #endif
 
     const uint8_t brightnessChunkSize = 16;
 
     const uint16_t pyramidRadius = 7209;
     const uint16_t pyramidRadiusFromGround = 7796;
+     const uint16_t pyramidHeight = 7772;
 
     const uint32_t serial2BaudRate = 38400;
     const uint32_t usbSerialBaudRate = 115200;
