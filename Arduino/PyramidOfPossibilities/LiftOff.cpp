@@ -13,7 +13,7 @@
 
 void LiftOff::paint(RNLights & lights) {
 
-    float c = getAnimationCycles();
+    float c = getAnimationCycles()/4.0;
     float cycle = c - floor(c);
 
     info.printf("%6dms  %11f %11f %11f %11f\n", getAnimationMillis(), c, cycle,
@@ -36,7 +36,8 @@ bool LiftOff::paintWave(RNLights & lights, float height) {
 
     if (0.0 <= gradientPosition &&
         gradientPosition < 1) {
-
+ info.printf(" gradient %11f\n", gradientPosition);
+ 
         uint32_t color = parameters.gradient.getColor(256*gradientPosition);
         lights.setAllPixelColors(color);
         return true;
