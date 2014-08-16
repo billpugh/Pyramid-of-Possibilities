@@ -5,6 +5,7 @@ import java.util.List;
 
 public class CentralControl {
 
+    private static final int MINIMUM_MUTE = 15000;
     static final int LEFT_ARROW = 0x2190;
     static final int RIGHT_ARROW = 0x2192;
     static final int UP_ARROW = 0x2191;
@@ -112,8 +113,9 @@ public class CentralControl {
                         break;
                     case MUTE:
                         if (currentAnimation.program == AnimationProgram.e_Mute) {
-                            if (System.currentTimeMillis() < muteUntil) {
-                                System.out.println("Muted, not switching");
+                            long diff = muteUntil - System.currentTimeMillis();
+                            if (diff > 0) {
+                                System.out.println("Muted, not switching for " + diff + " ms");
              
                             } else {
                             currentAnimation = pausedAnimation;
@@ -122,7 +124,7 @@ public class CentralControl {
                             }
                         } else {
                             pausedAnimation = currentAnimation;
-                            muteUntil = System.currentTimeMillis() + 15000;
+                            muteUntil = System.currentTimeMillis() + MINIMUM_MUTE;
                             currentAnimation = new Animation(AnimationProgram.e_Mute);
                             System.out.println("Muting");
                         }
@@ -143,9 +145,11 @@ public class CentralControl {
                         break;
                     case UP_ARROW:
                     	currentAnimation.tweakUp();
+                    	System.out.println("Tweaked to " + currentAnimation.cycleStatus.cpm);
                     	break;
                     case DOWN_ARROW:
                     	currentAnimation.tweakDown();
+                    	System.out.println("Tweaked to " + currentAnimation.cycleStatus.cpm);
                     	break;
                     	
                     }
@@ -161,9 +165,12 @@ public class CentralControl {
         } finally {
             try {
                 ReadConsole.resetTerminal(ttyConfig);
+                System.out.println("Reset console");
                 for(WireController w : controllers)
                     w.close();
+                System.out.println("Closed wire controllers");
                 WireController.executor.shutdownNow();
+                System.out.println("Shutdown executor");
             } catch (Exception e) {
                 System.err.println("Exception restoring tty config");
             }

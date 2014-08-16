@@ -3,8 +3,29 @@ import java.nio.ByteOrder;
 
 
 public class Animation {
+    
+    enum TweakKind { SIGNED, UNSIGNED, CYCLIC;
+     byte add(int currentValue, int offset) {
+         switch (this) {
+         case SIGNED:
+             currentValue += offset;
+             if (currentValue < -128) return -128;
+             else if (currentValue > 127)
+                 return 127;
+             return (byte) currentValue;
+         case UNSIGNED:
+             currentValue = currentValue & 0xff;
+             currentValue += offset;
+             if (currentValue < 0) return 0;
+             else if (currentValue > 255)
+                 return (byte)255;
+             return (byte) currentValue;
+         }
+         return (byte)(currentValue + offset);
+     }
+    };
 
-	 static class CycleStatus {
+	  class CycleStatus {
 		    final byte cpm;
 	    	final  double cycles;
 	    	 final  int computedAt;
@@ -21,27 +42,24 @@ public class Animation {
 				int at = BurnerTime.getGlobalTime();
 				if (at < computedAt) throw new IllegalArgumentException();
 				double newCycleCount = cycles + cpm * (at-computedAt)/60000.0;
-				int newValue = cpm;
-				if (computedAt + 100 > at) {
-					newValue += 4;
-				} else
-					newValue ++;
-				if (newValue > 127) newValue = 127;
+				int increment = 1;
+				if (computedAt + 500 > at)
+				    increment = 4;
 
-				return new CycleStatus((byte) newValue, newCycleCount, at);
+				return new CycleStatus(program.tweakKind.add(cpm, increment), newCycleCount, at);
 			}
 			CycleStatus tweakDown() {
 				int at = BurnerTime.getGlobalTime();
 				if (at < computedAt) throw new IllegalArgumentException();
 				double newCycleCount = cycles + cpm * (at-computedAt)/60000.0;
-				int newValue = cpm;
-				if (computedAt + 100 > at) {
-					newValue -= 4;
-				} else
-					newValue --;
-				if (newValue < -127) newValue = -127;
+				int decrement = -1;
+                if (computedAt + 500 > at)
+                    decrement = -4;
 
-				return new CycleStatus((byte) newValue, newCycleCount, at);
+				int newValue = cpm;
+				
+			    return new CycleStatus(program.tweakKind.add(cpm, decrement), newCycleCount, at);
+	            
 			}
 			
 	    }

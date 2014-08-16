@@ -133,8 +133,11 @@ public class WireController {
     
     public void close() throws IOException {
         inputStream.close();
+        System.out.println("Closed input stream " + portName);
         outputStream.close();
-        teensyPort.close();
+        System.out.println("Closed output stream " + portName);
+//        teensyPort.close();
+//        System.out.println("Closed port " + portName);
     }
 
 }
