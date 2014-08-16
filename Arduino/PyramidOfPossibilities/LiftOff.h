@@ -14,13 +14,16 @@
 
 struct LiftoffParameters {
 
-    float thickness = 0.2;
+    float thickness = 0.3;
+    float speed = 2.0;
 
     float overlap = 0.6;
+    uint16_t brightness = 256;
+    RNGradient backgroundGradient = RNGradient(0, RNGradientCapped, 0x000000, 0x000060);
     EasingMode easingMode = EaseIn;
-    CurveType curveType = CurveTypeCubic;
+    CurveType curveType = CurveTypeQuadratic;
 
-    RNGradient gradient = RNGradient(1, RNGradientWrap, 0x00ffff, 0xffffff);
+    RNGradient gradient = RNGradient(0, RNGradientCapped, 0xff0000, 0x400000);
 };
 
 class LiftOff : public RNAnimation {

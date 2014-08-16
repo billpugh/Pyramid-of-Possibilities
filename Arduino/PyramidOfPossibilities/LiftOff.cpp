@@ -9,40 +9,40 @@
 #include "LiftOff.h"
 #include "Constants.h"
 #include <math.h>
+#include "stdio.h"
 
 
 void LiftOff::paint(RNLights & lights) {
-
-    float c = getAnimationCycles()/4.0;
+    
+    float c = getAnimationCycles() * parameters.speed;
     float cycle = c - floor(c);
-
-    info.printf("%6dms  %11f %11f %11f %11f\n", getAnimationMillis(), c, cycle,
-   cycle*parameters.overlap, (cycle+1.0)*parameters.overlap);
-   
-    if (!paintWave(lights, cycle*parameters.overlap))
-        paintWave(lights, (cycle+1.0)*parameters.overlap);
+    
+    lights.setAllPixelColors(parameters.backgroundGradient.getColor(info.y * 255 / constants.pyramidHeight));
+    paintWave(lights, cycle*parameters.overlap);
+    paintWave(lights, (cycle+1.0)*parameters.overlap);
+    lights.setBrightness(parameters.brightness);
+    
     info.showActivityWithSparkles(lights);
 }
 
 bool LiftOff::paintWave(RNLights & lights, float height) {
-
-//    AHEasingFunction easingFunction = getEasingFunction(parameters.easingMode, parameters.curveType);
-//    height = easingFunction(height);
-
+    if (0 <= height && height < 1) {
+        AHEasingFunction easingFunction = getEasingFunction(parameters.easingMode, parameters.curveType);
+        height = easingFunction(height);
+    }
+    
     float topHeight = height * constants.pyramidHeight;
     float bottomHeight = (height - parameters.thickness) * constants.pyramidHeight;
-
-    float gradientPosition = (info.y - bottomHeight)/(topHeight - bottomHeight);
-
-    if (0.0 <= gradientPosition &&
-        gradientPosition < 1) {
- info.printf(" gradient %11f\n", gradientPosition);
- 
+    
+    float gradientPosition = (info.z - bottomHeight)/(topHeight - bottomHeight);
+    
+    if (0.0 <= gradientPosition && gradientPosition < 1) {
+        
         uint32_t color = parameters.gradient.getColor(256*gradientPosition);
-        lights.setAllPixelColors(color);
+        lights.setAllPixelColorsMax(color);
         return true;
-    }
-    return false;
+    } else
+        return false;
 }
 
 
