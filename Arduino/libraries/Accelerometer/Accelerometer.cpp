@@ -218,7 +218,9 @@ void readRegisters(uint8_t addressToRead, int bytesToRead, uint8_t * dest)
 // Read a single byte from addressToRead and return it as a byte
 uint8_t readRegister(uint8_t addressToRead)
 {
-#ifndef POP_SIMULATOR
+#ifdef POP_SIMULATOR
+  return 0;
+#else
   Wire.beginTransmission(MMA8452_ADDRESS);
   Wire.write(addressToRead);
   Wire.endTransmission(I2C_NOSTOP); //endTransmission but keep the connection active
@@ -228,13 +230,16 @@ uint8_t readRegister(uint8_t addressToRead)
   while(!Wire.available()) ; //Wait for the data to come back
   return Wire.read(); //Return this one byte
 #endif
+ 
 }
 
 // Read a single byte from addressToRead and return it as a byte, with a timeout
 // return -1 on timeout
 int readRegister(uint8_t addressToRead, unsigned long timeout)
 {
-#ifndef POP_SIMULATOR
+#ifdef POP_SIMULATOR
+  return 0;
+#else
   Wire.beginTransmission(MMA8452_ADDRESS);
   Wire.write(addressToRead);
   Wire.endTransmission(I2C_NOSTOP); //endTransmission but keep the connection active
