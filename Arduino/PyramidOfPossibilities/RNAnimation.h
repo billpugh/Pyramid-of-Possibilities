@@ -39,6 +39,8 @@ public:
     float getAnimationCycles();
     
     int8_t getTweakValue();
+    
+    bool hasBeenTweaked();
     // name of the animation
     virtual const char * name();
     
@@ -67,6 +69,8 @@ private:
 
     // Start time of the animation in local time
     const unsigned long animationStartMillis;
+    unsigned long tweakLastChecked = animationStartMillis;
+    
 
     friend class RNController;
 };
