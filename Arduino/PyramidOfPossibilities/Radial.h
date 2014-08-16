@@ -21,6 +21,13 @@ TODO:
 `period` can be made into something smaller too, but that may break code where it is used. check first!
 
 */
+enum RadialCompressionType {
+    RadialCompressNone = 0x00,
+    RadialCompressInner = 0x01,
+    RadialCompressShell = 0x02,
+    RadialCompressOuter = 0x04,
+    RadialCompressAll = 0xFF
+};
 
 struct RadialParameters {
     float thickness = 0.05; // portion of entire radius
@@ -29,8 +36,8 @@ struct RadialParameters {
     RNGradient gradientOutside = RNGradient(0, RNGradientCapped, 0x000002, 0x000002);
     EasingMode easingMode = EaseInOut;
     CurveType curveType = CurveTypeQuadratic;
+    uint8_t compress = RadialCompressInner | RadialCompressOuter;
 };
-
 
 class Radial : public RNAnimation {
 public:
