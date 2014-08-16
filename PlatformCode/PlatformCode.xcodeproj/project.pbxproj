@@ -184,7 +184,6 @@
 		16E32C88199EF9850006E6B6 /* AnimationBroadcast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnimationBroadcast.h; path = ../Arduino/PyramidOfPossibilities/AnimationBroadcast.h; sourceTree = "<group>"; };
 		16EDC08C199999A8002FA957 /* RNComm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RNComm.cpp; path = ../Arduino/PyramidOfPossibilities/RNComm.cpp; sourceTree = "<group>"; };
 		16EDC08D199999A8002FA957 /* RNComm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNComm.h; path = ../Arduino/PyramidOfPossibilities/RNComm.h; sourceTree = "<group>"; };
-		30514239199E852400D69243 /* PlatformControler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PlatformControler.cpp; path = ../PopSimulator/PlatformControler.cpp; sourceTree = "<group>"; };
 		30F8EB2D198D5B6E008DEAE9 /* Constants.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Constants.cpp; path = ../Arduino/PyramidOfPossibilities/Constants.cpp; sourceTree = "<group>"; };
 		30F8EB2E198D5B6E008DEAE9 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../Arduino/PyramidOfPossibilities/Constants.h; sourceTree = "<group>"; };
 		30F8EB31198D5D92008DEAE9 /* PyramidOfPossibilities.ino */ = {isa = PBXFileReference; lastKnownFileType = text; name = PyramidOfPossibilities.ino; path = ../Arduino/PyramidOfPossibilities/PyramidOfPossibilities.ino; sourceTree = "<group>"; };
@@ -215,7 +214,6 @@
 		1644A110198D34AF00FBFF63 = {
 			isa = PBXGroup;
 			children = (
-				30514239199E852400D69243 /* PlatformControler.cpp */,
 				160D4779199D304B00F59BAE /* Comm code */,
 				166A9D3C19991BA100C2E74C /* PopMain.cpp */,
 				166A9D3D19991BA100C2E74C /* PopMain.h */,
