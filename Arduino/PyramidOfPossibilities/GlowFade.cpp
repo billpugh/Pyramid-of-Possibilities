@@ -7,40 +7,35 @@
 //
 
 #include "GlowFade.h"
+#include <math.h>
 
 
 void GlowFade::getLinear(float pos, uint8_t &value) {
-   int result;
-   if (pos < parameters.fractionUp) {
-	result = (uint8_t) (pos/parameters.fractionUp * 256);
-	}
-   else {
-	result = 255 - (pos - parameters.fractionUp)/parameters.fractionUp *  256;
-	}
-   if (result < 0) result = 0;
-   else if (result > 255) result = 255;
-   value = result;
+
+    if (pos < parameters.fractionUp)
+        pos /=parameters.fractionUp ;
+
+    else
+        pos =  (1 - (pos - parameters.fractionUp)/(1-parameters.fractionUp));
+    int result =   parameters.maxBrightness * pos;
+	if (result < 0) result = 0;
+    else if (result > 255) result = 255;
+    value = result;
 }
 
     
 void GlowFade::paint(RNLights & lights) {
  
     
-    unsigned long ms = getAnimationMillis();
+    float cycle = getAnimationCycles();
 
 
-    int sColor = 0x00ffff + parameters.value;
-    int eColor = 0xffffff + parameters.value;
-
-    RNGradient gradient = RNGradient(1, RNGradientWrap,sColor, eColor);
-
-    uint16_t cycle = ms / parameters.period;
-    uint8_t gradiantPosition = cycle * parameters.gradiantSkip;
+    uint8_t gradiantPosition = floor(cycle)* parameters.gradiantSkip;
     uint8_t r,g,b;
-    gradient.getColor(gradiantPosition, r,g,b);
+    parameters.gradient.getColor(gradiantPosition, r,g,b);
     
     lights.setAllPixelColors(r,g,b);
-    float moment = ((float)(ms % parameters.period)) / parameters.period;
+    float moment = cycle - floor(cycle);
     uint8_t brightness;
     getLinear(moment, brightness);
     lights.setBrightness(brightness);

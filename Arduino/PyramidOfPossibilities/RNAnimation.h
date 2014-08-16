@@ -33,6 +33,11 @@ public:
 
     // Gives the time in milliseconds since this animation starter
     float getAnimationMinutes();
+    
+    // Gives the cycles since this animation started.
+    float getAnimationCycles();
+    
+    uint8_t getCyclesPerMinute();
 
     // name of the animation
     virtual const char * name();
@@ -43,6 +48,8 @@ public:
     
     
     // Parameters
+    
+
 
     // Called if there are any parameters from central
     // return true if successful
@@ -56,8 +63,17 @@ public:
     
 private:
     
+    void updateCycleCount();
+    // Set cycles per minute. Can be negative
+    void setCyclesPerMinute(int8_t cpm);
     // Start time of the animation in local time
     const unsigned long animationStartMillis;
+    
+    int8_t cyclesPerMinute = 30;
+    unsigned long lastUpdate;
+    float cycleCount;
+
+    friend class RNController;
 };
 
 #endif /* defined(__RNAnimation__) */

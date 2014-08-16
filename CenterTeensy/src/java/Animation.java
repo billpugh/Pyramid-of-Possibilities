@@ -4,10 +4,30 @@ import java.nio.ByteOrder;
 
 public class Animation {
 
-    AnimationProgram program;
-    byte sequenceId;
-    long startTime = BurnerTime.getGlobalTime();
+	 static class CycleStatus {
+	    	final  double cycles;
+	    	 final  long computedAt;
+			public CycleStatus(double cycles, long computedAt) {
+				this.cycles = cycles;
+				this.computedAt = computedAt;
+			}
+			
+			CycleStatus asOf(int cpm, long t) {
+				if (t < computedAt) throw new IllegalArgumentException();
+				return new CycleStatus(cycles + cpm * (t-computedAt)/60000.0, t);
+			}
+	    }
+	 
+    final AnimationProgram program;
+    final byte sequenceId;
+    
+    
+   
+    int cpm;
+    final long startTime = BurnerTime.getGlobalTime();
+    volatile CycleStatus cycleStatus = new CycleStatus(0, startTime);
     byte [] parameters;
+   
     
     
     static byte nextSequenceId = 0;
@@ -22,6 +42,13 @@ public class Animation {
        this(program, new byte[0]);
     }
 
+    public synchronized void updateCycles() {
+    	cycleStatus = cycleStatus.asOf(cpm, BurnerTime.getGlobalTime() );
+    	
+    }
+    public  CycleStatus getCycles() {
+    	return cycleStatus;
+    }
 
     public short byteLength() {
         int length = 1+1+2+8+parameters.length;
@@ -35,6 +62,8 @@ public class Animation {
         buf.put((byte)program.ordinal());
         buf.put(sequenceId);
         buf.putLong(startTime);
+        CycleStatus cycles = getCycles();
+        buf.putFloat((float)cycles.cycles);
         buf.putShort(byteLength());
         if (parameters.length > 0)
             buf.put(parameters);

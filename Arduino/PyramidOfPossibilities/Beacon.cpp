@@ -10,7 +10,7 @@
 
 void Beacon::paint(RNLights & lights) {
     
-    float angle = getAnimationMinutes() * parameters.rpm;
+    float angle = getAnimationCycles();
 
 
     for(int i = 0; i < lights.getNumPixels(); i++) {

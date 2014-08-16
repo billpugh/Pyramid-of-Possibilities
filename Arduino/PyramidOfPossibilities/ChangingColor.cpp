@@ -10,7 +10,7 @@
 
 void ChangingColor::paint(RNLights & lights) {
     
-    uint8_t gradiantPosition = getAnimationMinutes() * 256 * parameters.gpm;
+    uint8_t gradiantPosition = getAnimationCycles() * 256;
     
     uint8_t r,g,b;
     parameters.gradient.getColor(gradiantPosition, r, g, b);
