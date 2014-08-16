@@ -8,6 +8,7 @@
 #include "Explosion.h"
 #include "Arduino.h"
 #include "ledPositions.h"
+#include <math.h>
 
 Explosion::Explosion(RNInfo & info, unsigned long animationStartMillis)
 : RNAnimation(info, animationStartMillis, sizeof (ExplosionParameters),
