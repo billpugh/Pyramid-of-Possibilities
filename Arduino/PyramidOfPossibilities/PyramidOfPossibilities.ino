@@ -44,12 +44,12 @@ void setup() {
     leds.show();
     Serial.begin(115200);
 
-    pinMode(ONBOARD_LED_PIN, OUTPUT);
-    for(int i = 0; i < 5; i++) {
-        digitalWrite(ONBOARD_LED_PIN, HIGH);
-        delay(700);
-        digitalWrite(ONBOARD_LED_PIN, LOW);
-        delay(300);
-    }
+//    pinMode(ONBOARD_LED_PIN, OUTPUT);
+//    for(int i = 0; i < 5; i++) {
+//        digitalWrite(ONBOARD_LED_PIN, HIGH);
+//        delay(700);
+//        digitalWrite(ONBOARD_LED_PIN, LOW);
+//        delay(300);
+//    }
     setupMain();
 }
