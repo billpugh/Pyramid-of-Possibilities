@@ -319,9 +319,11 @@ uint8_t RNLights::getPixelBlue(uint16_t pixel)  {
 }
 
 void RNLights::setBrightness(uint16_t amount) {
-  if(amount == 256)
+  if(amount >= 256)
     fullBrightness = true;
   else {
+    if (amount < 0)
+        amount = 0;
     fullBrightness = false;
     brightness = (uint8_t) amount;
   }
