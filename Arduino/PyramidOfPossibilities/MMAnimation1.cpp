@@ -9,8 +9,6 @@
 #include "MMAnimation1.h"
 #include <math.h>
 
-#define DEBUG true  // print msgs over serial
-
 const float logOneHalf = -.6931471806; // log(1/2);
 
 void MMAnimation1::paint(RNLights & lights)
