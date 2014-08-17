@@ -50,7 +50,7 @@ void initializeLEDs() {
 enum Action {
   runPlatform, uploadParameters, uploadConstants};
 
-Action action = uploadConstants;
+Action action = uploadParameters;
 void setup() {
 
     Serial.begin(constants.usbSerialBaudRate);
@@ -86,6 +86,11 @@ void loop() {
   case runPlatform:
     loopMain();
     break;
+    default:
+     digitalWrite(ONBOARD_LED_PIN, HIGH);
+      delay(350);
+      digitalWrite(ONBOARD_LED_PIN, LOW);
+      delay(150);
   }
 }
 
