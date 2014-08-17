@@ -32,6 +32,8 @@ void RNInfo::initialize() {
 
     if (x != 0 || y != 0)
         platformGlobalAngle = atan2(y, x)/radiansInCircle;
+    else
+        platformGlobalAngle = 0.0;
 
     for(int i = 0; i < numLEDs; i++) {
         float  xLED = getLEDXPosition(i);
