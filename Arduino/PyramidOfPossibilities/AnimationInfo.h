@@ -17,12 +17,13 @@ const int MAX_PARAMETER_SIZE = 32;
 
 struct AnimationInfo {
     
-    AnimationInfo(AnimationEnum program, uint32_t startTime) : program(program),startTime(startTime), lastTweakAt(startTime) {};
-    AnimationInfo(uint32_t startTime) : program(e_WWPAnimationTest),startTime(startTime), lastTweakAt(startTime) {};
+    AnimationInfo(AnimationEnum program, uint32_t startTime) : program(program),startTime(startTime) {};
+    AnimationInfo(uint32_t startTime) : program(e_WWPAnimationTest),startTime(startTime) {};
     AnimationEnum program;
     uint8_t seqId = 0;
     uint32_t startTime;
-    uint32_t lastTweakAt;
+    // relative to startTime
+    uint32_t lastTweakAt = 0;
     float cyclesAtLastTweak = 0.0;
     int8_t tweakValue = 30;
     uint8_t parameterLength = 0;
