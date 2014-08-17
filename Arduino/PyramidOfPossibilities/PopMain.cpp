@@ -209,7 +209,12 @@ void debugTriadPositions() {
     info->printf("maximum led %3d at %11f\n", maxAngleLED, maxAngle*360);
 
     lights->show();
-    delay(10000);
+    for(int i = 0; i < 20; i++) {
+        digitalWrite(ONBOARD_LED_PIN, HIGH);
+        delay(200);
+        digitalWrite(ONBOARD_LED_PIN, LOW);
+        delay(100);
+    }
     lights->reset();
 }
 
