@@ -15,8 +15,8 @@
 enum  AnimationEnum {
 
   
-   e_ActivityLevelAnimation,
     e_ChangingColor,
+   e_ActivityLevelAnimation,
     e_CircularGradient,
     e_ColorWorms,
     e_Chasers,
