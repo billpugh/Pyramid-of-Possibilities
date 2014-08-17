@@ -19,6 +19,7 @@
 #include "PopMain.h"
 #include "TimerThree.h"
 #include "UploadParameters.h"
+#include "UploadConstants.h"
 #include <EEPROM.h>
 #include <malloc.h>
 
@@ -49,7 +50,7 @@ void initializeLEDs() {
 enum Action {
   runPlatform, uploadParameters, uploadConstants};
 
-Action action = uploadParameters;
+Action action = uploadConstants;
 void setup() {
 
     Serial.begin(constants.usbSerialBaudRate);
@@ -71,6 +72,9 @@ void setup() {
     break;
   case uploadParameters:
     setupUploadParameters();
+    break;
+     case uploadConstants:
+    setupUploadConstants();
     break;
   }
 

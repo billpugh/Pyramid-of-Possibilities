@@ -29,7 +29,6 @@ void printParameters(RNInfo &info,  AnimationEnum a) {
 
 }
 void setupUploadParameters() {
-    Serial.begin(9600);
     Platform platform( /* ID */ 42, /* XYZ */ 0,0,700,
                       /* dir */ 0, /* wire Pos */ 1);
     RNInfo info(constants.LEDs, platform);
@@ -47,5 +46,3 @@ void setupUploadParameters() {
 
 
 }
-
-void loopUploadParameters();

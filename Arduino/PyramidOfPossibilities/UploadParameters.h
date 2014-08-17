@@ -11,7 +11,6 @@
 
 void setupUploadParameters();
 
-void loopUploadParameters();
 
 
 #endif /* defined(__UploadParameters__) */
