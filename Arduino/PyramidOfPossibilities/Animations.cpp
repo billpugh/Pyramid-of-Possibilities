@@ -38,6 +38,9 @@
 #include "Explosion.h"
 
 #include "MMAnimation1.h"
+
+#include <stdio.h>
+
 RNAnimation * getAnimation(RNInfo & info, AnimationInfo animationInfo ) {
     switch (animationInfo.program) {
 
@@ -98,9 +101,11 @@ RNAnimation * getAnimation(RNInfo & info, AnimationInfo animationInfo ) {
         case e_FlashEcho:
             return new FlashEcho(info, animationInfo);
 		case e_MMAnimation1:
-			return new MMAnimation1(info, animationInfo);  
+			return new MMAnimation1(info, animationInfo);
+
         default:
             info.printf("Got request for non-existent animation %d\n", animationInfo.program);
+printf("Got request for non-existent animation %d\n", animationInfo.program);
             return 0;
     }
 }
