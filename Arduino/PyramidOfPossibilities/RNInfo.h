@@ -55,7 +55,7 @@ public:
     uint8_t getAndResetAccumulatedTaps();
 
     // get the number of milliseconds since the last tap
-    unsigned long timeSinceLastTap();
+    uint32_t timeSinceLastTap();
     
     // Get a combined indication of activity across all platforms. Same scale as getLocalActivity
     float getGlobalActivity();
@@ -93,6 +93,7 @@ public:
 
     // print debugging information
     void println(const char *s);
+    void println();
     void printf(const char *fmt, ... );
     
 private:

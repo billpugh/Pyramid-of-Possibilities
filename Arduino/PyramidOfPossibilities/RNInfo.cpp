@@ -146,13 +146,19 @@ float RNInfo::getGlobalRadiusGround(uint8_t led) {
 }
 
 
-unsigned long RNInfo::timeSinceLastTap() {
-    return millis() - lastTap;
+uint32_t RNInfo::timeSinceLastTap() {
+    return (uint32_t)(millis() - lastTap);
 }
 
 void RNInfo::println(const char * s) {
 #ifndef POP_SIMULATOR
     Serial.println(s);
+#endif
+}
+
+void RNInfo::println() {
+#ifndef POP_SIMULATOR
+    Serial.println();
 #endif
 }
 
