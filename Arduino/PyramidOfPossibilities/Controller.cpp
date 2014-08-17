@@ -107,6 +107,7 @@ void RNController::animationUpdate(AnimationInfo broadcast) {
     } else {
             RNAnimation * newAnimation = getAnimation(info, broadcast);
         info.printf("switching to %s\n", newAnimation->name());
+        switchToAnimation(newAnimation);
 
         
     }
