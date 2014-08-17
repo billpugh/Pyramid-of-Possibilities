@@ -20,11 +20,13 @@ struct MMAnimation1Parameters {
     float pulseWidth = 250;
 
     RNGradient gradient =
-    RNGradient(1, RNGradientWrap, 0x00ffff, 0xffffff);
+    RNGradient(1, RNGradientWrap, 0x00ff80, 0xe0ffff);
     EasingMode easingMode = EaseIn;
     CurveType curveType = CurveTypeLinear;
+    bool activityChangesGradientPosition = true;
     uint8_t minimumBrightness = 2;
     uint16_t maxBrightness = 256;
+
 
 };
 

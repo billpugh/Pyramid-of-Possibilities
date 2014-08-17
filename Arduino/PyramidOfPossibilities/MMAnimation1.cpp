@@ -27,7 +27,7 @@ void MMAnimation1::paint(RNLights & lights)
     double logFade = logOneHalf * since / parameters.halfLifeMillis;
     brightness *= exp(logFade);
 
-    if (info.getTaps()) {
+    if (info.getTaps() || (parameters.activityChangesGradientPosition && hasBeenTweaked())) {
         brightness += parameters.increaseOnTap;
         // brightness is allowed to go above 1.0
     }
@@ -40,10 +40,17 @@ void MMAnimation1::paint(RNLights & lights)
     AHEasingFunction easingFunction = getEasingFunction(parameters.easingMode, parameters.curveType);
     float b = easingFunction(fmin(1.0,fmax(brightness,pulseBrightness)));
 
-    int finalBrightness = parameters.minimumBrightness + b * (parameters.maxBrightness - parameters.minimumBrightness);
+    int finalBrightness;
+    uint8_t gradientPosition;
+    if (parameters.activityChangesGradientPosition) {
+        gradientPosition = b*256;
+        finalBrightness = parameters.maxBrightness;
+    } else {
+        // gradiant uses cycle value
+        gradientPosition = getAnimationCycles()*256;
+        finalBrightness= parameters.minimumBrightness + b * (parameters.maxBrightness - parameters.minimumBrightness);
+    }
 
-    // gradiant uses cycle value
-    uint8_t gradientPosition = getAnimationCycles()*256;
     uint32_t color = parameters.gradient.getColor(gradientPosition);
 
     lights.setAllPixelColors(color);
