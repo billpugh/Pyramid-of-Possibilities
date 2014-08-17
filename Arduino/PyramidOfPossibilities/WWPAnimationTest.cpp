@@ -9,17 +9,31 @@
 #include <math.h>
 
 void WWPAnimationTest::paint(RNLights & lights) {
-    
 
-    RNGradient gradient =  RNGradient(true, RNGradientWrap, 0x00ffff, 0xffffff);
-    
+    int shouldUpdate = getAnimationMillis() * myLights.getNumPixels() * parameters.updateFraction / 1000;
 
-    for(int i = 0; i < lights.getNumPixels(); i++) {
-        int gradientPosition = i * 256 /lights.getNumPixels();
-      
-        lights.setPixelColor(i,  gradient.getColor(gradientPosition));
+    int num = shouldUpdate  - updated;
+    info.printf("Update %5d - %5d = %3d\n",
+                shouldUpdate, updated, num);
+    updated = shouldUpdate;
+
+    if (info.getTaps())
+        num += parameters.updateOnTapFraction
+        * myLights.getNumPixels();
+
+    for(int i = 0; i < num; i++) {
+        int pixel = info.getRandomPixel();
+        int gradientPosition = info.getRandom(255);
+        myLights.setPixelColor(pixel,
+                               parameters.gradient.getColor(gradientPosition));
+
+
     }
+    lights.copyPixels(myLights);
+
     
+
+
 }
 
 const char * WWPAnimationTest:: name() {
