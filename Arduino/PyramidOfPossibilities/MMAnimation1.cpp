@@ -9,10 +9,6 @@
 #include "MMAnimation1.h"
 #include <math.h>
 
-#define MIN_BRIGHTNESS 20
-#define MAX_BRIGHTNESS 250
-#define STEP_BRIGHTNESS 1
-
 #define DEBUG true  // print msgs over serial
 
 const float logOneHalf = -.6931471806; // log(1/2);
@@ -30,6 +26,7 @@ void MMAnimation1::paint(RNLights & lights)
     if (info.getTaps() || (parameters.activityChangesGradientPosition && hasBeenTweaked())) {
         brightness += parameters.increaseOnTap;
         // brightness is allowed to go above 1.0
+
     }
 
     float pulseBrightness =
@@ -41,14 +38,14 @@ void MMAnimation1::paint(RNLights & lights)
     float b = easingFunction(fmin(1.0,fmax(brightness,pulseBrightness)));
 
     int finalBrightness;
-    uint8_t gradientPosition;
+    int gradientPosition;
     if (parameters.activityChangesGradientPosition) {
         gradientPosition = b*256;
         finalBrightness = parameters.maxBrightness;
     } else {
         // gradiant uses cycle value
-        gradientPosition = getAnimationCycles()*256;
-        finalBrightness= parameters.minimumBrightness + b * (parameters.maxBrightness - parameters.minimumBrightness);
+        gradientPosition = (uint8_t)(getAnimationCycles()*256);
+        finalBrightness = parameters.minimumBrightness + b * (parameters.maxBrightness - parameters.minimumBrightness);
     }
 
     uint32_t color = parameters.gradient.getColor(gradientPosition);
