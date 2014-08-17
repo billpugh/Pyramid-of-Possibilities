@@ -67,7 +67,7 @@ void RNAnimation::paint(RNLights &lights) {}
 
 // Gives the cycles since this animation started.
 float RNAnimation::getAnimationCycles() {
-    return animationInfo.cyclesAtLastTweak + animationInfo.tweakValue * (millis() - animationInfo.lastTweakAt) / 60000.0f;
+    return animationInfo.cyclesAtLastTweak + animationInfo.tweakValue * (millis() - animationInfo.lastTweakAt) / 120000.0f;
 }
 
 float RNAnimation::getAnimationCyclesFraction() {
