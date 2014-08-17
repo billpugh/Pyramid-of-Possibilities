@@ -98,10 +98,8 @@ RNAnimation * getAnimation(RNInfo & info, AnimationInfo animationInfo ) {
             return new Radial(info, animationInfo);
         case e_FlashEcho:
             return new FlashEcho(info, animationInfo);
-		case e_MMAnimation0 :
-			return new MMAnimation0(info, animationStartMillis); 
 		case e_MMAnimation1:
-			return new MMAnimation1(info, animationStartMillis);  
+			return new MMAnimation1(info, animationInfo);  
         default:
             info.printf("Got request for non-existent animation %d\n", animationInfo.program);
             return 0;

@@ -63,5 +63,5 @@ void MMAnimation1::paint(RNLights & lights)
 }
 
 char * MMAnimation1:: name() {
-	return "MMAnimation1";
+	return "Traces(MM1)";
 }

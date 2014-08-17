@@ -15,8 +15,8 @@ class MMAnimation1 : public RNAnimation {
 private:
 
 public:
-    MMAnimation1(RNInfo & info, unsigned long animationStartMillis)
-    : RNAnimation(info, animationStartMillis) {};
+    MMAnimation1(RNInfo & info, AnimationInfo animationInfo)
+    : RNAnimation(info, animationInfo) {};
 	// MMAnimation1(RNInfo & info, unsigned long animationStartMillis);
     virtual void paint(RNLights & lights);
     virtual char * name();

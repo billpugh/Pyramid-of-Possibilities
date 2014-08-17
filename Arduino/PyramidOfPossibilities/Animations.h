@@ -53,8 +53,7 @@ enum  AnimationEnum {
     e_Explosion,
 
     // meelows animations
-    e_MMAnimation0,   		// strip color cycles through HSV, tapping activity brightens, no activity fades out
-	e_MMAnimation1,   		// same as 0, but takes globaltime for cycling through HSV
+	e_MMAnimation1,   		// strip color cycles through HSV, tapping activity brightens, no activity fades out
 
     // Not an actual enum, just the value used to give us the count of the number of enums
     e_AnimationCount};
