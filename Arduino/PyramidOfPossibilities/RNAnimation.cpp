@@ -10,6 +10,7 @@
 #include "string.h"
 #include "RNAnimation.h"
 #include "AnimationInfo.h"
+#include <math.h>
 
 RNAnimation::RNAnimation(RNInfo & info, AnimationInfo broadcast) : info(info), animationStartMillis(broadcast.startTime), animationInfo(broadcast), parametersPointer(0), parametersSize(0)  {
 };
@@ -68,6 +69,12 @@ void RNAnimation::paint(RNLights &lights) {}
 float RNAnimation::getAnimationCycles() {
     return animationInfo.cyclesAtLastTweak + animationInfo.tweakValue * (millis() - animationInfo.lastTweakAt) / 60000.0f;
 }
+
+float RNAnimation::getAnimationCyclesFraction() {
+    float result = getAnimationCycles();
+    return result - floor(result);
+}
+
 
 int8_t RNAnimation::getTweakValue() {
     return animationInfo.tweakValue;

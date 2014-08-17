@@ -39,7 +39,8 @@ public:
     
     // Gives the cycles since this animation started.
     float getAnimationCycles();
-    
+    float getAnimationCyclesFraction();
+
     int8_t getTweakValue();
     uint8_t getUnsignedTweakValue();
     bool hasBeenTweaked();
