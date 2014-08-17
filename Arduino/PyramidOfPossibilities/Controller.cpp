@@ -49,7 +49,7 @@ void RNController::switchToAnimation(RNAnimation * newAnimation) {
 }
 
 void RNController::nextAnimation() {
-    int next = 0;
+    int next = firstAnimation;
     if (currentAnimation) {
         next= 1+currentAnimation->animationInfo.program;
     }
