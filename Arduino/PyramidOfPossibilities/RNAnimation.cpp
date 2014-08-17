@@ -30,9 +30,9 @@ RNAnimation::RNAnimation(RNInfo & info, unsigned long animationStartMillis,
 
 
 // Gives the time in milliseconds since this animation starter
-unsigned long
+uint32_t
 RNAnimation::getAnimationMillis() {
-    return millis() - animationStartMillis;
+    return (uint32_t)(millis() - animationStartMillis);
 }
 
 float RNAnimation::getAnimationMinutes() {

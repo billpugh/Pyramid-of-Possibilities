@@ -32,7 +32,7 @@ public:
     RNInfo & info;
     
     // Gives the time in milliseconds since this animation starter
-    unsigned long getAnimationMillis();
+    uint32_t getAnimationMillis();
 
     // Gives the time in milliseconds since this animation starter
     float getAnimationMinutes();
