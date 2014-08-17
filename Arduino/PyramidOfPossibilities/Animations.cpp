@@ -37,7 +37,6 @@
 #include "MovingFaces.h"
 #include "Explosion.h"
 
-#include "MMAnimation0.h"
 #include "MMAnimation1.h"
 RNAnimation * getAnimation(RNInfo & info, AnimationInfo animationInfo ) {
     switch (animationInfo.program) {
