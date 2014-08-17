@@ -24,9 +24,8 @@
 
 
 // Log if any animation takes longer than kMaxPaintDuration inside a call to paint()
-#define RN_PRINT_LOG_ANIMATIONS
-const unsigned long kMaxPaintDuration = 7;    // in ms.  See RN_PRINT_LOG_ANIMATIONS
-
+// #define RN_PRINT_LOG_ANIMATIONS
+const unsigned long kMaxPaintDuration = 10;    // in ms.  See RN_PRINT_LOG_ANIMATIONS
 
 struct RNConstants {
 
@@ -48,14 +47,14 @@ struct RNConstants {
 #ifdef RN_REALLY_LONG_ANIMATIONS
   const unsigned long animationDuration = 3600000;
 #else
-  const unsigned long animationDuration = 20000;
+  const unsigned long animationDuration = 60000;
 #endif
 
     const uint8_t brightnessChunkSize = 16;
 
     const uint16_t pyramidRadius = 7209;
     const uint16_t pyramidRadiusFromGround = 7796;
-     const uint16_t pyramidHeight = 7772;
+    const uint16_t pyramidHeight = 7772;
 
     const uint32_t serial2BaudRate = 38400;
     const uint32_t usbSerialBaudRate = 115200;

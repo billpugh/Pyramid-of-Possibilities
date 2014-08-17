@@ -34,7 +34,7 @@ void RNInfo::initialize() {
     sparkles.setFade(millis(), 750);
 
     if (x != 0 || y != 0)
-        platformGlobalAngle = atan2((double)y, (double)x)/radiansInCircle;
+        platformGlobalAngle = atan2(y, x)/radiansInCircle;
     else
         platformGlobalAngle = 0.0;
 

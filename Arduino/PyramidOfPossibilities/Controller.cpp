@@ -59,6 +59,10 @@ void RNController::nextAnimation() {
     unsigned long start = millis();
     AnimationInfo animationInfo =  AnimationInfo(nextAnimationEnum, (uint32_t)start);
     RNAnimation * newAnimation = getAnimation(info, animationInfo);
+    if (!newAnimation) {
+        info.printf("Got null for animation %d\n", animationInfo.program);
+        return;
+    }
     switchToAnimation( newAnimation );
 }
 
