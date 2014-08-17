@@ -9,12 +9,11 @@
 #ifndef __Animations__
 #define __Animations__
 
-#include "RNAnimation.h"
-
 
 enum  AnimationEnum {
 
-      e_Beacon,
+    e_LiftOff,
+    e_Beacon,
     // Branden's animations
     e_Kittens,
 
@@ -50,16 +49,17 @@ enum  AnimationEnum {
     e_Flashes,
     e_AVEAnimation1,
 
+    e_MovingFaces,
+    e_Explosion,
+
     // meelows animations
     e_MMAnimation0,   		// strip color cycles through HSV, tapping activity brightens, no activity fades out
 	e_MMAnimation1,   		// same as 0, but takes globaltime for cycling through HSV
-
 
     // Not an actual enum, just the value used to give us the count of the number of enums
     e_AnimationCount};
 
 
-RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animationStartMillis );
 
 #endif /* defined(__Animations__) */
 

@@ -10,6 +10,11 @@
 #define __PoPMain__
 
 
+#include "Controller.h"
+
+extern RNController * controller;
 void setupMain();
+
+void loopMain();
 
 #endif /* defined(__PoPMain__) */

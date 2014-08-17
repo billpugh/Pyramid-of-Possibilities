@@ -25,9 +25,9 @@ struct SnowParameters {
 
 class Snow : public RNAnimation {
 public:
-    Snow(RNInfo & info, unsigned long animationStartMillis)
-    : RNAnimation(info, animationStartMillis, sizeof(SnowParameters), &parameters), lastUpdateMillis(animationStartMillis), snow(info.numLEDs) {
-     snow.setFade(animationStartMillis, parameters.fade);
+    Snow(RNInfo & info, AnimationInfo animationInfo)
+    : RNAnimation(info, animationInfo, sizeof(SnowParameters), &parameters), lastUpdateMillis(animationInfo.startTime), snow(info.numLEDs) {
+     snow.setFade(animationInfo.startTime, parameters.fade);
    };
     virtual void paint(RNLights & lights);
     

@@ -22,21 +22,17 @@ float locationForT(float t) {
 
 void Radial::paint(RNLights & lights) {
     
-    float minutes = getAnimationMinutes();
 
     // t will be a number between 0 and 1.    
-    /// TODO: Need help setting up parameters that we want for speed, etc.
-    float t =  parameters.bpm  * minutes;
+    float t =  getAnimationCycles();
     t = t - floorf(t);
-    AHEasingFunction easingFunction
-    = getEasingFunction(parameters.easingMode, parameters.curveType);
+    AHEasingFunction easingFunction = getEasingFunction(parameters.easingMode, parameters.curveType);
     t = easingFunction(t);
 
     // calculate position of the radial based on t
     float r = locationForT(t);
 
-    float thickness = parameters.thickness
-    * constants.pyramidRadiusFromGround;
+    float thickness = parameters.thickness * constants.pyramidRadiusFromGround;
 
     float innerShellBoundry = r - thickness;
     float outerShellBoundry = r + thickness;
@@ -67,21 +63,36 @@ void Radial::paint(RNLights & lights) {
             
             // inside 
             gradientToUse = &(parameters.gradientInside);
-            point = pixelRadius / innerShellBoundry;
+            
+            if ( parameters.compress & RadialCompressInner ) {
+                point = pixelRadius / innerShellBoundry;
+            } else {
+                point = pixelRadius / constants.pyramidRadiusFromGround;
+            }
             in++;
 
         } else if ( pixelRadius < outerShellBoundry ) {
             
             // shell 
             gradientToUse = &(parameters.gradientShell);
-            point = (pixelRadius - innerShellBoundry ) / doublethickness;
+            
+            if ( parameters.compress & RadialCompressShell ) {
+                point = (pixelRadius - innerShellBoundry ) / doublethickness;
+            } else {
+                point = pixelRadius / constants.pyramidRadiusFromGround;
+            }
             middle++;
 
         } else {
 
             // outside
             gradientToUse = &(parameters.gradientOutside);
-            point = pixelRadius / constants.pyramidRadiusFromGround;
+            
+            if ( parameters.compress & RadialCompressOuter ) {
+                point = pixelRadius / innerShellBoundry;
+            } else {
+                point = pixelRadius / constants.pyramidRadiusFromGround;
+            }
             out++;
         }
 
@@ -104,8 +115,10 @@ void Radial::paint(RNLights & lights) {
 
     }
 
+#ifdef RN_RADIAL_DEBUG
     info.printf("Radial ms = %5d, minutes = %10f, t=%10f, r = %10f, min = %10f, max = %10f, in/mid/out = %3d/%3d/%3d\n",
                 getAnimationMillis(), minutes, t, r, minDistance, maxDistance, in, middle,out);
+#endif
     info.showActivityWithSparkles(lights);
     
 }

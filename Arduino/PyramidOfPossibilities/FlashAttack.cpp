@@ -18,7 +18,7 @@ void FlashAttack::paint(RNLights & lights) {
     value = min(value, 255);
 
 
-  lights.setAllPixelHSVs(parameters.hue,255,value);
+  lights.setAllPixelHSVs(getUnsignedTweakValue(),255,value);
 
 }
 

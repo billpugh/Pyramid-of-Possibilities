@@ -1,0 +1,6 @@
+#!/bin/csh 
+
+/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/bin/java -d32 \
+   -classpath build/classes/:lib/RXTXcomm.jar -Djava.library.path=lib/native CentralControl
+
+

@@ -9,16 +9,21 @@
 #include "Arduino.h"
 #include "string.h"
 #include "RNAnimation.h"
+#include "AnimationInfo.h"
+
+RNAnimation::RNAnimation(RNInfo & info, AnimationInfo broadcast) : info(info), animationStartMillis(broadcast.startTime), animationInfo(broadcast), parametersPointer(0), parametersSize(0)  {
+};
+
+RNAnimation::RNAnimation(RNInfo & info, AnimationInfo broadcast,  unsigned int parametersSize, void *parametersPointer) : info(info), animationStartMillis(broadcast.startTime), animationInfo(broadcast), parametersSize(parametersSize), parametersPointer(parametersPointer){
+};
 
 
-RNAnimation::RNAnimation(RNInfo & info, unsigned long animationStartMillis) : info(info), animationStartMillis(animationStartMillis) {
-    parametersPointer = 0;
-    parametersSize = 0;
+RNAnimation::RNAnimation(RNInfo & info, unsigned long animationStartMillis) : info(info), animationStartMillis(animationStartMillis), animationInfo((uint32_t)animationStartMillis), parametersPointer(0),  parametersSize(0) {
 };
 
 RNAnimation::RNAnimation(RNInfo & info, unsigned long animationStartMillis,
             unsigned int parametersSize, void *parametersPointer
-            )  : info(info), animationStartMillis(animationStartMillis), parametersSize(parametersSize), parametersPointer(parametersPointer) {
+            )  : info(info), animationStartMillis(animationStartMillis), animationInfo((uint32_t)animationStartMillis), parametersSize(parametersSize), parametersPointer(parametersPointer) {
     
 }
 
@@ -58,3 +63,33 @@ const char * RNAnimation:: name() {
 
 
 void RNAnimation::paint(RNLights &lights) {}
+
+// Gives the cycles since this animation started.
+float RNAnimation::getAnimationCycles() {
+    return animationInfo.cyclesAtLastTweak + animationInfo.tweakValue * (millis() - animationInfo.lastTweakAt) / 60000.0f;
+}
+
+int8_t RNAnimation::getTweakValue() {
+    return animationInfo.tweakValue;
+}
+uint8_t RNAnimation::getUnsignedTweakValue() {
+    return (uint8_t) (0xff & animationInfo.tweakValue);
+}
+
+
+bool RNAnimation::hasBeenTweaked() {
+    unsigned long now = getAnimationMillis();
+    bool result = animationInfo.lastTweakAt > tweakLastChecked;
+    tweakLastChecked = now;
+    return result;
+}
+
+uint32_t RNAnimation::timeSinceTweak() {
+    unsigned long now = getAnimationMillis();
+    int32_t result = (uint32_t)(now - animationInfo.lastTweakAt);
+    if (result < 0) return 0;
+    return result;
+}
+
+
+

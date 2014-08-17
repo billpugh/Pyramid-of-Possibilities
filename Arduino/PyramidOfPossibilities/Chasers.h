@@ -18,7 +18,7 @@ class Chasers :
 public RNAnimation {
 public:
   const uint8_t numChasers = 6;
-  Chasers(RNInfo & info, unsigned long animationStartMillis);
+  Chasers(RNInfo & info, AnimationInfo animationInfo);
   virtual void paint(RNLights & paintMe);
 
   virtual const char * name();

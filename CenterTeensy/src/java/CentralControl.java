@@ -1,24 +1,26 @@
-import gnu.io.SerialPort;
-
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PushbackInputStream;
-import java.nio.ByteBuffer;
-import java.nio.channels.Channels;
-import java.nio.channels.WritableByteChannel;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CentralControl {
 
-    static final int LEFT_ARROW = 0x10004;
-    static final int RIGHT_ARROW = 0x10003;
-    static final int UP_ARROW = 0x10001;
-    static final int DOWN_ARROW = 0x10002;
+    private static final int MINIMUM_MUTE = 15000;
+    static final int LEFT_ARROW = 0x2190;
+    static final int RIGHT_ARROW = 0x2192;
+    static final int UP_ARROW = 0x2191;
+    static final int DOWN_ARROW = 0x2193;
+    static final int HOME ='b';
+    static final int MUTE = 0x1F507;
+    static final int ENTER = 0x0a;
 
     public static int getChar(PushbackInputStream in) throws IOException {
         if (in.available() == 0)
             return -1;
         int c = in.read();
         if (c == 0x1b) {
+            if (in.available() == 0)
+                return MUTE;
             int n = in.read();
             if (n != 0x5b) {
                 in.unread(n);
@@ -42,30 +44,40 @@ public class CentralControl {
     }
 
 
-    static SerialPort teeny;
+
+    static volatile Animation currentAnimation;
+    static  Animation pausedAnimation;
+    static long muteUntil = 0;
     public static void main(String args[]) throws Exception {
         System.out.println("\nWelcome to Central\n");
         String ttyConfig = ReadConsole.setTerminalToCBreak();
-        SerialPort teensy = SerialPortFactory.findSerialPortByName("/dev/tty.usbserial-A603IUEO", 38400);
-
-        OutputStream outputStream = teensy.getOutputStream();
-        WritableByteChannel outputChannel = Channels.newChannel(outputStream);
         
-        final int numberAnimations = 5;
+        List<WireController> controllers = new ArrayList<WireController>();
+        List<String> ports = DetectPort.getPorts("tty.usbserial-");
+        System.out.printf("Found %d ports%n", ports.size());
+        if (ports.isEmpty())
+        	return;
+        for(String p : ports) {
+            System.out.println("Connecting to " + p);
+        	controllers.add(new WireController(p));
+        }
+        
         PushbackInputStream in = new PushbackInputStream(System.in);
-        int currentAnimation = 0;
-        switchToAnimation(outputChannel, currentAnimation);
-        outputStream.flush();
+        int currentAnimationNumber = 0;
+        switchToAnimation(currentAnimationNumber);
+        StringBuilder numbers = new StringBuilder();
+
         try {
             getInput: while (true) {
 
                 int c = getChar(in);
                 if (c >= 0) {
 
-//                    System.out.printf("%n%2x: %c%n", c, c);
+                    System.out.printf("%n%2x: %c%n", c, c);
 
                     switch (c) {
                     case 'q':
+                        System.out.println("quiting");
                         break getInput;
                     case '0':
                     case '1':
@@ -77,24 +89,69 @@ public class CentralControl {
                     case '7':
                     case '8':
                     case '9':
-                        currentAnimation = c - '0';
-                        switchToAnimation(outputChannel, currentAnimation);
-                        outputStream.flush();
+                        System.out.println("Got number " + c);
+                        numbers.append((char)c);
+                        break;
+                    case HOME:
+                        currentAnimationNumber = 0;
+                        switchToAnimation(currentAnimationNumber);
+                        break;
+                    case ENTER:
+                        System.out.println("Got enter");
+                        if (numbers.length() == 0) {
+                            // pulse
+                            break;
+                        }
+                        int number = Integer.parseInt(numbers.toString());
+                        System.out.println("Selecting animation " + number);
+                        numbers.setLength(0);
+                        if (number < AnimationProgram.SIZE) {
+                            currentAnimationNumber = number;
+                            switchToAnimation(currentAnimationNumber);
+                            
+                        }
+                        break;
+                    case MUTE:
+                        if (currentAnimation.program == AnimationProgram.e_Mute) {
+                            long diff = muteUntil - System.currentTimeMillis();
+                            if (diff > 0) {
+                                System.out.println("Muted, not switching for " + diff + " ms");
+             
+                            } else {
+                            currentAnimation = pausedAnimation;
+                            pausedAnimation = null;
+                            System.out.println("Canceling mute");
+                            }
+                        } else {
+                            pausedAnimation = currentAnimation;
+                            muteUntil = System.currentTimeMillis() + MINIMUM_MUTE;
+                            currentAnimation = new Animation(AnimationProgram.e_Mute);
+                            System.out.println("Muting");
+                        }
                         break;
                     case LEFT_ARROW:
-                        currentAnimation = (currentAnimation - 1)
-                                % numberAnimations;
-                        if (currentAnimation < 0)
-                            currentAnimation += numberAnimations;
-                        switchToAnimation(outputChannel, currentAnimation);
-                        outputStream.flush();
+                        currentAnimationNumber = (currentAnimationNumber - 1)
+                                % AnimationProgram.SIZE;
+                        if (currentAnimationNumber < 0)
+                            currentAnimationNumber += AnimationProgram.SIZE;
+                        switchToAnimation(currentAnimationNumber);
+
                         break;
                     case RIGHT_ARROW:
-                        currentAnimation = (currentAnimation + 1)
-                                % numberAnimations;
-                        switchToAnimation(outputChannel, currentAnimation);
-                        outputStream.flush();
+                        currentAnimationNumber = (currentAnimationNumber + 1)
+                                % AnimationProgram.SIZE;
+                        switchToAnimation(currentAnimationNumber);
+
                         break;
+                    case UP_ARROW:
+                    	currentAnimation.tweakUp();
+                    	System.out.println("Tweaked to " + currentAnimation.cycleStatus.cpm);
+                    	break;
+                    case DOWN_ARROW:
+                    	currentAnimation.tweakDown();
+                    	System.out.println("Tweaked to " + currentAnimation.cycleStatus.cpm);
+                    	break;
+                    	
                     }
 
                 }
@@ -108,33 +165,36 @@ public class CentralControl {
         } finally {
             try {
                 ReadConsole.resetTerminal(ttyConfig);
+                System.out.println("Reset console");
+                for(WireController w : controllers)
+                    w.close();
+                System.out.println("Closed wire controllers");
+                WireController.executor.shutdownNow();
+                System.out.println("Shutdown executor");
             } catch (Exception e) {
                 System.err.println("Exception restoring tty config");
             }
         }
+        Thread.sleep(1000);
+        System.exit(0);
 
     }
 
-     
-    static Animation animation;
     
     /**
-     * @param fw
      * @param currentAnimation
+     * @param fw
      * @throws IOException
      */
-    public static void switchToAnimation(WritableByteChannel outputChannel,
-            int currentAnimation) throws IOException {
-        AnimationProgram program = AnimationProgram.values()[currentAnimation];
-        animation = new Animation(program);
-        Broadcast broadcast = new Broadcast(animation);
-        ByteBuffer buf = broadcast.getBytes();
-        System.out.printf("writing bytes %d %d\n", buf.position(), buf.limit());
-        for(int i = buf.position(); i < buf.limit(); i++)
-            System.out.printf("%2x ",  buf.get(i));
-         System.out.println();
-        outputChannel.write(buf);
-        System.out.printf("Switching to animation %d%n", currentAnimation);
+    public static void switchToAnimation(int programId) throws IOException {
+        if (System.currentTimeMillis() < muteUntil) {
+            System.out.println("Muted, not switching");
+            return;
+        }
+        AnimationProgram program = AnimationProgram.values()[programId];
+        System.out.println("Switching to " + program.name());
+        currentAnimation = new Animation(program);
+       
     }
 
 }

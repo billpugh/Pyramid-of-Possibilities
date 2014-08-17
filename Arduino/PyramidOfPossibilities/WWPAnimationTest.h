@@ -13,8 +13,8 @@
 
 class WWPAnimationTest : public RNAnimation {
 public:
-    WWPAnimationTest(RNInfo & info, unsigned long animationStartMillis)
-    : RNAnimation(info, animationStartMillis) {
+    WWPAnimationTest(RNInfo & info, AnimationInfo animationInfo)
+    : RNAnimation(info, animationInfo) {
        };
 
     virtual void paint(RNLights & lights);

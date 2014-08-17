@@ -13,17 +13,17 @@
 static CHSV hsv;
 static CRGB rgb;
 
-Chasers::Chasers(RNInfo & info, unsigned long animationStartMillis)
+Chasers::Chasers(RNInfo & info, AnimationInfo animationInfo)
 : 
-RNAnimation(info, animationStartMillis), lights(info.numLEDs), dots(info.numLEDs) {
+RNAnimation(info, animationInfo), lights(info.numLEDs), dots(info.numLEDs) {
 
   for(int i = 0; i < numChasers; i++) {
     chaser[i].active = false;
   }
 
-  lastUpdate = animationStartMillis;
-  lights.setFade(animationStartMillis, 500);
-  dots.setFade(animationStartMillis, 750);
+  lastUpdate = animationInfo.startTime;
+  lights.setFade(animationInfo.startTime, 500);
+  dots.setFade(animationInfo.startTime, 750);
 };
 
 const char * Chasers:: name() {
@@ -148,8 +148,8 @@ void Chasers::paint(RNLights & paintMe) {
     }
   }
 
-  if (info.getTaps()) {
-    if (DEBUG) info.printf("Saw tap %f\n", totalG);
+  if (info.getTaps() || hasBeenTweaked()) {
+    if (DEBUG) info.printf("Saw tap %x %f\n", info.getTaps(), totalG);
     tapStrength = totalG;
     didTap = true;
     tap(1.0);

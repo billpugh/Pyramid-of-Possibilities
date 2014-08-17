@@ -20,91 +20,98 @@
 #include "Snow.h"
 #include "Swirl.h"
 #include "Beacon.h"
-
-
+#include "LiftOff.h"
 #include "Qbert.h"
 #include "DRAnimation1.h"
 
 #include "GlowFade.h"
 #include "ActivityLevelAnimation.h"
 
-#include "AVEAnimation1.h"
 #include "Flashes.h"
+#include "MovingFaces.h"
 #include "Radial.h"
 #include "FlashEcho.h"
 #include "Mute.h"
 
 #include "Kittens.h"
+#include "MovingFaces.h"
+#include "Explosion.h"
 
 #include "MMAnimation0.h"
 #include "MMAnimation1.h"
-
-RNAnimation * getAnimation(AnimationEnum a, RNInfo & info, long unsigned animationStartMillis ) {
-    switch (a) {
+RNAnimation * getAnimation(RNInfo & info, AnimationInfo animationInfo ) {
+    switch (animationInfo.program) {
 
         case e_Beacon:
-            return new Beacon(info, animationStartMillis);
+            return new Beacon(info, animationInfo);
 
         case e_Kittens:
-            return new Kittens(info, animationStartMillis);
+            return new Kittens(info, animationInfo);
 
         case e_Mute:
-            return new Mute(info, animationStartMillis);
+            return new Mute(info, animationInfo);
+        case e_LiftOff:
+            return new LiftOff(info, animationInfo);
 
         case e_ActivityLevelAnimation:
-            return new ActivityLevelAnimation(info, animationStartMillis);
+            return new ActivityLevelAnimation(info, animationInfo);
 
         case e_SideEffects:
-            return new SideEffects(info, animationStartMillis);
+            return new SideEffects(info, animationInfo);
 
         case e_Swirl:
-            return new Swirl(info, animationStartMillis);
+            return new Swirl(info, animationInfo);
 
         case e_Snow:
-            return new Snow(info, animationStartMillis);
+            return new Snow(info, animationInfo);
 
         case e_GlowFade:
-            return new GlowFade(info, animationStartMillis);
+            return new GlowFade(info, animationInfo);
         case e_FlashAttack:
-            return new FlashAttack(info, animationStartMillis);
+            return new FlashAttack(info, animationInfo);
 
 
             // Animations by WWP
         case e_WWPAnimationTest :
-            return new WWPAnimationTest(info, animationStartMillis);
+            return new WWPAnimationTest(info, animationInfo);
         case e_ChangingColor :
-            return new ChangingColor(info, animationStartMillis);
+            return new ChangingColor(info, animationInfo);
         case e_CircularGradient :
-            return new CircularGradient(info, animationStartMillis);
+            return new CircularGradient(info, animationInfo);
 
         case e_ColorWorms :
-            return new ColorWorms(info, animationStartMillis);
+            return new ColorWorms(info, animationInfo);
         case e_Chasers :
-            return new Chasers(info, animationStartMillis);
+            return new Chasers(info, animationInfo);
         case e_Qbert :
-            return new Qbert(info, animationStartMillis);
+            return new Qbert(info, animationInfo);
         case e_DRAnimation1 :
-            return new DRAnimation1(info, animationStartMillis);
+            return new DRAnimation1(info, animationInfo);
 
         case e_Flashes :
-            return new Flashes(info, animationStartMillis);
-        case e_AVEAnimation1 :
-            return new AVEAnimation1(info, animationStartMillis);
+            return new Flashes(info, animationInfo);
+        case e_MovingFaces :
+            return new MovingFaces(info, animationInfo);
+        case e_Explosion :
+            return new Explosion(info, animationInfo);
         case e_Radial:
-            return new Radial(info, animationStartMillis);
+            return new Radial(info, animationInfo);
         case e_FlashEcho:
-            return new FlashEcho(info, animationStartMillis);
-			
+            return new FlashEcho(info, animationInfo);
 		case e_MMAnimation0 :
 			return new MMAnimation0(info, animationStartMillis); 
 		case e_MMAnimation1:
 			return new MMAnimation1(info, animationStartMillis);  
-
         default:
-            info.printf("Got request for non-existent animation %d\n", a);
+            info.printf("Got request for non-existent animation %d\n", animationInfo.program);
             return 0;
     }
 }
 
+
+RNAnimation * getAnimation(RNInfo & info, AnimationEnum e) {
+    AnimationInfo animationInfo(e, 0);
+    return getAnimation(info, animationInfo);
+}
 
 

@@ -38,7 +38,7 @@ void ColorWorms::paint(RNLights & lights) {
     paint(lights, rPos, length, parameters.brightness, 0, 0);
     paint(lights, gPos, length, 0, parameters.brightness, 0);
     paint(lights, bPos, length, 0, 0, parameters.brightness);
-    info.showActivityWithBrightness( lights, parameters.brightnessWithoutActivity);
+    info.showActivityWithBrightness( lights, getUnsignedTweakValue());
     
 }
 

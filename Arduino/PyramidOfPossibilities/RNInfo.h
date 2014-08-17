@@ -39,6 +39,8 @@ public:
     float getLocalActivity();
     // Get the individual x,y,z accelerometer readings passed through a high pass filter. Values may be negative.
     void getLocalXYZActivity(float data[3]);
+    void getAndResetAccumulatedXYZActivity(float data[3]);
+
     // Get whether or not taps have been detected since the last paint refresh. If zero, no taps have been indicated.
     // This is a bit field, with different bits indicating whether the tap was in the X, Y or Z direction,
     // and whether it was positive or negative. In most cases, it is sufficient to check whether or not this value is nonzero.
@@ -50,7 +52,8 @@ public:
     // AxZL 0x40 -- tap in Z axis
     // PxZ: 0x04 -- positive in Z axis
     uint8_t getTaps();
-    
+    uint8_t getAndResetAccumulatedTaps();
+
     // get the number of milliseconds since the last tap
     unsigned long timeSinceLastTap();
     
@@ -62,6 +65,7 @@ public:
 
     float getPlatformGlobalAngle();
 
+    
 
     // getLocalAngle for LED in degrees (0 = south, range = is 0 to 0.999...)
     float getLocalAngle(uint8_t led);
@@ -73,9 +77,8 @@ public:
     // Distance of pixel from center at ground level
     float getGlobalRadiusGround(uint8_t led);
     
-    // Call to update any internal structures before painting any animations
-    // Only the controller should call this method
-    void update();
+    // does this LED face the exterior of the entire pyramid?
+    bool isExteriorLED(uint8_t led);
     
     void showActivityWithSparkles(RNLights & lights);
     void showActivityWithBrightness(RNLights & lights,  uint16_t minBrightness);
@@ -84,7 +87,10 @@ public:
     void accelerometerCallback( float totalG,
                                float directionalG[3],
                                uint8_t source);
-    
+
+    // Call while doing any lengthy animations so we can do housekeeping.
+    void yield();
+
     // print debugging information
     void println(const char *s);
     void printf(const char *fmt, ... );
@@ -95,17 +101,24 @@ private:
     float globalRadiusGround[240];
     float localAngle[240];
     
-    float myTotalG = 0;
-    float platformGlobalAngle = 0;
+    float myTotalG;
+    float platformGlobalAngle;
     float myDirectionalG[3];
-    uint8_t myTapSource;
-    unsigned long lastTap = 0;
+    float maxDirectionalG[3];
+    uint8_t myTapSource = 0;
+    uint8_t accumulatedTaps;
+    unsigned long lastTap;
     
     RNLights sparkles;
     
     void initialize();
-    
-    
+
+
+    friend class RNController;
+    // Call to update any internal structures before painting any animations
+    // Only the controller should call this method
+    void update();
+
 };
 
 

@@ -10,6 +10,7 @@
 #include "RNInfo.h"
 #include "Arduino.h"
 #include "ledPositions.h"
+#include "RNComm.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
@@ -59,6 +60,15 @@ void RNInfo::initialize() {
 float RNInfo::getPlatformGlobalAngle() {
     return platformGlobalAngle;
 }
+
+bool RNInfo::isExteriorLED(uint8_t led) {
+    if (x == 0 && y == 0)
+        return true;
+    int16_t  xLED = getLEDXPosition(led);
+    int16_t  yLED = getLEDYPosition(led);
+    return x*xLED + y*yLED >= 0;
+}
+
 RNInfo::RNInfo(uint8_t numLEDs, Platform & p)
 
                 : Platform(p),
@@ -76,8 +86,12 @@ void RNInfo::accelerometerCallback( float totalG,
         lastTap = millis();
     myTotalG = totalG;
     myTapSource = source;
-    for(int i = 0; i < 3; i++)
+    accumulatedTaps |= source;
+    for(int i = 0; i < 3; i++) {
         myDirectionalG[i] = directionalG[i];
+        if (maxDirectionalG[i] < directionalG[i])
+            maxDirectionalG[i] = directionalG[i];
+    }
 }
 
 
@@ -95,9 +109,22 @@ float RNInfo::getLocalActivity() {
 uint8_t RNInfo::getTaps() {
     return myTapSource;
 }
+uint8_t RNInfo::getAndResetAccumulatedTaps() {
+    uint8_t result = accumulatedTaps;
+    accumulatedTaps = 0;
+    return result;
+}
+
 void RNInfo::getLocalXYZActivity(float data[3]) {
     for(int i = 0; i < 3; i++)
         data[i] = myDirectionalG[i];
+}
+
+void RNInfo::getAndResetAccumulatedXYZActivity(float data[3]) {
+    for(int i = 0; i < 3; i++) {
+        data[i] = maxDirectionalG[i];
+        maxDirectionalG[i] = 0.0;
+    }
 }
 
 float RNInfo::getGlobalAngle(uint8_t led) {
@@ -191,4 +218,10 @@ void RNInfo::showActivityWithSparkles(RNLights & lights) {
     lights.applyBrightness();
     lights.copyPixelsMax(sparkles);
 }
+
+
+void RNInfo::yield() {
+    checkComm(*this);
+}
+
 

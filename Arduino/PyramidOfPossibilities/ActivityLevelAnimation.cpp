@@ -11,9 +11,9 @@
 
 
 
-ActivityLevelAnimation::ActivityLevelAnimation(RNInfo & info, unsigned long animationStartMillis)
+ActivityLevelAnimation::ActivityLevelAnimation(RNInfo & info, AnimationInfo animationInfo)
 : 
-RNAnimation(info, animationStartMillis), level(0){
+RNAnimation(info, animationInfo), level(0){
 };
 
 

@@ -265,6 +265,29 @@ void RNLights::setAllPixelColors(uint8_t red, uint8_t green, uint8_t blue) {
     *p++ = blue;
   }
 }
+void RNLights::setAllPixelColorsMax(uint8_t red, uint8_t green, uint8_t blue) {
+    uint8_t *p = pixels;
+    uint8_t * pixelsEnd = p + numPixels*3;
+    while(p < pixelsEnd) {
+        setMax(*p++, red);
+        setMax(*p++, green);
+        setMax(*p++, blue);
+    }
+}
+
+void RNLights::setAllPixelColors(uint32_t colorRGB) {
+    setAllPixelColors((uint8_t) (colorRGB >> 16),
+                         
+                         (uint8_t) (colorRGB >> 8),
+                         (uint8_t) colorRGB);
+}
+
+void RNLights::setAllPixelColorsMax(uint32_t colorRGB) {
+    setAllPixelColorsMax((uint8_t) (colorRGB >> 16),
+
+                      (uint8_t) (colorRGB >> 8),
+                      (uint8_t) colorRGB);
+}
 
 void RNLights::getPixelColor(uint16_t pixel, uint8_t &red, uint8_t &green, uint8_t &blue) {
   pixel = 3*((pixel+offset) % numPixels);

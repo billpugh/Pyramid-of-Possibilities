@@ -12,10 +12,13 @@
 
 #include "RNLights.h"
 #include "RNInfo.h"
+#include "AnimationInfo.h"
 
 class RNAnimation {
 public:
     // Constructor
+    RNAnimation(RNInfo & info, AnimationInfo animationInfo);
+    RNAnimation(RNInfo & info, AnimationInfo animationInfo,  unsigned int parametersSize, void *parametersPointer);
     RNAnimation(RNInfo & info, unsigned long animationStartMillis);
     // Constructor
     RNAnimation(RNInfo & info, unsigned long animationStartMillis,
@@ -33,7 +36,14 @@ public:
 
     // Gives the time in milliseconds since this animation starter
     float getAnimationMinutes();
-
+    
+    // Gives the cycles since this animation started.
+    float getAnimationCycles();
+    
+    int8_t getTweakValue();
+    uint8_t getUnsignedTweakValue();
+    bool hasBeenTweaked();
+    uint32_t timeSinceTweak();
     // name of the animation
     virtual const char * name();
     
@@ -43,21 +53,33 @@ public:
     
     
     // Parameters
+    
+
 
     // Called if there are any parameters from central
     // return true if successful
     virtual bool setParameters(int size, char * data);
     
     // set the address of the parameters struct (from your animation subclass)
-    void *parametersPointer;
+     void  * const parametersPointer;
     
     // set the size of the parameters struct (from your animation subclass)
-    unsigned int parametersSize;
+    const unsigned int parametersSize;
     
 private:
+    AnimationInfo animationInfo;
     
+
     // Start time of the animation in local time
     const unsigned long animationStartMillis;
+    unsigned long tweakLastChecked = animationStartMillis;
+    
+
+    friend class RNController;
 };
+
+
+RNAnimation * getAnimation(RNInfo & info, AnimationInfo animationInfo );
+RNAnimation * getAnimation(RNInfo & info, AnimationEnum e );
 
 #endif /* defined(__RNAnimation__) */

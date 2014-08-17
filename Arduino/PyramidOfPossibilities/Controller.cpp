@@ -10,15 +10,22 @@
 #include "RNInfo.h"
 #include "Arduino.h"
 #include "Animations.h"
+#include "RNAnimation.h"
+#ifndef POP_SIMULATOR
 #include "malloc.h"
+#endif
 #include "Constants.h"
 #include "RNComm.h"
 
 static int heapSize(){
+#ifdef POP_SIMULATOR
+    return 0;
+#else
     return mallinfo().uordblks;
+#endif
 }
 
-void RNController::switchToAnimation(AnimationEnum nextAnimation) {
+void RNController::switchToAnimation(RNAnimation * newAnimation) {
     if (currentAnimation) {
         info.printf("Deleting old animation\n");
         int before = heapSize();
@@ -26,13 +33,11 @@ void RNController::switchToAnimation(AnimationEnum nextAnimation) {
         int after = heapSize();
         info.printf("%d bytes freed\n", before-after);
     }
-    currentAnimationEnum = nextAnimation;
-    if (currentAnimationEnum >= e_AnimationCount)
-        currentAnimationEnum = (AnimationEnum) 0;
-    info.printf("Switching to animation %d\n", currentAnimationEnum);
+
+    info.printf("Switching to animation %s\n", newAnimation->name());
     unsigned long start = millis();
     int before = heapSize();
-    currentAnimation = getAnimation(currentAnimationEnum, info, start);
+    currentAnimation = newAnimation;
     int after = heapSize();
     info.printf("%d bytes allocated\n",after-before);
 
@@ -44,7 +49,17 @@ void RNController::switchToAnimation(AnimationEnum nextAnimation) {
 }
 
 void RNController::nextAnimation() {
-  switchToAnimation((AnimationEnum) (1+((int)currentAnimationEnum)));
+    int next = 0;
+    if (currentAnimation) {
+        next= 1+currentAnimation->animationInfo.program;
+    }
+    if (next == e_AnimationCount)
+        next = 0;
+    AnimationEnum nextAnimationEnum = (AnimationEnum) next;
+    unsigned long start = millis();
+    AnimationInfo animationInfo =  AnimationInfo(nextAnimationEnum, (uint32_t)start);
+    RNAnimation * newAnimation = getAnimation(info, animationInfo);
+    switchToAnimation( newAnimation );
 }
 
 void RNController::paint(RNLights & lights) {
@@ -75,6 +90,24 @@ void RNController::paint(RNLights & lights) {
     checkComm(info);
     }
 }
+
+void RNController::animationUpdate(AnimationInfo broadcast) {
+    info.printf("got broadcast, program %d, tweak %d\n", broadcast.program, broadcast.tweakValue);
+    if (currentAnimation && currentAnimation->animationInfo.program == broadcast.program
+        && currentAnimation->animationInfo.seqId == broadcast.seqId) {
+         info.printf("tweaking existing animation\n", broadcast.program, broadcast.tweakValue);
+        // tweak of existing animation
+        currentAnimation->animationInfo.lastTweakAt = broadcast.lastTweakAt;
+         currentAnimation->animationInfo.cyclesAtLastTweak = broadcast.cyclesAtLastTweak;
+        currentAnimation->animationInfo.tweakValue = broadcast.tweakValue;
+    } else {
+            RNAnimation * newAnimation = getAnimation(info, broadcast);
+        info.printf("switching to %s\n", newAnimation->name());
+
+        
+    }
+    
+    }
 
 
 

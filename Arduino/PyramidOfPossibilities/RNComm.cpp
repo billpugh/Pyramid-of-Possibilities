@@ -9,9 +9,11 @@
 #include "RNComm.h"
 #include "RNCommDaemon.h"
 #include "Constants.h"
+#include "PopMain.h"
 #include "RNInfo.h"
 #include "RNSerial.h"
-
+#include "AnimationInfo.h"
+#include <string.h>
 
 const uint8_t MAX_LENGTH = 255;
 char receiveBuffer[MAX_LENGTH];
@@ -30,14 +32,15 @@ union floatRep {
     float f;
     uint32_t i;
 };
-uint8_t getHeaderByte() {
-    int b = Serial2.read();
-    return (uint8_t) b;
-}
 
 #ifdef POP_SIMULATOR
 void checkComm(RNInfo &info) {}
 #else
+
+uint8_t getHeaderByte() {
+    int b = Serial2.read();
+    return (uint8_t) b;
+}
 
 void checkCommHead(RNInfo & info) {
     if (!dataAvailable(info, messageReceiveTime))
@@ -77,7 +80,7 @@ bool checkCommBody(RNInfo & info) {
     // TODO: check checksum
     info.println("got body");
     return true;
-
+    
 }
 
 
@@ -99,6 +102,11 @@ float getFloat() {
     floatRep u;
     u.i = get32Bits();
     return u.f;
+}
+
+void getBytes(uint8_t * dst, uint8_t sz) {
+    memcpy(dst, &receiveBuffer[receiveBufferPosition], sz);
+    receiveBufferPosition += sz;
 }
 
 void put8Bits(uint8_t value) {
@@ -124,14 +132,14 @@ void putFloat(float value) {
     put32Bits(u.i);
 }
 
+
+
 uint8_t status;
 uint32_t lastGlobalTime;
 int32_t adjustmentToMillisToGetGlobal;
 float medianActivityLevel;
-uint8_t program;
-uint8_t programSeqId;
-uint32_t programStartTime;
-uint8_t programParameterLength;
+AnimationInfo animationStatus(0);
+
 
 void initializeComm(RNInfo &info) {
     setupSerial2(constants.serial2BaudRate);
@@ -146,13 +154,18 @@ void prepareReportToCentral(RNInfo &info) {
     put8Bits(0); // status
     put16Bits(info.identifier);
     put8Bits(info.wirePosition);
-    put8Bits(info.getTaps());
+    put8Bits(info.getAndResetAccumulatedTaps());
     float gData[3];
-    info.getLocalXYZActivity(gData);
+    info.getAndResetAccumulatedXYZActivity(gData);
     putFloat(gData[0]);
     putFloat(gData[1]);
     putFloat(gData[2]);
-    sendBuffer[1] = sendBufferPosition;
+    // exclude header length from packet length
+    sendBuffer[1] = sendBufferPosition-3;
+    info.printf("Sending ");
+    for(int i = 0; i < sendBufferPosition; i++)info.printf("%2x ", sendBuffer[i]);
+    info.printf("\n");
+    
 }
 
 void parseProgramMessage(RNInfo & info) {
@@ -160,23 +173,28 @@ void parseProgramMessage(RNInfo & info) {
     lastGlobalTime = get32Bits();
     adjustmentToMillisToGetGlobal = lastGlobalTime - messageReceiveTime;
     medianActivityLevel = getFloat();
-
-    program = get8Bits();
-    programSeqId = get8Bits();
-    programStartTime = get32Bits();
-    programParameterLength = get8Bits();
-
-    info.printf("Got message at %d, program %d\n", messageReceiveTime, program);
+    
+    animationStatus.program = (AnimationEnum) get8Bits();
+    animationStatus.seqId = get8Bits();
+    animationStatus.startTime = get32Bits();
+    animationStatus.cyclesAtLastTweak = getFloat();
+    animationStatus.lastTweakAt = get32Bits();
+    animationStatus.tweakValue = get8Bits();
+    animationStatus.parameterLength = get8Bits();
+    getBytes(animationStatus.parameters,animationStatus.parameterLength);
+    
+    info.printf("Got message at %d, program %d\n", messageReceiveTime, animationStatus.program);
     info.printf("local time %d, Global time %d\n",millis(), lastGlobalTime
                 );
+    controller->animationUpdate(animationStatus);
     prepareReportToCentral(info);
     comm_time_t sendResponseAt = messageReceiveTime + 20 + 10*info.wirePosition;
     info.printf("wirePosition %d, scheduling response for %d\n",info.wirePosition, sendResponseAt
                 );
-    prepareReportToCentral(info);
+    
     if (!scheduleSend(info, sendResponseAt, sendBufferPosition, sendBuffer))
         info.println("Unable to schedule send");
-    }
+}
 
 comm_time_t sentAtReported = 0;
 
@@ -191,6 +209,7 @@ void checkComm(RNInfo &info) {
     if (awaitingBody)
         if (checkCommBody(info)) {
             if (kind == 'p') {
+                
                 parseProgramMessage(info);
             }
         }

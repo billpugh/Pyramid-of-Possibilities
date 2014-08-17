@@ -16,6 +16,11 @@
 #include "Animations.h"
 #include "Accelerometer.h"
 
+#include "Arduino.h"
+#ifdef POP_SIMULATOR
+class PlatformController;
+#endif
+
 
 class RNController {
     
@@ -26,14 +31,19 @@ public:
     }
     
     void paint(RNLights & lights);
+    void animationUpdate(AnimationInfo broadcast);
 private:
     RNInfo & info;
     RNAnimation * currentAnimation = 0;
     unsigned long animationExpires = 0;
-    AnimationEnum currentAnimationEnum = e_AnimationCount;
     void nextAnimation();
     void switchToAnimation(AnimationEnum nextAnimation);
+    void switchToAnimation(RNAnimation * newAnimation);
 
+#ifdef POP_SIMULATOR
+    friend PlatformController;
+#endif
+    
 };
 
 

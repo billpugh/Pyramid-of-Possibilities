@@ -13,7 +13,7 @@
 class ActivityLevelAnimation : public RNAnimation {
 
 public:
-    ActivityLevelAnimation(RNInfo & info, unsigned long animationStartMillis);
+    ActivityLevelAnimation(RNInfo & info, AnimationInfo animationInfo);
     virtual void paint(RNLights & lights);
     virtual const char * name();
     uint16_t level;

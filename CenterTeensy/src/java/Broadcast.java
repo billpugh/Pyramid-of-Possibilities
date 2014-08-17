@@ -20,7 +20,7 @@ public class Broadcast {
         buf.put((byte)0);
         buf.put((byte)0);
         buf.put(status);
-        buf.putLong(BurnerTime.getGlobalTime());
+        buf.putInt(BurnerTime.getGlobalTime());
         buf.putFloat(medianActivityLevel);
        
         animation.write(buf);

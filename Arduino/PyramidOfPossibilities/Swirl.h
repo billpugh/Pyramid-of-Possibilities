@@ -19,8 +19,7 @@ struct SwirlParameters {
     
     float lengthFraction = 0.7;
     
-    uint16_t rpm = 30;
-    uint16_t gpm = 10;
+    float gradientRatio = 3;
     
     bool global = 0;
 };
@@ -28,8 +27,8 @@ struct SwirlParameters {
 
 class Swirl : public RNAnimation {
 public:
-    Swirl(RNInfo & info, unsigned long animationStartMillis)
-    : RNAnimation(info, animationStartMillis, sizeof(SwirlParameters), &parameters) {
+    Swirl(RNInfo & info, AnimationInfo animationInfo)
+    : RNAnimation(info, animationInfo, sizeof(SwirlParameters), &parameters) {
       
        };
     virtual void paint(RNLights & lights);

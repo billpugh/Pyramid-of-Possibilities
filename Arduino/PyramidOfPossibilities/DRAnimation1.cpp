@@ -20,7 +20,6 @@ RNBeam beams[numBeams] = {
 	RNBeam()
 };
 float widths[numBeams] = {100,100,100};
-static int once = 0;
 
 void initalizeBeams(RNInfo * info) {
     

@@ -30,6 +30,7 @@
 
  int random(int max);
 
+#define HEX 16
 
 class SerialClass {
 public:
@@ -40,9 +41,12 @@ public:
     void println(const char * s);
     void println(int);
     void print(int);
+    void print(int, int);
     unsigned int readBytes( char *buffer, unsigned int length);
     uint16_t available();
     uint8_t read();
+    void write( uint8_t *buffer, unsigned int size);
+    void write( const uint8_t *buffer, unsigned int size);
 };
 
 extern SerialClass Serial;
