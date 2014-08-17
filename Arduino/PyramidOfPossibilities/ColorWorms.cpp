@@ -1,6 +1,5 @@
 //
 //  ColorWorms.cpp
-//  PlatformData
 //
 //  Created by Bill on 7/18/14.
 //  Copyright (c) 2014 RN. All rights reserved.
@@ -18,7 +17,6 @@ uint8_t g,
 uint8_t b ) {
   int position = (int)((long)getAnimationMillis()/speed);
 
-    info.printf("%3d ", position);
   AHEasingFunction easingFunction = getEasingFunction(parameters.easingMode, parameters.curveType);
   for(int i = 0; i < length; i++) {
       float p = ((float) i)/length;
