@@ -96,9 +96,12 @@ void RNInfo::accelerometerCallback( float totalG,
 
 
 
-unsigned long RNInfo::getGlobalMillis() {
-    return millis();
+uint32_t RNInfo::getGlobalMillis() {
+    return (uint32_t) (offsetForGlobalTime + millis());
     
+}
+void RNInfo::setGlobalMillis(uint32_t globalMillis) {
+    offsetForGlobalTime = globalMillis - millis();
 }
 float RNInfo::getGlobalActivity() {
     return myTotalG;
