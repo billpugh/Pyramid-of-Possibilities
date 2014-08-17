@@ -10,13 +10,18 @@
 
 #define abs(x) ((x < 0) ? (x) : (-x))
 
+short edgePlatform1[3] = {0, 7919, 762};
+short edgePlatform2[3] = {-6858, -3959, 610};
+short edgePlatform3[3] = {6858, -3959, 686};
+short edgePlatform4[3] = {0, 0, 9144};
+
 MovingFaces::MovingFaces(RNInfo & info, AnimationInfo animationInfo)
 : RNAnimation(info, animationInfo, sizeof (MovingFacesParameters),
 &parameters), gradient3Colors(info.numLEDs) {
-    pointA = parameters.edgePlatform1;
-    pointB = parameters.edgePlatform2;
-    pointC = parameters.edgePlatform4; // Top platform
-    pointD = parameters.edgePlatform3;
+    pointA = edgePlatform1;
+    pointB = edgePlatform2;
+    pointC = edgePlatform4; // Top platform
+    pointD = edgePlatform3;
 
     if (parameters.summitColorMode) {
         for (int i = 0; i < info.numLEDs; i++) {
@@ -24,11 +29,11 @@ MovingFaces::MovingFaces(RNInfo & info, AnimationInfo animationInfo)
             float yLED = getLEDYPosition(i) + info.y;
             float zLED = info.z;
             float dist1 = distancePointFromPoint(xLED, yLED, zLED,
-                    parameters.edgePlatform1);
+                    edgePlatform1);
             float dist2 = distancePointFromPoint(xLED, yLED, zLED,
-                    parameters.edgePlatform2);
+                    edgePlatform2);
             float dist3 = distancePointFromPoint(xLED, yLED, zLED,
-                    parameters.edgePlatform3);
+                    edgePlatform3);
             float totalDist = dist1 + dist2 + dist3;
 
             float normD1 = dist1 / totalDist;

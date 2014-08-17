@@ -104,4 +104,9 @@ RNAnimation * getAnimation(RNInfo & info, AnimationInfo animationInfo ) {
 }
 
 
+RNAnimation * getAnimation(RNInfo & info, AnimationEnum e) {
+    AnimationInfo animationInfo(e, 0);
+    return getAnimation(info, animationInfo);
+}
+
 

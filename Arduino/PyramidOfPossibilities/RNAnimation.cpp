@@ -11,18 +11,14 @@
 #include "RNAnimation.h"
 #include "AnimationInfo.h"
 
-RNAnimation::RNAnimation(RNInfo & info, AnimationInfo broadcast) : info(info), animationStartMillis(broadcast.startTime), animationInfo(broadcast)  {
-    parametersPointer = 0;
-    parametersSize = 0;
+RNAnimation::RNAnimation(RNInfo & info, AnimationInfo broadcast) : info(info), animationStartMillis(broadcast.startTime), animationInfo(broadcast), parametersPointer(0), parametersSize(0)  {
 };
 
 RNAnimation::RNAnimation(RNInfo & info, AnimationInfo broadcast,  unsigned int parametersSize, void *parametersPointer) : info(info), animationStartMillis(broadcast.startTime), animationInfo(broadcast), parametersSize(parametersSize), parametersPointer(parametersPointer){
 };
 
 
-RNAnimation::RNAnimation(RNInfo & info, unsigned long animationStartMillis) : info(info), animationStartMillis(animationStartMillis), animationInfo((uint32_t)animationStartMillis)  {
-    parametersPointer = 0;
-    parametersSize = 0;
+RNAnimation::RNAnimation(RNInfo & info, unsigned long animationStartMillis) : info(info), animationStartMillis(animationStartMillis), animationInfo((uint32_t)animationStartMillis), parametersPointer(0),  parametersSize(0) {
 };
 
 RNAnimation::RNAnimation(RNInfo & info, unsigned long animationStartMillis,

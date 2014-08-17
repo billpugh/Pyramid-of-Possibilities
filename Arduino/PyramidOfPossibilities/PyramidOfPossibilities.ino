@@ -18,6 +18,7 @@
 #include "RNEEPROM.h"
 #include "PopMain.h"
 #include "TimerThree.h"
+#include "UploadParameters.h"
 #include <EEPROM.h>
 #include <malloc.h>
 
@@ -27,12 +28,12 @@
 DMAMEM uint8_t displayMemory[240*24];
 uint8_t drawingMemory[240*24];
 
- const int LAST_LED = constants.FIRST_LED+constants.LEDs-1;
-  const int ledsPerStrip = LAST_LED+1;
+const int LAST_LED = constants.FIRST_LED+constants.LEDs-1;
+const int ledsPerStrip = LAST_LED+1;
 
-  OctoWS2811 leds(ledsPerStrip, displayMemory, drawingMemory);
+OctoWS2811 leds(ledsPerStrip, displayMemory, drawingMemory);
 
-  RNLightsOctoWS2811 oLights(leds, drawingMemory, constants.FIRST_LED);
+RNLightsOctoWS2811 oLights(leds, drawingMemory, constants.FIRST_LED);
 
 RNLights *lights;
 
@@ -45,21 +46,42 @@ void initializeLEDs() {
   lights = & oLights;
 
 }
+enum Action {
+  runPlatform, uploadParameters, uploadConstants};
+
+Action action = uploadParameters;
 void setup() {
 
-  initializeConstantsFromEEPROM();
-  initializeLEDs();
+    Serial.begin(constants.usbSerialBaudRate);
 
-  Serial.begin(constants.usbSerialBaudRate);
+    pinMode(ONBOARD_LED_PIN, OUTPUT);
+    for(int i = 0; i < 10; i++) {
+      digitalWrite(ONBOARD_LED_PIN, HIGH);
+      delay(700);
+      digitalWrite(ONBOARD_LED_PIN, LOW);
+      delay(300);
+    }
 
-  pinMode(ONBOARD_LED_PIN, OUTPUT);
-  for(int i = 0; i < 10; i++) {
-    digitalWrite(ONBOARD_LED_PIN, HIGH);
-    delay(700);
-    digitalWrite(ONBOARD_LED_PIN, LOW);
-    delay(300);
+  switch(action) {
+  case runPlatform:
+    initializeConstantsFromEEPROM();
+    initializeLEDs();
+
+    setupMain();
+    break;
+  case uploadParameters:
+    setupUploadParameters();
+    break;
   }
 
-  setupMain();
+
+}
+
+void loop() {
+  switch(action) {
+  case runPlatform:
+    loopMain();
+    break;
+  }
 }
 

@@ -123,10 +123,7 @@ void capOverallBrightness(RNLights & lights) {
     //  else info.printf("Avg brightness is %d/%d\n", avgPixelBrightness, avgBrightness);
 }
 
-void loop() {
-//  int available = Serial2.available();
-//  if (available > 0)
-//  info->printf("Serial2.available = %d\n",available);
+void loopMain() {
     refreshWatchdog();
     unsigned long startMicros = micros();
 

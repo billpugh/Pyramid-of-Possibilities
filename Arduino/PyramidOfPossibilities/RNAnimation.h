@@ -61,10 +61,10 @@ public:
     virtual bool setParameters(int size, char * data);
     
     // set the address of the parameters struct (from your animation subclass)
-    void *parametersPointer;
+     void  * const parametersPointer;
     
     // set the size of the parameters struct (from your animation subclass)
-    unsigned int parametersSize;
+    const unsigned int parametersSize;
     
 private:
     AnimationInfo animationInfo;
@@ -80,5 +80,6 @@ private:
 
 
 RNAnimation * getAnimation(RNInfo & info, AnimationInfo animationInfo );
+RNAnimation * getAnimation(RNInfo & info, AnimationEnum e );
 
 #endif /* defined(__RNAnimation__) */

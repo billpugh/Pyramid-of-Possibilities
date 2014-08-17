@@ -15,6 +15,8 @@
 		161181251998D72A00136668 /* Qbert.h in Headers */ = {isa = PBXBuildFile; fileRef = 161181211998D72A00136668 /* Qbert.h */; };
 		163A0EE1199F86DA0097C712 /* LiftOff.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163A0EDF199F86DA0097C712 /* LiftOff.cpp */; };
 		163A0EE2199F86DA0097C712 /* LiftOff.h in Headers */ = {isa = PBXBuildFile; fileRef = 163A0EE0199F86DA0097C712 /* LiftOff.h */; };
+		163A0EEA19A023F00097C712 /* UploadParameters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163A0EE819A023F00097C712 /* UploadParameters.cpp */; };
+		163A0EEB19A023F00097C712 /* UploadParameters.h in Headers */ = {isa = PBXBuildFile; fileRef = 163A0EE919A023F00097C712 /* UploadParameters.h */; };
 		163D5077198D841400E882A1 /* RNEEPROM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 163D5075198D841400E882A1 /* RNEEPROM.cpp */; };
 		163D5078198D841400E882A1 /* RNEEPROM.h in Headers */ = {isa = PBXBuildFile; fileRef = 163D5076198D841400E882A1 /* RNEEPROM.h */; };
 		163D507B198E6D9600E882A1 /* Swirl.h in Headers */ = {isa = PBXBuildFile; fileRef = 163D5079198E6D9600E882A1 /* Swirl.h */; };
@@ -104,6 +106,8 @@
 		161181211998D72A00136668 /* Qbert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Qbert.h; path = ../Arduino/PyramidOfPossibilities/Qbert.h; sourceTree = "<group>"; };
 		163A0EDF199F86DA0097C712 /* LiftOff.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LiftOff.cpp; path = ../Arduino/PyramidOfPossibilities/LiftOff.cpp; sourceTree = "<group>"; };
 		163A0EE0199F86DA0097C712 /* LiftOff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LiftOff.h; path = ../Arduino/PyramidOfPossibilities/LiftOff.h; sourceTree = "<group>"; };
+		163A0EE819A023F00097C712 /* UploadParameters.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UploadParameters.cpp; path = ../Arduino/PyramidOfPossibilities/UploadParameters.cpp; sourceTree = "<group>"; };
+		163A0EE919A023F00097C712 /* UploadParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UploadParameters.h; path = ../Arduino/PyramidOfPossibilities/UploadParameters.h; sourceTree = "<group>"; };
 		163D5075198D841400E882A1 /* RNEEPROM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RNEEPROM.cpp; path = ../Arduino/PyramidOfPossibilities/RNEEPROM.cpp; sourceTree = "<group>"; };
 		163D5076198D841400E882A1 /* RNEEPROM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNEEPROM.h; path = ../Arduino/PyramidOfPossibilities/RNEEPROM.h; sourceTree = "<group>"; };
 		163D5079198E6D9600E882A1 /* Swirl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Swirl.h; path = ../Arduino/PyramidOfPossibilities/Swirl.h; sourceTree = "<group>"; };
@@ -214,6 +218,8 @@
 		1644A110198D34AF00FBFF63 = {
 			isa = PBXGroup;
 			children = (
+				163A0EE819A023F00097C712 /* UploadParameters.cpp */,
+				163A0EE919A023F00097C712 /* UploadParameters.h */,
 				160D4779199D304B00F59BAE /* Comm code */,
 				166A9D3C19991BA100C2E74C /* PopMain.cpp */,
 				166A9D3D19991BA100C2E74C /* PopMain.h */,
@@ -355,6 +361,7 @@
 				1644A152198D34D400FBFF63 /* SideEffects.h in Headers */,
 				16838ED719950C48008CD81E /* Flashes.h in Headers */,
 				16EDC08F199999A8002FA957 /* RNComm.h in Headers */,
+				163A0EEB19A023F00097C712 /* UploadParameters.h in Headers */,
 				1644A185198D354700FBFF63 /* hsv2rgb.h in Headers */,
 				166A9D3F19991BA100C2E74C /* PopMain.h in Headers */,
 				1644A14F198D34D400FBFF63 /* Snow.h in Headers */,
@@ -468,6 +475,7 @@
 				161181221998D72A00136668 /* FlashEcho.cpp in Sources */,
 				163A0EE1199F86DA0097C712 /* LiftOff.cpp in Sources */,
 				1644A173198D34D400FBFF63 /* Platform.cpp in Sources */,
+				163A0EEA19A023F00097C712 /* UploadParameters.cpp in Sources */,
 				1644A157198D34D400FBFF63 /* CircularGradient.cpp in Sources */,
 				1644A17A198D34FE00FBFF63 /* RNGradient.cpp in Sources */,
 				1644A165198D34D400FBFF63 /* GlowFade.cpp in Sources */,

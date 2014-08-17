@@ -21,12 +21,10 @@ void initalizeBeams(RNInfo * info);
 
 class DRAnimation1 : public RNAnimation {
 public:
-    DRAnimation1(RNInfo & info, AnimationInfo animationInfo) : RNAnimation(info, animationInfo) {
+    DRAnimation1(RNInfo & info, AnimationInfo animationInfo) : RNAnimation(info, animationInfo, sizeof(DRAnimation1Parameters), &parameters) {
 		min_g = .1;
 		max_g = .3;
         initalizeBeams(&info);
-        parametersSize = sizeof(DRAnimation1Parameters);
-        parametersPointer = &parameters;
         
         // initalize parameters to default values
         parameters.base_color = 0;

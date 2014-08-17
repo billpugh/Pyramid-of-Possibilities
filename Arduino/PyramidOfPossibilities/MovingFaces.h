@@ -15,10 +15,6 @@
 
 // Default
 //struct MovingFacesParameters {
-//    short edgePlatform1[3] = {0, 7919, 762};
-//    short edgePlatform2[3] = {-6858, -3959, 610};
-//    short edgePlatform3[3] = {6858, -3959, 686};
-//    short edgePlatform4[3] = {0, 0, 9144};
 //    RNGradient gradientInside = RNGradient(0, RNGradientCapped, 0x000000, 0x00ff00);
 //    RNGradient gradientOutside = RNGradient(0, RNGradientCapped, 0x000002, 0x000002);
 //    bool summitColorMode = true;
@@ -33,10 +29,7 @@
 
 // Bouncy
 struct MovingFacesParameters {
-    short edgePlatform1[3] = {0, 7919, 762};
-    short edgePlatform2[3] = {-6858, -3959, 610};
-    short edgePlatform3[3] = {6858, -3959, 686};
-    short edgePlatform4[3] = {0, 0, 9144};
+
     RNGradient gradientInside = RNGradient(0, RNGradientCapped, 0xffff00, 0xff0000);
     RNGradient gradientOutside = RNGradient(0, RNGradientCapped, 0x000033, 0x033033);
     bool summitColorMode = false;
