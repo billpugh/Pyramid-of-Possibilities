@@ -226,31 +226,16 @@
 		1644A110198D34AF00FBFF63 = {
 			isa = PBXGroup;
 			children = (
-				163A0EE819A023F00097C712 /* UploadParameters.cpp */,
-				163A0EE919A023F00097C712 /* UploadParameters.h */,
-				1682E08219A02D070036F40E /* UploadConstants.cpp */,
-				1682E08319A02D070036F40E /* UploadConstants.h */,
-				160D4779199D304B00F59BAE /* Comm code */,
 				166A9D3C19991BA100C2E74C /* PopMain.cpp */,
 				166A9D3D19991BA100C2E74C /* PopMain.h */,
 				30F8EB31198D5D92008DEAE9 /* PyramidOfPossibilities.ino */,
 				1644A188198D384500FBFF63 /* Animations */,
-				1644A123198D34D400FBFF63 /* Animations.cpp */,
-				1644A122198D34D400FBFF63 /* Animations.h */,
-				1644A142198D34D400FBFF63 /* RNAnimation.cpp */,
-				1644A141198D34D400FBFF63 /* RNAnimation.h */,
-				16E32C87199EF9850006E6B6 /* AnimationInfo.cpp */,
-				16E32C88199EF9850006E6B6 /* AnimationInfo.h */,
+				1682E08719A12DB20036F40E /* Animation Support */,
 				30F8EB2E198D5B6E008DEAE9 /* Constants.h */,
 				30F8EB2D198D5B6E008DEAE9 /* Constants.cpp */,
-				1644A132198D34D400FBFF63 /* Controller.cpp */,
-				1644A147198D34D400FBFF63 /* Controller.h */,
-				1644A190198D600200FBFF63 /* ledPositions.cpp */,
-				1644A191198D600200FBFF63 /* ledPositions.h */,
-				1644A148198D34D400FBFF63 /* Platform.cpp */,
-				1644A149198D34D400FBFF63 /* Platform.h */,
-				1644A12B198D34D400FBFF63 /* RNInfo.cpp */,
-				1644A12D198D34D400FBFF63 /* RNInfo.h */,
+				1682E08819A12DC50036F40E /* Platforms */,
+				1682E08619A12C880036F40E /* Upload */,
+				160D4779199D304B00F59BAE /* Comm code */,
 				1644A18B198D4BCA00FBFF63 /* Effects */,
 				1644A18A198D4BBC00FBFF63 /* RNLights */,
 				1644A189198D38DB00FBFF63 /* libraries */,
@@ -361,6 +346,45 @@
 				1644A17F198D351A00FBFF63 /* RNChaser.h */,
 			);
 			name = Effects;
+			sourceTree = "<group>";
+		};
+		1682E08619A12C880036F40E /* Upload */ = {
+			isa = PBXGroup;
+			children = (
+				163A0EE819A023F00097C712 /* UploadParameters.cpp */,
+				163A0EE919A023F00097C712 /* UploadParameters.h */,
+				1682E08219A02D070036F40E /* UploadConstants.cpp */,
+				1682E08319A02D070036F40E /* UploadConstants.h */,
+			);
+			name = Upload;
+			sourceTree = "<group>";
+		};
+		1682E08719A12DB20036F40E /* Animation Support */ = {
+			isa = PBXGroup;
+			children = (
+				1644A123198D34D400FBFF63 /* Animations.cpp */,
+				1644A122198D34D400FBFF63 /* Animations.h */,
+				1644A142198D34D400FBFF63 /* RNAnimation.cpp */,
+				1644A141198D34D400FBFF63 /* RNAnimation.h */,
+				16E32C87199EF9850006E6B6 /* AnimationInfo.cpp */,
+				16E32C88199EF9850006E6B6 /* AnimationInfo.h */,
+			);
+			name = "Animation Support";
+			sourceTree = "<group>";
+		};
+		1682E08819A12DC50036F40E /* Platforms */ = {
+			isa = PBXGroup;
+			children = (
+				1644A132198D34D400FBFF63 /* Controller.cpp */,
+				1644A147198D34D400FBFF63 /* Controller.h */,
+				1644A190198D600200FBFF63 /* ledPositions.cpp */,
+				1644A191198D600200FBFF63 /* ledPositions.h */,
+				1644A148198D34D400FBFF63 /* Platform.cpp */,
+				1644A149198D34D400FBFF63 /* Platform.h */,
+				1644A12B198D34D400FBFF63 /* RNInfo.cpp */,
+				1644A12D198D34D400FBFF63 /* RNInfo.h */,
+			);
+			name = Platforms;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
