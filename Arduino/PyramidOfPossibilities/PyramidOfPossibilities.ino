@@ -54,6 +54,8 @@ const Action action = runPlatform;
 void setup() {
 
     Serial.begin(constants.usbSerialBaudRate);
+    initializeConstantsFromEEPROM();
+    initializeLEDs();
 
     pinMode(ONBOARD_LED_PIN, OUTPUT);
     for(int i = 0; i < 10; i++) {
@@ -65,9 +67,6 @@ void setup() {
 
   switch(action) {
   case runPlatform:
-    initializeConstantsFromEEPROM();
-    initializeLEDs();
-
     setupMain();
     break;
   case uploadParameters:
