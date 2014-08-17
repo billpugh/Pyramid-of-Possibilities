@@ -10,7 +10,7 @@
 
 #define MIN_BRIGHTNESS 20
 #define MAX_BRIGHTNESS 250
-#define STEP_BRIGHTNESS 5
+#define STEP_BRIGHTNESS 1
 
 #define DEBUG true  // print msgs over serial
 
@@ -40,8 +40,8 @@ void MMAnimation1::paint(RNLights & lights)
     if(false)
 	{
 	  info.printf("[MM1]: numLEDs %i\n", info.numLEDs);
-	  info.printf("[MM1]: tier    %i\n", info.tier);
-	  info.printf("[MM1]: number  %i\n", info.number);
+	  // info.printf("[MM1]: tier    %i\n", info.tier);
+	  // info.printf("[MM1]: number  %i\n", info.number);
 	  info.printf("[MM1]: getTaps()           %u\n", info.getTaps());
 	  info.printf("[MM1]: timeSinceLastTap    %u\n", info.timeSinceLastTap());
 	  info.printf("[MM1]: getLocalActivity    %f\n", info.getLocalActivity());
