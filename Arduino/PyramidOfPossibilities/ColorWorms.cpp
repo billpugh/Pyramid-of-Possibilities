@@ -12,33 +12,44 @@ const char * ColorWorms:: name() {
   return "ColorWorms";
 }
 
-void ColorWorms::paint(RNLights & lights, int position, int length, 
+void ColorWorms::paint(RNLights & lights, int8_t speed, int length,
 uint8_t r, 
 uint8_t g, 
 uint8_t b ) {
+  int position = (int)((long)getAnimationMillis()/speed);
+
+    info.printf("%3d ", position);
+  AHEasingFunction easingFunction = getEasingFunction(parameters.easingMode, parameters.curveType);
   for(int i = 0; i < length; i++) {
-    int offset = i- length/2;
-    if (offset < 0)
-      offset = offset/2;
-    int factor = 255 - 2*offset * 255/length;
-    if (factor < 0)
-      factor = 0;
-    int j = lights.normalize(i+position);
-    lights.addPixelColor(j, r*factor/255, g*factor/255, b*factor/255);
+      float p = ((float) i)/length;
+      p = easingFunction(p);
+      int brightness =
+      p * parameters.brightness;
+      if (brightness < 0)
+          brightness = 0;
+      if (brightness > 255)
+          brightness = 255;
+
+
+      int j;
+      if (speed > 0)
+          j = lights.normalize(position+i);
+      else
+          j = lights.normalize(position-i);
+
+    lights.addPixelColor(j, r*brightness, g*brightness, b*brightness);
   }
 }
 
 void ColorWorms::paint(RNLights & lights) {
     
     int length = info.numLEDs * parameters.lengthFraction;
-    
-    int rPos = (int)(((long)getAnimationMillis())/parameters.redSpeed);
-    int gPos = (int)(((long)getAnimationMillis())/parameters.greenSpeed);
-    int bPos = (int)(((long)getAnimationMillis())/parameters.blueSpeed);
-    paint(lights, rPos, length, parameters.brightness, 0, 0);
-    paint(lights, gPos, length, 0, parameters.brightness, 0);
-    paint(lights, bPos, length, 0, 0, parameters.brightness);
+
+    paint(lights, parameters.redSpeed, length, 1, 0, 0);
+    paint(lights, parameters.greenSpeed, length, 0, 1, 0);
+    paint(lights, parameters.blueSpeed, length, 0, 0, 1);
     info.showActivityWithBrightness( lights, getUnsignedTweakValue());
+    info.println();
     
 }
 

@@ -10,6 +10,7 @@
 #define __ColorWorms__
 
 #include "RNAnimation.h"
+#include "easingSelect.h"
 
 
 struct ColorWormsParameters {
@@ -23,6 +24,9 @@ struct ColorWormsParameters {
      uint8_t brightnessWithoutActivity = 32;
     
     float lengthFraction = 1/3.0;
+    EasingMode easingMode = EaseOut;
+    CurveType curveType = CurveTypeQuadratic;
+
     
     
 };
@@ -34,7 +38,7 @@ public:
     : RNAnimation(info, animationInfo, sizeof(ColorWormsParameters), &parameters) {};
     virtual void paint(RNLights & lights);
 
-    void paint(RNLights & lights, int position, int length, 
+    void paint(RNLights & lights, int8_t speed, int length, 
 	uint8_t r, 
 	uint8_t g, 
 	uint8_t b );
