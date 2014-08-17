@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <stdarg.h>
 #include <math.h>
+#include <stdio.h>
 
 RNInfo::RNInfo(
                uint8_t numLEDs,
