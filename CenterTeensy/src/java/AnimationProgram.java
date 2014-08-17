@@ -1,12 +1,16 @@
 
+
+
+
+
 public enum AnimationProgram {
 
-    e_Mute,
+    e_Mute(Animation.TweakKind.UNSIGNED),
 
     // Animations defined by Bill Pugh (WWP)
     e_ChangingColor,
     e_CircularGradient,
-    e_ColorWorms,
+    e_ColorWorms(Animation.TweakKind.UNSIGNED),
     e_Chasers,
     e_FlashAttack,
     e_Snow,
@@ -16,7 +20,7 @@ public enum AnimationProgram {
     e_Beacon,
     e_WWPAnimationTest,
     e_ActivityLevelAnimation,
-    e_SideEffects,
+    e_SideEffects (Animation.TweakKind.CYCLIC),
 
     // Danny's animations.
     e_Qbert,   // RGB simple

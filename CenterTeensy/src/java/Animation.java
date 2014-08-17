@@ -25,40 +25,41 @@ public class Animation {
      }
     };
 
-	  class CycleStatus {
-		    final byte cpm;
+	  class TweakStatus {
+		    final byte tweakValue;
 	    	final  double cycles;
-	    	 final  int computedAt;
-	    	 public CycleStatus() {
+	    	// Relative to animationStartTime
+	    	 final  int lastTweakAt;
+	    	 public TweakStatus() {
 	    		 this((byte)30, 0, 0);
 	    	 }
-			private CycleStatus(byte cpm, double cycles, int computedAt) {
-				this.cpm = cpm;
+			private TweakStatus(byte cpm, double cycles, int computedAt) {
+				this.tweakValue = cpm;
 				this.cycles = cycles;
-				this.computedAt = computedAt;
+				this.lastTweakAt = computedAt;
 			}
 			
-			CycleStatus tweakUp() {
+			TweakStatus tweakUp() {
 				int at = getAnimationMillis();
-				if (at < computedAt) throw new IllegalArgumentException();
-				double newCycleCount = cycles + cpm * (at-computedAt)/60000.0;
+				if (at < lastTweakAt) throw new IllegalArgumentException();
+				double newCycleCount = cycles + tweakValue * (at-lastTweakAt)/60000.0;
 				int increment = 1;
-				if (computedAt + 500 > at)
+				if (lastTweakAt + 500 > at)
 				    increment = 4;
 
-				return new CycleStatus(program.tweakKind.add(cpm, increment), newCycleCount, at);
+				return new TweakStatus(program.tweakKind.add(tweakValue, increment), newCycleCount, at);
 			}
-			CycleStatus tweakDown() {
+			TweakStatus tweakDown() {
 				int at =  getAnimationMillis();
-				if (at < computedAt) throw new IllegalArgumentException();
-				double newCycleCount = cycles + cpm * (at-computedAt)/60000.0;
+				if (at < lastTweakAt) throw new IllegalArgumentException();
+				double newCycleCount = cycles + tweakValue * (at-lastTweakAt)/60000.0;
 				int decrement = -1;
-                if (computedAt + 500 > at)
+                if (lastTweakAt + 500 > at)
                     decrement = -4;
 
-				int newValue = cpm;
+				int newValue = tweakValue;
 				
-			    return new CycleStatus(program.tweakKind.add(cpm, decrement), newCycleCount, at);
+			    return new TweakStatus(program.tweakKind.add(tweakValue, decrement), newCycleCount, at);
 	            
 			}
 			
@@ -68,7 +69,7 @@ public class Animation {
     final byte sequenceId;
    
     final int startTime = BurnerTime.getGlobalTime();
-    volatile CycleStatus cycleStatus = new CycleStatus();
+    volatile TweakStatus cycleStatus = new TweakStatus();
     byte [] parameters;
     
     
@@ -76,10 +77,10 @@ public class Animation {
         buf.put((byte)program.ordinal());
         buf.put(sequenceId);
         buf.putInt(startTime);
-        CycleStatus cycles = getCycles();
+        TweakStatus cycles = getCycles();
         buf.putFloat((float)cycles.cycles);
-        buf.putInt(cycles.computedAt);
-        buf.put(cycles.cpm);
+        buf.putInt(cycles.lastTweakAt);
+        buf.put(cycles.tweakValue);
         buf.putShort(byteLength());
         if (parameters.length > 0)
             buf.put(parameters);
@@ -109,7 +110,7 @@ public class Animation {
        this(program, new byte[0]);
     }
 
-    public  CycleStatus getCycles() {
+    public  TweakStatus getCycles() {
     	return cycleStatus;
     }
 
