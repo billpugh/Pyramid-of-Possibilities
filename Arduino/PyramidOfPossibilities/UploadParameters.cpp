@@ -16,7 +16,8 @@
 void printParameters(RNInfo &info,  AnimationEnum a) {
     RNAnimation * animation = getAnimation(info, a);
     int size = animation->parametersSize;
-
+    info.println("OK");
+    info.printf("%d\n", a);
     info.println(animation->name());
     info.printf("%d\n", size);
     uint8_t * p = (uint8_t *)animation->parametersPointer;
@@ -38,7 +39,7 @@ void setupUploadParameters() {
 
         return;
     }
-    info.println("OK");
+
     for(int i = 0; i < e_AnimationCount; i++) {
         printParameters(info, (AnimationEnum) i);
     }
