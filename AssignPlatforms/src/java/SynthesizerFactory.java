@@ -20,6 +20,7 @@ public class SynthesizerFactory {
                 null, // running
                 null); // voice
         Synthesizer synthesizer = Central.createSynthesizer(desc);
+        if (synthesizer == null) return null;
         synthesizer.allocate();
         synthesizer.resume();
         desc = (SynthesizerModeDesc) synthesizer.getEngineModeDesc();
