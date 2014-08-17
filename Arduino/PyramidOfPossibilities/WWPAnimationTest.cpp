@@ -15,8 +15,6 @@ void WWPAnimationTest::paint(RNLights & lights) {
     int shouldUpdate = now * myLights.getNumPixels() * parameters.updateFraction / 1000;
 
     int num = shouldUpdate  - updated;
-    info.printf("Update %5d - %5d = %3d\n",
-                shouldUpdate, updated, num);
     updated = shouldUpdate;
 
     if (info.getTaps())
