@@ -50,7 +50,7 @@ void initializeLEDs() {
 enum Action {
   runPlatform, uploadParameters, uploadConstants};
 
-Action action = uploadParameters;
+const Action action = runPlatform;
 void setup() {
 
     Serial.begin(constants.usbSerialBaudRate);
