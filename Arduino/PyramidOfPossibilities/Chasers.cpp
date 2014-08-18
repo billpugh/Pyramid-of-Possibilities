@@ -21,9 +21,9 @@ RNAnimation(info, animationInfo), lights(info.numLEDs), dots(info.numLEDs) {
     chaser[i].active = false;
   }
 
-  lastUpdate = animationInfo.startTime;
-  lights.setFade(animationInfo.startTime, 500);
-  dots.setFade(animationInfo.startTime, 750);
+  lastUpdate = 0;
+  lights.setFade(0, 500);
+  dots.setFade(0, 750);
 };
 
 const char * Chasers:: name() {
@@ -123,7 +123,7 @@ void Chasers::tap(float v) {
 
 
 void Chasers::paint(RNLights & paintMe) {
-  unsigned long ms = getAnimationMillis();
+  uint32_t ms = getAnimationMillis();
   float totalG = info.getLocalActivity();
   if (lastUpdate > ms-20)
     lastUpdate = ms-20;

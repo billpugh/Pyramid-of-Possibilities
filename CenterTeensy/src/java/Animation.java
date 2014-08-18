@@ -37,6 +37,11 @@ public class Animation {
 	    		 this((byte)30, 0, 0, 0);
 	    	 }
 	    	 
+	    	 public int getIntValue() {
+	    		 if (program.tweakKind == TweakKind.SIGNED)
+	    			 return tweakValue;
+	    		 return 0xff & tweakValue;
+	    	 }
 
 			private TweakStatus(byte cpm, double cycles, double tweakCount, int computedAt) {
 				this.tweakValue = cpm;
@@ -51,6 +56,8 @@ public class Animation {
 				double newTweakCount = tweakCount+ 1 - (at-lastTweakAt)/500.0;
 				if (newTweakCount < 0)
 					newTweakCount = 0;
+				else if (newTweakCount > 8)
+					newTweakCount = 8;
 				double newCycleCount = cycles + tweakValue * (at-lastTweakAt)/120000.0;
 				int increment = 1;
 				if (newTweakCount > 5)
@@ -64,6 +71,8 @@ public class Animation {
 				double newTweakCount = tweakCount+ 1 - (at-lastTweakAt)/500.0;
 				if (newTweakCount < 0)
 					newTweakCount = 0;
+				else if (newTweakCount > 8)
+					newTweakCount = 8;
 				double newCycleCount = cycles + tweakValue * (at-lastTweakAt)/120000.0;
 				int decrement = -1;
                 if (newTweakCount > 5)

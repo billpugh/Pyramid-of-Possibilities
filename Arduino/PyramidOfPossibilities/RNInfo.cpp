@@ -98,11 +98,16 @@ void RNInfo::accelerometerCallback( float totalG,
 
 uint32_t RNInfo::getGlobalMillis() {
     return (uint32_t) (offsetForGlobalTime + millis());
-    
 }
-void RNInfo::setGlobalMillis(uint32_t globalMillis) {
-    offsetForGlobalTime = globalMillis - millis();
+
+int32_t RNInfo::toLocalTime(uint32_t globalTime) {
+    return (int32_t)(globalTime - offsetForGlobalTime);
 }
+void RNInfo::setGlobalMillisOffset(uint32_t localTime, uint32_t globalTime) {
+    printf("Local time %6d, global time %6d\n", localTime, globalTime);
+    offsetForGlobalTime = globalTime - localTime;
+}
+
 float RNInfo::getGlobalActivity() {
     return myTotalG;
 }

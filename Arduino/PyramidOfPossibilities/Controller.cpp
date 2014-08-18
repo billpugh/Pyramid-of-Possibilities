@@ -101,9 +101,24 @@ void RNController::animationUpdate(AnimationInfo broadcast) {
         && currentAnimation->animationInfo.seqId == broadcast.seqId) {
          info.printf("tweaking existing animation\n", broadcast.program, broadcast.tweakValue);
         // tweak of existing animation
+        info.printf("was %11f %5d %5d %5d\n",  currentAnimation->animationInfo.cyclesAtLastTweak,
+                    currentAnimation->animationInfo.tweakValue,
+                    currentAnimation->animationInfo.lastTweakAt, currentAnimation->timeSinceTweak());
+        
+        float oldCycleValue = currentAnimation->getAnimationCycles();
+        
         currentAnimation->animationInfo.lastTweakAt = broadcast.lastTweakAt;
-         currentAnimation->animationInfo.cyclesAtLastTweak = broadcast.cyclesAtLastTweak;
+        currentAnimation->animationInfo.cyclesAtLastTweak = broadcast.cyclesAtLastTweak;
         currentAnimation->animationInfo.tweakValue = broadcast.tweakValue;
+        
+        info.printf("now %11f %5d %5d %5d\n",  currentAnimation->animationInfo.cyclesAtLastTweak,
+                    currentAnimation->animationInfo.tweakValue,
+                    currentAnimation->animationInfo.lastTweakAt, currentAnimation->timeSinceTweak());
+        
+        
+        float newCycleValue = currentAnimation->getAnimationCycles();
+       
+        info.printf("Cycle %11f -> %11f\n", oldCycleValue, newCycleValue);
     } else {
             RNAnimation * newAnimation = getAnimation(info, broadcast);
         info.printf("switching to %s\n", newAnimation->name());

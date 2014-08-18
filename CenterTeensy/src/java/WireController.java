@@ -54,7 +54,7 @@ public class WireController {
                 int now = a.getAnimationMillis();
                 Broadcast broadcast = new Broadcast(a);
                 ByteBuffer buf = broadcast.getBytes();
-                if (DEBUG) {
+                if (false) {
                     System.out.printf("writing to %s bytes %d %d\n", portName, buf.position(),
                             buf.limit());
                     for (int i = buf.position(); i < buf.limit(); i++)
@@ -87,9 +87,7 @@ public class WireController {
                     if (b != 't') System.out.println("Rejecting byte");
                     else {
                         long delay = System.nanoTime() - lastSendNanos;
-                        if (DEBUG)
-                            System.out.printf("Delay from transmit to receive is %,d us%n", delay/1000);
-                        
+                       
                         // have a teensy report
                         int l = inputStream.read();
                         int crc = inputStream.read();
@@ -100,11 +98,11 @@ public class WireController {
                         buf.flip();
 
                         PlatformReport report = new PlatformReport(buf);
-                        System.out
-                        .println("Got platform report for platform "
-                                + report.identifier);
-                        if (DEBUG) {
-                           
+                         if (DEBUG) {
+                        	 System.out
+                             .printf("Got platform report for platform %3d with delay %,d us\n",
+                                     report.identifier , delay/1000);
+                            
                             System.out.println(report);
                             System.out.println();
                         }

@@ -19,11 +19,7 @@ public:
     // Constructor
     RNAnimation(RNInfo & info, AnimationInfo animationInfo);
     RNAnimation(RNInfo & info, AnimationInfo animationInfo,  unsigned int parametersSize, void *parametersPointer);
-    RNAnimation(RNInfo & info, unsigned long animationStartMillis);
-    // Constructor
-    RNAnimation(RNInfo & info, unsigned long animationStartMillis,
-                unsigned int parametersSize, void *parametersPointer
-                );
+
     
     
     virtual ~RNAnimation() {};
@@ -70,10 +66,10 @@ public:
 private:
     AnimationInfo animationInfo;
     
-
-    // Start time of the animation in local time
-    const unsigned long animationStartMillis;
-    unsigned long tweakLastChecked = animationStartMillis;
+    // Start time of the animation in LOCAL time
+    const int32_t animationStartMillis;
+    
+    uint32_t tweakLastChecked = 0;
     
 
     friend class RNController;

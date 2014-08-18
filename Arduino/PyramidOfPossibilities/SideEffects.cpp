@@ -21,7 +21,7 @@ static uint8_t getCorner(uint8_t led) {
 } 
 
 void SideEffects::paint(RNLights & lights) {
-  unsigned long ms = getAnimationMillis();
+  uint32_t ms = getAnimationMillis();
   if (info.getTaps() || lastPhaseChange + parameters.switchTime < ms) {
     phase = (phase+1)%6;
     lastPhaseChange = ms;

@@ -31,6 +31,10 @@ public:
     // Get the global clock value (synchronized across all platforms)
     uint32_t getGlobalMillis();
     
+    int32_t toLocalTime(uint32_t globalTime);
+    
+    void setGlobalMillisOffset(uint32_t localTime, uint32_t globalTime);
+    
     uint16_t getRandomPixel();
     int getRandom(int max);
     
