@@ -41,10 +41,10 @@ extern RNLights *lights;
 void debugTriadPositions();
 
 void setupMain() {
-    Serial.println("PoP board starting 8/14 10:19pm");
+    Serial.println("PoP board starting");
     print_mac();
 
-    bool success = readFromEEPROM(sizeof(Platform), (char*) &platform);
+    bool success = readPlatformFromEEPROM(&platform);
     if (success) {
         Serial.print("Read from EEPROM ");
         Serial.print(platform.identifier);
@@ -60,7 +60,7 @@ void setupMain() {
     if (bytesRead == platformSerialLength) {
         bool success = platform.initialize(platformData, platformSerialLength);
         if (success) {
-            writeToEEPROM(sizeof(Platform), (char*) &platform);
+            writePlatformToEEPROM(&platform);
             Serial.println("success, wrote to EEPROM");
         }
         else
