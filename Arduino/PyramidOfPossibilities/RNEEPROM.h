@@ -8,10 +8,13 @@
 
 #ifndef __RNEEPROM__
 #define __RNEEPROM__
+#include "Platform.h"
 
 
+bool readPlatformFromEEPROM(Platform * platform);
+bool readConstantsFromEEPROM();
+void writePlatformToEEPROM(Platform * platform);
+void writeConstantsToEEPROM();
 
-bool readFromEEPROM( short sz, char *p);
-void writeToEEPROM( short sz, char *p);
 
 #endif /* defined(__RNEEPROM__) */
