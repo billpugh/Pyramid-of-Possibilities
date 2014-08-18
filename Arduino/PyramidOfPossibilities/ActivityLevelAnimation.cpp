@@ -19,6 +19,8 @@ RNAnimation(info, animationInfo), level(0){
 
 void ActivityLevelAnimation::paint(RNLights & lights) {
   float activity = info.getLocalActivity()/3;
+  if (hasBeenTweaked())
+        activity += 0.05;
   if (activity >= 0.15)
     activity = 0.15;
   uint16_t num = info.numLEDs *activity+1;
@@ -28,7 +30,7 @@ void ActivityLevelAnimation::paint(RNLights & lights) {
     level = (15*level + num)/16;
 
 
-  int hue = (int)(info.timeSinceLastTap()/8);
+  int hue = (int)(min(info.timeSinceLastTap(), timeSinceTweak())/8);
   if (hue > 180) hue = 180;
 
   int16_t position =  0; // getAnimationMillis() * info.numLEDs/10000;

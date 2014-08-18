@@ -25,6 +25,7 @@ struct MMAnimation1Parameters {
     CurveType curveType = CurveTypeLinear;
     bool activityChangesGradientPosition = true;
     uint8_t minimumBrightness = 2;
+    uint8_t chunkSize = 1;
     uint16_t maxBrightness = 256;
 
 

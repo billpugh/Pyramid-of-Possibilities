@@ -27,7 +27,7 @@ void SideEffects::paint(RNLights & lights) {
     lastPhaseChange = ms;
   }
   for(int i = 0; i < lights.getNumPixels(); i++) {
-    int c = (getCorner(i)+ phase) % 6;
+    int c = (getCorner(i)+ phase + getUnsignedTweakValue()) % 6;
     lights.setPixelColor(i, parameters.colors[c]);
   }
   lights.setBrightness(64);

@@ -4,7 +4,7 @@ import java.nio.ByteOrder;
 
 public class Animation {
     
-    enum TweakKind { SIGNED, UNSIGNED, CYCLIC;
+    enum TweakKind { SIGNED, UNSIGNED, CYCLIC, CYCLIC_UNARY;
      byte add(int currentValue, int offset) {
          switch (this) {
          case SIGNED:
@@ -21,6 +21,7 @@ public class Animation {
                  return (byte)255;
              return (byte) currentValue;
          case CYCLIC:
+         case CYCLIC_UNARY:
         	 return (byte)(currentValue + offset);
          }
          return (byte)(currentValue + offset);
@@ -60,7 +61,7 @@ public class Animation {
 					newTweakCount = 8;
 				double newCycleCount = cycles + tweakValue * (at-lastTweakAt)/120000.0;
 				int increment = 1;
-				if (newTweakCount > 5)
+				if (program.tweakKind !=TweakKind.CYCLIC_UNARY && newTweakCount > 5)
 				    increment = 4;
 
 				return new TweakStatus(program.tweakKind.add(tweakValue, increment), newCycleCount, newTweakCount, at);
@@ -75,10 +76,8 @@ public class Animation {
 					newTweakCount = 8;
 				double newCycleCount = cycles + tweakValue * (at-lastTweakAt)/120000.0;
 				int decrement = -1;
-                if (newTweakCount > 5)
+                if (program.tweakKind !=TweakKind.CYCLIC_UNARY && newTweakCount > 5)
                     decrement = -4;
-
-				int newValue = tweakValue;
 				
 			    return new TweakStatus(program.tweakKind.add(tweakValue, decrement), newCycleCount, newTweakCount, at);
 	            

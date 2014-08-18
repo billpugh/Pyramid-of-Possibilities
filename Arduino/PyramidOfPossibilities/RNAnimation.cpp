@@ -79,8 +79,9 @@ uint8_t RNAnimation::getUnsignedTweakValue() {
 
 bool RNAnimation::hasBeenTweaked() {
     uint32_t now = getAnimationMillis();
-    bool result = animationInfo.lastTweakAt > tweakLastChecked;
-    tweakLastChecked = now;
+    bool result = animationInfo.lastTweakAt > haveTweaksAsOf;
+    if (result)
+        haveTweaksAsOf = now;
     return result;
 }
 

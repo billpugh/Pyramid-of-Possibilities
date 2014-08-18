@@ -69,7 +69,7 @@ private:
     // Start time of the animation in LOCAL time
     const int32_t animationStartMillis;
     
-    uint32_t tweakLastChecked = 0;
+    uint32_t haveTweaksAsOf = 0;
     
 
     friend class RNController;
