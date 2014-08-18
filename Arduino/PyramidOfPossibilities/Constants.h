@@ -15,9 +15,9 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 
 #define DEBUG 1
-#define FULL_STRIP
+//#define FULL_STRIP
 
-// #define RN_REALLY_LONG_ANIMATIONS
+#define RN_REALLY_LONG_ANIMATIONS
 
 // #define RN_PRINT_HEAP_SIZE
 // #define RN_PRINT_BRIGHTNESS_ADJUSTMENTS

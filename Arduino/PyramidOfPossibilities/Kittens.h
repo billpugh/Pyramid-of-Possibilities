@@ -31,7 +31,7 @@ class Kittens : public RNAnimation {
 public:
     Kittens(RNInfo & info, AnimationInfo animationInfo)
     : RNAnimation(info, animationInfo, sizeof(KittenParameters), &parameters), myLights(info.numLEDs) {
-        myLights.setFade(animationInfo.startTime, parameters.fade);
+        myLights.setFade(0, parameters.fade);
         for(int i = 0; i < NUM_KITTENS; i++) {
             kittens[i].position = info.getRandomPixel();
             kittens[i].goal = info.getRandomPixel();

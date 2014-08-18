@@ -12,7 +12,7 @@ public enum AnimationProgram {
     e_CircularGradient,
     e_ColorWorms(Animation.TweakKind.UNSIGNED),
     e_Chasers,
-    e_FlashAttack,
+    e_FlashAttack(Animation.TweakKind.CYCLIC),
     e_Snow,
     e_Swirl,
     e_GlowFade,
@@ -20,7 +20,7 @@ public enum AnimationProgram {
     e_Beacon,
     e_WWPAnimationTest,
     e_ActivityLevelAnimation,
-    e_SideEffects (Animation.TweakKind.CYCLIC),
+    e_SideEffects (Animation.TweakKind.CYCLIC_UNARY),
 
     // Danny's animations.
     e_Qbert,   // RGB simple
@@ -30,7 +30,6 @@ public enum AnimationProgram {
 
     // Antoine's animations
     e_Flashes,
-    e_AVEAnimation1,
     e_MovingFaces,
     e_Explosion,
 

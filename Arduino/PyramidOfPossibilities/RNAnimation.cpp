@@ -12,21 +12,13 @@
 #include "AnimationInfo.h"
 #include <math.h>
 
-RNAnimation::RNAnimation(RNInfo & info, AnimationInfo broadcast) : info(info), animationStartMillis(broadcast.startTime), animationInfo(broadcast), parametersPointer(0), parametersSize(0)  {
+RNAnimation::RNAnimation(RNInfo & info, AnimationInfo broadcast) : info(info), animationStartMillis(info.toLocalTime(broadcast.globalStartTime)), animationInfo(broadcast), parametersPointer(0), parametersSize(0)  {
 };
 
-RNAnimation::RNAnimation(RNInfo & info, AnimationInfo broadcast,  unsigned int parametersSize, void *parametersPointer) : info(info), animationStartMillis(broadcast.startTime), animationInfo(broadcast), parametersSize(parametersSize), parametersPointer(parametersPointer){
+RNAnimation::RNAnimation(RNInfo & info, AnimationInfo broadcast,  unsigned int parametersSize, void *parametersPointer) : info(info), animationStartMillis(info.toLocalTime(broadcast.globalStartTime)), animationInfo(broadcast), parametersSize(parametersSize), parametersPointer(parametersPointer){
 };
 
 
-RNAnimation::RNAnimation(RNInfo & info, unsigned long animationStartMillis) : info(info), animationStartMillis(animationStartMillis), animationInfo((uint32_t)animationStartMillis), parametersPointer(0),  parametersSize(0) {
-};
-
-RNAnimation::RNAnimation(RNInfo & info, unsigned long animationStartMillis,
-            unsigned int parametersSize, void *parametersPointer
-            )  : info(info), animationStartMillis(animationStartMillis), animationInfo((uint32_t)animationStartMillis), parametersSize(parametersSize), parametersPointer(parametersPointer) {
-    
-}
 
 
 // Gives the time in milliseconds since this animation starter
@@ -67,7 +59,8 @@ void RNAnimation::paint(RNLights &lights) {}
 
 // Gives the cycles since this animation started.
 float RNAnimation::getAnimationCycles() {
-    return animationInfo.cyclesAtLastTweak + animationInfo.tweakValue * (millis() - animationInfo.lastTweakAt) / 60000.0f;
+    float f = animationInfo.tweakValue;
+    return animationInfo.cyclesAtLastTweak + f * (timeSinceTweak() / 120000.0f);
 }
 
 float RNAnimation::getAnimationCyclesFraction() {
@@ -85,14 +78,15 @@ uint8_t RNAnimation::getUnsignedTweakValue() {
 
 
 bool RNAnimation::hasBeenTweaked() {
-    unsigned long now = getAnimationMillis();
-    bool result = animationInfo.lastTweakAt > tweakLastChecked;
-    tweakLastChecked = now;
+    uint32_t now = getAnimationMillis();
+    bool result = animationInfo.lastTweakAt > haveTweaksAsOf;
+    if (result)
+        haveTweaksAsOf = now;
     return result;
 }
 
 uint32_t RNAnimation::timeSinceTweak() {
-    unsigned long now = getAnimationMillis();
+    uint32_t now = getAnimationMillis();
     int32_t result = (uint32_t)(now - animationInfo.lastTweakAt);
     if (result < 0) return 0;
     return result;

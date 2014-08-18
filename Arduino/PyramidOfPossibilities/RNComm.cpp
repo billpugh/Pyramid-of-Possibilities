@@ -136,9 +136,8 @@ void putFloat(float value) {
 
 uint8_t status;
 uint32_t lastGlobalTime;
-int32_t adjustmentToMillisToGetGlobal;
 float medianActivityLevel;
-AnimationInfo animationStatus(0);
+
 
 
 void initializeComm(RNInfo &info) {
@@ -171,12 +170,13 @@ void prepareReportToCentral(RNInfo &info) {
 void parseProgramMessage(RNInfo & info) {
     status = get8Bits();
     lastGlobalTime = get32Bits();
-    adjustmentToMillisToGetGlobal = lastGlobalTime - messageReceiveTime;
+    info.setGlobalMillisOffset(messageReceiveTime, lastGlobalTime);
+
     medianActivityLevel = getFloat();
-    
-    animationStatus.program = (AnimationEnum) get8Bits();
-    animationStatus.seqId = get8Bits();
-    animationStatus.startTime = get32Bits();
+
+    AnimationInfo animationStatus = AnimationInfo((AnimationEnum) get8Bits(),
+                                                  get8Bits(),
+                                                  get32Bits());
     animationStatus.cyclesAtLastTweak = getFloat();
     animationStatus.lastTweakAt = get32Bits();
     animationStatus.tweakValue = get8Bits();

@@ -21,13 +21,13 @@ static uint8_t getCorner(uint8_t led) {
 } 
 
 void SideEffects::paint(RNLights & lights) {
-  unsigned long ms = getAnimationMillis();
+  uint32_t ms = getAnimationMillis();
   if (info.getTaps() || lastPhaseChange + parameters.switchTime < ms) {
     phase = (phase+1)%6;
     lastPhaseChange = ms;
   }
   for(int i = 0; i < lights.getNumPixels(); i++) {
-    int c = (getCorner(i)+ phase) % 6;
+    int c = (getCorner(i)+ phase + getUnsignedTweakValue()) % 6;
     lights.setPixelColor(i, parameters.colors[c]);
   }
   lights.setBrightness(64);

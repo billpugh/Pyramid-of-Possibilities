@@ -22,8 +22,7 @@ class SideEffects : public RNAnimation {
 public:
     SideEffects(RNInfo & info, AnimationInfo animationInfo)
     : RNAnimation(info, animationInfo,
-                  sizeof(SideEffectsParameters), &parameters),
-    lastPhaseChange(animationInfo.startTime) {};
+                  sizeof(SideEffectsParameters), &parameters) {};
     
     virtual void paint(RNLights & lights);
     
@@ -31,7 +30,7 @@ public:
     
    
     SideEffectsParameters parameters;
-    unsigned long lastPhaseChange;
+    uint32_t lastPhaseChange = 0;
     uint8_t phase = 0;
     
 

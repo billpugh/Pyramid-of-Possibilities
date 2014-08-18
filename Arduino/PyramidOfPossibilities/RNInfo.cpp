@@ -12,19 +12,23 @@
 #include "ledPositions.h"
 #include "RNComm.h"
 #include <stdlib.h>
-#include <stdio.h>
 #include <stdarg.h>
 #include <math.h>
+#include <stdio.h>
 
 RNInfo::RNInfo(
                uint8_t numLEDs,
                uint8_t identifier,
                int16_t x,
                int16_t y,
-               int16_t z) : Platform( identifier, x, y, z, 1, 1),
-numLEDs(numLEDs), sparkles(numLEDs) {
+               int16_t z) : Platform( identifier, x, y, z, 1, 1), numLEDs(numLEDs), sparkles(numLEDs) {
     initialize();
-   };
+};
+
+RNInfo::RNInfo(uint8_t numLEDs, Platform & p) : Platform(p), numLEDs(numLEDs), sparkles(numLEDs)  {
+    initialize();
+};
+
 
 void RNInfo::initialize() {
     float radiansInCircle = 2 * 3.1415926;
@@ -71,12 +75,6 @@ bool RNInfo::isExteriorLED(uint8_t led) {
     return x*xLED + y*yLED >= 0;
 }
 
-RNInfo::RNInfo(uint8_t numLEDs, Platform & p)
-
-                : Platform(p),
-numLEDs(numLEDs), sparkles(numLEDs)  {
-    initialize();
-};
 
 
 void RNInfo::accelerometerCallback( float totalG,
@@ -98,10 +96,18 @@ void RNInfo::accelerometerCallback( float totalG,
 
 
 
-unsigned long RNInfo::getGlobalMillis() {
-    return millis();
-    
+uint32_t RNInfo::getGlobalMillis() {
+    return (uint32_t) (offsetForGlobalTime + millis());
 }
+
+int32_t RNInfo::toLocalTime(uint32_t globalTime) {
+    return (int32_t)(globalTime - offsetForGlobalTime);
+}
+void RNInfo::setGlobalMillisOffset(uint32_t localTime, uint32_t globalTime) {
+    printf("Local time %6d, global time %6d\n", localTime, globalTime);
+    offsetForGlobalTime = globalTime - localTime;
+}
+
 float RNInfo::getGlobalActivity() {
     return myTotalG;
 }

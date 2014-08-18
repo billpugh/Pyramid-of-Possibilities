@@ -29,7 +29,11 @@ public:
     // Number of visible LEDs on the platform
     const uint8_t numLEDs;
     // Get the global clock value (synchronized across all platforms)
-    unsigned long getGlobalMillis();
+    uint32_t getGlobalMillis();
+    
+    int32_t toLocalTime(uint32_t globalTime);
+    
+    void setGlobalMillisOffset(uint32_t localTime, uint32_t globalTime);
     
     uint16_t getRandomPixel();
     int getRandom(int max);
@@ -110,10 +114,12 @@ private:
     uint8_t accumulatedTaps;
     unsigned long lastTap;
     
+    int64_t offsetForGlobalTime = 0;
+    
     RNLights sparkles;
     
     void initialize();
-
+    void setGlobalMillis(uint32_t globalMillis);
 
     friend class RNController;
     // Call to update any internal structures before painting any animations

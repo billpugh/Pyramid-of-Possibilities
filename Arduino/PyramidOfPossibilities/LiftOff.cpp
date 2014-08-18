@@ -9,7 +9,6 @@
 #include "LiftOff.h"
 #include "Constants.h"
 #include <math.h>
-#include "stdio.h"
 
 
 void LiftOff::paint(RNLights & lights) {

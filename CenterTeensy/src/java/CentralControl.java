@@ -145,11 +145,11 @@ public class CentralControl {
                         break;
                     case UP_ARROW:
                     	currentAnimation.tweakUp();
-                    	System.out.println("Tweaked to " + currentAnimation.cycleStatus.tweakValue);
+                    	System.out.println("Tweaked to " + currentAnimation.cycleStatus.getIntValue());
                     	break;
                     case DOWN_ARROW:
                     	currentAnimation.tweakDown();
-                    	System.out.println("Tweaked to " + currentAnimation.cycleStatus.tweakValue);
+                    	System.out.println("Tweaked to " + currentAnimation.cycleStatus.getIntValue());
                     	break;
                     	
                     }

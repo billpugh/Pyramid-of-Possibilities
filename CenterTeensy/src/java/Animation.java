@@ -4,7 +4,7 @@ import java.nio.ByteOrder;
 
 public class Animation {
     
-    enum TweakKind { SIGNED, UNSIGNED, CYCLIC;
+    enum TweakKind { SIGNED, UNSIGNED, CYCLIC, CYCLIC_UNARY;
      byte add(int currentValue, int offset) {
          switch (this) {
          case SIGNED:
@@ -20,6 +20,9 @@ public class Animation {
              else if (currentValue > 255)
                  return (byte)255;
              return (byte) currentValue;
+         case CYCLIC:
+         case CYCLIC_UNARY:
+        	 return (byte)(currentValue + offset);
          }
          return (byte)(currentValue + offset);
      }
@@ -28,38 +31,55 @@ public class Animation {
 	  class TweakStatus {
 		    final byte tweakValue;
 	    	final  double cycles;
+	    	final double tweakCount;
 	    	// Relative to animationStartTime
 	    	 final  int lastTweakAt;
 	    	 public TweakStatus() {
-	    		 this((byte)30, 0, 0);
+	    		 this((byte)30, 0, 0, 0);
 	    	 }
-			private TweakStatus(byte cpm, double cycles, int computedAt) {
+	    	 
+	    	 public int getIntValue() {
+	    		 if (program.tweakKind == TweakKind.SIGNED)
+	    			 return tweakValue;
+	    		 return 0xff & tweakValue;
+	    	 }
+
+			private TweakStatus(byte cpm, double cycles, double tweakCount, int computedAt) {
 				this.tweakValue = cpm;
 				this.cycles = cycles;
+				this.tweakCount = tweakCount;
 				this.lastTweakAt = computedAt;
 			}
 			
 			TweakStatus tweakUp() {
 				int at = getAnimationMillis();
 				if (at < lastTweakAt) throw new IllegalArgumentException();
-				double newCycleCount = cycles + tweakValue * (at-lastTweakAt)/60000.0;
+				double newTweakCount = tweakCount+ 1 - (at-lastTweakAt)/500.0;
+				if (newTweakCount < 0)
+					newTweakCount = 0;
+				else if (newTweakCount > 8)
+					newTweakCount = 8;
+				double newCycleCount = cycles + tweakValue * (at-lastTweakAt)/120000.0;
 				int increment = 1;
-				if (lastTweakAt + 500 > at)
+				if (program.tweakKind !=TweakKind.CYCLIC_UNARY && newTweakCount > 5)
 				    increment = 4;
 
-				return new TweakStatus(program.tweakKind.add(tweakValue, increment), newCycleCount, at);
+				return new TweakStatus(program.tweakKind.add(tweakValue, increment), newCycleCount, newTweakCount, at);
 			}
 			TweakStatus tweakDown() {
 				int at =  getAnimationMillis();
 				if (at < lastTweakAt) throw new IllegalArgumentException();
-				double newCycleCount = cycles + tweakValue * (at-lastTweakAt)/60000.0;
+				double newTweakCount = tweakCount+ 1 - (at-lastTweakAt)/500.0;
+				if (newTweakCount < 0)
+					newTweakCount = 0;
+				else if (newTweakCount > 8)
+					newTweakCount = 8;
+				double newCycleCount = cycles + tweakValue * (at-lastTweakAt)/120000.0;
 				int decrement = -1;
-                if (lastTweakAt + 500 > at)
+                if (program.tweakKind !=TweakKind.CYCLIC_UNARY && newTweakCount > 5)
                     decrement = -4;
-
-				int newValue = tweakValue;
 				
-			    return new TweakStatus(program.tweakKind.add(tweakValue, decrement), newCycleCount, at);
+			    return new TweakStatus(program.tweakKind.add(tweakValue, decrement), newCycleCount, newTweakCount, at);
 	            
 			}
 			

@@ -9,8 +9,6 @@
 #include "MMAnimation1.h"
 #include <math.h>
 
-#define DEBUG true  // print msgs over serial
-
 const float logOneHalf = -.6931471806; // log(1/2);
 
 void MMAnimation1::paint(RNLights & lights)
@@ -40,12 +38,13 @@ void MMAnimation1::paint(RNLights & lights)
     int finalBrightness;
     int gradientPosition;
     if (parameters.activityChangesGradientPosition) {
-        gradientPosition = b*256;
+        gradientPosition = (b*256/parameters.chunkSize) * parameters.chunkSize;
         finalBrightness = parameters.maxBrightness;
     } else {
         // gradiant uses cycle value
         gradientPosition = (uint8_t)(getAnimationCycles()*256);
         finalBrightness = parameters.minimumBrightness + b * (parameters.maxBrightness - parameters.minimumBrightness);
+        finalBrightness = (finalBrightness/parameters.chunkSize) * parameters.chunkSize;
     }
 
     uint32_t color = parameters.gradient.getColor(gradientPosition);

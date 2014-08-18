@@ -226,31 +226,16 @@
 		1644A110198D34AF00FBFF63 = {
 			isa = PBXGroup;
 			children = (
-				163A0EE819A023F00097C712 /* UploadParameters.cpp */,
-				163A0EE919A023F00097C712 /* UploadParameters.h */,
-				1682E08219A02D070036F40E /* UploadConstants.cpp */,
-				1682E08319A02D070036F40E /* UploadConstants.h */,
-				160D4779199D304B00F59BAE /* Comm code */,
 				166A9D3C19991BA100C2E74C /* PopMain.cpp */,
 				166A9D3D19991BA100C2E74C /* PopMain.h */,
 				30F8EB31198D5D92008DEAE9 /* PyramidOfPossibilities.ino */,
 				1644A188198D384500FBFF63 /* Animations */,
-				1644A123198D34D400FBFF63 /* Animations.cpp */,
-				1644A122198D34D400FBFF63 /* Animations.h */,
-				1644A142198D34D400FBFF63 /* RNAnimation.cpp */,
-				1644A141198D34D400FBFF63 /* RNAnimation.h */,
-				16E32C87199EF9850006E6B6 /* AnimationInfo.cpp */,
-				16E32C88199EF9850006E6B6 /* AnimationInfo.h */,
+				1682E08719A12DB20036F40E /* Animation Support */,
 				30F8EB2E198D5B6E008DEAE9 /* Constants.h */,
 				30F8EB2D198D5B6E008DEAE9 /* Constants.cpp */,
-				1644A132198D34D400FBFF63 /* Controller.cpp */,
-				1644A147198D34D400FBFF63 /* Controller.h */,
-				1644A190198D600200FBFF63 /* ledPositions.cpp */,
-				1644A191198D600200FBFF63 /* ledPositions.h */,
-				1644A148198D34D400FBFF63 /* Platform.cpp */,
-				1644A149198D34D400FBFF63 /* Platform.h */,
-				1644A12B198D34D400FBFF63 /* RNInfo.cpp */,
-				1644A12D198D34D400FBFF63 /* RNInfo.h */,
+				1682E08819A12DC50036F40E /* Platforms */,
+				1682E08619A12C880036F40E /* Upload */,
+				160D4779199D304B00F59BAE /* Comm code */,
 				1644A18B198D4BCA00FBFF63 /* Effects */,
 				1644A18A198D4BBC00FBFF63 /* RNLights */,
 				1644A189198D38DB00FBFF63 /* libraries */,
@@ -269,52 +254,13 @@
 		1644A188198D384500FBFF63 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
-				1644A12A198D34D400FBFF63 /* ActivityLevelAnimation.cpp */,
-				1644A137198D34D400FBFF63 /* ActivityLevelAnimation.h */,
-				16C35AE7198FEF7100E2E362 /* Beacon.cpp */,
-				16C35AE6198FEF7100E2E362 /* Beacon.h */,
-				1644A138198D34D400FBFF63 /* ChangingColor.cpp */,
-				1644A143198D34D400FBFF63 /* ChangingColor.h */,
-				1644A13C198D34D400FBFF63 /* Chasers.cpp */,
-				1644A140198D34D400FBFF63 /* Chasers.h */,
-				1644A12C198D34D400FBFF63 /* CircularGradient.cpp */,
-				1644A144198D34D400FBFF63 /* CircularGradient.h */,
-				1644A13B198D34D400FBFF63 /* ColorWorms.cpp */,
-				1644A146198D34D400FBFF63 /* ColorWorms.h */,
-				1644A12E198D34D400FBFF63 /* DRAnimation1.cpp */,
-				1644A12F198D34D400FBFF63 /* DRAnimation1.h */,
-				168CBA42199E908900EA86C1 /* Explosion.cpp */,
-				168CBA43199E908900EA86C1 /* Explosion.h */,
-				1644A129198D34D400FBFF63 /* FlashAttack.cpp */,
-				1644A128198D34D400FBFF63 /* FlashAttack.h */,
-				1611811E1998D72A00136668 /* FlashEcho.cpp */,
-				1611811F1998D72A00136668 /* FlashEcho.h */,
-				16838ED219950C48008CD81E /* Flashes.cpp */,
-				16838ED319950C48008CD81E /* Flashes.h */,
-				1644A13A198D34D400FBFF63 /* GlowFade.cpp */,
-				1644A13D198D34D400FBFF63 /* GlowFade.h */,
+				16F3438C19A1882D00AB237D /* Bill's animations */,
+				16F3438A19A187EF00AB237D /* Danny's animations */,
+				16F3438B19A1880600AB237D /* Antoine's animations */,
 				1611811A199866D400136668 /* Kittens.cpp */,
 				1611811B199866D400136668 /* Kittens.h */,
-				163A0EDF199F86DA0097C712 /* LiftOff.cpp */,
-				163A0EE0199F86DA0097C712 /* LiftOff.h */,
 				163A0EEC19A0D87E0097C712 /* MMAnimation1.cpp */,
 				163A0EED19A0D87E0097C712 /* MMAnimation1.h */,
-				16BA0E4A199D06F0007E85F8 /* MovingFaces.cpp */,
-				16BA0E4B199D06F0007E85F8 /* MovingFaces.h */,
-				16BA0E46199B9B17007E85F8 /* Mute.cpp */,
-				16BA0E47199B9B17007E85F8 /* Mute.h */,
-				161181201998D72A00136668 /* Qbert.cpp */,
-				161181211998D72A00136668 /* Qbert.h */,
-				16838ED019950C48008CD81E /* Radial.cpp */,
-				16838ED119950C48008CD81E /* Radial.h */,
-				1644A126198D34D400FBFF63 /* SideEffects.cpp */,
-				1644A127198D34D400FBFF63 /* SideEffects.h */,
-				1644A125198D34D400FBFF63 /* Snow.cpp */,
-				1644A124198D34D400FBFF63 /* Snow.h */,
-				163D507A198E6D9600E882A1 /* Swirl.cpp */,
-				163D5079198E6D9600E882A1 /* Swirl.h */,
-				1644A120198D34D400FBFF63 /* WWPAnimationTest.cpp */,
-				1644A121198D34D400FBFF63 /* WWPAnimationTest.h */,
 			);
 			name = Animations;
 			sourceTree = "<group>";
@@ -361,6 +307,108 @@
 				1644A17F198D351A00FBFF63 /* RNChaser.h */,
 			);
 			name = Effects;
+			sourceTree = "<group>";
+		};
+		1682E08619A12C880036F40E /* Upload */ = {
+			isa = PBXGroup;
+			children = (
+				163A0EE819A023F00097C712 /* UploadParameters.cpp */,
+				163A0EE919A023F00097C712 /* UploadParameters.h */,
+				1682E08219A02D070036F40E /* UploadConstants.cpp */,
+				1682E08319A02D070036F40E /* UploadConstants.h */,
+			);
+			name = Upload;
+			sourceTree = "<group>";
+		};
+		1682E08719A12DB20036F40E /* Animation Support */ = {
+			isa = PBXGroup;
+			children = (
+				1644A123198D34D400FBFF63 /* Animations.cpp */,
+				1644A122198D34D400FBFF63 /* Animations.h */,
+				1644A142198D34D400FBFF63 /* RNAnimation.cpp */,
+				1644A141198D34D400FBFF63 /* RNAnimation.h */,
+				16E32C87199EF9850006E6B6 /* AnimationInfo.cpp */,
+				16E32C88199EF9850006E6B6 /* AnimationInfo.h */,
+			);
+			name = "Animation Support";
+			sourceTree = "<group>";
+		};
+		1682E08819A12DC50036F40E /* Platforms */ = {
+			isa = PBXGroup;
+			children = (
+				1644A132198D34D400FBFF63 /* Controller.cpp */,
+				1644A147198D34D400FBFF63 /* Controller.h */,
+				1644A190198D600200FBFF63 /* ledPositions.cpp */,
+				1644A191198D600200FBFF63 /* ledPositions.h */,
+				1644A148198D34D400FBFF63 /* Platform.cpp */,
+				1644A149198D34D400FBFF63 /* Platform.h */,
+				1644A12B198D34D400FBFF63 /* RNInfo.cpp */,
+				1644A12D198D34D400FBFF63 /* RNInfo.h */,
+			);
+			name = Platforms;
+			sourceTree = "<group>";
+		};
+		16F3438A19A187EF00AB237D /* Danny's animations */ = {
+			isa = PBXGroup;
+			children = (
+				1644A12E198D34D400FBFF63 /* DRAnimation1.cpp */,
+				1644A12F198D34D400FBFF63 /* DRAnimation1.h */,
+				1611811E1998D72A00136668 /* FlashEcho.cpp */,
+				1611811F1998D72A00136668 /* FlashEcho.h */,
+				161181201998D72A00136668 /* Qbert.cpp */,
+				161181211998D72A00136668 /* Qbert.h */,
+				16838ED019950C48008CD81E /* Radial.cpp */,
+				16838ED119950C48008CD81E /* Radial.h */,
+			);
+			name = "Danny's animations";
+			sourceTree = "<group>";
+		};
+		16F3438B19A1880600AB237D /* Antoine's animations */ = {
+			isa = PBXGroup;
+			children = (
+				168CBA42199E908900EA86C1 /* Explosion.cpp */,
+				168CBA43199E908900EA86C1 /* Explosion.h */,
+				16838ED219950C48008CD81E /* Flashes.cpp */,
+				16838ED319950C48008CD81E /* Flashes.h */,
+				16BA0E4A199D06F0007E85F8 /* MovingFaces.cpp */,
+				16BA0E4B199D06F0007E85F8 /* MovingFaces.h */,
+			);
+			name = "Antoine's animations";
+			sourceTree = "<group>";
+		};
+		16F3438C19A1882D00AB237D /* Bill's animations */ = {
+			isa = PBXGroup;
+			children = (
+				1644A12A198D34D400FBFF63 /* ActivityLevelAnimation.cpp */,
+				1644A137198D34D400FBFF63 /* ActivityLevelAnimation.h */,
+				16C35AE7198FEF7100E2E362 /* Beacon.cpp */,
+				16C35AE6198FEF7100E2E362 /* Beacon.h */,
+				1644A138198D34D400FBFF63 /* ChangingColor.cpp */,
+				1644A143198D34D400FBFF63 /* ChangingColor.h */,
+				1644A13C198D34D400FBFF63 /* Chasers.cpp */,
+				1644A140198D34D400FBFF63 /* Chasers.h */,
+				1644A12C198D34D400FBFF63 /* CircularGradient.cpp */,
+				1644A144198D34D400FBFF63 /* CircularGradient.h */,
+				1644A13B198D34D400FBFF63 /* ColorWorms.cpp */,
+				1644A146198D34D400FBFF63 /* ColorWorms.h */,
+				1644A129198D34D400FBFF63 /* FlashAttack.cpp */,
+				1644A128198D34D400FBFF63 /* FlashAttack.h */,
+				1644A13A198D34D400FBFF63 /* GlowFade.cpp */,
+				1644A13D198D34D400FBFF63 /* GlowFade.h */,
+				163A0EDF199F86DA0097C712 /* LiftOff.cpp */,
+				163A0EE0199F86DA0097C712 /* LiftOff.h */,
+				16BA0E46199B9B17007E85F8 /* Mute.cpp */,
+				16BA0E47199B9B17007E85F8 /* Mute.h */,
+				1644A126198D34D400FBFF63 /* SideEffects.cpp */,
+				1644A127198D34D400FBFF63 /* SideEffects.h */,
+				1644A125198D34D400FBFF63 /* Snow.cpp */,
+				1644A124198D34D400FBFF63 /* Snow.h */,
+				163D507A198E6D9600E882A1 /* Swirl.cpp */,
+				163D5079198E6D9600E882A1 /* Swirl.h */,
+				1644A120198D34D400FBFF63 /* WWPAnimationTest.cpp */,
+				1644A121198D34D400FBFF63 /* WWPAnimationTest.h */,
+			);
+			name = "Bill's animations";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

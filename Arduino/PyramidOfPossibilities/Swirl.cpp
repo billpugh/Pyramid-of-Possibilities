@@ -9,7 +9,7 @@
 
 void Swirl::paint(RNLights & lights) {
     
-    float cycles = getAnimationCycles();
+    float cycles = getAnimationCycles()*2.0;
     uint16_t length = parameters.lengthFraction * info.numLEDs;
     
     uint16_t startPosition =  lights.getNumPixels() * cycles;
