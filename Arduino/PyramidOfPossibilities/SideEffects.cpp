@@ -6,6 +6,7 @@
 //
 
 #include "SideEffects.h"
+#include "Constants.h"
 
 
 static uint8_t corner[] = {
@@ -14,10 +15,14 @@ static uint8_t corner[] = {
 
 
 static uint8_t getCorner(uint8_t led) {
+#ifdef FULL_STRIP
 
   for(int i = 0; i < 6; i++)
     if (led < corner[i]) return i;
   return 0;
+#else
+    return i*6/constants.LEDs;
+#endif
 } 
 
 void SideEffects::paint(RNLights & lights) {
