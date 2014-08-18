@@ -45,28 +45,28 @@ void setupMain() {
     print_mac();
     char  platformData[9];
     Platform platform(0,0,0,0,0,0);
-    bool success = readFromEEPROM(sizeof(Platform), (char*) &platform);
-    if (success) {
-        Serial.print("Read from EEPROM ");
-        Serial.print(platform.identifier);
-        Serial.println();
-    }
-    const int platformSerialLength = 10;
-    int bytesRead = Serial.readBytes((char *) platformData, platformSerialLength);
-    Serial.print(bytesRead);
-    Serial.println(" bytes read");
-    Serial.print(sizeof(Platform));
-    Serial.println(" platform size");
-    if (bytesRead == platformSerialLength) {
-        bool success = platform.initialize(platformData, platformSerialLength);
-        if (success) {
-            writeToEEPROM(sizeof(Platform), (char*) &platform);
-            Serial.println("success, wrote to EEPROM");
-        }
-        else
-            Serial.println("Fail parsing data from central");
-        Serial.print(platform.y);
-    }
+//    bool success = readFromEEPROM(sizeof(Platform), (char*) &platform);
+//    if (success) {
+//        Serial.print("Read from EEPROM ");
+//        Serial.print(platform.identifier);
+//        Serial.println();
+//    }
+//    const int platformSerialLength = 10;
+//    int bytesRead = Serial.readBytes((char *) platformData, platformSerialLength);
+//    Serial.print(bytesRead);
+//    Serial.println(" bytes read");
+//    Serial.print(sizeof(Platform));
+//    Serial.println(" platform size");
+//    if (bytesRead == platformSerialLength) {
+//        bool success = platform.initialize(platformData, platformSerialLength);
+//        if (success) {
+//            writeToEEPROM(sizeof(Platform), (char*) &platform);
+//            Serial.println("success, wrote to EEPROM");
+//        }
+//        else
+//            Serial.println("Fail parsing data from central");
+//        Serial.print(platform.y);
+//    }
     initializeAccelerometer(constants.PULSE_THSX,constants.PULSE_THSY,
                             constants.PULSE_THSZ);
     
