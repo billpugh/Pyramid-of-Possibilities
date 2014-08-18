@@ -11,8 +11,6 @@ public class TeensyListener implements Runnable {
     InputStream in;
     ReadableByteChannel channel;
     
-  
-    
     @Override
     public void run() {
         channel = Channels.newChannel(in);

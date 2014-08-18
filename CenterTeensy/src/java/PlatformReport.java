@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class PlatformReport {
 
     byte status;
-    short identifier;
+    Short identifier;
     byte wirePosition;
     byte taps;
     float[] localActivity = new float[3];

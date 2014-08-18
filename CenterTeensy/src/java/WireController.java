@@ -14,8 +14,6 @@ import java.util.concurrent.TimeUnit;
 public class WireController {
 
     static final boolean DEBUG = true;
-    
-    
 
     static class HighPriorityThreadFactory implements ThreadFactory {
 
@@ -27,14 +25,15 @@ public class WireController {
         }
     }
 
-   static  ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(
+    static ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(
             1000, new HighPriorityThreadFactory());
-    
+
     volatile long lastSendNanos;
-    
+
     volatile int lastTweekSent = 0;
 
     volatile boolean shutdown = false;
+
     class SendToTeensies implements Runnable {
 
         Animation lastAnimation;
@@ -42,20 +41,21 @@ public class WireController {
         @Override
         public void run() {
             try {
-            	 Animation a = CentralControl.currentAnimation;
-            	 if (a == null) {
-            		return;
-            	 }
+                Animation a = CentralControl.currentAnimation;
+                if (a == null) {
+                    return;
+                }
                 if (lastAnimation != null
-                        && a.sequenceId == lastAnimation.sequenceId && a.cycleStatus.lastTweakAt <= lastTweekSent) {
-                	return;
+                        && a.sequenceId == lastAnimation.sequenceId
+                        && a.cycleStatus.lastTweakAt <= lastTweekSent) {
+                    return;
                 }
                 int now = a.getAnimationMillis();
                 Broadcast broadcast = new Broadcast(a);
                 ByteBuffer buf = broadcast.getBytes();
                 if (false) {
-                    System.out.printf("writing to %s bytes %d %d\n", portName, buf.position(),
-                            buf.limit());
+                    System.out.printf("writing to %s bytes %d %d\n", portName,
+                            buf.position(), buf.limit());
                     for (int i = buf.position(); i < buf.limit(); i++)
                         System.out.printf("%2x ", buf.get(i));
                     System.out.println();
@@ -80,31 +80,41 @@ public class WireController {
         public void run() {
             System.out.println("Reading from teensies on port " + portName);
             while (true) {
-                if (shutdown) return;
+                if (shutdown)
+                    return;
                 try {
                     int b = inputStream.read();
-                    if (b != 't') System.out.println("Rejecting byte");
+                    if (b != 't')
+                        System.out.println("Rejecting byte");
                     else {
                         long delay = System.nanoTime() - lastSendNanos;
-                       
+
                         // have a teensy report
                         int l = inputStream.read();
                         int crc = inputStream.read();
                         ByteBuffer buf = ByteBuffer.allocate(l);
                         while (buf.remaining() > 0)
                             inputChannel.read(buf);
-    
+
                         buf.flip();
 
                         PlatformReport report = new PlatformReport(buf);
-                         if (DEBUG) {
-                        	 System.out
-                             .printf("Got platform report for platform %3d with delay %,d us\n",
-                                     report.identifier , delay/1000);
-                            
+                        if (DEBUG) {
+                            System.out
+                                    .printf("Got platform report for platform %3d with delay %,d us\n",
+                                            report.identifier, delay / 1000);
+
                             System.out.println(report);
                             System.out.println();
                         }
+                        PlatformStatus status = PlatformStatus.all
+                                .get(report.identifier);
+                        if (status == null)
+                            System.out.printf("Platform %d at %s.%d is unregistered\n",
+                                    report.identifier, portName, report.wirePosition);
+
+                        else
+                            status.update(portName, report);
 
                     }
                 } catch (IOException e) {
@@ -131,19 +141,18 @@ public class WireController {
 
         SendToTeensies sendToTeensies = new SendToTeensies();
         sendToTeensies.run();
-		executor.scheduleWithFixedDelay(sendToTeensies, 0, 100,
+        executor.scheduleWithFixedDelay(sendToTeensies, 0, 100,
                 TimeUnit.MILLISECONDS);
         executor.execute(new ReadFromTeensies());
     }
-    
-    
+
     public void close() throws IOException {
         inputStream.close();
         System.out.println("Closed input stream " + portName);
         outputStream.close();
         System.out.println("Closed output stream " + portName);
-//        teensyPort.close();
-//        System.out.println("Closed port " + portName);
+        // teensyPort.close();
+        // System.out.println("Closed port " + portName);
     }
 
 }
