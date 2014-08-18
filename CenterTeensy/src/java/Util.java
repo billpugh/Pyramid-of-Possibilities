@@ -14,7 +14,7 @@ public class Util {
      static void putBytes(ByteBuffer buf, String hexString) {
          hexString = hexString.trim();
          int length = hexString.length();
-         if (length % 1 != 0) throw new IllegalArgumentException(hexString);
+         if (length % 2 != 0) throw new IllegalArgumentException(hexString);
          length /= 2;
 
          for(int i = 0; i < length; i++) {
