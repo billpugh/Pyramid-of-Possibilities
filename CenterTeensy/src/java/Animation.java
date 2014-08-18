@@ -23,7 +23,7 @@ public class Animation {
          }
          return (byte)(currentValue + offset);
      }
-    };
+    }
 
 	  class TweakStatus {
 		    final byte tweakValue;
