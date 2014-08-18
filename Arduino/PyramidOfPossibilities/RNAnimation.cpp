@@ -92,5 +92,10 @@ uint32_t RNAnimation::timeSinceTweak() {
     return result;
 }
 
+float RNAnimation::getEffectFraction() {
+    if (animationInfo.duration == 0)
+        return 0.0;
+    return ((float) getAnimationMillis())/ animationInfo.duration;
+}
 
 

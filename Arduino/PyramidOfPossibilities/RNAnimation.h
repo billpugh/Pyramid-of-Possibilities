@@ -37,6 +37,10 @@ public:
     float getAnimationCycles();
     float getAnimationCyclesFraction();
 
+    // Always returns 0 for a non-effect
+    // Otherwise, returns 0..1
+    float getEffectFraction();
+
     int8_t getTweakValue();
     uint8_t getUnsignedTweakValue();
     bool hasBeenTweaked();
