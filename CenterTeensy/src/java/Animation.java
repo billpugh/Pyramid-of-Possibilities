@@ -34,8 +34,8 @@ public class Animation {
 	    	final double tweakCount;
 	    	// Relative to animationStartTime
 	    	 final  int lastTweakAt;
-	    	 public TweakStatus() {
-	    		 this((byte)30, 0, 0, 0);
+	    	 public TweakStatus(byte tweakValue) {
+	    		 this(tweakValue, 0, 0, 0);
 	    	 }
 	    	 
 	    	 public int getIntValue() {
@@ -89,7 +89,8 @@ public class Animation {
     final byte sequenceId;
    
     final int startTime = BurnerTime.getGlobalTime();
-    volatile TweakStatus cycleStatus = new TweakStatus();
+    final int duration;
+    volatile TweakStatus tweakStatus;
     byte [] parameters;
     
     
@@ -97,7 +98,8 @@ public class Animation {
         buf.put((byte)program.ordinal());
         buf.put(sequenceId);
         buf.putInt(startTime);
-        TweakStatus cycles = getCycles();
+        buf.putInt(duration);
+        TweakStatus cycles = getTweakStatus();
         buf.putFloat((float)cycles.cycles);
         buf.putInt(cycles.lastTweakAt);
         buf.put(cycles.tweakValue);
@@ -110,28 +112,30 @@ public class Animation {
     static byte nextSequenceId = 0;
 
     public void tweakUp() {
-    	cycleStatus = cycleStatus.tweakUp();
+    	tweakStatus = tweakStatus.tweakUp();
     }
     public void tweakDown() {
-    	cycleStatus = cycleStatus.tweakDown();
+    	tweakStatus = tweakStatus.tweakDown();
     }
     
     public int getAnimationMillis() {
     	 return BurnerTime.getGlobalTime() - startTime;
     }
     
-    public Animation(AnimationProgram program, byte[] parameters) {
+    public Animation(AnimationProgram program, byte initialTweakValue, int duration, byte[] parameters) {
         this.program = program;
         this.sequenceId = nextSequenceId++;
         this.parameters = parameters;
+        this.tweakStatus = new TweakStatus(initialTweakValue);
+        this.duration = duration;
     }
 
     public Animation(AnimationProgram program) {
-       this(program, new byte[0]);
+       this(program, (byte)30, 0, new byte[0]);
     }
 
-    public  TweakStatus getCycles() {
-    	return cycleStatus;
+    public  TweakStatus getTweakStatus() {
+    	return tweakStatus;
     }
 
     public short byteLength() {

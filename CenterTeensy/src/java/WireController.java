@@ -48,7 +48,7 @@ public class WireController {
             		return;
             	 }
                 if (lastAnimation != null
-                        && a.sequenceId == lastAnimation.sequenceId && a.cycleStatus.lastTweakAt <= lastTweekSent) {
+                        && a.sequenceId == lastAnimation.sequenceId && a.tweakStatus.lastTweakAt <= lastTweekSent) {
                 	return;
                 }
                 int now = a.getAnimationMillis();

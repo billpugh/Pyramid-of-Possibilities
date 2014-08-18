@@ -13,7 +13,7 @@ public enum AnimationProgram {
     e_ColorWorms(Animation.TweakKind.UNSIGNED),
     e_Chasers,
     e_FlashAttack(Animation.TweakKind.CYCLIC),
-    e_Snow,
+    e_Snow(Animation.TweakKind.CYCLIC),
     e_Swirl,
     e_GlowFade,
     e_LiftOff,

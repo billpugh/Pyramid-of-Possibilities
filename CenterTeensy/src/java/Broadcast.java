@@ -1,16 +1,23 @@
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.Collection;
+import java.util.Collections;
 
 
 public class Broadcast {
     
-    public Broadcast(Animation animation) {
+    public Broadcast(Animation animation, Collection<Animation> effects) {
         this.animation = animation;
+        this.effects = effects;
     }
-
+    public Broadcast(Animation animation) {
+    	 this.animation = animation;
+         this.effects = Collections.emptyList();
+    }
     final byte kind = (byte) 'p';
     float medianActivityLevel;
     Animation animation;
+    Collection<Animation> effects;
     byte status = 0;
     
     
@@ -25,7 +32,9 @@ public class Broadcast {
        
         animation.write(buf);
         
-        buf.put((byte) 0); // no animations yet
+        buf.put((byte) effects.size()); // no animations yet
+        
+        
         
         int size = buf.position() - position - 3;
         if (size > 255)
