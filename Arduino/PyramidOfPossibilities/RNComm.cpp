@@ -176,7 +176,7 @@ void parseProgramMessage(RNInfo & info) {
 
     AnimationInfo animationStatus = AnimationInfo((AnimationEnum) get8Bits(),
                                                   get8Bits(),
-                                                  get32Bits());
+                                                  get32Bits(), get32Bits());
     animationStatus.cyclesAtLastTweak = getFloat();
     animationStatus.lastTweakAt = get32Bits();
     animationStatus.tweakValue = get8Bits();
@@ -187,6 +187,18 @@ void parseProgramMessage(RNInfo & info) {
     info.printf("local time %d, Global time %d\n",millis(), lastGlobalTime
                 );
     controller->animationUpdate(animationStatus);
+    
+    int numEffects = get8Bits();
+    for(int i = 0; i < numEffects; i++) {
+        AnimationInfo animationStatus = AnimationInfo((AnimationEnum) get8Bits(),
+                                                      get8Bits(),
+                                                      get32Bits(), get32Bits());
+        animationStatus.cyclesAtLastTweak = getFloat();
+        animationStatus.lastTweakAt = get32Bits();
+        animationStatus.tweakValue = get8Bits();
+        animationStatus.parameterLength = get8Bits();
+        getBytes(animationStatus.parameters,animationStatus.parameterLength);
+    }
     prepareReportToCentral(info);
     comm_time_t sendResponseAt = messageReceiveTime + 20 + 10*info.wirePosition;
     info.printf("wirePosition %d, scheduling response for %d\n",info.wirePosition, sendResponseAt
