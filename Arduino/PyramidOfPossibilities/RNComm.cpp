@@ -13,6 +13,7 @@
 #include "RNInfo.h"
 #include "RNSerial.h"
 #include "AnimationInfo.h"
+#include "RNEEPROM.h"
 #include <string.h>
 
 const uint8_t MAX_LENGTH = 255;
@@ -47,7 +48,7 @@ void checkCommHead(RNInfo & info) {
         return;
     info.printf("Got head of %d bytes at %d\n", Serial2.available(), messageReceiveTime);
     uint8_t k = getHeaderByte();
-    while (k != 'p') {
+    while (k != 'p' && kind != 'c') {
         info.printf("Rejecting kind of %x\n", k);
         if (Serial2.available() < 3) {
             lookForData(info);
@@ -176,7 +177,7 @@ void parseProgramMessage(RNInfo & info) {
 
     AnimationInfo animationStatus = AnimationInfo((AnimationEnum) get8Bits(),
                                                   get8Bits(),
-                                                  get32Bits(), get32Bits());
+                                                  get32Bits(), 0);
     animationStatus.cyclesAtLastTweak = getFloat();
     animationStatus.lastTweakAt = get32Bits();
     animationStatus.tweakValue = get8Bits();
@@ -193,21 +194,37 @@ void parseProgramMessage(RNInfo & info) {
         AnimationInfo animationStatus = AnimationInfo((AnimationEnum) get8Bits(),
                                                       get8Bits(),
                                                       get32Bits(), get32Bits());
-        animationStatus.cyclesAtLastTweak = getFloat();
-        animationStatus.lastTweakAt = get32Bits();
+        animationStatus.cyclesAtLastTweak = 0.0;
+        animationStatus.lastTweakAt = 0;
         animationStatus.tweakValue = get8Bits();
         animationStatus.parameterLength = get8Bits();
         getBytes(animationStatus.parameters,animationStatus.parameterLength);
     }
-    prepareReportToCentral(info);
-    comm_time_t sendResponseAt = messageReceiveTime + 20 + 10*info.wirePosition;
-    info.printf("wirePosition %d, scheduling response for %d\n",info.wirePosition, sendResponseAt
-                );
-    
-    if (!scheduleSend(info, sendResponseAt, sendBufferPosition, sendBuffer))
-        info.println("Unable to schedule send");
+    if (constants.sendReponses) {
+        prepareReportToCentral(info);
+        comm_time_t sendResponseAt = messageReceiveTime + 20 + 10*info.wirePosition;
+        info.printf("wirePosition %d, scheduling response for %d\n",info.wirePosition, sendResponseAt
+                    );
+
+        if (!scheduleSend(info, sendResponseAt, sendBufferPosition, sendBuffer))
+            info.println("Unable to schedule send");
+    }
 }
 
+void parseConstantsMessage(RNInfo & info) {
+    uint8_t constantsVersion = get8Bits();
+    uint16_t platform = get16Bits();
+    uint16_t constantsLength = length-3;
+    if (constantsVersion == RNConstants::majorVersion
+        && constantsLength == sizeof(RNConstants)
+        && (platform == 0 || platform == info.identifier)) {
+        getBytes((uint8_t *)&constants,constantsLength);
+        info.printf("Got constants for platform %d, version %d.%d\n", platform, constantsVersion,
+                    constants.minorVersion);
+        writeConstantsToEEPROM();
+        info.println("Wrote constants to EEPROM");
+    }
+}
 comm_time_t sentAtReported = 0;
 
 void checkComm(RNInfo &info) {
@@ -221,8 +238,9 @@ void checkComm(RNInfo &info) {
     if (awaitingBody)
         if (checkCommBody(info)) {
             if (kind == 'p') {
-                
                 parseProgramMessage(info);
+            } else if (kind == 'c') {
+                parseConstantsMessage(info);
             }
         }
 }
