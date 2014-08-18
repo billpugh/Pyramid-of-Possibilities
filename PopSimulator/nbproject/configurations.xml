@@ -5,7 +5,6 @@
                    displayName="Header Files"
                    projectFiles="true">
       <logicalFolder name="f1" displayName="Animations" projectFiles="true">
-        <itemPath>../Arduino/PyramidOfPossibilities/AVEAnimation1.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/ActivityLevelAnimation.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Beacon.h</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/ChangingColor.h</itemPath>
@@ -71,7 +70,6 @@
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="f1" displayName="Animations" projectFiles="true">
-        <itemPath>../Arduino/PyramidOfPossibilities/AVEAnimation1.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/ActivityLevelAnimation.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/Beacon.cpp</itemPath>
         <itemPath>../Arduino/PyramidOfPossibilities/ChangingColor.cpp</itemPath>
@@ -330,16 +328,6 @@
           <commandLine>-lGL -lglfw -lGLEW</commandLine>
         </linkerTool>
       </compileType>
-      <item path="../Arduino/PyramidOfPossibilities/AVEAnimation1.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/AVEAnimation1.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="../Arduino/PyramidOfPossibilities/ActivityLevelAnimation.cpp"
             ex="false"
             tool="1"
@@ -820,16 +808,6 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="../Arduino/PyramidOfPossibilities/AVEAnimation1.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../Arduino/PyramidOfPossibilities/AVEAnimation1.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="../Arduino/PyramidOfPossibilities/ActivityLevelAnimation.cpp"
             ex="false"
             tool="1"

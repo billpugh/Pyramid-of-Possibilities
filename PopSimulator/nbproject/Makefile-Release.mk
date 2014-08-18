@@ -35,7 +35,6 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/_ext/1731549632/AVEAnimation1.o \
 	${OBJECTDIR}/_ext/1731549632/ActivityLevelAnimation.o \
 	${OBJECTDIR}/_ext/1731549632/Animations.o \
 	${OBJECTDIR}/_ext/1731549632/Beacon.o \
@@ -111,11 +110,6 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/popsimulator: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/popsimulator ${OBJECTFILES} ${LDLIBSOPTIONS}
-
-${OBJECTDIR}/_ext/1731549632/AVEAnimation1.o: ../Arduino/PyramidOfPossibilities/AVEAnimation1.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1731549632/AVEAnimation1.o ../Arduino/PyramidOfPossibilities/AVEAnimation1.cpp
 
 ${OBJECTDIR}/_ext/1731549632/ActivityLevelAnimation.o: ../Arduino/PyramidOfPossibilities/ActivityLevelAnimation.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1731549632
