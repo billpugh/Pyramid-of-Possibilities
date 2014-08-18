@@ -8,7 +8,7 @@
 #include "ledPositions.h"
 #include <math.h>
 
-#define abs(x) ((x < 0) ? (x) : (-x))
+#define abs(x) ((x < 0) ? (-x) : (x))
 
 short edgePlatform1[3] = {0, 7919, 762};
 short edgePlatform2[3] = {-6858, -3959, 610};
