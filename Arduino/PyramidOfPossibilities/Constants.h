@@ -14,10 +14,11 @@
 // Defines
 //////////////////////////////////////////////////////////////////////////////////////////
 
-#define DEBUG 1
-//#define FULL_STRIP
 
-#define RN_REALLY_LONG_ANIMATIONS
+#define DEBUG 1
+#define FULL_STRIP
+
+// #define RN_REALLY_LONG_ANIMATIONS
 
 // #define RN_PRINT_HEAP_SIZE
 // #define RN_PRINT_BRIGHTNESS_ADJUSTMENTS
@@ -29,10 +30,14 @@ const unsigned long kMaxPaintDuration = 10;    // in ms.  See RN_PRINT_LOG_ANIMA
 
 struct RNConstants {
 
+  static const uint8_t majorVersion = 1;
+  const uint8_t minorVersion = 0;
+
   // Set values for the # of LEDs and 1st LED Index
 #ifdef FULL_STRIP
   // VALUES FOR FULL-STRIP (ie. platforms on the pyramid!)
   static const uint8_t LEDs = 220;
+
   const uint8_t FIRST_LED = 10;
 #else
   // Modify these values for testing with a non-full strip.
@@ -51,6 +56,8 @@ struct RNConstants {
 #endif
 
     const uint8_t brightnessChunkSize = 16;
+    const uint8_t initialDelay = 10;
+    const bool sendReponses = true;
 
     const uint16_t pyramidRadius = 7209;
     const uint16_t pyramidRadiusFromGround = 7796;
@@ -66,6 +73,7 @@ struct RNConstants {
 const int ONBOARD_LED_PIN = 13;
 
 const float RADIANS_IN_A_CIRCLE = 2*3.14159265359;
+
 
 extern RNConstants constants;
 
