@@ -61,7 +61,7 @@ void setup() {
   initializeLEDs();
 
   pinMode(ONBOARD_LED_PIN, OUTPUT);
-  for(int i = 0; i < 10; i++) {
+  for(int i = 0; i < constants.initialDelay; i++) {
     digitalWrite(ONBOARD_LED_PIN, HIGH);
     delay(700);
     digitalWrite(ONBOARD_LED_PIN, LOW);
