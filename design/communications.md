@@ -59,6 +59,18 @@ Central broadcast:
 * 12 bytes for header, 34 per animation
 
 
+Constants boardcast:
+* kind 'c' (1 byte)
+* length (1 byte)
+* crc (1 byte)
+* platform (0 = all platforms), (2 bytes)
+* data
+
+
+
+
+
+
 
 Broadcast from central:
 
