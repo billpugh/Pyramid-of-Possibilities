@@ -53,6 +53,7 @@ Central broadcast:
 	* animation (1 byte) 
 	* animation seq id (1 byte)
 	* animation start time (4 bytes)
+	* duration (4 bytes)
 	* animation parameter length (1 byte)
 	* animation parameters (<= 28 bytes)
 
