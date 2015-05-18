@@ -6,20 +6,136 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		16477E991AFFBFBE00BC3FF6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16477E981AFFBFBE00BC3FF6 /* main.cpp */; };
+		16477E9F1AFFC0E600BC3FF6 /* Pocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16477E9D1AFFC0E600BC3FF6 /* Pocket.cpp */; };
+		16744C401B095CA800458338 /* RNDigit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16744C3D1B095CA800458338 /* RNDigit.cpp */; };
+		16744C411B095CA800458338 /* RNNumberDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16744C3E1B095CA800458338 /* RNNumberDisplay.cpp */; };
+		169AD67F1B092425007AED7F /* Bell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 169AD67D1B092425007AED7F /* Bell.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		16477E931AFFBFBE00BC3FF6 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		16477E8D1AFFBC4900BC3FF6 /* PachinkoMain.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PachinkoMain.cpp; path = ../Arduino/Pachinko/PachinkoMain.cpp; sourceTree = "<group>"; };
+		16477E8E1AFFBC4900BC3FF6 /* PachinkoMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PachinkoMain.h; path = ../Arduino/Pachinko/PachinkoMain.h; sourceTree = "<group>"; };
+		16477E8F1AFFBC4900BC3FF6 /* Adafruit_MCP23017.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Adafruit_MCP23017.cpp; path = ../Arduino/Pachinko/Adafruit_MCP23017.cpp; sourceTree = "<group>"; };
+		16477E901AFFBC4900BC3FF6 /* Adafruit_MCP23017.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Adafruit_MCP23017.h; path = ../Arduino/Pachinko/Adafruit_MCP23017.h; sourceTree = "<group>"; };
+		16477E951AFFBFBE00BC3FF6 /* PachinKo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PachinKo; sourceTree = BUILT_PRODUCTS_DIR; };
+		16477E981AFFBFBE00BC3FF6 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		16477E9D1AFFC0E600BC3FF6 /* Pocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Pocket.cpp; path = ../Arduino/Pachinko/Pocket.cpp; sourceTree = "<group>"; };
+		16477E9E1AFFC0E600BC3FF6 /* Pocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Pocket.h; path = ../Arduino/Pachinko/Pocket.h; sourceTree = "<group>"; };
+		16477EA01AFFD63500BC3FF6 /* OctoWS2811.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OctoWS2811.h; path = ../Arduino/unusedLibraries/OctoWS2811/OctoWS2811.h; sourceTree = "<group>"; };
+		16477EA11AFFD8EE00BC3FF6 /* Arduino.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Arduino.h; path = ../PlatformCode/Arduino.h; sourceTree = "<group>"; };
+		16744C3C1B095CA800458338 /* RNDigit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNDigit.h; path = ../Arduino/Pachinko/RNDigit.h; sourceTree = "<group>"; };
+		16744C3D1B095CA800458338 /* RNDigit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RNDigit.cpp; path = ../Arduino/Pachinko/RNDigit.cpp; sourceTree = "<group>"; };
+		16744C3E1B095CA800458338 /* RNNumberDisplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RNNumberDisplay.cpp; path = ../Arduino/Pachinko/RNNumberDisplay.cpp; sourceTree = "<group>"; };
+		16744C3F1B095CA800458338 /* RNNumberDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNNumberDisplay.h; path = ../Arduino/Pachinko/RNNumberDisplay.h; sourceTree = "<group>"; };
+		16744C421B095FDA00458338 /* hsv2rgb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hsv2rgb.h; path = ../Arduino/libraries/FastLED/hsv2rgb.h; sourceTree = "<group>"; };
+		169AD67D1B092425007AED7F /* Bell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Bell.cpp; path = ../Arduino/Pachinko/Bell.cpp; sourceTree = "<group>"; };
+		169AD67E1B092425007AED7F /* Bell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bell.h; path = ../Arduino/Pachinko/Bell.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		16477E921AFFBFBE00BC3FF6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
 /* Begin PBXGroup section */
 		1608DE5C1AE54BD500934829 = {
 			isa = PBXGroup;
 			children = (
+				16477E8D1AFFBC4900BC3FF6 /* PachinkoMain.cpp */,
+				16477E8E1AFFBC4900BC3FF6 /* PachinkoMain.h */,
+				16477E9D1AFFC0E600BC3FF6 /* Pocket.cpp */,
+				16477E9E1AFFC0E600BC3FF6 /* Pocket.h */,
+				169AD67D1B092425007AED7F /* Bell.cpp */,
+				169AD67E1B092425007AED7F /* Bell.h */,
+				16477EA21B026BAB00BC3FF6 /* Libraries */,
+				16477E971AFFBFBE00BC3FF6 /* PachinKo */,
+				16477E961AFFBFBE00BC3FF6 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
+		16477E961AFFBFBE00BC3FF6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				16477E951AFFBFBE00BC3FF6 /* PachinKo */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		16477E971AFFBFBE00BC3FF6 /* PachinKo */ = {
+			isa = PBXGroup;
+			children = (
+				16477E981AFFBFBE00BC3FF6 /* main.cpp */,
+			);
+			path = PachinKo;
+			sourceTree = "<group>";
+		};
+		16477EA21B026BAB00BC3FF6 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				16744C421B095FDA00458338 /* hsv2rgb.h */,
+				16744C3C1B095CA800458338 /* RNDigit.h */,
+				16744C3D1B095CA800458338 /* RNDigit.cpp */,
+				16744C3E1B095CA800458338 /* RNNumberDisplay.cpp */,
+				16744C3F1B095CA800458338 /* RNNumberDisplay.h */,
+				16477E8F1AFFBC4900BC3FF6 /* Adafruit_MCP23017.cpp */,
+				16477E901AFFBC4900BC3FF6 /* Adafruit_MCP23017.h */,
+				16477EA01AFFD63500BC3FF6 /* OctoWS2811.h */,
+				16477EA11AFFD8EE00BC3FF6 /* Arduino.h */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		16477E941AFFBFBE00BC3FF6 /* PachinKo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 16477E9A1AFFBFBE00BC3FF6 /* Build configuration list for PBXNativeTarget "PachinKo" */;
+			buildPhases = (
+				16477E911AFFBFBE00BC3FF6 /* Sources */,
+				16477E921AFFBFBE00BC3FF6 /* Frameworks */,
+				16477E931AFFBFBE00BC3FF6 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PachinKo;
+			productName = PachinKo;
+			productReference = 16477E951AFFBFBE00BC3FF6 /* PachinKo */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		1608DE5D1AE54BD500934829 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0630;
+				TargetAttributes = {
+					16477E941AFFBFBE00BC3FF6 = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+				};
 			};
 			buildConfigurationList = 1608DE601AE54BD500934829 /* Build configuration list for PBXProject "PachinkoTestbed" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -29,12 +145,29 @@
 				en,
 			);
 			mainGroup = 1608DE5C1AE54BD500934829;
+			productRefGroup = 16477E961AFFBFBE00BC3FF6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				16477E941AFFBFBE00BC3FF6 /* PachinKo */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		16477E911AFFBFBE00BC3FF6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				169AD67F1B092425007AED7F /* Bell.cpp in Sources */,
+				16744C401B095CA800458338 /* RNDigit.cpp in Sources */,
+				16477E991AFFBFBE00BC3FF6 /* main.cpp in Sources */,
+				16477E9F1AFFC0E600BC3FF6 /* Pocket.cpp in Sources */,
+				16744C411B095CA800458338 /* RNNumberDisplay.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
 		1608DE611AE54BD500934829 /* Debug */ = {
@@ -49,6 +182,85 @@
 			};
 			name = Release;
 		};
+		16477E9B1AFFBFBE00BC3FF6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		16477E9C1AFFBFBE00BC3FF6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -57,6 +269,15 @@
 			buildConfigurations = (
 				1608DE611AE54BD500934829 /* Debug */,
 				1608DE621AE54BD500934829 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		16477E9A1AFFBFBE00BC3FF6 /* Build configuration list for PBXNativeTarget "PachinKo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				16477E9B1AFFBFBE00BC3FF6 /* Debug */,
+				16477E9C1AFFBFBE00BC3FF6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
