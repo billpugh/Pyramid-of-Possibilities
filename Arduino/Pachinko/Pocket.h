@@ -20,6 +20,8 @@ public:
     /** Return true if score detected */
     bool checkAndUpdate();
     
+    void gameOver();
+    
     static const int LEDS_PER_POCKET = 5+6+7+6+5;
     
 private:

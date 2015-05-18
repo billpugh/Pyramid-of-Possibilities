@@ -63,9 +63,14 @@ void Pocket::setColor(int strip, int pos, int rgb) {
 }
 
 
+void Pocket::gameOver() {
+    setColor(0);
+}
 bool Pocket::checkAndUpdate() {
     bool scoreDetected = checkSensor();
-    if (scoreDetected) 
+    if (scoreDetected) {
+        lastTimeScored = millis();
         scorePoints(1);
+    }
     return scoreDetected;
 }
