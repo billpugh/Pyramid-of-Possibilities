@@ -1,20 +1,19 @@
 // NeoPixel Ring simple sketch (c) 2013 Shae Erisson
 // released under the GPLv3 license to match the rest of the AdaFruit NeoPixel library
 
-#include <Adafruit_NeoPixel.h>
-#include <avr/power.h>
 
-// Which pin on the Arduino is connected to the NeoPixels?
-// On a Trinket or Gemma we suggest changing this to 1
-#define PIN            6
+#include "OctoWS2811.h"
+#include "Adafruit_NeoPixel.h"
+#include "RNLights.h"
+#include "RNLightsOctoWS2811.h"
+#include "hsv2rgb.h"
 
-// How many NeoPixels are attached to the Arduino?
-#define NUMPIXELS      16
+#define NUMPIXELS      41
 
-// When we setup the NeoPixel library, we tell it how many pixels, and which pin to use to send signals.
-// Note that for older NeoPixel strips you might need to change the third parameter--see the strandtest
-// example for more information on possible values.
-Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+DMAMEM uint8_t displayMemory[NUMPIXELS*24];
+uint8_t drawingMemory[NUMPIXELS*24];
+
+RNLights *lights;
 
 int delayval = 500; // delay for half a second
 
@@ -37,30 +36,59 @@ int digitPixels[10][41] = {// 0
 // 8
   {1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1},
 // 9
-  {1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1}};
+  {1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1}};
   
 void setup() {
-  // This is for Trinket 5V 16MHz, you can remove these three lines if you are not using a Trinket
-#if defined (__AVR_ATtiny85__)
-  if (F_CPU == 16000000) clock_prescale_set(clock_div_1);
-#endif
-  // End of trinket special code
+     delay(1000);
+  Serial.begin(9600);
+  Serial.println("Digit test");
+   OctoWS2811 *leds = new OctoWS2811(NUMPIXELS, displayMemory, drawingMemory);
 
-  pixels.begin(); // This initializes the NeoPixel library.
+  RNLightsOctoWS2811 *oLights
+    = new RNLightsOctoWS2811(*leds, drawingMemory, 0);
+
+  leds->begin();
+  leds->show();
+  lights = oLights;
+
 }
 
+
+void drawDigit(int d) {
+  for(int i = 0; i < 41; i++)
+    if (digitPixels[d][i])
+     lights->setPixelColor(i, 0, 50, 0);
+    else
+    lights->setPixelColor(i,0,0,0);
+}
+
+
+void drawDigit(int d1, int rgb1, int d2, int rgb2) {
+  for(int i = 0; i < 41; i++) {
+    int c1 = 0;
+    if (d1 >= 0 && digitPixels[d1][i])
+      c1 = 1;
+    int c2 = 0;
+    if (d2 >= 0 && digitPixels[d2][i])
+      c2 = 1;
+    lights->setPixelColor(i, c1*rgb1+c2*rgb2);
+  }
+}
+   
+    
 void loop() {
 
-  // For a set of NeoPixels the first NeoPixel is 0, second is 1, all the way up to the count of pixels minus one.
-
-  for(int i=0;i<NUMPIXELS;i++){
-
-    // pixels.Color takes RGB values, from 0,0,0 up to 255,255,255
-    pixels.setPixelColor(i, pixels.Color(0,150,0)); // Moderately bright green color.
-
-    pixels.show(); // This sends the updated pixel color to the hardware.
-
-    delay(delayval); // Delay for a period of time (in milliseconds).
-
-  }
+  int d = ( millis()/1000) % 10;
+  int pd = d-1;
+  if (pd == -1) pd = 9;
+  int t = (millis() % 1000);
+  if (t < 0) t = -t;
+  t = t;
+  if (t > 255) t = 255;
+  int c = 0x000001;
+  drawDigit(d, c*t, pd,  c*(255-t));
+  
+  lights->show();
+  delay(10);
+ 
 }
