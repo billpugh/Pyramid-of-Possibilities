@@ -50,8 +50,8 @@ RNAnimation * getAnimation(RNInfo & info, AnimationInfo animationInfo ) {
         case e_Kittens:
             return new Kittens(info, animationInfo);
 
-        case e_Mute:
-            return new Mute(info, animationInfo);
+//        case e_Mute:
+//            return new Mute(info, animationInfo);
         case e_LiftOff:
             return new LiftOff(info, animationInfo);
 
@@ -92,14 +92,14 @@ RNAnimation * getAnimation(RNInfo & info, AnimationInfo animationInfo ) {
 
         case e_Flashes :
             return new Flashes(info, animationInfo);
-        case e_MovingFaces :
-            return new MovingFaces(info, animationInfo);
-        case e_Explosion :
-            return new Explosion(info, animationInfo);
+//        case e_MovingFaces :
+//            return new MovingFaces(info, animationInfo);
+//        case e_Explosion :
+//            return new Explosion(info, animationInfo);
         case e_Radial:
             return new Radial(info, animationInfo);
-        case e_FlashEcho:
-            return new FlashEcho(info, animationInfo);
+//        case e_FlashEcho:
+//            return new FlashEcho(info, animationInfo);
 		case e_MMAnimation1:
 			return new MMAnimation1(info, animationInfo);
 

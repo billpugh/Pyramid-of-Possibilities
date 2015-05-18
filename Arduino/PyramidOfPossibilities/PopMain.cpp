@@ -76,7 +76,8 @@ void setupMain() {
     info->printf("Ready, platform %d, wire %d\n", info->identifier, info->wirePosition);
     initializeComm(*info);
 #ifndef FULL_STRIP
-    debugTriadPositions();
+    if (DEBUG)
+        debugTriadPositions();
 #endif
 
     createWatchdog(constants.watchdogTimeout);
@@ -142,10 +143,12 @@ void loopMain() {
     int timeToDelay = (int)(10 - (endMicros - startMicros)/1000);
     if (timeToDelay > 0)
         delay(timeToDelay);
+#ifdef FULL_STRIP
     int blink = (millis() /100)%2;
     digitalWrite(ONBOARD_LED_PIN, blink);
+#endif
+    
     if (count++ >= 100) {
-        
         // Print head size for debugging.
 #ifdef RN_PRINT_HEAP_SIZE
         info->printf("Avg time = %5d, delay = %dms, heapSize = %d\n",

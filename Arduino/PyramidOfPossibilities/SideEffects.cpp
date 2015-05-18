@@ -21,7 +21,7 @@ static uint8_t getCorner(uint8_t led) {
     if (led < corner[i]) return i;
   return 0;
 #else
-    return i*6/constants.LEDs;
+    return led*6/constants.LEDs;
 #endif
 } 
 

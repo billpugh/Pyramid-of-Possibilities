@@ -16,7 +16,7 @@ public:
     ActivityLevelAnimation(RNInfo & info, AnimationInfo animationInfo);
     virtual void paint(RNLights & lights);
     virtual const char * name();
-    uint16_t level;
+    float level;
 
 };
 

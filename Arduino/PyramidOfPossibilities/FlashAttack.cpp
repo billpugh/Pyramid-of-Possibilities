@@ -16,9 +16,10 @@ void FlashAttack::paint(RNLights & lights) {
 
     value = max(value, value2);
     value = min(value, 255);
+    uint8_t gradiantPosition = getAnimationCycles() * 256;
+    
 
-
-  lights.setAllPixelHSVs(getUnsignedTweakValue(),255,value);
+  lights.setAllPixelHSVs(gradiantPosition,255,value);
 
 }
 
