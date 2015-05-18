@@ -61,12 +61,14 @@ void setup() {
   initializeLEDs();
 
   pinMode(ONBOARD_LED_PIN, OUTPUT);
+#ifdef FULL_STRIP
   for(int i = 0; i < constants.initialDelay; i++) {
     digitalWrite(ONBOARD_LED_PIN, HIGH);
     delay(700);
     digitalWrite(ONBOARD_LED_PIN, LOW);
     delay(300);
   }
+#endif
 
   switch(action) {
   case runPlatform:
