@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "RNNumberDisplay.h"
+#include "Bell.h"
 
 enum  PachinkoState {
     e_Boot,
@@ -18,10 +19,17 @@ enum  PachinkoState {
     e_GameInProgress,
     e_GameOver};
 
+extern PachinkoState pachinkoState;
+
 extern RNNumberDisplay scoreDisplay, timeDisplay;
+
+extern Bell GameOverBell, ScoreBell;
 
 void setupMain();
 
 void loopMain();
+
+
+void scorePoints(int score);
 
 #endif /* defined(__PachinkoCode__PachinkoMain__) */

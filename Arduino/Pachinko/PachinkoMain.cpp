@@ -20,10 +20,11 @@ PachinkoState pachinkoState = e_Boot;
 
 static const uint16_t LOUD_BELL_PIN = 600;
 
-static const uint16_t endGameBellPeriod = 600;
+static const uint16_t endGameBellOffPeriod = 400;
 static const uint16_t endGameBellOnPeriod = 200;
-
 static const uint16_t endGameBellRings = 5;
+
+static const uint16_t gameDuration = 180;
 
 static const uint16_t endGameLightsOut = 600;
 static const uint32_t endGameDuration = 20000;
@@ -65,21 +66,55 @@ Pocket  RM(leds, STRIP_1+1*Pocket::LEDS_PER_POCKET, io, 4);
 Pocket  RL(leds, STRIP_1+0*Pocket::LEDS_PER_POCKET, io, 5);
 
 
+Bell GameOverBell(io, 10, endGameBellOnPeriod, endGameBellOffPeriod);
+Bell ScoreBell(io, 11, 100, 100);
+
 uint32_t gameStarted;
 uint32_t gameEnds;
 uint32_t now;
+uint16_t score;
 
-void setLoudBell(bool on) {}
-void switchToIdleMode() {}
+
+void switchToIdleMode() {
+    score = 0;
+    timeDisplay.setValue(gameDuration);
+    scoreDisplay.setValue(0);
+}
 void setPlayfieldLights(bool on) {}
-void endGame() {}
-void playGame() {}
+void endGame() {
+    GameOverBell.ring(endGameBellRings);
+    pachinkoState = e_GameOver;
+}
 
+void checkPockets() {
+    LH.checkAndUpdate();
+    LM.checkAndUpdate();
+    LL.checkAndUpdate();
+    RH.checkAndUpdate();
+    RM.checkAndUodate();
+    RL.checkAndUpdate();
+}
+
+void scorePoints(int points) {
+    if (pachinkoState == e_GameOver)
+        return;
+    
+    if (pachinkoState == e_Attract) {
+        // Start game
+        pachinkoState = e_GameInProgress;
+        gameStarted = now;
+        gameEnds = now+endGameDuration;
+        score = 0;
+    }
+    score += points;
+    scoreDisplay.setValue(score);
+    scoreBell.ring(points);
+}
 
 void setupMain() {
     io.begin();
     leds.begin();
-    
+    switchToIdleMode();
 }
 
 void loopMain() {
@@ -88,20 +123,25 @@ void loopMain() {
     switch(pachinkoState) {
         case e_Boot:
         case e_Attract:
+            checkPockets();
+            break;
+            
         case  e_GameInProgress:
+            int timeRemaining = (gamesEnds - now)/1000;
+            if (timeRemaining < 0) timeRemaining=0;
+            timeDisplay.setValue(timeRemaining);
+            
+             timeDisplay.setValue(gameDuration);
             if (now > gameEnds)
                 endGame();
             else
-                playGame();
+                checkPockets();
+            break;
             
         case e_GameOver:
-            uint32_t afterGame = now - gameEnds;
-            uint32_t bellCount = afterGame/endGameBellPeriod;
-            
-            setLoudBell(bellCount < endGameBellRings && afterGame % endGameBellPeriod < endGameBellOnPeriod );
-            setPlayfieldLights(afterGame < endGameLightsOut);
-            if (afterGame > endGameDuration)
+            if (now > gameEnds + endGameDuration)
                 switchToIdleMode();
+            break;
     }
 }
 

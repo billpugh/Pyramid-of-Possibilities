@@ -15,10 +15,10 @@
 
 class Bell {
 public:
-    Bell(Adafruit_MCP23017 & io, int pin, int durationOn);
+    Bell(Adafruit_MCP23017 & io, int pin, int durationOn, int durationOff);
     
    void update();
-   void turnOn();
+   void ring(int num=1);
     
 private:
     
@@ -26,6 +26,7 @@ private:
 
     const int pin;
     const int durationOn;
+    const int durationOff;
     unsigned int enqueued;
     bool on;
     unsigned long timeOff;

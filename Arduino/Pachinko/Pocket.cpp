@@ -6,9 +6,10 @@
 //
 //
 
-#include "Pocket.h"
 
 #include <stdlib.h>
+#include "Pocket.h"
+#include "PachinkoMain.h"
 
 Pocket::Pocket(OctoWS2811 & lights, int firstPixel, Adafruit_MCP23017 &io,  int sensor) : lights(lights), firstPixel(firstPixel), io(io), sensor(sensor), lastTimeChanged(0), lastTimeScored(-5000) {
     
@@ -64,5 +65,7 @@ void Pocket::setColor(int strip, int pos, int rgb) {
 
 bool Pocket::checkAndUpdate() {
     bool scoreDetected = checkSensor();
+    if (scoreDetected) 
+        scorePoints(1);
     return scoreDetected;
 }

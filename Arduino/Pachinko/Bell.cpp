@@ -11,7 +11,8 @@
 
 
 
-Bell::Bell(Adafruit_MCP23017 & io, int pin, int durationOn) : io(io), pin(pin), durationOn(durationOn),
+Bell::Bell(Adafruit_MCP23017 & io, int pin, int durationOn, int durationOff)
+: io(io), pin(pin), durationOn(durationOn), durationOff(durationOff),
 enqueued(0), on(false), timeOff(0) {
     
 }
@@ -23,14 +24,14 @@ void Bell::update() {
             on = false;
             io.digitalWrite(pin, 0);
         }
-    } else if (enqueued > 0 && millis() > timeOff + durationOn) {
+    } else if (enqueued > 0 && millis() > timeOff + durationOff) {
         on = true;
         io.digitalWrite(pin, 1);
         timeOff = millis() + durationOn;
     }
     
 }
-void Bell::turnOn() {
-    enqueued++;
+void Bell::ring(int num){
+    enqueued+= num;
     
 }
