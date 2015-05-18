@@ -36,7 +36,7 @@ private:
     // positions are numbered 0..6
     
     int getLED(int strip, int pos);
-    void setColor(int rgb);
+    void setColorAll(int rgb);
     void setColor(int strip, int pos, int rgb);
     /** Return true if score detected */
     bool checkSensor();

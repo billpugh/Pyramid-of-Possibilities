@@ -44,19 +44,21 @@ int drawingMemory[LEDsPerStrip*6];
 const int config = WS2811_GRB | WS2811_800kHz;
 
 OctoWS2811 leds(LEDsPerStrip, displayMemory, drawingMemory, config);
-Adafruit_MCP23017 io;
 
-RNDigit score0(leds, 0*RNDigit::MAX_PIXELS);
-RNDigit score1(leds, 1*RNDigit::MAX_PIXELS);
-RNDigit score2(leds, 2*RNDigit::MAX_PIXELS);
-RNDigit score3(leds, 3*RNDigit::MAX_PIXELS);
-RNNumberDisplay scoreDisplay(score0, score1, score2, score3);
 
-RNDigit time0(leds, 4*RNDigit::MAX_PIXELS, 13);
-RNDigit time1(leds, 4*RNDigit::MAX_PIXELS+13);
-RNDigit time2(leds, 5*RNDigit::MAX_PIXELS+13);
+RNDigit time0(leds, 0, 13);
+RNDigit time1(leds, time0.nextPixel());
+RNDigit time2(leds, time1.nextPixel());
 RNNumberDisplay timeDisplay(time0, time1, time2);
 
+
+RNDigit score0(leds, time2.nextPixel());
+RNDigit score1(leds, score0.nextPixel());
+RNDigit score2(leds, score1.nextPixel());
+RNDigit score3(leds, score2.nextPixel());
+RNNumberDisplay scoreDisplay(score0, score1, score2, score3);
+
+Adafruit_MCP23017 io;
 
 Pocket  LH(leds, STRIP_0+2*Pocket::LEDS_PER_POCKET, io, 0);
 Pocket  LM(leds, STRIP_0+1*Pocket::LEDS_PER_POCKET, io, 1);
@@ -67,7 +69,7 @@ Pocket  RL(leds, STRIP_1+0*Pocket::LEDS_PER_POCKET, io, 5);
 
 
 Bell GameOverBell(io, 10, endGameBellOnPeriod, endGameBellOffPeriod);
-Bell ScoreBell(io, 11, 100, 100);
+Bell scoreBell(io, 11, 100, 100);
 
 uint32_t gameStarted;
 uint32_t gameEnds;
@@ -80,7 +82,7 @@ void switchToIdleMode() {
     timeDisplay.setValue(gameDuration);
     scoreDisplay.setValue(0);
 }
-void setPlayfieldLights(bool on) {}
+
 void endGame() {
     GameOverBell.ring(endGameBellRings);
     pachinkoState = e_GameOver;
@@ -91,7 +93,7 @@ void checkPockets() {
     LM.checkAndUpdate();
     LL.checkAndUpdate();
     RH.checkAndUpdate();
-    RM.checkAndUodate();
+    RM.checkAndUpdate();
     RL.checkAndUpdate();
 }
 
@@ -117,25 +119,36 @@ void setupMain() {
     switchToIdleMode();
 }
 
+int scoreMultiplier() {
+    if (pachinkoState !=e_GameInProgress)
+        return 1;
+    int secondsRemaining = (gameEnds - now)/1000;
+    if (secondsRemaining < 10)
+        return 3;
+    if (secondsRemaining < 30)
+        return 2;
+    return 1;
+    
+}
+
 void loopMain() {
     now = millis();
+    checkPockets();
+    int secondsRemaining = (gameEnds - now)/1000;
     
     switch(pachinkoState) {
         case e_Boot:
         case e_Attract:
-            checkPockets();
             break;
             
         case  e_GameInProgress:
-            int timeRemaining = (gamesEnds - now)/1000;
-            if (timeRemaining < 0) timeRemaining=0;
-            timeDisplay.setValue(timeRemaining);
+            if (secondsRemaining < 0) secondsRemaining=0;
+            timeDisplay.setValue(secondsRemaining);
             
-             timeDisplay.setValue(gameDuration);
+            timeDisplay.setValue(gameDuration);
             if (now > gameEnds)
                 endGame();
-            else
-                checkPockets();
+            
             break;
             
         case e_GameOver:

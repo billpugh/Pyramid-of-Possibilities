@@ -17,6 +17,7 @@ class RNDigit {
     RNDigit(OctoWS2811 & lights, int firstPixel);
     RNDigit(OctoWS2811 & lights, int firstPixel, int numPixels);
     
+    int nextPixel();
     void setDigit(int digit);
     void setColor(int rgb);
     void clear();

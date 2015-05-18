@@ -47,15 +47,18 @@ void RNDigit::setColor(int rgb) {
     this->rgb = rgb;
 }
 
+int RNDigit::nextPixel() {
+    return firstPixel+numPixels;
+}
 
 void RNDigit::clear() {
-    for(int i = firstPixel; i < firstPixel+numPixels; i++)
+    for(int i = firstPixel; i < nextPixel(); i++)
         lights.setPixel(i, 0);
 
         
 }
 void RNDigit:: setDigit(int d) {
-    for(int i = firstPixel; i < firstPixel+numPixels; i++)
+    for(int i = firstPixel; i < nextPixel(); i++)
         if (digitPixels[d][i])
             lights.setPixel(i, rgb);
         else

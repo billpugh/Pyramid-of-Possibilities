@@ -1,6 +1,5 @@
 //
 //  Pocket.cpp
-//  PachinkoTestbed
 //
 //  Created by Bill on 5/10/15.
 //
@@ -51,7 +50,7 @@ int Pocket::getLED(int strip, int pos) {
     return offsets[strip+2]+pos;
 }
 
-void Pocket::setColor(int rgb) {
+void Pocket::setColorAll(int rgb) {
     for(int i = 0; i < LEDS_PER_POCKET; i++)
         lights.setPixel(i, rgb);
 }
@@ -64,9 +63,13 @@ void Pocket::setColor(int strip, int pos, int rgb) {
 
 
 void Pocket::gameOver() {
-    setColor(0);
+    setColorAll(0);
 }
 bool Pocket::checkAndUpdate() {
+    if (pachinkoState == e_GameOver) {
+        gameOver();
+        return false;
+    }
     bool scoreDetected = checkSensor();
     if (scoreDetected) {
         lastTimeScored = millis();

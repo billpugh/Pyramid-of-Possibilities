@@ -29,6 +29,8 @@ void setupMain();
 
 void loopMain();
 
+int scoreMultiplier();
+
 
 void scorePoints(int score);
 
