@@ -1,5 +1,7 @@
-#include <Wire.h>
 #include "Adafruit_MCP23017.h"
+#include "OctoWS2811.h"
+#include <i2c_t3.h>
+
 
 Adafruit_MCP23017 mcp;
 
@@ -16,8 +18,22 @@ Adafruit_MCP23017 mcp;
 // Input #0 is on pin 21 so connect a button or switch from there to groun
 
 void setup() {
-   mcp.begin();      // use default address 0
-
+  pinMode(13, OUTPUT);
+  digitalWrite(13, LOW);
+  delay(1000);
+  digitalWrite(13, HIGH);
+  delay(5000);
+  digitalWrite(13, LOW);
+  Serial.begin(9600);
+  Serial.println("Hello");
+  mcp.begin();      // use default address 0
+  Serial.println("have begun");
+  for (int i = 0; i <= 0x1a; i++) {
+    Serial.print(i);
+    Serial.print("  ");
+    Serial.println( mcp.readRegister(i));
+  }
+  Serial.println("");
   mcp.pinMode(0, INPUT);
   mcp.pullUp(0, HIGH);  // turn on a 100K pullup internally
 

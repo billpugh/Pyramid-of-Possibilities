@@ -11,12 +11,12 @@
  BSD license, all text above must be included in any redistribution
  ****************************************************/
 
-#include <Wire.h>
+
 #ifdef __AVR__
 #include <avr/pgmspace.h>
 #endif
 #include "Adafruit_MCP23017.h"
-
+#include <i2c_t3.h>
 #if ARDUINO >= 100
 #include "Arduino.h"
 #else

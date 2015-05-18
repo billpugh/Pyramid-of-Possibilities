@@ -14,6 +14,10 @@
 #ifndef _Adafruit_MCP23017_H_
 #define _Adafruit_MCP23017_H_
 
+#include <inttypes.h>
+#include <stdio.h> // for size_t
+#include "Arduino.h"
+
 // Don't forget the Wire library
 class Adafruit_MCP23017 {
 public:
@@ -34,7 +38,7 @@ public:
   uint8_t getLastInterruptPin();
   uint8_t getLastInterruptPinValue();
 
- private:
+ public:
   uint8_t i2caddr;
 
   uint8_t bitForPin(uint8_t pin);
