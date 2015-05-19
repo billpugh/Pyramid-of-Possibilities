@@ -35,11 +35,11 @@ int digitPixels[10][41] = {// 0
     {1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1}};
 
 
-RNDigit::RNDigit(OctoWS2811 & lights, int firstPixel) : lights(lights), firstPixel(firstPixel) , numPixels(MAX_PIXELS) {
+RNDigit::RNDigit(OctoWS2811 & lights, int firstPixel) : lights(lights), firstPixel(firstPixel) , skipPixels(0), numPixels(MAX_PIXELS) {
     rgb = 0x008000;
 }
 
-RNDigit::RNDigit(OctoWS2811 & lights, int firstPixel, int numPixels) : lights(lights), firstPixel(firstPixel), numPixels(numPixels) {
+RNDigit::RNDigit(OctoWS2811 & lights, int firstPixel, int skipPixels, int numPixels) : lights(lights), firstPixel(firstPixel), skipPixels(skipPixels), numPixels(numPixels) {
     rgb = 0x008000;
 }
 
@@ -59,7 +59,7 @@ void RNDigit::clear() {
 }
 void RNDigit:: setDigit(int d) {
     for(int i = firstPixel; i < nextPixel(); i++)
-        if (digitPixels[d][i])
+        if (digitPixels[d][i+skipPixels])
             lights.setPixel(i, rgb);
         else
             lights.setPixel(i, 0);

@@ -17,6 +17,7 @@ class Pocket {
 public:
     Pocket(OctoWS2811 & lights, int firstPixel, Adafruit_MCP23017 & io, int sensor);
     
+    void begin();
     /** Return true if score detected */
     bool checkAndUpdate();
     

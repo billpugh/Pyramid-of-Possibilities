@@ -46,11 +46,10 @@ const int config = WS2811_GRB | WS2811_800kHz;
 OctoWS2811 leds(LEDsPerStrip, displayMemory, drawingMemory, config);
 
 
-RNDigit time0(leds, 0, 13);
+RNDigit time0(leds, STRIP_4, 5,  13);
 RNDigit time1(leds, time0.nextPixel());
 RNDigit time2(leds, time1.nextPixel());
 RNNumberDisplay timeDisplay(time0, time1, time2);
-
 
 RNDigit score0(leds, time2.nextPixel());
 RNDigit score1(leds, score0.nextPixel());
@@ -68,8 +67,11 @@ Pocket  RM(leds, STRIP_1+1*Pocket::LEDS_PER_POCKET, io, 4);
 Pocket  RL(leds, STRIP_1+0*Pocket::LEDS_PER_POCKET, io, 5);
 
 
-Bell GameOverBell(io, 10, endGameBellOnPeriod, endGameBellOffPeriod);
-Bell scoreBell(io, 11, 100, 100);
+Bell GameOverBell(io, 11, endGameBellOnPeriod, endGameBellOffPeriod);
+Bell scoreBell(io, 10, 100, 100);
+
+// StripLighting leftStrip(STRIP_2, 120);
+// StripLighting rightStrip(STRIP_3, 120);
 
 uint32_t gameStarted;
 uint32_t gameEnds;
@@ -79,6 +81,7 @@ uint16_t score;
 
 void switchToIdleMode() {
     score = 0;
+    pachinkoState = e_Attract;
     timeDisplay.setValue(gameDuration);
     scoreDisplay.setValue(0);
 }
@@ -106,6 +109,7 @@ void scorePoints(int points) {
         pachinkoState = e_GameInProgress;
         gameStarted = now;
         gameEnds = now+endGameDuration;
+        GameOverBell.ring();
         score = 0;
     }
     score += points;
@@ -114,9 +118,43 @@ void scorePoints(int points) {
 }
 
 void setupMain() {
+    digitalWrite(13, LOW);
+    delay(100);
+    digitalWrite(13, HIGH);
+    delay(100);
+    digitalWrite(13, LOW);
+    Serial.begin(9600);
+    Serial.println("Hello");
     io.begin();
     leds.begin();
+    LH.begin();
+    LM.begin();
+    LL.begin();
+    RH.begin();
+    RM.begin();
+    RL.begin();
+    GameOverBell.begin();
+    scoreBell.begin();
+    // leftStrip.fill();
+    // rightStrip.fill();
+    scoreDisplay.setValue(0);
+    timeDisplay.setValue(0);
     switchToIdleMode();
+    Serial.println("Setup complete");
+    GameOverBell.ring(4);
+    for(int i = 0; i < 1000; i++) {
+      GameOverBell.update();
+      delay(10);
+    }
+    Serial.println("Bell rung");
+    for(int i = 0; i < 10; i++) {
+      time1.setDigit(i);
+            leds.show();
+            Serial.println(i);
+      delay(500);
+    }
+  
+    
 }
 
 int scoreMultiplier() {
@@ -131,9 +169,11 @@ int scoreMultiplier() {
     
 }
 
-void loopMain() {
+void loopMain0() {
     now = millis();
     checkPockets();
+    // leftStrip.rotate();
+    // rightStrip.rotate();
     int secondsRemaining = (gameEnds - now)/1000;
     
     switch(pachinkoState) {
@@ -156,5 +196,9 @@ void loopMain() {
                 switchToIdleMode();
             break;
     }
+    GameOverBell.update();
+    scoreBell.update();
+    leds.show();
+    delay(20);
 }
 

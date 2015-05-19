@@ -6,6 +6,7 @@
 //
 
 
+#include "Arduino.h"
 #include <stdlib.h>
 #include "Pocket.h"
 #include "PachinkoMain.h"
@@ -22,7 +23,8 @@ bool Pocket::checkSensor() {
         // too soon, not going to change anything
         return false;
     }
-    bool sensorState = false;
+    bool sensorState =  io.digitalRead(sensor);
+
     bool change = sensorState == state;
     if (change) {
         state =  sensorState;
@@ -40,6 +42,12 @@ bool Pocket::checkSensor() {
 // positions are numbered 0..6
 
 static int offsets[] = {0, 5, 11, 18, 24};
+
+
+void Pocket::begin() {
+    io.pinMode(sensor, INPUT);
+    io.pullUp(sensor, INPUT_PULLUP);
+}
 
 int Pocket::getLED(int strip, int pos) {
     if (strip < -2 || strip > 2)
@@ -70,9 +78,13 @@ bool Pocket::checkAndUpdate() {
         gameOver();
         return false;
     }
+    unsigned long now = millis();
+    if (lastTimeScored + 1000 > now)
+        setColorAll(0x00ff00);
     bool scoreDetected = checkSensor();
     if (scoreDetected) {
-        lastTimeScored = millis();
+        lastTimeScored = now;
+        Serial.println("Score detected");
         scorePoints(1);
     }
     return scoreDetected;

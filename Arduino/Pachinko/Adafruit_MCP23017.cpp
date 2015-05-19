@@ -107,7 +107,8 @@ void Adafruit_MCP23017::begin(uint8_t addr) {
 	}
 	i2caddr = addr;
 
-	Wire.begin();
+	//Wire.begin();
+        Wire.begin(I2C_MASTER, 0, I2C_PINS_18_19, I2C_PULLUP_INT, I2C_RATE_100);
 
 	// set defaults!
 	// all inputs on port A and B

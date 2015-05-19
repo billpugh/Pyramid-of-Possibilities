@@ -15,7 +15,7 @@
 class RNDigit {
     public:
     RNDigit(OctoWS2811 & lights, int firstPixel);
-    RNDigit(OctoWS2811 & lights, int firstPixel, int numPixels);
+    RNDigit(OctoWS2811 & lights, int firstPixel, int skipPixels, int numPixels);
     
     int nextPixel();
     void setDigit(int digit);
@@ -27,8 +27,9 @@ class RNDigit {
 private:
     OctoWS2811 & lights;
     const int firstPixel;
-public:
-        const int numPixels;
+    const int skipPixels;
+    const int numPixels;
+
 private:
     int rgb;
 };
