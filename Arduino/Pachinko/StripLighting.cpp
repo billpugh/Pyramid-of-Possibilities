@@ -15,8 +15,8 @@ StripLighting::StripLighting(OctoWS2811 & lights, int firstPixel, int numPixels)
 int randomColor() {
     CHSV hsv;
     hsv.h = random8();
-    hsv.s = 40;
-    hsv.v = 255;
+    hsv.s = 128;
+    hsv.v = 100;
     CRGB rgb;
     hsv2rgb_rainbow(hsv, rgb);
     return (rgb.r << 16 ) | (rgb.g << 8) | rgb.b;
@@ -25,12 +25,17 @@ int randomColor() {
 
 
 void StripLighting::fill() {
-    for(int i = 0; i < numPixels; i++)
-        lights.setPixel(firstPixel+i, randomColor());
+  int rgb =  randomColor();
+    for(int i = 0; i < numPixels; i++) {
+        lights.setPixel(firstPixel+i, rgb);
+        if ((random() & 0x3) == 0)
+          rgb = randomColor();
+    }
 }
 
 void StripLighting::rotate() {
     for(int i = 0; i < numPixels-1; i++)
         lights.setPixel(firstPixel+i, lights.getPixel(firstPixel+i+1));
+    if ((random() & 0x3) == 0)
     lights.setPixel(firstPixel+numPixels-1, randomColor());
 }

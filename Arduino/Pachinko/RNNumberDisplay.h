@@ -20,7 +20,7 @@ public:
     
     void setValue(int value);
     void setColor(int rgb);
-    
+    void clear();
 private:
     RNDigit *thousands,*hundreds,*tens, * units ;
     int rgb;

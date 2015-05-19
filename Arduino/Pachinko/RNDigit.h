@@ -20,6 +20,7 @@ class RNDigit {
     int nextPixel();
     void setDigit(int digit);
     void setColor(int rgb);
+    void test(int rgb);
     void clear();
     
     static const int MAX_PIXELS = 41;

@@ -18,9 +18,12 @@ public:
     Pocket(OctoWS2811 & lights, int firstPixel, Adafruit_MCP23017 & io, int sensor);
     
     void begin();
+    void startTest();
+    bool updateTest();
     /** Return true if score detected */
     bool checkAndUpdate();
-    
+    /** Return true if score detected */
+    bool checkSensor();
     void gameOver();
     
     static const int LEDS_PER_POCKET = 5+6+7+6+5;
@@ -33,18 +36,22 @@ private:
     Adafruit_MCP23017 & io;
     const int sensor;
     
+    
     // strips are numbered -2 ... +2
     // positions are numbered 0..6
     
     int getLED(int strip, int pos);
     void setColorAll(int rgb);
     void setColor(int strip, int pos, int rgb);
-    /** Return true if score detected */
-    bool checkSensor();
+
     
     unsigned long lastTimeChanged;
     long lastTimeScored;
     bool state;
+    public:
+    int rgb;
+    int strip;
+    int pos;
     
 };
 

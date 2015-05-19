@@ -52,17 +52,21 @@ int RNDigit::nextPixel() {
 }
 
 void RNDigit::clear() {
-    for(int i = firstPixel; i < nextPixel(); i++)
-        lights.setPixel(i, 0);
-
-        
+    for(int i = 0; i < numPixels; i++)
+        lights.setPixel(firstPixel+i, 0);
 }
+
+void RNDigit::test(int rgb) {
+    for(int i = 0; i < numPixels; i++)
+        lights.setPixel(firstPixel+i, rgb);
+}
+
 void RNDigit:: setDigit(int d) {
-    for(int i = firstPixel; i < nextPixel(); i++)
+    for(int i = 0; i < numPixels; i++)
         if (digitPixels[d][i+skipPixels])
-            lights.setPixel(i, rgb);
+            lights.setPixel(firstPixel+i, rgb);
         else
-            lights.setPixel(i, 0);
+            lights.setPixel(firstPixel+i, 0);
 }
 
 
