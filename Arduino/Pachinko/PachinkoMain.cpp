@@ -81,12 +81,12 @@ RNNumberDisplay scoreDisplay(score0, score1, score2, score3);
 
 Adafruit_MCP23017 io;
 
-Pocket  LH(leds, STRIP_1 + 0 * Pocket::LEDS_PER_POCKET, io, 0);
-Pocket  LM(leds, STRIP_1 + 1 * Pocket::LEDS_PER_POCKET, io, 1);
-Pocket  LL(leds, STRIP_1 + 2 * Pocket::LEDS_PER_POCKET, io, 2);
-Pocket  RH(leds, STRIP_0 + 0 * Pocket::LEDS_PER_POCKET, io, 3);
-Pocket  RM(leds, STRIP_0 + 1 * Pocket::LEDS_PER_POCKET, io, 4);
-Pocket  RL(leds, STRIP_0 + 2 * Pocket::LEDS_PER_POCKET, io, 5);
+Pocket  LH(leds, STRIP_1 + 0 * Pocket::LEDS_PER_POCKET, io, 0, 1);
+Pocket  LM(leds, STRIP_1 + 1 * Pocket::LEDS_PER_POCKET, io, 1, 2);
+Pocket  LL(leds, STRIP_1 + 2 * Pocket::LEDS_PER_POCKET, io, 2, 3);
+Pocket  RH(leds, STRIP_0 + 0 * Pocket::LEDS_PER_POCKET, io, 3, 1);
+Pocket  RM(leds, STRIP_0 + 1 * Pocket::LEDS_PER_POCKET, io, 4, 2);
+Pocket  RL(leds, STRIP_0 + 2 * Pocket::LEDS_PER_POCKET, io, 5, 3);
 
 
 Bell GameOverBell(io, 11, endGameBellOnPeriod, endGameBellOffPeriod);
@@ -154,7 +154,7 @@ void scorePoints(int points) {
         multiplier = 2;
     score += points * multiplier;
     scoreDisplay.setValue(score);
-    scoreBell.ring(points);
+    scoreBell.ring(1);
 }
 
 void setupMain() {

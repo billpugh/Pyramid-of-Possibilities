@@ -15,9 +15,11 @@
 
 class Pocket {
 public:
-    Pocket(OctoWS2811 & lights, int firstPixel, Adafruit_MCP23017 & io, int sensor);
+    Pocket(OctoWS2811 & lights, int firstPixel, Adafruit_MCP23017 & io, int sensor, int pointValue);
     
     void begin();
+    void shiftUp(int fill);
+    void shiftDown(int fill);
     void startTest();
     bool updateTest();
     /** Return true if score detected */
@@ -35,6 +37,7 @@ private:
     const int firstPixel;
     Adafruit_MCP23017 & io;
     const int sensor;
+    const int pointValue;
     
     
     // strips are numbered -2 ... +2
@@ -46,7 +49,8 @@ private:
 
     
     unsigned long lastTimeChanged;
-    long lastTimeScored;
+    unsigned long lastTimeScored;
+    unsigned long lastAnimationUpdate;
     bool state;
     public:
     int rgb;

@@ -10,8 +10,10 @@
 #include <stdlib.h>
 #include "Pocket.h"
 #include "PachinkoMain.h"
+#include "hsv2rgb.h"
 
-Pocket::Pocket(OctoWS2811 & lights, int firstPixel, Adafruit_MCP23017 &io,  int sensor) : lights(lights), firstPixel(firstPixel), io(io), sensor(sensor), lastTimeChanged(0), lastTimeScored(-5000) {
+Pocket::Pocket(OctoWS2811 & lights, int firstPixel, Adafruit_MCP23017 &io,  int sensor, int pointValue) : lights(lights), firstPixel(firstPixel), io(io), sensor(sensor), pointValue(pointValue),
+lastTimeChanged(0), lastTimeScored(0), lastAnimationUpdate(0), state(false) {
 
 };
 
@@ -55,9 +57,43 @@ bool Pocket::checkSensor() {
 static int offsets[] = {0, 5, 11, 18, 24};
 
 
+int randomPocketColor() {
+    CHSV hsv;
+    hsv.h = random8();
+    hsv.s = 200;
+    hsv.v = 200;
+    CRGB rgb;
+    hsv2rgb_rainbow(hsv, rgb);
+    return (rgb.r << 16 ) | (rgb.g << 8) | rgb.b;
+    
+}
+
+
+
 void Pocket::begin() {
   io.pinMode(sensor, INPUT);
   io.pullUp(sensor, INPUT_PULLUP);
+}
+
+int maxPos(int strip) {
+    return  6 - abs(strip);
+}
+void Pocket::shiftUp(int fill) {
+    for(int strip = -2; strip <= 2; strip++) {
+        for(int pos = maxPos(strip); pos > 1; pos--)
+            lights.setPixel(firstPixel+ getLED(strip,pos),
+                            lights.getPixel(firstPixel+ getLED(strip,pos-1)));
+        lights.setPixel(firstPixel+ getLED(strip,0), fill);
+    }
+   }
+void Pocket::shiftDown(int fill) {
+    for(int strip = -2; strip <= 2; strip++) {
+        int mPos = maxPos(strip);
+        for(int pos = 0; pos < mPos; pos++)
+            lights.setPixel(firstPixel+ getLED(strip,pos),
+                            lights.getPixel(firstPixel+ getLED(strip,pos+1)));
+        lights.setPixel(firstPixel+ getLED(strip,mPos), fill);
+    }
 }
 
 void Pocket::startTest() {
@@ -105,19 +141,48 @@ void Pocket::setColor(int strip, int pos, int rgb) {
 void Pocket::gameOver() {
   setColorAll(0);
 }
+
 bool Pocket::checkAndUpdate() {
-  if (pachinkoState == e_GameOver) {
-    gameOver();
-    return false;
-  }
-  unsigned long now = millis();
-  if (lastTimeScored + 1000 > now)
-    setColorAll(0x00ff00);
-  bool scoreDetected = checkSensor();
-  if (scoreDetected) {
-    lastTimeScored = now;
-    Serial.println("Score detected");
-    scorePoints(1);
-  }
-  return scoreDetected;
+    
+    unsigned long now = millis();
+    if (lastTimeScored + 1000 > now)
+        setColorAll(0x00ff00);
+    
+    if (pachinkoState == e_GameOver) {
+        // show game over lights
+        unsigned long seconds = now/1000;
+        if ((seconds & 1) == 0)
+            setColorAll(0);
+        else
+            setColorAll(0x808080);
+        
+        return false;
+    } else {
+        bool scoreDetected = checkSensor();
+        if (scoreDetected) {
+            lastTimeScored = now;
+            Serial.println("Score detected");
+            lastAnimationUpdate = now - 1000;
+            scorePoints(pointValue);
+        }
+        if (lastAnimationUpdate + 100 < now) {
+            if (lastTimeScored + 2000*pointValue > now) {
+                // show score animation
+                int rgb = randomPocketColor();
+                shiftUp(rgb);
+            } else {
+                // show attract animation
+                shiftDown(0x101010);
+                if ((random8() % 3) == 0) {
+                    int strip = random(5)-2;
+                    int pos = maxPos(strip);
+                    int rgb = randomPocketColor();
+                    lights.setPixel(firstPixel+ getLED(strip,pos), rgb);
+                }
+            }
+        }
+        
+        return scoreDetected;
+    }
+    
 }
