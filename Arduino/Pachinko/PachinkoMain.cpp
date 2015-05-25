@@ -154,7 +154,8 @@ void scorePoints(int points) {
         multiplier = 2;
     score += points * multiplier;
     scoreDisplay.setValue(score);
-    scoreBell.ring(1);
+    scoreBell.ring(points * multiplier);
+    GameOverBell.ring(1);
 }
 
 void setupMain() {
@@ -210,32 +211,7 @@ void setupMain() {
     }
     
     
-    if (0) {
-        LH.gameOver();
-        LM.gameOver();
-        LL.gameOver();
-        leds.show();
-        delay(1000);
-        LH.startTest();
-        LM.startTest();
-        LL.startTest();
-        Serial.print(LH.rgb);
-        Serial.print(", ");
-        Serial.print(LH.strip);
-        Serial.print(", ");
-        Serial.println(LH.pos);
-        leds.show();
-        delay(100);
-        while (LH.updateTest()) {
-            LM.updateTest();
-            LL.updateTest();
-            Serial.print(LH.strip);
-            Serial.print(", ");
-            Serial.println(LH.pos);
-            leds.show();
-            delay(100);
-        }
-    }
+ 
     switchToIdleMode();
     
     Serial.println("Game starting");
