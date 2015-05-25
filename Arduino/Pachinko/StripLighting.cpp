@@ -15,7 +15,7 @@ int randomColor() {
     CHSV hsv;
     hsv.h = random8();
     hsv.s = 128;
-    hsv.v = 100;
+    hsv.v = 250;
     CRGB rgb;
     hsv2rgb_rainbow(hsv, rgb);
     return (rgb.r << 16 ) | (rgb.g << 8) | rgb.b;
