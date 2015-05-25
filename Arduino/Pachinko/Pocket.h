@@ -20,8 +20,7 @@ public:
     void begin();
     void shiftUp(int fill);
     void shiftDown(int fill);
-    void startTest();
-    bool updateTest();
+
     /** Return true if score detected */
     bool checkAndUpdate();
     /** Return true if score detected */

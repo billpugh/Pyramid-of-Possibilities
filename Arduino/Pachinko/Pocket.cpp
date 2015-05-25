@@ -96,26 +96,6 @@ void Pocket::shiftDown(int fill) {
     }
 }
 
-void Pocket::startTest() {
-  setColorAll(0);
-  rgb = random() & 0xffffff;
-  rgb |= 0x101010;
-  strip = -2;
-  pos = 6 - abs(strip);
-  setColor(strip, pos, rgb);
-}
-
-bool Pocket::updateTest() {
-  setColorAll(0);
-  pos--;
-  if (pos < 0) {
-    strip++;
-    pos = 6 - abs(strip);
-  }
-  setColor(strip, pos, rgb);
-
-  return strip <= 2;
-}
 
 int Pocket::getLED(int strip, int pos) {
   if (strip < -2 || strip > 2)
@@ -145,8 +125,6 @@ void Pocket::gameOver() {
 bool Pocket::checkAndUpdate() {
     
     unsigned long now = millis();
-    if (lastTimeScored + 1000 > now)
-        setColorAll(0x00ff00);
     
     if (pachinkoState == e_GameOver) {
         // show game over lights
@@ -166,6 +144,7 @@ bool Pocket::checkAndUpdate() {
             scorePoints(pointValue);
         }
         if (lastAnimationUpdate + 100 < now) {
+            lastAnimationUpdate = now;
             if (lastTimeScored + 2000*pointValue > now) {
                 // show score animation
                 int rgb = randomPocketColor();
