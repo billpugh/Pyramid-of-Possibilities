@@ -15,6 +15,7 @@
 #include "RNDigit.h"
 #include "RNNumberDisplay.h"
 #include "StripLighting.h"
+#include <EEPROM.h>
 
 
 //OctoWS2811 allocation:
@@ -76,8 +77,7 @@ RNNumberDisplay timeDisplay(time0, time1, time2);
 RNDigit score0(leds, time2.nextPixel());
 RNDigit score1(leds, score0.nextPixel());
 RNDigit score2(leds, score1.nextPixel());
-RNDigit score3(leds, score2.nextPixel());
-RNNumberDisplay scoreDisplay(score0, score1, score2, score3);
+RNNumberDisplay scoreDisplay(score0, score1, score2);
 
 Adafruit_MCP23017 io;
 
@@ -95,6 +95,9 @@ Bell scoreBell(io, 10, 100, 100);
 StripLighting leftStrip(leds, STRIP_2, 120);
 StripLighting rightStrip(leds, STRIP_3, 120);
 
+uint16_t numGames;
+uint16_t sumAllScores;
+uint16_t maxAllScores;
 uint32_t gameStarted;
 uint32_t gameEnds;
 uint32_t now;
@@ -102,6 +105,7 @@ uint16_t score;
 
 
 void switchToIdleMode() {
+    Serial.println("Switching to idle mode");
     score = 0;
     pachinkoState = e_Attract;
     GameOverBell.ring(1);
@@ -111,16 +115,32 @@ void switchToIdleMode() {
     scoreDisplay.setColor(0x00ff00);
     scoreDisplay.setValue(0);
     timeDisplay.setValue(gameDuration);
-    
+    LH.gameOver();
+    LM.gameOver();
+    LL.gameOver();
+    RH.gameOver();
+    RM.gameOver();
+    RL.gameOver();
 }
 
 void endGame() {
+    Serial.println("Game Over");
     GameOverBell.ring(endGameBellRings);
     pachinkoState = e_GameOver;
     timeDisplay.setColor(0xffffff);
     scoreDisplay.setColor(0xffffff);
     timeDisplay.setValue(0);
     scoreDisplay.setValue(score);
+    numGames++;
+    sumAllScores += score;
+    
+    EEPROM.put(12,numGames);
+    EEPROM.put(14,sumAllScores);
+    if (score > maxAllScores) {
+        maxAllScores = score;
+        EEPROM.put(16,maxAllScores);
+    }
+    
     
 }
 
@@ -210,11 +230,17 @@ void setupMain() {
         }
     }
     
-    
- 
+    EEPROM.get(12,numGames);
+    EEPROM.get(14,sumAllScores);
+    EEPROM.get(16,maxAllScores);
+    Serial.print("num games: ");
+    Serial.println(numGames);
+    Serial.print("sum all scores: ");
+    Serial.println(sumAllScores);
+    Serial.print("max all scores: ");
+    Serial.println(maxAllScores);
     switchToIdleMode();
     
-    Serial.println("Game starting");
 }
 
 int scoreMultiplier() {
