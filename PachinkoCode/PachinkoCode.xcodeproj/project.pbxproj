@@ -6,10 +6,17 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXFileReference section */
+		169F15141AE961C900A19826 /* PachinkoMain.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PachinkoMain.cpp; path = ../Arduino/Pachinko/PachinkoMain.cpp; sourceTree = "<group>"; };
+		169F15151AE961C900A19826 /* PachinkoMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PachinkoMain.h; path = ../Arduino/Pachinko/PachinkoMain.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
 /* Begin PBXGroup section */
 		1608DE551AE54B7500934829 = {
 			isa = PBXGroup;
 			children = (
+				169F15141AE961C900A19826 /* PachinkoMain.cpp */,
+				169F15151AE961C900A19826 /* PachinkoMain.h */,
 			);
 			sourceTree = "<group>";
 		};
