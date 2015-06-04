@@ -1,7 +1,7 @@
 
 #include "Accelerometer.h"
-#include "i2c_t3.h"
 #include "Arduino.h"
+#include <Wire.h>
 #include <stdlib.h>
 
 // The SparkFun breakout board defaults to 1, set to 0 if SA0 jumper on the bottom of the board is set
