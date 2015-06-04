@@ -12,6 +12,7 @@
 		16744C401B095CA800458338 /* RNDigit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16744C3D1B095CA800458338 /* RNDigit.cpp */; };
 		16744C411B095CA800458338 /* RNNumberDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16744C3E1B095CA800458338 /* RNNumberDisplay.cpp */; };
 		169AD67F1B092425007AED7F /* Bell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 169AD67D1B092425007AED7F /* Bell.cpp */; };
+		16C17F3E1B0BA230008EE118 /* StripLighting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16C17F3C1B0BA230008EE118 /* StripLighting.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,6 +45,9 @@
 		16744C421B095FDA00458338 /* hsv2rgb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hsv2rgb.h; path = ../Arduino/libraries/FastLED/hsv2rgb.h; sourceTree = "<group>"; };
 		169AD67D1B092425007AED7F /* Bell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Bell.cpp; path = ../Arduino/Pachinko/Bell.cpp; sourceTree = "<group>"; };
 		169AD67E1B092425007AED7F /* Bell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bell.h; path = ../Arduino/Pachinko/Bell.h; sourceTree = "<group>"; };
+		16C17F3C1B0BA230008EE118 /* StripLighting.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StripLighting.cpp; path = ../Arduino/Pachinko/StripLighting.cpp; sourceTree = "<group>"; };
+		16C17F3D1B0BA230008EE118 /* StripLighting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StripLighting.h; path = ../Arduino/Pachinko/StripLighting.h; sourceTree = "<group>"; };
+		16E313D11B19E8D100911C15 /* EEPROM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EEPROM.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,8 @@
 			isa = PBXGroup;
 			children = (
 				16477E8D1AFFBC4900BC3FF6 /* PachinkoMain.cpp */,
+				16C17F3C1B0BA230008EE118 /* StripLighting.cpp */,
+				16C17F3D1B0BA230008EE118 /* StripLighting.h */,
 				16477E8E1AFFBC4900BC3FF6 /* PachinkoMain.h */,
 				16477E9D1AFFC0E600BC3FF6 /* Pocket.cpp */,
 				16477E9E1AFFC0E600BC3FF6 /* Pocket.h */,
@@ -100,6 +106,7 @@
 				16477E901AFFBC4900BC3FF6 /* Adafruit_MCP23017.h */,
 				16477EA01AFFD63500BC3FF6 /* OctoWS2811.h */,
 				16477EA11AFFD8EE00BC3FF6 /* Arduino.h */,
+				16E313D11B19E8D100911C15 /* EEPROM.h */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -159,6 +166,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16C17F3E1B0BA230008EE118 /* StripLighting.cpp in Sources */,
 				169AD67F1B092425007AED7F /* Bell.cpp in Sources */,
 				16744C401B095CA800458338 /* RNDigit.cpp in Sources */,
 				16477E991AFFBFBE00BC3FF6 /* main.cpp in Sources */,
