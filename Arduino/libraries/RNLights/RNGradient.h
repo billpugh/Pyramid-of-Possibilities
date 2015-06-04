@@ -48,8 +48,10 @@ public:
     uint32_t getValue(int32_t position);
     const bool isHSV;
     const RNGradientKind kind;
-    const uint16_t s1, e1;
-    const uint8_t s2, s3,  e2, e3;
+    const uint16_t s1;
+    const uint8_t s2, s3;
+    const uint16_t e1;
+    const uint8_t e2, e3;
     
 private:
 
