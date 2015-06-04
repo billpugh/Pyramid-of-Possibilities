@@ -18,9 +18,12 @@
  void delay(uint16_t millis);
  void digitalWrite(uint8_t ONBOARD_LED_PIN, bool LOW);
 
+#define INPUT 0
 #define OUTPUT 1
+#define INPUT_PULLUP 2
 #define HIGH 1
 #define LOW 0
+
 
 #ifndef max
 #define max(x,y) ((x)>(y)?(x):(y))
@@ -28,7 +31,8 @@
 #endif
 
 
- int random(int max);
+int random(int max);
+
 
 #define HEX 16
 

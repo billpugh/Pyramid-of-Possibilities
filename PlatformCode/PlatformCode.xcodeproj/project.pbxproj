@@ -510,7 +510,7 @@
 		1644A111198D34AF00FBFF63 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = RN;
 			};
 			buildConfigurationList = 1644A114198D34AF00FBFF63 /* Build configuration list for PBXProject "PlatformCode" */;
@@ -659,6 +659,7 @@
 		1644A11E198D34AF00FBFF63 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -667,6 +668,7 @@
 		1644A11F198D34AF00FBFF63 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

@@ -10,29 +10,29 @@
 	<string>PlatformCode</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>FE8E7C23-5ACB-4E9D-8C35-7E011033D80C</key>
+		<key>A9F25A84CEFDA6D3526262A25438A9024EB876C2</key>
 		<string>https://github.com/billpugh/Pyramid-of-Possibilities.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>PlatformCode/PlatformCode.xcodeproj/project.xcworkspace</string>
+	<string>PlatformCode/PlatformCode.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>FE8E7C23-5ACB-4E9D-8C35-7E011033D80C</key>
+		<key>A9F25A84CEFDA6D3526262A25438A9024EB876C2</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/billpugh/Pyramid-of-Possibilities.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>FE8E7C23-5ACB-4E9D-8C35-7E011033D80C</string>
+	<string>A9F25A84CEFDA6D3526262A25438A9024EB876C2</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>FE8E7C23-5ACB-4E9D-8C35-7E011033D80C</string>
+			<string>A9F25A84CEFDA6D3526262A25438A9024EB876C2</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Pyramid-of-Possibilities</string>
 		</dict>
