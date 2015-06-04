@@ -6,6 +6,7 @@
 //
 
 #include "StripLighting.h"
+#include <stdlib.h>
 
 
 StripLighting::StripLighting(OctoWS2811 & lights, int firstPixel, int numPixels) : lights(lights), firstPixel(firstPixel), numPixels(numPixels) {};
