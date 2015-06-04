@@ -50,6 +50,7 @@ private:
     unsigned long lastTimeChanged;
     unsigned long lastTimeScored;
     unsigned long lastAnimationUpdate;
+    uint16_t pointsScoredThisGame;
     bool state;
     public:
     int rgb;
