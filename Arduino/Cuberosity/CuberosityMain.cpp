@@ -8,6 +8,7 @@
 
 #include "CuberosityMain.h"
 #include <stdio.h>
+#include "Arduino.h"
 #include "Animation.h"
 #include "Animations.h"
 
@@ -18,11 +19,19 @@ const int config = WS2811_GRB | WS2811_800kHz;
 
 OctoWS2811 leds(LEDsPerStrip, displayMemory, drawingMemory, config);
 
+const int animationDuration = 10000;
+
+unsigned long switchAnimationAt;
 void setupMain() {
     Serial.begin(9600);
     leds.begin();
     leds.show();
-    delay(5000);
+    delay(2000);
+    switchAnimationAt = millis() + animationDuration;
+    Serial.print("Now ");
+    Serial.println(millis());
+    Serial.print("switch at ");
+    Serial.println(switchAnimationAt);
     
 }
 AnimationEnum program = firstAnimation();
@@ -30,6 +39,7 @@ AnimationEnum program = firstAnimation();
 Animation *currentAnimation = getAnimation(program);
 
 void iterateAll() {
+    currentAnimation->prepare();
     for(int side = 0; side < 3; side++) {
         int stripStart =side*2*LEDsPerStrip;
         for(int i = 0; i < horizontalLength; i++)
@@ -49,7 +59,15 @@ void iterateAll() {
     }
 }
 
+
 void loopMain() {
+    if (millis() > switchAnimationAt) {
+        Serial.print("Changing animation ");
+        delete currentAnimation;
+        program = nextAnimation(program);
+        currentAnimation = getAnimation(program);
+        switchAnimationAt = millis() + animationDuration;
+    }
     iterateAll();
     leds.show();
     

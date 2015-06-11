@@ -11,15 +11,13 @@
 
 #include <stdio.h>
 
-
-
 class Animation {
 
-    virtual ~Animation() {};
     public:
+    Animation() {};
     virtual void prepare() {};
     virtual void setPixel(int pos, int side, int height, int horizontalOffset) {};
 
-}
+};
 
 #endif /* defined(__Cuberosity__Animation__) */

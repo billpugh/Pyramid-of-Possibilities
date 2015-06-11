@@ -10,12 +10,15 @@
 #define __Cuberosity__TimeRainbowGradient__
 
 #include <stdio.h>
+#include "easing.h"
 #include "easingSelect.h"
+#include "Animation.h"
 
-class TimeRainbowGradient : Animation {
+class TimeRainbowGradient : public Animation {
         public:
-    virtual void prepare() {};
-    virtual void setPixel(int pos, int side, int height, int horizontalOffset) {};
+        TimeRainbowGradient() {};
+    virtual void prepare();
+    virtual void setPixel(int pos, int side, int height, int horizontalOffset);
 private:
     int color;
 

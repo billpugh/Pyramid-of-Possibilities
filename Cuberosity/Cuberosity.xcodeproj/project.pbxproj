@@ -6,117 +6,323 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		16F1AD821B29D6FB00984690 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16F1AD811B29D6FB00984690 /* main.cpp */; };
+		16F1AD931B29D72C00984690 /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16F1AD881B29D72C00984690 /* Animation.cpp */; };
+		16F1AD941B29D72C00984690 /* CuberosityMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16F1AD891B29D72C00984690 /* CuberosityMain.cpp */; };
+		16F1AD951B29D72C00984690 /* RGBHeartBeat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16F1AD8A1B29D72C00984690 /* RGBHeartBeat.cpp */; };
+		16F1AD961B29D72C00984690 /* TimeRainbowGradient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16F1AD8B1B29D72C00984690 /* TimeRainbowGradient.cpp */; };
+		16F1AD971B29D72C00984690 /* Animations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16F1AD8F1B29D72C00984690 /* Animations.cpp */; };
+		16F1AD9C1B29D77900984690 /* easing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16F1AD981B29D77900984690 /* easing.cpp */; };
+		16F1AD9D1B29D77900984690 /* easingSelect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16F1AD9A1B29D77900984690 /* easingSelect.cpp */; };
+		16F1ADA11B29D7A100984690 /* RNGradient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16F1AD9F1B29D7A100984690 /* RNGradient.cpp */; };
+		16F1ADA51B29D7C300984690 /* hsv2rgb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16F1ADA21B29D7C300984690 /* hsv2rgb.cpp */; };
+		16F1ADAD1B2A08EB00984690 /* RadialGradient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16F1ADAB1B2A08EB00984690 /* RadialGradient.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		16F1AD7C1B29D6FB00984690 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		1689901D1B2923CC005C4A46 /* Animation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Animation.h; path = ../Arduino/Cuberosity/Animation.h; sourceTree = "<group>"; };
-		1689901E1B2923CC005C4A46 /* Animation.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Animation.cpp; path = ../Arduino/Cuberosity/Animation.cpp; sourceTree = "<group>"; };
-		1689901F1B2923EA005C4A46 /* Animations.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Animations.cpp; path = ../Arduino/Cuberosity/Animations.cpp; sourceTree = "<group>"; };
-		168990201B2923EA005C4A46 /* Animations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Animations.h; path = ../Arduino/Cuberosity/Animations.h; sourceTree = "<group>"; };
-		168990211B2924CB005C4A46 /* TimeRainbowGradient.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = TimeRainbowGradient.cpp; path = ../Arduino/Cuberosity/TimeRainbowGradient.cpp; sourceTree = "<group>"; };
-		168990221B2924CB005C4A46 /* TimeRainbowGradient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TimeRainbowGradient.h; path = ../Arduino/Cuberosity/TimeRainbowGradient.h; sourceTree = "<group>"; };
-		168990231B292601005C4A46 /* Scrapbook.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Scrapbook.cpp; sourceTree = "<group>"; };
-		168990241B292601005C4A46 /* Scrapbook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Scrapbook.h; sourceTree = "<group>"; };
-		168990251B29276E005C4A46 /* RGBHeartBeat.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = RGBHeartBeat.cpp; path = ../Arduino/Cuberosity/RGBHeartBeat.cpp; sourceTree = "<group>"; };
-		168990261B29276E005C4A46 /* RGBHeartBeat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RGBHeartBeat.h; path = ../Arduino/Cuberosity/RGBHeartBeat.h; sourceTree = "<group>"; };
-		16D9F5771B20862000D28221 /* CuberosityMain.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CuberosityMain.cpp; path = ../Arduino/Cuberosity/CuberosityMain.cpp; sourceTree = "<group>"; };
-		16D9F5781B20862000D28221 /* CuberosityMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CuberosityMain.h; path = ../Arduino/Cuberosity/CuberosityMain.h; sourceTree = "<group>"; };
-		16D9F5791B20866D00D28221 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../Arduino/Cuberosity/Constants.h; sourceTree = "<group>"; };
-		16D9F57A1B20876F00D28221 /* easing.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = easing.cpp; path = ../Arduino/libraries/AHEasing/easing.cpp; sourceTree = "<group>"; };
-		16D9F57B1B20876F00D28221 /* easing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = easing.h; path = ../Arduino/libraries/AHEasing/easing.h; sourceTree = "<group>"; };
-		16D9F57C1B20876F00D28221 /* easingSelect.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = easingSelect.cpp; path = ../Arduino/libraries/AHEasing/easingSelect.cpp; sourceTree = "<group>"; };
-		16D9F57D1B20876F00D28221 /* easingSelect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = easingSelect.h; path = ../Arduino/libraries/AHEasing/easingSelect.h; sourceTree = "<group>"; };
-		16D9F57E1B20879900D28221 /* hsv2rgb.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = hsv2rgb.cpp; path = ../Arduino/libraries/FastLED/hsv2rgb.cpp; sourceTree = "<group>"; };
-		16D9F57F1B20879900D28221 /* hsv2rgb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = hsv2rgb.h; path = ../Arduino/libraries/FastLED/hsv2rgb.h; sourceTree = "<group>"; };
-		16D9F5801B20879900D28221 /* pixeltypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = pixeltypes.h; path = ../Arduino/libraries/FastLED/pixeltypes.h; sourceTree = "<group>"; };
-		16D9F5821B21E6F800D28221 /* RNGradient.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = RNGradient.cpp; path = ../Arduino/libraries/RNGradient/RNGradient.cpp; sourceTree = "<group>"; };
-		16D9F5831B21E6F800D28221 /* RNGradient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RNGradient.h; path = ../Arduino/libraries/RNGradient/RNGradient.h; sourceTree = "<group>"; };
+		16F1AD7E1B29D6FB00984690 /* Cuberosity */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Cuberosity; sourceTree = BUILT_PRODUCTS_DIR; };
+		16F1AD811B29D6FB00984690 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		16F1AD881B29D72C00984690 /* Animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Animation.cpp; path = ../../Arduino/Cuberosity/Animation.cpp; sourceTree = "<group>"; };
+		16F1AD891B29D72C00984690 /* CuberosityMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CuberosityMain.cpp; path = ../../Arduino/Cuberosity/CuberosityMain.cpp; sourceTree = "<group>"; };
+		16F1AD8A1B29D72C00984690 /* RGBHeartBeat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RGBHeartBeat.cpp; path = ../../Arduino/Cuberosity/RGBHeartBeat.cpp; sourceTree = "<group>"; };
+		16F1AD8B1B29D72C00984690 /* TimeRainbowGradient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TimeRainbowGradient.cpp; path = ../../Arduino/Cuberosity/TimeRainbowGradient.cpp; sourceTree = "<group>"; };
+		16F1AD8C1B29D72C00984690 /* Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Animation.h; path = ../../Arduino/Cuberosity/Animation.h; sourceTree = "<group>"; };
+		16F1AD8D1B29D72C00984690 /* TimeRainbowGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimeRainbowGradient.h; path = ../../Arduino/Cuberosity/TimeRainbowGradient.h; sourceTree = "<group>"; };
+		16F1AD8E1B29D72C00984690 /* Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Animations.h; path = ../../Arduino/Cuberosity/Animations.h; sourceTree = "<group>"; };
+		16F1AD8F1B29D72C00984690 /* Animations.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Animations.cpp; path = ../../Arduino/Cuberosity/Animations.cpp; sourceTree = "<group>"; };
+		16F1AD901B29D72C00984690 /* RGBHeartBeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RGBHeartBeat.h; path = ../../Arduino/Cuberosity/RGBHeartBeat.h; sourceTree = "<group>"; };
+		16F1AD911B29D72C00984690 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../../Arduino/Cuberosity/Constants.h; sourceTree = "<group>"; };
+		16F1AD921B29D72C00984690 /* CuberosityMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CuberosityMain.h; path = ../../Arduino/Cuberosity/CuberosityMain.h; sourceTree = "<group>"; };
+		16F1AD981B29D77900984690 /* easing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = easing.cpp; path = ../../Arduino/libraries/AHEasing/easing.cpp; sourceTree = "<group>"; };
+		16F1AD991B29D77900984690 /* easing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = easing.h; path = ../../Arduino/libraries/AHEasing/easing.h; sourceTree = "<group>"; };
+		16F1AD9A1B29D77900984690 /* easingSelect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = easingSelect.cpp; path = ../../Arduino/libraries/AHEasing/easingSelect.cpp; sourceTree = "<group>"; };
+		16F1AD9B1B29D77900984690 /* easingSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = easingSelect.h; path = ../../Arduino/libraries/AHEasing/easingSelect.h; sourceTree = "<group>"; };
+		16F1AD9F1B29D7A100984690 /* RNGradient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RNGradient.cpp; path = ../../Arduino/libraries/RNGradient/RNGradient.cpp; sourceTree = "<group>"; };
+		16F1ADA01B29D7A100984690 /* RNGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RNGradient.h; path = ../../Arduino/libraries/RNGradient/RNGradient.h; sourceTree = "<group>"; };
+		16F1ADA21B29D7C300984690 /* hsv2rgb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = hsv2rgb.cpp; path = ../../Arduino/libraries/FastLED/hsv2rgb.cpp; sourceTree = "<group>"; };
+		16F1ADA31B29D7C300984690 /* hsv2rgb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hsv2rgb.h; path = ../../Arduino/libraries/FastLED/hsv2rgb.h; sourceTree = "<group>"; };
+		16F1ADA41B29D7C300984690 /* pixeltypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pixeltypes.h; path = ../../Arduino/libraries/FastLED/pixeltypes.h; sourceTree = "<group>"; };
+		16F1ADA71B29D86D00984690 /* Arduino.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Arduino.h; path = ../../PlatformCode/Arduino.h; sourceTree = "<group>"; };
+		16F1ADA81B29F7B700984690 /* led_sysdefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = led_sysdefs.h; path = ../led_sysdefs.h; sourceTree = "<group>"; };
+		16F1ADA91B29F7D600984690 /* OctoWS2811.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OctoWS2811.h; path = ../OctoWS2811.h; sourceTree = "<group>"; };
+		16F1ADAB1B2A08EB00984690 /* RadialGradient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RadialGradient.cpp; path = ../../Arduino/Cuberosity/RadialGradient.cpp; sourceTree = "<group>"; };
+		16F1ADAC1B2A08EB00984690 /* RadialGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RadialGradient.h; path = ../../Arduino/Cuberosity/RadialGradient.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFrameworksBuildPhase section */
+		16F1AD7B1B29D6FB00984690 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
 /* Begin PBXGroup section */
-		16D9F5701B20860200D28221 = {
+		16F1AD751B29D6FB00984690 = {
 			isa = PBXGroup;
 			children = (
-				1689901F1B2923EA005C4A46 /* Animations.cpp */,
-				168990211B2924CB005C4A46 /* TimeRainbowGradient.cpp */,
-				168990221B2924CB005C4A46 /* TimeRainbowGradient.h */,
-				168990201B2923EA005C4A46 /* Animations.h */,
-				168990251B29276E005C4A46 /* RGBHeartBeat.cpp */,
-				168990261B29276E005C4A46 /* RGBHeartBeat.h */,
-				1689901D1B2923CC005C4A46 /* Animation.h */,
-				1689901E1B2923CC005C4A46 /* Animation.cpp */,
-				16D9F5791B20866D00D28221 /* Constants.h */,
-				16D9F5771B20862000D28221 /* CuberosityMain.cpp */,
-				168990231B292601005C4A46 /* Scrapbook.cpp */,
-				168990241B292601005C4A46 /* Scrapbook.h */,
-				16D9F5781B20862000D28221 /* CuberosityMain.h */,
-				16D9F5811B2087A500D28221 /* Libraries */,
+				16F1AD801B29D6FB00984690 /* Cuberosity */,
+				16F1AD7F1B29D6FB00984690 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		16D9F5811B2087A500D28221 /* Libraries */ = {
+		16F1AD7F1B29D6FB00984690 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				16D9F57E1B20879900D28221 /* hsv2rgb.cpp */,
-				16D9F57F1B20879900D28221 /* hsv2rgb.h */,
-				16D9F5801B20879900D28221 /* pixeltypes.h */,
-				16D9F57A1B20876F00D28221 /* easing.cpp */,
-				16D9F57B1B20876F00D28221 /* easing.h */,
-				16D9F57C1B20876F00D28221 /* easingSelect.cpp */,
-				16D9F57D1B20876F00D28221 /* easingSelect.h */,
-				16D9F5821B21E6F800D28221 /* RNGradient.cpp */,
-				16D9F5831B21E6F800D28221 /* RNGradient.h */,
+				16F1AD7E1B29D6FB00984690 /* Cuberosity */,
 			);
-			name = Libraries;
+			name = Products;
+			sourceTree = "<group>";
+		};
+		16F1AD801B29D6FB00984690 /* Cuberosity */ = {
+			isa = PBXGroup;
+			children = (
+				16F1AD921B29D72C00984690 /* CuberosityMain.h */,
+				16F1AD891B29D72C00984690 /* CuberosityMain.cpp */,
+				16F1ADAA1B29FBD500984690 /* Animations */,
+				16F1AD911B29D72C00984690 /* Constants.h */,
+				16F1AD9E1B29D78000984690 /* libraries */,
+				16F1AD811B29D6FB00984690 /* main.cpp */,
+			);
+			path = Cuberosity;
+			sourceTree = "<group>";
+		};
+		16F1AD9E1B29D78000984690 /* libraries */ = {
+			isa = PBXGroup;
+			children = (
+				16F1ADA71B29D86D00984690 /* Arduino.h */,
+				16F1ADA91B29F7D600984690 /* OctoWS2811.h */,
+				16F1ADA81B29F7B700984690 /* led_sysdefs.h */,
+				16F1ADA21B29D7C300984690 /* hsv2rgb.cpp */,
+				16F1ADA31B29D7C300984690 /* hsv2rgb.h */,
+				16F1ADA41B29D7C300984690 /* pixeltypes.h */,
+				16F1AD9F1B29D7A100984690 /* RNGradient.cpp */,
+				16F1ADA01B29D7A100984690 /* RNGradient.h */,
+				16F1AD981B29D77900984690 /* easing.cpp */,
+				16F1AD991B29D77900984690 /* easing.h */,
+				16F1AD9A1B29D77900984690 /* easingSelect.cpp */,
+				16F1AD9B1B29D77900984690 /* easingSelect.h */,
+			);
+			name = libraries;
+			sourceTree = "<group>";
+		};
+		16F1ADAA1B29FBD500984690 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				16F1AD8C1B29D72C00984690 /* Animation.h */,
+				16F1AD881B29D72C00984690 /* Animation.cpp */,
+				16F1AD8E1B29D72C00984690 /* Animations.h */,
+				16F1AD8F1B29D72C00984690 /* Animations.cpp */,
+				16F1AD8D1B29D72C00984690 /* TimeRainbowGradient.h */,
+				16F1ADAB1B2A08EB00984690 /* RadialGradient.cpp */,
+				16F1ADAC1B2A08EB00984690 /* RadialGradient.h */,
+				16F1AD8B1B29D72C00984690 /* TimeRainbowGradient.cpp */,
+				16F1AD901B29D72C00984690 /* RGBHeartBeat.h */,
+				16F1AD8A1B29D72C00984690 /* RGBHeartBeat.cpp */,
+			);
+			name = Animations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXNativeTarget section */
+		16F1AD7D1B29D6FB00984690 /* Cuberosity */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 16F1AD851B29D6FB00984690 /* Build configuration list for PBXNativeTarget "Cuberosity" */;
+			buildPhases = (
+				16F1AD7A1B29D6FB00984690 /* Sources */,
+				16F1AD7B1B29D6FB00984690 /* Frameworks */,
+				16F1AD7C1B29D6FB00984690 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Cuberosity;
+			productName = Cuberosity;
+			productReference = 16F1AD7E1B29D6FB00984690 /* Cuberosity */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
 /* Begin PBXProject section */
-		16D9F5711B20860200D28221 /* Project object */ = {
+		16F1AD761B29D6FB00984690 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Hall of Mirrors";
+				TargetAttributes = {
+					16F1AD7D1B29D6FB00984690 = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+				};
 			};
-			buildConfigurationList = 16D9F5741B20860200D28221 /* Build configuration list for PBXProject "Cuberosity" */;
+			buildConfigurationList = 16F1AD791B29D6FB00984690 /* Build configuration list for PBXProject "Cuberosity" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 16D9F5701B20860200D28221;
+			mainGroup = 16F1AD751B29D6FB00984690;
+			productRefGroup = 16F1AD7F1B29D6FB00984690 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				16F1AD7D1B29D6FB00984690 /* Cuberosity */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXSourcesBuildPhase section */
+		16F1AD7A1B29D6FB00984690 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				16F1ADA51B29D7C300984690 /* hsv2rgb.cpp in Sources */,
+				16F1AD9D1B29D77900984690 /* easingSelect.cpp in Sources */,
+				16F1AD961B29D72C00984690 /* TimeRainbowGradient.cpp in Sources */,
+				16F1AD9C1B29D77900984690 /* easing.cpp in Sources */,
+				16F1AD951B29D72C00984690 /* RGBHeartBeat.cpp in Sources */,
+				16F1AD971B29D72C00984690 /* Animations.cpp in Sources */,
+				16F1ADA11B29D7A100984690 /* RNGradient.cpp in Sources */,
+				16F1ADAD1B2A08EB00984690 /* RadialGradient.cpp in Sources */,
+				16F1AD931B29D72C00984690 /* Animation.cpp in Sources */,
+				16F1AD821B29D6FB00984690 /* main.cpp in Sources */,
+				16F1AD941B29D72C00984690 /* CuberosityMain.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
 /* Begin XCBuildConfiguration section */
-		16D9F5751B20860200D28221 /* Debug */ = {
+		16F1AD831B29D6FB00984690 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
-		16D9F5761B20860200D28221 /* Release */ = {
+		16F1AD841B29D6FB00984690 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		16F1AD861B29D6FB00984690 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		16F1AD871B29D6FB00984690 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		16D9F5741B20860200D28221 /* Build configuration list for PBXProject "Cuberosity" */ = {
+		16F1AD791B29D6FB00984690 /* Build configuration list for PBXProject "Cuberosity" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				16D9F5751B20860200D28221 /* Debug */,
-				16D9F5761B20860200D28221 /* Release */,
+				16F1AD831B29D6FB00984690 /* Debug */,
+				16F1AD841B29D6FB00984690 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		16F1AD851B29D6FB00984690 /* Build configuration list for PBXNativeTarget "Cuberosity" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				16F1AD861B29D6FB00984690 /* Debug */,
+				16F1AD871B29D6FB00984690 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 16D9F5711B20860200D28221 /* Project object */;
+	rootObject = 16F1AD761B29D6FB00984690 /* Project object */;
 }

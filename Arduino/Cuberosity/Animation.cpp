@@ -7,5 +7,3 @@
 //
 
 #include "Animation.h"
-
-    virtual ~RNAnimation() {};

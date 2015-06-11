@@ -10,12 +10,15 @@
 #define __Cuberosity__RGBHeartBeat__
 
 #include <stdio.h>
+#include "Animation.h"
+#include "easingSelect.h"
 
 
-class RGBHeartBeat : Animation {
+class RGBHeartBeat : public Animation {
 public:
-    virtual void prepare() {};
-    virtual void setPixel(int pos, int side, int height, int horizontalOffset) {};
+    RGBHeartBeat() {};
+    virtual void prepare();
+    virtual void setPixel(int pos, int side, int height, int horizontalOffset);
 private:
     float effectSize;
     AHEasingFunction easingFunction = getEasingFunction(EaseIn, CurveTypeBounce);

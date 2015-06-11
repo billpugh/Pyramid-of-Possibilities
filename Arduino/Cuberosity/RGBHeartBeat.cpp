@@ -6,16 +6,22 @@
 //
 //
 
+#include <stdlib.h>
 #include "RGBHeartBeat.h"
+#include "Arduino.h"
+#include "Constants.h"
+#include "hsv2rgb.h"
+#include "CuberosityMain.h"
 
 
-virtual void TimeRainbowGradient:: prepare() {
+
+ void RGBHeartBeat::prepare() {
     int size = millis() % 2000;
     size = abs(size - 1000);
     effectSize = easingFunction(size/1000.0);
 };
 
-virtual void TimeRainbowGradient::setPixel(int pos, int side, int height, int horizontalOffset) {
+ void RGBHeartBeat::setPixel(int pos, int side, int height, int horizontalOffset) {
     int distance = abs(height) + abs(horizontalOffset);
     int size = effectSize * verticalLength * 1.1;
     CHSV hsv;

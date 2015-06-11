@@ -6,17 +6,18 @@
 //
 //
 
+#include "Arduino.h"
 #include "TimeRainbowGradient.h"
 #include "led_sysdefs.h"
 #include "hsv2rgb.h"
 
 #include "CuberosityMain.h"
 
-virtual void TimeRainbowGradient::prepare() {
+ void TimeRainbowGradient::prepare() {
     CHSV hsv;
-    hsv.h = (millis()/4) & 0xff;
+    hsv.h = (millis()/100) & 0xff;
     hsv.s = 255;
-    hsv.v = 50;
+    hsv.v = 80;
     
     CRGB rgb;
     hsv2rgb_rainbow(hsv, rgb);
@@ -25,6 +26,6 @@ virtual void TimeRainbowGradient::prepare() {
 
 
 
-virtual void setPixel(int pos, int side, int height, int horizontalOffset) {
+ void TimeRainbowGradient::setPixel(int pos, int side, int height, int horizontalOffset) {
     leds.setPixel(pos, color);
 };
