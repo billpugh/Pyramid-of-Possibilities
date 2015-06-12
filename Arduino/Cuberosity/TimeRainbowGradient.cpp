@@ -17,7 +17,7 @@
     CHSV hsv;
     hsv.h = (millis()/100) & 0xff;
     hsv.s = 255;
-    hsv.v = 80;
+    hsv.v = 150;
     
     CRGB rgb;
     hsv2rgb_rainbow(hsv, rgb);

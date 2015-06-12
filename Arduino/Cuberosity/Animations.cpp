@@ -10,6 +10,7 @@
 #include "TimeRainbowGradient.h"
 #include "RGBHeartBeat.h"
 #include "RadialGradient.h"
+#include "VerticalGradient.h"
 
 AnimationEnum nextAnimation(AnimationEnum a ) {
     a = (AnimationEnum) (a+1);
@@ -34,6 +35,8 @@ Animation * getAnimation(AnimationEnum a ) {
             return new RGBHeartBeat();
         case e_RadialGradient:
             return new RadialGradient();
+        case   e_VerticalGradient:
+            return new VerticalGradient();
         default :
             return new TimeRainbowGradient();
     }

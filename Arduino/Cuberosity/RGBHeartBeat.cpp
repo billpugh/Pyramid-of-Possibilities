@@ -28,9 +28,9 @@
     hsv.h = side*80;
     hsv.s = 255;
     if (distance < size)
-        hsv.v = 50;
+        hsv.v = 200;
     else
-        hsv.v = 10;
+        hsv.v = 50;
     CRGB rgb;
     hsv2rgb_rainbow(hsv, rgb);
     int color = (rgb.r << 16 ) | (rgb.g << 8) | rgb.b;

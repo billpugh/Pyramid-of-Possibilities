@@ -1,6 +1,7 @@
 #include "OctoWS2811.h"
 #include "FastLED.h"
 #include "CuberosityMain.h"
+#include "RNGradient.h"
 #include "FastLED.h"
 #include "easingSelect.h"
 

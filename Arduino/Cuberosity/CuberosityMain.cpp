@@ -19,7 +19,7 @@ const int config = WS2811_GRB | WS2811_800kHz;
 
 OctoWS2811 leds(LEDsPerStrip, displayMemory, drawingMemory, config);
 
-const int animationDuration = 10000;
+const int animationDuration = 30000;
 
 unsigned long switchAnimationAt;
 void setupMain() {

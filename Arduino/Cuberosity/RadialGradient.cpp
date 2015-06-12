@@ -12,17 +12,15 @@
 #include "CuberosityMain.h"
 
 
+
 void RadialGradient::prepare() {
     hsv.s = 255;
-    hsv.v = 80;
-    offset = millis()/500.0;
-}
-
-   
-
+    hsv.v = 160;
+    offset = millis()/1500.0;
+}  
 
 void RadialGradient::setPixel(int pos, int side, int height, int horizontalOffset) {
-    float myOffset = side * 3 + horizontalOffset/2.0/(horizontalLength+1)
+    float myOffset = side - horizontalOffset/2.0/(horizontalLength+1)
     + offset;
     int hue = ((int)(myOffset * 256 / 3.0)) & 0xff;
     hsv.h = hue;
