@@ -14,6 +14,8 @@
 
 enum  AnimationEnum {
         e_VerticalGradient,
+    e_VerticalGradientBlue,
+    
     e_TimeRainbowGradient,
     e_RGBHeartBeat,
      e_RadialGradient,

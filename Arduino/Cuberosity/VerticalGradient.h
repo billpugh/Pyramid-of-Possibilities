@@ -20,6 +20,8 @@
 class VerticalGradient : public Animation {
 public:
     VerticalGradient();
+    VerticalGradient(RNGradient gradient);
+    
     virtual void prepare();
     virtual void setPixel(int pos, int side, int height, int horizontalOffset);
 private:

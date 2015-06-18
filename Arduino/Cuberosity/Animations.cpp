@@ -36,7 +36,10 @@ Animation * getAnimation(AnimationEnum a ) {
         case e_RadialGradient:
             return new RadialGradient();
         case   e_VerticalGradient:
-            return new VerticalGradient();
+            return new VerticalGradient(RNGradient(1, RNGradientWrap, 0x00ff80, 0xffff80));
+        case   e_VerticalGradientBlue:
+            return new VerticalGradient(RNGradient(1, RNGradientBounce, 0x90ff80, 0xffff80));
+            
         default :
             return new TimeRainbowGradient();
     }

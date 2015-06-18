@@ -15,6 +15,7 @@ class Animation {
 
     public:
     Animation() {};
+    virtual ~Animation() {};
     virtual void prepare() {};
     virtual void setPixel(int pos, int side, int height, int horizontalOffset) {};
 

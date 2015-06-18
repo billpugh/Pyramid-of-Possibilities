@@ -11,6 +11,8 @@
 
 #include <stdint.h>
 
+#define DMAMEM 
+
  unsigned long millis();
  unsigned long micros();
  void interrupts();
@@ -44,6 +46,7 @@ public:
     void print(const char * s);
     void println(const char * s);
     void println(int);
+    void println(unsigned long);
     void print(int);
     void print(int, int);
     unsigned int readBytes( char *buffer, unsigned int length);

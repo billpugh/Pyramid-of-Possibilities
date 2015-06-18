@@ -14,6 +14,7 @@
 
 
 VerticalGradient::VerticalGradient() : gradient(1, RNGradientBounce, 0x90ff80, 0xffff80) {};
+VerticalGradient::VerticalGradient(RNGradient gradient) : gradient(gradient) {};
 
 void VerticalGradient::prepare() {
     offset = millis() / 2000.0;

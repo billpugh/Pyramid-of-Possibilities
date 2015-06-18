@@ -18,6 +18,7 @@
 		16F1ADA11B29D7A100984690 /* RNGradient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16F1AD9F1B29D7A100984690 /* RNGradient.cpp */; };
 		16F1ADA51B29D7C300984690 /* hsv2rgb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16F1ADA21B29D7C300984690 /* hsv2rgb.cpp */; };
 		16F1ADAD1B2A08EB00984690 /* RadialGradient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16F1ADAB1B2A08EB00984690 /* RadialGradient.cpp */; };
+		16F1ADB01B2A334F00984690 /* VerticalGradient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16F1ADAE1B2A334F00984690 /* VerticalGradient.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -60,6 +61,8 @@
 		16F1ADA91B29F7D600984690 /* OctoWS2811.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OctoWS2811.h; path = ../OctoWS2811.h; sourceTree = "<group>"; };
 		16F1ADAB1B2A08EB00984690 /* RadialGradient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RadialGradient.cpp; path = ../../Arduino/Cuberosity/RadialGradient.cpp; sourceTree = "<group>"; };
 		16F1ADAC1B2A08EB00984690 /* RadialGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RadialGradient.h; path = ../../Arduino/Cuberosity/RadialGradient.h; sourceTree = "<group>"; };
+		16F1ADAE1B2A334F00984690 /* VerticalGradient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VerticalGradient.cpp; path = ../../Arduino/Cuberosity/VerticalGradient.cpp; sourceTree = "<group>"; };
+		16F1ADAF1B2A334F00984690 /* VerticalGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VerticalGradient.h; path = ../../Arduino/Cuberosity/VerticalGradient.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,9 +131,11 @@
 				16F1AD881B29D72C00984690 /* Animation.cpp */,
 				16F1AD8E1B29D72C00984690 /* Animations.h */,
 				16F1AD8F1B29D72C00984690 /* Animations.cpp */,
-				16F1AD8D1B29D72C00984690 /* TimeRainbowGradient.h */,
-				16F1ADAB1B2A08EB00984690 /* RadialGradient.cpp */,
+				16F1ADAF1B2A334F00984690 /* VerticalGradient.h */,
+				16F1ADAE1B2A334F00984690 /* VerticalGradient.cpp */,
 				16F1ADAC1B2A08EB00984690 /* RadialGradient.h */,
+				16F1ADAB1B2A08EB00984690 /* RadialGradient.cpp */,
+				16F1AD8D1B29D72C00984690 /* TimeRainbowGradient.h */,
 				16F1AD8B1B29D72C00984690 /* TimeRainbowGradient.cpp */,
 				16F1AD901B29D72C00984690 /* RGBHeartBeat.h */,
 				16F1AD8A1B29D72C00984690 /* RGBHeartBeat.cpp */,
@@ -199,6 +204,7 @@
 				16F1AD961B29D72C00984690 /* TimeRainbowGradient.cpp in Sources */,
 				16F1AD9C1B29D77900984690 /* easing.cpp in Sources */,
 				16F1AD951B29D72C00984690 /* RGBHeartBeat.cpp in Sources */,
+				16F1ADB01B2A334F00984690 /* VerticalGradient.cpp in Sources */,
 				16F1AD971B29D72C00984690 /* Animations.cpp in Sources */,
 				16F1ADA11B29D7A100984690 /* RNGradient.cpp in Sources */,
 				16F1ADAD1B2A08EB00984690 /* RadialGradient.cpp in Sources */,

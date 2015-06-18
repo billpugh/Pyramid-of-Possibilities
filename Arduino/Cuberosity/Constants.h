@@ -9,6 +9,7 @@
 #ifndef Cuberosity_Constants_h
 #define Cuberosity_Constants_h
 
+#include <stdint.h>
 
 // #define FULL_SIZE
 
