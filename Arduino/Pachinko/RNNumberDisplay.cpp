@@ -61,3 +61,11 @@ void RNNumberDisplay::setColor(int rgb) {
     
     this->rgb = rgb;
 }
+
+void RNNumberDisplay::setPixelOfFirstDigit(int pixel, int rgb) {
+    if (thousands)
+         thousands->setPixel(pixel,rgb);
+    else
+        hundreds->setPixel(pixel,rgb);
+        
+}

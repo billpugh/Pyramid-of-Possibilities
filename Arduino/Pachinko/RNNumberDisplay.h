@@ -20,6 +20,7 @@ public:
     
     void setValue(int value);
     void setColor(int rgb);
+    void setPixelOfFirstDigit(int pixel, int rgb);
     void clear();
 private:
     RNDigit *thousands,*hundreds,*tens, * units ;

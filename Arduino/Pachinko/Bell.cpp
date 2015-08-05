@@ -42,6 +42,18 @@ void Bell::update() {
   }
 
 }
+
+void Bell::ringFor(unsigned int ms) {
+    if (!on) {
+        io.digitalWrite(pin, 1);
+        Serial.print("Turning bell " );
+        Serial.print(pin);
+        Serial.println(" on");
+        on = true;
+    }
+    enqueued = 0;
+    timeOff = millis() + ms;
+}
 void Bell::ring(int num) {
   enqueued += num;
 

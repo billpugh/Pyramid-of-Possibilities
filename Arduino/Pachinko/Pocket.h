@@ -20,6 +20,7 @@ public:
     void begin();
     void shiftUp(int fill);
     void shiftDown(int fill);
+    void disable();
 
     /** Return true if score detected */
     bool checkAndUpdate();

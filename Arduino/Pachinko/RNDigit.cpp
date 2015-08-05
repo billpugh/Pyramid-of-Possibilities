@@ -43,6 +43,9 @@ RNDigit::RNDigit(OctoWS2811 & lights, int firstPixel, int skipPixels, int numPix
     rgb = 0x008000;
 }
 
+void RNDigit::setPixel(int pixel, int rgb) {
+    lights.setPixel(firstPixel+(pixel%numPixels), rgb);
+}
 void RNDigit::setColor(int rgb) {
     this->rgb = rgb;
 }

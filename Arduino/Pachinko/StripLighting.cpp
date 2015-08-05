@@ -13,33 +13,38 @@ StripLighting::StripLighting(OctoWS2811 & lights, int firstPixel, int numPixels)
 
 
 int randomColor() {
-    CHSV hsv;
-    hsv.h = random8();
-    hsv.s = 128;
-    hsv.v = 250;
-    CRGB rgb;
-    hsv2rgb_rainbow(hsv, rgb);
-    return (rgb.r << 16 ) | (rgb.g << 8) | rgb.b;
-    
+  CHSV hsv;
+  hsv.h = random8();
+  hsv.s = 128;
+  hsv.v = 250;
+  CRGB rgb;
+  hsv2rgb_rainbow(hsv, rgb);
+  return (rgb.r << 16 ) | (rgb.g << 8) | rgb.b;
+
 }
 
 bool changeColors() {
-    return (random() & 0x3) == 0;
+  return (random() & 0x3) == 0;
 }
 
+void StripLighting::setColor(int rgb) {
+  for (int i = 0; i < numPixels; i++) {
+    lights.setPixel(firstPixel + i, rgb);
+  }
+}
 
 void StripLighting::fill() {
   int rgb =  randomColor();
-    for(int i = 0; i < numPixels; i++) {
-        lights.setPixel(firstPixel+i, rgb);
-        if (changeColors())
-          rgb = randomColor();
-    }
+  for (int i = 0; i < numPixels; i++) {
+    lights.setPixel(firstPixel + i, rgb);
+    if (changeColors())
+      rgb = randomColor();
+  }
 }
 
 void StripLighting::rotate() {
-    for(int i = 0; i < numPixels-1; i++)
-        lights.setPixel(firstPixel+i, lights.getPixel(firstPixel+i+1));
-    if (changeColors())
-        lights.setPixel(firstPixel+numPixels-1, randomColor());
+  for (int i = 0; i < numPixels - 1; i++)
+    lights.setPixel(firstPixel + i, lights.getPixel(firstPixel + i + 1));
+  if (changeColors())
+    lights.setPixel(firstPixel + numPixels - 1, randomColor());
 }

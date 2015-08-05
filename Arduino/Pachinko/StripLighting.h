@@ -19,6 +19,7 @@ public:
     
     void fill();
     void rotate();
+    void setColor(int rgb);
 private:
     OctoWS2811 & lights;
     const int firstPixel;

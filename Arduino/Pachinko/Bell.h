@@ -19,6 +19,7 @@ public:
     void begin();
    void update();
    void ring(int num=1);
+    void ringFor(unsigned int millis);
     
 private:
     
