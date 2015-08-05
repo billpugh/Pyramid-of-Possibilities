@@ -91,15 +91,12 @@ void Pocket::shiftUp(int fill) {
     for (int strip = -2; strip <= 2; strip++) {
         for (int pos = maxPos(strip); pos > 0; pos--) {
             int led =  getLED(strip, pos);
-            Serial.printf("Shift up %d %d %d\n", strip, pos, led);
             if (led != -1) {
             lights.setPixel(firstPixel + led,
                             lights.getPixel(firstPixel + led-1));
             }
         }
-        
         lights.setPixel(firstPixel + getLED(strip, 0), fill);
-        Serial.printf("Set %d\n", strip);
     }
 }
 void Pocket::shiftDown(int fill) {
