@@ -183,9 +183,11 @@ void switchLowestPockets() {
     if (lowestPocketsDisabled) {
         score += lowPocketScore;
         lowestPocketsDisabled = false;
+        scoreBell.ring(1);
     } else {
         score -= lowPocketScore;
         lowestPocketsDisabled = true;
+        GameOverBell.ring(1);
     }
     scoreDisplay.setValue(score);
     
@@ -343,15 +345,22 @@ void loopMain() {
     switch (cmd) {
         case command_NOP:
             break;
-        case command_ColorAmbient: Serial.println("command_ColorAmbient"); break;
-        case command_PatternAmbient: Serial.println("command_PatternAmbient"); break;
-        case command_DefaultAmbient: Serial.println("command_DefaultAmbient"); break;
+        case command_ColorAmbient: Serial.println("command_ColorAmbient");
+            scoreBell.ring(1);
+            break;
+        case command_PatternAmbient: Serial.println("command_PatternAmbient");
+            scoreBell.ring(1);
+            break;
+        case command_DefaultAmbient: Serial.println("command_DefaultAmbient");
+            scoreBell.ring(1);
+            break;
         case command_WarningLights: Serial.println("command_WarningLights"); warningStarted = now;
             showingWarning = true;
             GameOverBell.ring(1);
             break;
         case command_DisableLowest: Serial.println("command_DisableLowest"); 
-        switchLowestPockets(); break;
+            switchLowestPockets();
+            break;
         case command_LongAlarm:
             GameOverBell.ringFor(3000);
             Serial.println("command_LongAlarm"); break;
@@ -375,6 +384,7 @@ void loopMain() {
         case command_EmceeMode:
             Serial.println("command_EmceeMode");
             emceeMode = true;
+            scoreBell.ring(1);
             setScoreColor();
             if (pachinkoState == e_Attract)
                 startGame();
@@ -385,6 +395,7 @@ void loopMain() {
                 Serial.println("resuming game");
 
                 resumeGame();
+                scoreBell.ring(1);
                 switch (pachinkoState) {
                     case e_Boot:
                         break;
@@ -443,7 +454,6 @@ void loopMain() {
         checkPockets();
         if (showingWarning) {
             int32_t sinceWarning = now-warningStarted;
-            Serial.printf("Time since warning %d vs %d\n", sinceWarning, warningDuration);
             if (sinceWarning > warningDuration) {
                 Serial.println("Ending warning");
                 showingWarning = false;
@@ -485,9 +495,7 @@ void loopMain() {
                 
             case e_GameOver:
                 timeDisplay.setValue(0);
-                Serial.printf("now = %ld, gameEnds= %ld\n", now, gameEnds);
                 uint32_t sinceGameEnded = now-gameEnds;
-                Serial.printf("%ld (%ld) Seconds since game ended\n", sinceGameEnded/1000, getEndGameDuration()/1000);
                 if (sinceGameEnded > getEndGameDuration()) {
                     Serial.println("Game over expired, switching to Idle mode");
                     emceeMode = false;
