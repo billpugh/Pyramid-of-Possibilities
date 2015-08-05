@@ -13,6 +13,7 @@
 		16744C411B095CA800458338 /* RNNumberDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16744C3E1B095CA800458338 /* RNNumberDisplay.cpp */; };
 		169AD67F1B092425007AED7F /* Bell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 169AD67D1B092425007AED7F /* Bell.cpp */; };
 		16C17F3E1B0BA230008EE118 /* StripLighting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16C17F3C1B0BA230008EE118 /* StripLighting.cpp */; };
+		16E879781B7260400096A49F /* RemoteControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16E879761B7260400096A49F /* RemoteControl.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,6 +49,11 @@
 		16C17F3C1B0BA230008EE118 /* StripLighting.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StripLighting.cpp; path = ../Arduino/Pachinko/StripLighting.cpp; sourceTree = "<group>"; };
 		16C17F3D1B0BA230008EE118 /* StripLighting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StripLighting.h; path = ../Arduino/Pachinko/StripLighting.h; sourceTree = "<group>"; };
 		16E313D11B19E8D100911C15 /* EEPROM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EEPROM.h; sourceTree = "<group>"; };
+		16E879761B7260400096A49F /* RemoteControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RemoteControl.cpp; path = ../Arduino/Pachinko/RemoteControl.cpp; sourceTree = "<group>"; };
+		16E879771B7260400096A49F /* RemoteControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RemoteControl.h; path = ../Arduino/Pachinko/RemoteControl.h; sourceTree = "<group>"; };
+		16E879791B7263000096A49F /* nRF24L01.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = nRF24L01.h; path = ../Arduino/libraries/Mirf/nRF24L01.h; sourceTree = "<group>"; };
+		16E8797A1B7263000096A49F /* Mirf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mirf.h; path = ../Arduino/libraries/Mirf/Mirf.h; sourceTree = "<group>"; };
+		16E8797B1B7263000096A49F /* MirfHardwareSpiDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MirfHardwareSpiDriver.h; path = ../Arduino/libraries/Mirf/MirfHardwareSpiDriver.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +77,8 @@
 				16477E9D1AFFC0E600BC3FF6 /* Pocket.cpp */,
 				16477E9E1AFFC0E600BC3FF6 /* Pocket.h */,
 				169AD67D1B092425007AED7F /* Bell.cpp */,
+				16E879761B7260400096A49F /* RemoteControl.cpp */,
+				16E879771B7260400096A49F /* RemoteControl.h */,
 				169AD67E1B092425007AED7F /* Bell.h */,
 				16477EA21B026BAB00BC3FF6 /* Libraries */,
 				16477E971AFFBFBE00BC3FF6 /* PachinKo */,
@@ -97,6 +105,9 @@
 		16477EA21B026BAB00BC3FF6 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				16E879791B7263000096A49F /* nRF24L01.h */,
+				16E8797A1B7263000096A49F /* Mirf.h */,
+				16E8797B1B7263000096A49F /* MirfHardwareSpiDriver.h */,
 				16744C421B095FDA00458338 /* hsv2rgb.h */,
 				16744C3C1B095CA800458338 /* RNDigit.h */,
 				16744C3D1B095CA800458338 /* RNDigit.cpp */,
@@ -166,6 +177,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16E879781B7260400096A49F /* RemoteControl.cpp in Sources */,
 				16C17F3E1B0BA230008EE118 /* StripLighting.cpp in Sources */,
 				169AD67F1B092425007AED7F /* Bell.cpp in Sources */,
 				16744C401B095CA800458338 /* RNDigit.cpp in Sources */,

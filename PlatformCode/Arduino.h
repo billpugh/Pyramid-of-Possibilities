@@ -49,6 +49,7 @@ public:
     void println(unsigned long);
     void print(int);
     void print(int, int);
+    void printf(const char *format, ...);
     unsigned int readBytes( char *buffer, unsigned int length);
     uint16_t available();
     uint8_t read();

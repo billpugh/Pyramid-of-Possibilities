@@ -9,6 +9,19 @@
 /* Begin PBXFileReference section */
 		169F15141AE961C900A19826 /* PachinkoMain.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PachinkoMain.cpp; path = ../Arduino/Pachinko/PachinkoMain.cpp; sourceTree = "<group>"; };
 		169F15151AE961C900A19826 /* PachinkoMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PachinkoMain.h; path = ../Arduino/Pachinko/PachinkoMain.h; sourceTree = "<group>"; };
+		16E879691B714EEA0096A49F /* Bell.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Bell.cpp; path = ../Arduino/Pachinko/Bell.cpp; sourceTree = "<group>"; };
+		16E8796A1B714EEA0096A49F /* Pocket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Pocket.cpp; path = ../Arduino/Pachinko/Pocket.cpp; sourceTree = "<group>"; };
+		16E8796B1B714EEA0096A49F /* StripLighting.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = StripLighting.cpp; path = ../Arduino/Pachinko/StripLighting.cpp; sourceTree = "<group>"; };
+		16E8796C1B714EEA0096A49F /* Pocket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Pocket.h; path = ../Arduino/Pachinko/Pocket.h; sourceTree = "<group>"; };
+		16E8796D1B714EEA0096A49F /* RNNumberDisplay.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = RNNumberDisplay.cpp; path = ../Arduino/Pachinko/RNNumberDisplay.cpp; sourceTree = "<group>"; };
+		16E8796E1B714EEA0096A49F /* RNDigit.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = RNDigit.cpp; path = ../Arduino/Pachinko/RNDigit.cpp; sourceTree = "<group>"; };
+		16E8796F1B714EEA0096A49F /* RNDigit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RNDigit.h; path = ../Arduino/Pachinko/RNDigit.h; sourceTree = "<group>"; };
+		16E879701B714EEA0096A49F /* RNNumberDisplay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RNNumberDisplay.h; path = ../Arduino/Pachinko/RNNumberDisplay.h; sourceTree = "<group>"; };
+		16E879711B714EEA0096A49F /* StripLighting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = StripLighting.h; path = ../Arduino/Pachinko/StripLighting.h; sourceTree = "<group>"; };
+		16E879721B714EEA0096A49F /* Bell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Bell.h; path = ../Arduino/Pachinko/Bell.h; sourceTree = "<group>"; };
+		16E879731B714EEA0096A49F /* Adafruit_MCP23017.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Adafruit_MCP23017.cpp; path = ../Arduino/Pachinko/Adafruit_MCP23017.cpp; sourceTree = "<group>"; };
+		16E879741B714EEA0096A49F /* PocketLights.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = PocketLights.md; path = ../Arduino/Pachinko/PocketLights.md; sourceTree = "<group>"; };
+		16E879751B714EEA0096A49F /* Adafruit_MCP23017.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Adafruit_MCP23017.h; path = ../Arduino/Pachinko/Adafruit_MCP23017.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -17,6 +30,19 @@
 			children = (
 				169F15141AE961C900A19826 /* PachinkoMain.cpp */,
 				169F15151AE961C900A19826 /* PachinkoMain.h */,
+				16E879691B714EEA0096A49F /* Bell.cpp */,
+				16E8796A1B714EEA0096A49F /* Pocket.cpp */,
+				16E8796B1B714EEA0096A49F /* StripLighting.cpp */,
+				16E8796C1B714EEA0096A49F /* Pocket.h */,
+				16E8796D1B714EEA0096A49F /* RNNumberDisplay.cpp */,
+				16E8796E1B714EEA0096A49F /* RNDigit.cpp */,
+				16E8796F1B714EEA0096A49F /* RNDigit.h */,
+				16E879701B714EEA0096A49F /* RNNumberDisplay.h */,
+				16E879711B714EEA0096A49F /* StripLighting.h */,
+				16E879721B714EEA0096A49F /* Bell.h */,
+				16E879731B714EEA0096A49F /* Adafruit_MCP23017.cpp */,
+				16E879741B714EEA0096A49F /* PocketLights.md */,
+				16E879751B714EEA0096A49F /* Adafruit_MCP23017.h */,
 			);
 			sourceTree = "<group>";
 		};
