@@ -140,8 +140,12 @@ void Pocket::gameOver() {
   totalPointsScored += pointsScoredThisGame;
   pointsScoredThisGame = 0;
   EEPROM.put(2 * sensor, totalPointsScored);
+  hotUntil = millis();
 }
 
+bool Pocket::isOverheated() {
+    return hotUntil - millis() > OVERHEAT;
+}
 bool Pocket::checkAndUpdate() {
 
   unsigned long now = millis();
@@ -156,14 +160,26 @@ bool Pocket::checkAndUpdate() {
 
     return false;
   } else {
-    bool scoreDetected = checkSensor();
-    if (scoreDetected) {
-      lastTimeScored = now;
-      Serial.println("Score detected");
-      pointsScoredThisGame++;
-      lastAnimationUpdate = now - 1000;
-      scorePoints(pointValue);
-    }
+      bool scoreDetected = checkSensor();
+      if (scoreDetected) {
+          
+          Serial.printf("Score detected on sensor %d\n", sensor);
+          if (hotUntil < now)
+              hotUntil = now + HOT_INCREMENT;
+          else {
+              hotUntil += HOT_INCREMENT;
+              Serial.printf("Sensor %d is hot: %d\n",sensor, hotUntil - now);
+          }
+          if (hotUntil - now > OVERHEAT) {
+              Serial.printf("Sensor %d is overheated: %d\n",sensor, hotUntil - now);
+              hotUntil += 100;
+          } else {
+              lastTimeScored = now;
+              pointsScoredThisGame++;
+              lastAnimationUpdate = now - 1000;
+              scorePoints(pointValue);
+          }
+      }
     if (lastAnimationUpdate + 100 < now) {
       lastAnimationUpdate = now;
       if (lastTimeScored + 2000 * pointValue > now) {

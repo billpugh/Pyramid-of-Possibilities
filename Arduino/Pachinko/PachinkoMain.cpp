@@ -179,7 +179,6 @@ void switchToIdleMode() {
    }
 
 void switchLowestPockets() {
-    GameOverBell.ring(1);
     if (lowestPocketsDisabled) {
         score += lowPocketScore;
         lowestPocketsDisabled = false;
@@ -219,14 +218,20 @@ void checkPockets() {
     LM.checkAndUpdate();
     if (lowestPocketsDisabled)
         LL.disable();
-    else
+    else {
         LL.checkAndUpdate();
+        if (LL.isOverheated())
+            switchLowestPockets();
+    }
     RH.checkAndUpdate();
     RM.checkAndUpdate();
-     if (lowestPocketsDisabled)
-         RL.disable();
-    else
+    if (lowestPocketsDisabled)
+        RL.disable();
+    else {
         RL.checkAndUpdate();
+        if (RL.isOverheated())
+            switchLowestPockets();
+    }
 }
 
 

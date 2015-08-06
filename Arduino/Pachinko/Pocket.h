@@ -27,6 +27,7 @@ public:
     /** Return true if score detected */
     bool checkSensor();
     void gameOver();
+    bool isOverheated();
     
     static const int LEDS_PER_POCKET = 5+6+7+6+5;
     
@@ -35,6 +36,9 @@ private:
     static const unsigned long TOO_LONG_CLOSED_TIME = 2000;
     OctoWS2811 & lights;
     const int firstPixel;
+    unsigned long hotUntil = 0;
+    static const unsigned long HOT_INCREMENT = 2000;
+    static const unsigned long OVERHEAT = 5000;
     Adafruit_MCP23017 & io;
     const int sensor;
     const int pointValue;
