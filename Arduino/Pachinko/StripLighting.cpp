@@ -6,24 +6,18 @@
 //
 
 #include "StripLighting.h"
+#include "PachinkoMain.h"
 #include <stdlib.h>
+
+
 
 
 StripLighting::StripLighting(OctoWS2811 & lights, int firstPixel, int numPixels) : lights(lights), firstPixel(firstPixel), numPixels(numPixels) {};
 
 
-int randomColor() {
-  CHSV hsv;
-  hsv.h = random8();
-  hsv.s = 128;
-  hsv.v = 250;
-  CRGB rgb;
-  hsv2rgb_rainbow(hsv, rgb);
-  return (rgb.r << 16 ) | (rgb.g << 8) | rgb.b;
-
-}
-
 bool changeColors() {
+  if (currentAmbientMode == AmbientPattern)
+        return true;
   return (random() & 0x3) == 0;
 }
 
@@ -34,17 +28,24 @@ void StripLighting::setColor(int rgb) {
 }
 
 void StripLighting::fill() {
-  int rgb =  randomColor();
+
+  int rgb =  randomColor(0);
   for (int i = 0; i < numPixels; i++) {
     lights.setPixel(firstPixel + i, rgb);
     if (changeColors())
-      rgb = randomColor();
+      rgb = randomColor(i+1);
   }
 }
 
-void StripLighting::rotate() {
+void StripLighting::update() {
+    if (currentAmbientMode == AmbientPattern && currentAmbientPatternChoice == AmbientSparkles) {
+        for (int i = 0; i < numPixels - 1; i++)
+            lights.setPixel(firstPixel + i, randomColor(i));
+        return;
+    }
   for (int i = 0; i < numPixels - 1; i++)
     lights.setPixel(firstPixel + i, lights.getPixel(firstPixel + i + 1));
   if (changeColors())
-    lights.setPixel(firstPixel + numPixels - 1, randomColor());
+    lights.setPixel(firstPixel + numPixels - 1, randomColor(numPixels - 1));
 }
+

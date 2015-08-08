@@ -19,6 +19,31 @@ enum  PachinkoState {
     e_GameInProgress,
     e_GameOver};
 
+enum AmbientMode {
+    AmbientDefault,
+    AmbientColor,
+    AmbientPattern};
+
+enum AmbientColorChoice {
+AmbientRed,
+AmbientGreen,
+AmbientBlue,
+AmbientYellow,
+AmbientMagenta,
+AmbientCyan,
+    AmbientWhite};
+
+enum AmbientPatternChoice {
+    AmbientRainbow,
+    AmbientComets,
+    AmbientSparkles};
+
+extern int AmbientColorHue[];
+
+
+extern AmbientMode currentAmbientMode;
+extern AmbientColorChoice currentAmbientColorChoice;
+extern AmbientPatternChoice currentAmbientPatternChoice;
 extern PachinkoState pachinkoState;
 
 extern RNNumberDisplay scoreDisplay, timeDisplay;
@@ -31,7 +56,10 @@ void loopMain();
 
 int scoreMultiplier();
 
+uint8_t randomByte();
 
+int randomColor(int offset);
+int randomSteadyColor(int offset);
 void scorePoints(int score);
 
 #endif /* defined(__PachinkoCode__PachinkoMain__) */

@@ -61,7 +61,7 @@ static int offsets[] = {0, 5, 11, 18, 24};
 
 int randomPocketColor() {
   CHSV hsv;
-  hsv.h = random8();
+  hsv.h = randomByte();
   hsv.s = 200;
   hsv.v = 200;
   CRGB rgb;
@@ -144,8 +144,16 @@ void Pocket::gameOver() {
 }
 
 bool Pocket::isOverheated() {
-    return hotUntil - millis() > OVERHEAT;
+    unsigned long now = millis();
+    
+
+    bool result= hotUntil > now && (hotUntil - now > OVERHEAT);
+    if (result) {
+        Serial.printf("Sensor %d overheated %d %d\n", sensor, hotUntil, now);
+    }
+    return result;
 }
+
 bool Pocket::checkAndUpdate() {
 
   unsigned long now = millis();
@@ -170,7 +178,7 @@ bool Pocket::checkAndUpdate() {
               hotUntil += HOT_INCREMENT;
               Serial.printf("Sensor %d is hot: %d\n",sensor, hotUntil - now);
           }
-          if (hotUntil - now > OVERHEAT) {
+          if (hotUntil > now && hotUntil - now > OVERHEAT) {
               Serial.printf("Sensor %d is overheated: %d\n",sensor, hotUntil - now);
               hotUntil += 100;
           } else {
@@ -187,9 +195,12 @@ bool Pocket::checkAndUpdate() {
         int rgb = randomPocketColor();
         shiftUp(rgb);
       } else {
-        // show attract animation
-        shiftDown(0x101010);
-        if ((random8() % 3) == 0) {
+          // show attract animation
+          if (currentAmbientMode != AmbientDefault)
+              shiftDown(randomColor(0));
+          else
+              shiftDown(0x101010);
+        if ((randomByte() % 3) == 0) {
           int strip = random(5) - 2;
           int pos = maxPos(strip);
           int rgb = randomPocketColor();

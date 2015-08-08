@@ -24,9 +24,12 @@ enum  RemoteCommand {
     
     command_AdvanceGameState,
     command_EmceeMode,
-    command_PauseGame};
+    command_PauseGame,
+    command_ShowRemotes,
+    command_ToggleRemote,
+};
 
 
 extern void setupRemote();
-extern uint8_t readRemote(void);
+extern void readRemote(uint8_t &prg, uint8_t &remote);
 #endif /* defined(__PachinkoTestbed__RemoteControl__) */

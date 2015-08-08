@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "OctoWS2811.h"
 #include "Adafruit_MCP23017.h"
+#include "PachinkoMain.h"
 
 class Pocket {
 public:

@@ -91,7 +91,7 @@ void setupRemote() {
  */
 
 
-uint8_t readRemote(void)
+void readRemote(uint8_t &prg, uint8_t &remote)
 {
     uint8_t data[4];
     
@@ -100,12 +100,13 @@ uint8_t readRemote(void)
         Mirf.getData(data);
         Mirf.setTADDR((uint8_t *)"KeyPd");
         //		Mirf.send(data);	//Echo data back
-        if(data[0] == 0x55 && data[1] == 0xaa && data[3] == 0xff) {
-            uint8_t prg = data[2] & 0xff;
-            Serial.printf("CMD=%02X\n", prg);
-            return prg;
+        if(data[0] == 0x55  && data[3] == 0xff) {
+            prg = data[2] & 0xff;
+            remote = data[1] & 0xff;
+            Serial.printf("CMD=%02X from %d\n", prg, remote);
+            return;
         }
     }
     
-    return 0;
+    prg = command_NOP;
 }

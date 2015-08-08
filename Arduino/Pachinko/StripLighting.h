@@ -18,7 +18,7 @@ public:
     StripLighting(OctoWS2811 & lights, int firstPixel, int numPixels);
     
     void fill();
-    void rotate();
+    void update();
     void setColor(int rgb);
 private:
     OctoWS2811 & lights;
