@@ -1,5 +1,6 @@
 #include "Accelerometer.h"
 #include "mac.h"
+#include <Wire.h>
 #include <Adafruit_NeoPixel.h>
 
 bool sawTap = false;
