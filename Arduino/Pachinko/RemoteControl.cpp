@@ -109,4 +109,5 @@ void readRemote(uint8_t &prg, uint8_t &remote)
     }
     
     prg = command_NOP;
+    remote = 0;
 }

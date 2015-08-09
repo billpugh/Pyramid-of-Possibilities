@@ -28,7 +28,12 @@ void StripLighting::setColor(int rgb) {
 }
 
 void StripLighting::fill() {
-
+    if (currentAmbientMode == AmbientPattern && currentAmbientPatternChoice == AmbientComets) {
+        for (int i = 0; i < numPixels; i++)
+            lights.setPixel(firstPixel + i, 0);
+        return;
+    }
+    
   int rgb =  randomColor(0);
   for (int i = 0; i < numPixels; i++) {
     lights.setPixel(firstPixel + i, rgb);

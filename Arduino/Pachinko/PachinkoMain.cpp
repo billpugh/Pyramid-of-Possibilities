@@ -56,6 +56,8 @@ static const uint32_t endGameDurationEmcee = 5*60*1000;
 static const uint32_t warningDuration = 2000;
 static const uint32_t pauseDuration = 60*1000;
 
+static const bool ringGameBellOnScore = false;
+
 
 static const uint8_t start_RemoteEnabled = 20;
 
@@ -154,9 +156,36 @@ void showEnabledState() {
     leds.show();
 }
 
+uint8_t cometHue;
+uint8_t cometValue = 0;
+uint8_t cometValueSpeed;
+uint8_t cometUpdate;
+
 int randomColor2(int offset, bool vary) {
     CHSV hsv;
-    if (currentAmbientMode == AmbientColor || !vary && currentAmbientMode == AmbientPattern
+    if (currentAmbientMode == AmbientPattern
+        && currentAmbientPatternChoice == AmbientComets) {
+        if (updateCount != cometUpdate) {
+          if (cometValue == 0 && 
+             (randomByte() & 0x1f) == 0) {
+            cometHue = randomByte();
+            cometValue = 255;
+            cometValueSpeed = (randomByte() & 0x7) + 2;
+
+        } else if (cometValue < cometValueSpeed)
+            cometValue = 0;
+        else
+            cometValue -= cometValueSpeed;
+         cometUpdate = updateCount;
+        }
+        
+        hsv.h = cometHue;
+        hsv.s=255;
+        if (vary)
+            hsv.v = cometValue;
+        else
+            hsv.v = 255;
+    } else if (currentAmbientMode == AmbientColor || !vary && currentAmbientMode == AmbientPattern
         && currentAmbientPatternChoice == AmbientSparkles) {
         if (vary)
             hsv.v = (randomByte() & 0x7f) + 96;
@@ -210,6 +239,9 @@ int randomColor2(int offset, bool vary) {
     hsv2rgb_rainbow(hsv, rgb);
     return (rgb.r << 16 ) | (rgb.g << 8) | rgb.b;
 }
+
+
+
 int randomColor(int offset) {
     return  randomColor2(offset, true);
 }
@@ -226,9 +258,14 @@ uint32_t getEndGameDuration() {
     return endGameDurationNormal;
 }
 void setDigitColor() {
+    if (currentAmbientMode ==AmbientColor)
+        io.digitalWrite(AmbientPin, 0);
+    else
+        io.digitalWrite(AmbientPin, 1);
+
     if (currentAmbientMode != AmbientDefault)
         timeDisplay.setColor(randomSteadyColor(SIDE_STRIP_LENGTH));
-    else if (pachinkoState == e_GameOver)
+    else if (emceeMode || pachinkoState == e_GameOver)
         timeDisplay.setColor(0xffffff);
    else if (pachinkoState == e_Attract)
         timeDisplay.setColor(0x00ff00);
@@ -245,23 +282,22 @@ void setDigitColor() {
             timeDisplay.setColor(0x00ff00);
     }
     
-    if (emceeMode) {
-        scoreDisplay.setColor(0xffffff);
-        scoreDisplay.setValue(score);
-        Serial.println("In emcee mode");
-    } else {
-        switch (currentAmbientMode) {
-            case AmbientColor:
-            case AmbientPattern:
-                scoreDisplay.setColor(randomSteadyColor(SIDE_STRIP_LENGTH));
-                break;
-            case AmbientDefault:
+    
+    switch (currentAmbientMode) {
+        case AmbientColor:
+        case AmbientPattern:
+            scoreDisplay.setColor(randomSteadyColor(SIDE_STRIP_LENGTH));
+            break;
+        case AmbientDefault:
+            if (emceeMode)
+                scoreDisplay.setColor(0xffffff);
+            else
                 scoreDisplay.setColor(0x00ff00);
-                break;
-        }
-        
-        scoreDisplay.setValue(score);
+            break;
     }
+    
+    scoreDisplay.setValue(score);
+    
 }
 void newGame() {
     Serial.println("New game");
@@ -383,6 +419,8 @@ void scorePoints(int points) {
         lowPocketScore += points * multiplier;
     scoreDisplay.setValue(score);
     scoreBell.ring(points * multiplier);
+    if (ringGameBellOnScore)
+        GameOverBell.ring(1);
 
 }
 
@@ -479,18 +517,15 @@ void loopMain() {
     
     uint8_t remoteCommand, remoteNumber;
     readRemote(remoteCommand, remoteNumber);
+    
     RemoteCommand cmd = (RemoteCommand) (remoteCommand & 0x0f);
-
-    if (remoteCommand == 0x2a)
-        cmd = command_ShowRemotes;
-    else if (remoteCommand == 0x23)
-        cmd = command_ToggleRemote;
     uint8_t subCommand = ((remoteCommand >>4) & 0x0f);
     
     if (gamePaused && cmd != command_LongAlarm && cmd != command_PauseGame)
         cmd = command_NOP;
     
-    if (!remoteEnabled[remoteNumber]) {
+    if (cmd != command_NOP && (remoteNumber >= numRemotes || !remoteEnabled[remoteNumber])) {
+        Serial.printf("Remote %d is disabled\n", remoteNumber);
         cmd = command_NOP;
     }
     switch (cmd) {
@@ -511,6 +546,7 @@ void loopMain() {
             Serial.println("command_PatternAmbient");
             currentAmbientMode = AmbientPattern;
             currentAmbientPatternChoice = (AmbientPatternChoice) (subCommand-1);
+            cometValue = 0;
             Serial.printf("Color mode = %d, %d, %d\n", currentAmbientMode, currentAmbientColorChoice, currentAmbientPatternChoice);
     
             setDigitColor();
@@ -611,7 +647,7 @@ void loopMain() {
             Serial.println("command_ShowRemotes");
             showEnabledState();
            
-            delay(1000);
+            delay(3000);
             leftStrip.fill();
             rightStrip.fill();
 
@@ -619,14 +655,18 @@ void loopMain() {
         case command_ToggleRemote:
             Serial.println("command_ToggleRemote");
             
-            int r = 3;
+            int r = subCommand;
+            if (r == remoteNumber) {
+                GameOverBell.ring(1);
+                break;
+            }
             if (remoteEnabled[r])
                 remoteEnabled[r] = false;
             else
                 remoteEnabled[r] = true;
             EEPROM.put(start_RemoteEnabled+r, remoteEnabled[r]);
             showEnabledState();
-            delay(1000);
+            delay(3000);
             leftStrip.fill();
             rightStrip.fill();
             break;
@@ -662,10 +702,14 @@ void loopMain() {
                 leftStrip.setColor(0);
                 rightStrip.setColor(0);
             }
-        } else if (stripCount++ == 5 || currentAmbientMode == AmbientPattern) {
-            stripCount = 0;
-            leftStrip.update();
-            rightStrip.update();
+        } else {
+            stripCount++;
+            if (stripCount == 5 || currentAmbientMode == AmbientPattern && (currentAmbientPatternChoice != AmbientSparkles ||stripCount == 2) ) {
+                stripCount = 0;
+                
+                leftStrip.update();
+                rightStrip.update();
+            }
         }
         int secondsRemaining = (gameEnds - now) / 1000;
         if (secondsRemaining < 0)
