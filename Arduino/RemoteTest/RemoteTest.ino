@@ -44,11 +44,15 @@ nRF24L01/Mirf library:
 
 
 void setup() {
+        delay(500);
+        Serial.begin(9600);
 	// nRF24L01 / Mirf library module setup
 	Mirf.cePin = 9;
 	Mirf.csnPin = 10;
 	Mirf.spi = &MirfHardwareSpi;
 	resetTransceiver();
+    Serial.println("Remote test");
+
 	}
 
 
@@ -98,19 +102,18 @@ void resetTransceiver(void)
 boolean readCommand(void)
 {
 	byte data[4];
+//Serial.printf("-%02X-\n", Mirf.getStatus());
 
-Serial.printf("-%02X-\n", Mirf.getStatus());
 
 	if(!Mirf.isSending() && Mirf.dataReady()){
 		Mirf.getData(data);     
 		Mirf.setTADDR((byte *)"KeyPd");
 //		Mirf.send(data);	//Echo data back
-		if(data[0] == 0x55 && data[1] == 0xaa && data[3] == 0xff) {
-			uint8_t prg = data[2] & 0x3f;
-Serial.printf("CMD=%02X (%c)\n", prg, prg);
+		Serial.printf("CMD= %02x %02x %02x %02x\n", data[0], data[1], data[2], data[3]);
 			return 1;
 			}
-		}
+
+  
 
 	return 0;
 	}
