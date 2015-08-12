@@ -23,7 +23,7 @@
 
  void RGBHeartBeat::setPixel(int pos, int side, int height, int horizontalOffset) {
     int distance = abs(height) + abs(horizontalOffset);
-    int size = effectSize * verticalLength * 1.1;
+    int size = effectSize * (verticalLength +1);
     CHSV hsv;
     hsv.h = side*80;
     hsv.s = 255;

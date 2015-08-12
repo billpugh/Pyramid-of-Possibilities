@@ -144,12 +144,12 @@ AmbientPatternChoice currentAmbientPatternChoice;
 int updateCount = 0;
 bool remoteEnabled[16];
 
-void showEnabledState() {
+void showEnabledState(int fromRemote) {
     Serial.println("Show enabled state");
      for(int pos = 0; pos < SIDE_STRIP_LENGTH; pos++)
          leds.setPixel(STRIP_3+pos, 0);
     for(int i = 0; i < numRemotes; i++) {
-        int rgb = remoteEnabled[i] ? 0x00ff00 : 0xff0000;
+        int rgb = i == fromRemote? 0xffffff : (remoteEnabled[i] ? 0x00ff00 : 0xff0000);
         for(int pos = 0; pos < 8; pos++)
             leds.setPixel(STRIP_3+i*10+pos, rgb);
     }
@@ -645,7 +645,7 @@ void loopMain() {
             break;
         case command_ShowRemotes:
             Serial.println("command_ShowRemotes");
-            showEnabledState();
+            showEnabledState(remoteNumber);
            
             delay(3000);
             leftStrip.fill();
@@ -665,7 +665,7 @@ void loopMain() {
             else
                 remoteEnabled[r] = true;
             EEPROM.put(start_RemoteEnabled+r, remoteEnabled[r]);
-            showEnabledState();
+            showEnabledState(remoteNumber);
             delay(3000);
             leftStrip.fill();
             rightStrip.fill();

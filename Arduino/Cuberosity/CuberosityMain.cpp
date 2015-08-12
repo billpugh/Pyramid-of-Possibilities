@@ -19,14 +19,38 @@ const int config = WS2811_GRB | WS2811_800kHz;
 
 OctoWS2811 leds(LEDsPerStrip, displayMemory, drawingMemory, config);
 
-const int animationDuration = 30000;
+
 
 unsigned long switchAnimationAt;
 void setupMain() {
   Serial.begin(9600);
   leds.begin();
+    for(int i = 0; i < 6; i++) {
+        for(int j = 0; j<=i; j++) {
+            leds.setPixel(LEDsPerStrip*i+j, 0x404040);
+               leds.setPixel(LEDsPerStrip*(i+1)-1-j, 0x404040);
+        }
+    };
   leds.show();
-  delay(2000);
+  delay(6000);
+   for(int i = 0; i < 6; i++) {
+        for(int j = 0; j<LEDsPerStrip; j++)
+            leds.setPixel(LEDsPerStrip*i+j, 0x202020);
+
+    };
+    leds.show();
+  delay(6000);
+    for(int i = 0; i < 6; i++) {
+        for(int j = 0; j<LEDsPerStrip; j++) {
+            int c = j%3;
+            
+            int color = c == 0 ? 0x400000 : (c == 1 ? 0x4000 : 0x40);
+            
+            leds.setPixel(LEDsPerStrip*i+j, color);
+        }
+    };
+    leds.show();
+    delay(6000);
   switchAnimationAt = millis() + animationDuration;
   Serial.print("Now ");
   Serial.println(millis());
@@ -44,7 +68,7 @@ void iterateAll() {
     int stripStart = side * 2 * LEDsPerStrip;
     for (int i = 0; i < horizontalLength; i++)
       currentAnimation->setPixel(stripStart + i, side, 0, -1 - i);
-    stripStart += horizontalLength + horizontalGap;
+    stripStart += horizontalLength + horizontalSkip;
     for (int i = 0; i < horizontalLength; i++)
       currentAnimation->setPixel(stripStart + i, (side + 1) % 3, 0, horizontalLength - i);
     stripStart += horizontalLength;

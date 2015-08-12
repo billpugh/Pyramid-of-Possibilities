@@ -13,14 +13,17 @@
 #include "Animation.h"
 
 enum  AnimationEnum {
-        e_VerticalGradient,
+    e_VerticalGradientRed,
+
+    e_TimeRainbowGradient,
+    e_VerticalGradient,
+    e_RGBHeartBeat,
+    e_WhiteGlow,
+    
+    e_RadialGradient,
     e_VerticalGradientBlue,
     
-    e_TimeRainbowGradient,
-    e_RGBHeartBeat,
-     e_RadialGradient,
-
-    
+    e_GreenPurpleGlow,
     e_AnimationCount
 };
 
