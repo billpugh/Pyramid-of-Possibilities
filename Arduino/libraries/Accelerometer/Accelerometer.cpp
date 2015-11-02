@@ -1,7 +1,7 @@
 
 #include "Accelerometer.h"
 #include "Arduino.h"
-#include <Wire.h>
+#include <i2c_t3.h>
 #include <stdlib.h>
 
 // The SparkFun breakout board defaults to 1, set to 0 if SA0 jumper on the bottom of the board is set
@@ -16,15 +16,27 @@
 const uint8_t dataRate = 0;  // 0=800Hz, 1=400, 2=200, 3=100, 4=50, 5=12.5, 6=6.25, 7=1.56
 
 void initMMA8452(uint8_t fsr, uint8_t dataRate,
+	bool highPassFilter,
 	uint8_t PULSE_THSX,
 	uint8_t PULSE_THSY,
 	uint8_t PULSE_THSZ
 	);
 
 void initializeAccelerometer( ) {
-  initializeAccelerometer(1,1,1);
+	initializeAccelerometer(true);
+}
+void initializeAccelerometer( bool highPassFilter ) {
+  initializeAccelerometer(highPassFilter, 1,1,1);
 }
 void initializeAccelerometer(
+        uint8_t PULSE_THSX,
+        uint8_t PULSE_THSY,
+        uint8_t PULSE_THSZ) {
+  initializeAccelerometer(true, PULSE_THSX, PULSE_THSY, PULSE_THSZ);
+  }
+
+void initializeAccelerometer(
+	bool highPassFilter,
         uint8_t PULSE_THSX,
         uint8_t PULSE_THSY,
         uint8_t PULSE_THSZ) {
@@ -52,7 +64,7 @@ void initializeAccelerometer(
   Serial.println(c, HEX);
   if (c == 0x1A || c == 0x2A) // WHO_AM_I should be 0x1A or 0x2A
   {  
-    initMMA8452(SCALE, dataRate, PULSE_THSX, PULSE_THSY, PULSE_THSZ);  // init the accelerometer if communication is OK
+    initMMA8452(SCALE, dataRate, highPassFilter, PULSE_THSX, PULSE_THSY, PULSE_THSZ);  // init the accelerometer if communication is OK
     if (c == 0x2A) 
       Serial.println("MMA8452Q is online...");
     else
@@ -124,6 +136,7 @@ void readAccelData(float * destination) {
 // http://www.freescale.com/webapp/sps/site/prod_summary.jsp?code=MMA8452Q
 // Feel free to modify any values, these are settings that work well for me.
 void initMMA8452(uint8_t fsr, uint8_t dataRate,
+	bool highPassFilter,
 	uint8_t PULSE_THSX,
 	uint8_t PULSE_THSY,
 	uint8_t PULSE_THSZ
@@ -131,7 +144,7 @@ void initMMA8452(uint8_t fsr, uint8_t dataRate,
 {
   MMA8452Standby();  // Must be in standby to change registers
 
-  uint8_t HPF_OUT = 0x10;
+  uint8_t HPF_OUT = highPassFilter ?  0x10 : 0;
   // Set up the full scale range to 2, 4, or 8g.
   if ((fsr==2)||(fsr==4)||(fsr==8))
     writeRegister(0x0E,  HPF_OUT | (fsr >> 2));  

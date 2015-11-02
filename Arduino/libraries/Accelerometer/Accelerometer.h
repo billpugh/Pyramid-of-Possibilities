@@ -12,7 +12,13 @@ const int int1Pin = 11;  // These can be changed, 2 and 3 are the Arduinos ext i
 const int int2Pin = 12;
 
 void initializeAccelerometer();
+void initializeAccelerometer( bool highPassFilter );
 void initializeAccelerometer(
+        uint8_t PULSE_THSX,
+        uint8_t PULSE_THSY,
+        uint8_t PULSE_THSZ);
+void initializeAccelerometer(
+        bool highPassFilter,
         uint8_t PULSE_THSX,
         uint8_t PULSE_THSY,
         uint8_t PULSE_THSZ);
