@@ -11,6 +11,7 @@
 #include <stdint.h>
 
 #include "RNLights.h"
+#include <led_sysdefs.h>
 #include <hsv2rgb.h>
 
 class RNChaser {
