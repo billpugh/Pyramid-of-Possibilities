@@ -5,6 +5,7 @@
 #include "Adafruit_NeoPixel.h"
 #include "Accelerometer.h"
 #include "RNLights.h"
+#include "RNGradient.h"
 #include "RNLightsOctoWS2811.h"
 #include "RNChaser.h"
 #include "RNInfo.h"
@@ -20,6 +21,7 @@
 #include "TimerThree.h"
 #include "UploadParameters.h"
 #include "UploadConstants.h"
+#include <i2c_t3.h>
 #include <EEPROM.h>
 #include <malloc.h>
 
