@@ -7,7 +7,8 @@
 //
 
 #include "RNGradient.h"
-#include "hsv2rgb.h"
+#include <led_sysdefs.h>
+#include <hsv2rgb.h>
 
 
 RNGradient::RNGradient(bool isHSV,
