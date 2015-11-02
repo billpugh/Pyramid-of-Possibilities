@@ -29,6 +29,8 @@ enum  RNGradientKind {
 
 
 // Note that the first value of the gradient is 16 bit. This is intended for HSV gradients, where you might want a 
+// gradient that wraps around from 200..300
+
 class RNGradient {
 public:
     RNGradient(bool isHSV,
