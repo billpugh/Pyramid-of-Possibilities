@@ -4,6 +4,20 @@
 #include <i2c_t3.h>
 #include <stdlib.h>
 
+// Set the scale below either 2, 4 or 8
+const uint8_t SCALE_SHIFT = 1; // full-scale shift (1, 2, or 3) corresponding to 2, 4, or 8g
+const uint8_t SCALE = 1 << SCALE_SHIFT;  // Sets full-scale range to +/-2, 4, or 8g. Used to calc real g values.
+const int int1Pin = 11;  // These can be changed, 2 and 3 are the Arduinos ext int pins
+const int int2Pin = 12;
+void readAccelData(int16_t * destination);
+void readAccelData(float * destination);
+void MMA8452Standby();
+void MMA8452Active();
+void readRegisters(uint8_t addressToRead, int bytesToRead, uint8_t * dest);
+uint8_t readRegister(uint8_t addressToRead);
+int readRegister(uint8_t addressToRead, unsigned long timeout);
+void writeRegister(uint8_t addressToWrite, uint8_t dataToWrite);
+
 // The SparkFun breakout board defaults to 1, set to 0 if SA0 jumper on the bottom of the board is set
 #define SA0 1
 #if SA0
@@ -21,19 +35,6 @@ void initMMA8452(uint8_t fsr, uint8_t dataRate,
 	uint8_t PULSE_THSY,
 	uint8_t PULSE_THSZ
 	);
-
-void initializeAccelerometer( ) {
-	initializeAccelerometer(true);
-}
-void initializeAccelerometer( bool highPassFilter ) {
-  initializeAccelerometer(highPassFilter, 1,1,1);
-}
-void initializeAccelerometer(
-        uint8_t PULSE_THSX,
-        uint8_t PULSE_THSY,
-        uint8_t PULSE_THSZ) {
-  initializeAccelerometer(true, PULSE_THSX, PULSE_THSY, PULSE_THSZ);
-  }
 
 void initializeAccelerometer(
 	bool highPassFilter,
@@ -82,30 +83,34 @@ void initializeAccelerometer(
 #endif
 }
 
-void updateAccelerometer() {
-#ifndef POP_SIMULATOR
-  float totalDiff = 0.0;
-  float accelG[3];
+void getAccelerometerData(
+   float &totalG,
+   float directionalG[3],
+   uint8_t &tapSource) {
+
+  totalG = 0.0;
   for(int i = 0; i < 3; i++)
-    accelG[i] = 0.0;
+    directionalG[i] = 0.0;
+  tapSource = 0;
+
+#ifndef POP_SIMULATOR
   if (digitalRead(int1Pin)==1)  // Interrupt pin, should probably attach to interrupt function
   {
-    readAccelData(accelG);  // Read the x/y/z adc values
+    readAccelData(directionalG);  // Read the x/y/z adc values
 
 
     for (int i=0; i<3; i++) 
-      totalDiff += abs(accelG[i]);
+      totalG += abs(directionalG[i]);
 
   }
-  uint8_t tapValue = 0;
   if (digitalRead(int2Pin)==1)
   { 
     byte source;
     source = readRegister(0x0C);  // Read the interrupt source reg.
     if ((source & 0x08))  // If tap register is set go check that
-      tapValue = readRegister(0x22); 
+      tapSource = readRegister(0x22); 
   }
-  accelerometerCallback(totalDiff, accelG, tapValue);
+
 #endif
 }
 
