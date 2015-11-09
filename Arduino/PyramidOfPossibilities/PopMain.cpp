@@ -82,18 +82,10 @@ void setupMain() {
 
     createWatchdog(constants.watchdogTimeout);
 
-
 }
-
-
-
 
 unsigned long avgTime = 0;
 int count = 0;
-
-void accelerometerCallback( float totalG, float directionalG[3], uint8_t source)  {
-    info->accelerometerCallback(totalG,directionalG, source);
-}
 
 uint8_t scaleBrightness(uint8_t value) {
     uint8_t result = 0;
@@ -128,8 +120,14 @@ void loopMain() {
     refreshWatchdog();
     unsigned long startMicros = micros();
 
-    updateAccelerometer();
+    float totalG;
+    float directionalG[3];
+    uint8_t source;
+    getAccelerometerData(totalG, directionalG, source);
+    
+    info->accelerometerCallback(totalG,directionalG, source);
 
+        
     // display lights
     lights->reset();
     controller->paint(*lights);
