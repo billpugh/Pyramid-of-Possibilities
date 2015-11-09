@@ -5,9 +5,12 @@
 //  Copyright (c) 2014 Radical Norm. All rights reserved.
 //
 
+
+
 #ifndef __RNLightsOctoWS2811__
 #define __RNLightsOctoWS2811__
 
+#if defined(__MK20DX128__) || defined(__MK20DX256__) // Teensy 3.0 & 3.1
 #include <Arduino.h>
 #include "OctoWS2811.h"
 #include "RNLights.h"
@@ -26,5 +29,6 @@ private:
   const uint16_t firstPixel;
 };
 
+#endif /* defined(__MK20DX128__) || defined(__MK20DX256__) */
 #endif /* defined(__RNLightsOctoWS2811__) */
 

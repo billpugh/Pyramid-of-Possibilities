@@ -1,4 +1,6 @@
 
+#if defined(__MK20DX128__) || defined(__MK20DX256__) // Teensy 3.0 & 3.1
+
 #include "RNLightsOctoWS2811.h"
 
 RNLightsOctoWS2811::RNLightsOctoWS2811(OctoWS2811 & strip,  void *frameBuffer,  uint16_t firstPixel) :
@@ -43,4 +45,5 @@ unsigned long RNLightsOctoWS2811::show() {
 
 
 
+#endif
 
