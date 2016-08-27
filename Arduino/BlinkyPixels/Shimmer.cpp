@@ -10,8 +10,8 @@ float light_champagne_b = 0.8340;
 
 //medium champagne
 float medium_champagne_r = 1.0000;
-float medium_champagne_g = 0.9412;
-float medium_champagne_b = 0.7020;
+float medium_champagne_g = 233/255.0;
+float medium_champagne_b = 97/255.0;
 
 void Shimmer::SetColorTemperature(uint8_t newColorTemperature) {
   //set color temp

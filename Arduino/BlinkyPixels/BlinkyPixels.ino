@@ -4,6 +4,7 @@
 
 #include "BlinkyTape.h"
 #include "ColorLoop.h"
+#include "ColorWheel.h"
 #include "SerialLoop.h"
 #include "Shimmer.h"
 #include "Scanner.h"
@@ -30,6 +31,10 @@ uint8_t buttonState = 0;
 bool buttonDebounced;
 long buttonDownTime = 0;
 long buttonPressTime = 0;
+
+unsigned long nextAutoAdvance;
+const unsigned long autoAdvanceDelay = 300000L; /// 5 minutes
+
 
 #define BUTTON_BRIGHTNESS_SWITCH_TIME  1     // Time to hold the button down to switch brightness
 #define BUTTON_PATTERN_SWITCH_TIME    1000   // Time to hold the button down to switch patterns
@@ -71,6 +76,10 @@ void initializePattern(uint8_t newPattern) {
   
   lastTime = millis();
   fadeIndex = 0;
+}
+
+void advancePattern() {
+    initializePattern((currentPattern+1)%patternCount);
 }
 
 // Run one step of the current pattern
@@ -120,7 +129,9 @@ ISR(TIMER4_OVF_vect) {
     brightness = lastBrightness;
     LEDS.setBrightness(brightnesSteps[brightness]);
     
-    initializePattern((currentPattern+1)%patternCount);
+    advancePattern();
+    
+    nextAutoAdvance = 0xffffffff;
     
     // Finally, reset the button down time, so we don't advance again too quickly
     buttonDownTime = millis();
@@ -130,17 +141,19 @@ ISR(TIMER4_OVF_vect) {
 ColorLoop originalRainbow(1,1,1);
 ColorLoop blueRainbow(.2,1,1);
 Shimmer shimmer0(0);
-Shimmer shimmer1(1);
 Shimmer shimmer2(2);
+ColorWheel cwheel(0);
 
 void setup()
 {  
+  nextAutoAdvance = millis() + autoAdvanceDelay;
+ 
   Serial.begin(57600);
-  delay(1000);
   LEDS.addLeds<WS2811, LED_OUT, RGB>(leds, LED_COUNT);
   brightness = STARTING_BRIGHTNESS;
   LEDS.setBrightness(brightnesSteps[brightness]);
   LEDS.show();
+  
 
   pinMode(BUTTON_IN, INPUT_PULLUP);
   pinMode(ANALOG_INPUT, INPUT_PULLUP);
@@ -153,23 +166,19 @@ void setup()
   PCICR  |= (1 << PCIE0);  // Enable interrupt
   
   registerPattern(&originalRainbow);
-  registerPattern(&blueRainbow);
   registerPattern(&shimmer0);
-  registerPattern(&shimmer1);
+  registerPattern(&blueRainbow);
   registerPattern(&shimmer2);
+  registerPattern(&cwheel);
   
 
   // Attempt to read in the last used pattern; if it's an invalid
   // number, initialize it to 0 instead.
   int m0 = EEPROM.read(EEPROM_START_ADDRESS);
   int m1 = EEPROM.read(EEPROM_START_ADDRESS+1);
-  Serial.println(m0);
-  Serial.println(m1);
   if(m0 == EEPROM_MAGIG_BYTE_0
-     && m1 == EEPROM_MAGIC_BYTE_1) {
+     && m1 == EEPROM_MAGIC_BYTE_1 && false) {
     currentPattern = EEPROM.read(PATTERN_EEPROM_ADDRESS);
-    Serial.print("Got current pattern ");
-    Serial.println(currentPattern);
     if(currentPattern >= patternCount) {
       currentPattern = 0;
     }
@@ -190,7 +199,12 @@ void loop()
   if(Serial.available() > 0) {
     serialLoop(leds);
   }
-  
+
+  if (millis() > nextAutoAdvance) {
+    advancePattern();
+    nextAutoAdvance = millis() + autoAdvanceDelay;
+  }
+
   // Draw the current pattern
   runPattern();
 
