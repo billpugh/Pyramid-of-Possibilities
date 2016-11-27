@@ -20,6 +20,7 @@ Adafruit_MotorShield AFMS = Adafruit_MotorShield();
 // Connect a stepper motor with 200 steps per revolution (1.8 degree)
 // to motor port #2 (M3 and M4)
 Adafruit_StepperMotor *myMotor = AFMS.getStepper(513, 1);
+Adafruit_StepperMotor *myMotor2 = AFMS.getStepper(200, 2);
 
 
 void setup() {
@@ -30,28 +31,32 @@ void setup() {
   AFMS.begin();  // create with the default frequency 1.6KHz
   //AFMS.begin(1000);  // OR with a different frequency, say 1KHz
   
-  myMotor->setSpeed(25);  // 10 rpm   
+  myMotor->setSpeed(25);  // 10 rpm 
+  myMotor2->setSpeed(50);  
 }
 
 void loop() {
-  int chunk = 513;
+  go(myMotor2, 200);
+  go(myMotor, 513);
+}
+void go(Adafruit_StepperMotor * m, int chunk) {
   digitalWrite(13, HIGH);
   Serial.println("Single coil steps");
-  myMotor->step(chunk, FORWARD, SINGLE); 
-  myMotor->step(chunk, BACKWARD, SINGLE); 
+  m->step(chunk, FORWARD, SINGLE); 
+  m->step(chunk, BACKWARD, SINGLE); 
 
 digitalWrite(13, LOW);
   Serial.println("Double coil steps");
-  myMotor->step(chunk, FORWARD, DOUBLE); 
-  myMotor->step(chunk, BACKWARD, DOUBLE);
+  m->step(chunk, FORWARD, DOUBLE); 
+  m->step(chunk, BACKWARD, DOUBLE);
 
   digitalWrite(13, HIGH);
   Serial.println("Interleave coil steps");
-  myMotor->step(chunk, FORWARD, INTERLEAVE); 
-  myMotor->step(chunk, BACKWARD, INTERLEAVE); 
+  m->step(chunk, FORWARD, INTERLEAVE); 
+  m->step(chunk, BACKWARD, INTERLEAVE); 
 
   digitalWrite(13, LOW);
   Serial.println("Microstep steps");
-  myMotor->step(chunk, FORWARD, MICROSTEP); 
-  myMotor->step(chunk, BACKWARD, MICROSTEP);
+  m->step(chunk, FORWARD, MICROSTEP); 
+  m->step(chunk, BACKWARD, MICROSTEP);
 }
