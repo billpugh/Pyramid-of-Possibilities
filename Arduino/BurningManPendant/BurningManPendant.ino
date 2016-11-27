@@ -1,6 +1,6 @@
 // Circuit Playground MEGA Demo
 //
-// Showcases interesting demos of all the components on Circuit Playground.
+// Showadacases interesting demos of all the components on Circuit Playground.
 // This is a somewhat advanced sketch that's broken across multiple files (see
 // the tabs above for all the files).  When run on Circuit Playground you can
 // press the left button to cycle through each demo, and the right button to
@@ -41,6 +41,7 @@
 //
 // Author: Tony DiCola
 // License: MIT License (https://opensource.org/licenses/MIT)
+#include <Adafruit_NeoPixel.h>
 #include <Adafruit_CircuitPlayground.h>
 #include <Wire.h>
 #include <SPI.h>
@@ -50,12 +51,21 @@
 // Include all the demos, note that each demo is defined in a separate class to keep the sketch
 // code below clean and simple.
 #include "Demo.h"
+#include "Rotation.h"
 #include "RainbowCycleDemo.h"
 #include "VUMeterDemo.h"
 #include "CapTouchDemo.h"
 #include "TiltDemo.h"
 #include "SensorDemo.h"
 #include "BreatheDemo.h"
+
+const int wheelPixels = 100;
+
+Adafruit_NeoPixel foo = Adafruit_NeoPixel(wheelPixels, 6, NEO_GRB + NEO_KHZ800);
+
+
+#include "RainbowWheelDemo.h"
+
 
 // Create an instance of each demo class.
 RainbowCycleDemo rainbowCycleDemo;
@@ -64,16 +74,20 @@ CapTouchDemo capTouchDemo;
 TiltDemo tiltDemo;
 SensorDemo sensorDemo;
 BreatheDemo breatheDemo;
+RainbowWheelDemo wheelDemo;
 
 // Make a list of all demo class instances and keep track of the currently selected one.
 int currentDemo = 0;
 Demo* demos[] = {
-  &breatheDemo,
+ //   &wheelDemo,
+ 
   &rainbowCycleDemo,
-  &vuMeterDemo,
   &capTouchDemo,
+  &vuMeterDemo,
   &tiltDemo,
-  &sensorDemo
+   &breatheDemo,
+
+  
   
 };
 
@@ -82,6 +96,9 @@ void setup() {
   Serial.begin(115200);
   Serial.println("Circuit Playground MEGA Demo!");
   CircuitPlayground.begin();
+  foo.begin();
+  foo.setBrightness(100);
+  setupRotation();
 }
 
 void loop() {
@@ -89,6 +106,8 @@ void loop() {
   while (!CircuitPlayground.slideSwitch()) {
     // Turn off the pixels, then go into deep sleep for a second.
     CircuitPlayground.clearPixels();
+    foo.clear();
+    foo.show();
     Watchdog.sleep(1000);
   }
 
@@ -97,7 +116,7 @@ void loop() {
   // second press state then something was pressed/released!
   bool leftFirst = CircuitPlayground.leftButton();
   bool rightFirst = CircuitPlayground.rightButton();
-  delay(10);
+  delay(5);
 
   // Run current demo's main loop.
   demos[currentDemo]->loop();
@@ -110,6 +129,8 @@ void loop() {
   if (leftFirst && !leftSecond) {
     // Turn off all the pixels when entering new mode.
     CircuitPlayground.clearPixels();
+    foo.clear();
+    foo.show();
     // Increment the current demo (looping back to zero if at end).
     currentDemo += 1;
     if (currentDemo >= (sizeof(demos)/sizeof(Demo*))) {
