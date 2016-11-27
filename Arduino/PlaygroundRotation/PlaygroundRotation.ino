@@ -26,29 +26,40 @@ void setColor(int pix, long rgb) {
 }
 
 void loop() {
-  double x = CircuitPlayground.motionX();
-  double y = CircuitPlayground.motionY();
-  double z = CircuitPlayground.motionZ();
-
-
-  double a = atan2(y, x);
-  int angle = (int)(a / 2 / 3.1415926 * 12 + 6);
-  // Serial.println(angle);
-  CircuitPlayground.clearPixels();
-  setColor(angle, 0xff00);
-  setColor(angle + 1, 0x7f00);
-  setColor(angle + 2, 0x3f00);
- setColor(angle - 1, 0x7f00);
-  setColor(angle - 2, 0x3f00);
   updateRotation();
+
+  float z = CircuitPlayground.motionZ();
+  if (abs(z) > 7)
+    CircuitPlayground.clearPixels();
+  else {
+    for (int pixel = 0; pixel < 10; pixel++) {
+      int myA = pixel;
+      if (myA > 4) myA++;
+      float distance = fractionalRotation(avgAngle - myA / 12.0 * 2 * pi);
+      if (distance < 0)
+        distance = -distance;
+      int g = (int)(255 - distance / pi * 1000);
+      if (g < 0) g = 0;
+      CircuitPlayground.strip.setPixelColor(pixel, 0, g, 0);
+
+    }
+    CircuitPlayground.strip.show();
+  }
   Serial.print(avgAngle);
   Serial.print("  ");
   Serial.print(avgSpeed);
   Serial.print("  ");
-  Serial.println(avgSpeed2);
-  
+  Serial.print(avgSpeed2);
+  Serial.print("  ");
+  Serial.print(avgActivity);
+  Serial.print("  ");
+  Serial.print(longAvgActivity);
+  Serial.print("  ");
+  Serial.println(veryLongAvgActivity);
+
+
   delay(10);
-  
+
 
 }
 
