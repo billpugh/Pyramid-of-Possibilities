@@ -155,7 +155,7 @@ void FlashEcho::setIsReplaying(bool replaying) {
 		recordingDuration = lastModeSwitchTimestamp - previousSwitchTimestamp;
 
 		// subtract off the kLullDuration so it loops cleanly. add a small (10 ms) padding so that the last tap will get correctly played back.
-		if ( recordingDuration < parameters.lullDuration - 10 ) {
+		if ( recordingDuration+10 < parameters.lullDuration ) {
 			recordingDuration = 0;
 		} else {
 			recordingDuration = recordingDuration - parameters.lullDuration + 10;

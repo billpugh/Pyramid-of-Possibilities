@@ -16,7 +16,7 @@
 
 
 #define DEBUG 0
-// #define FULL_STRIP
+//#define FULL_STRIP
 
 // #define RN_REALLY_LONG_ANIMATIONS
 
@@ -36,12 +36,12 @@ struct RNConstants {
   // Set values for the # of LEDs and 1st LED Index
 #ifdef FULL_STRIP
   // VALUES FOR FULL-STRIP (ie. platforms on the pyramid!)
-  static const uint8_t LEDs = 220;
+  static const uint8_t LEDs = 221;
 
   const uint8_t FIRST_LED = 10;
 #else
   // Modify these values for testing with a non-full strip.
-  static const uint8_t LEDs = 60;
+  static const uint8_t LEDs = 36;
   const uint8_t FIRST_LED = 0;
 #endif  /** #ifdef FULL_STRIP **/
 
